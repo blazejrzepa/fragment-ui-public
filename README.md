@@ -171,7 +171,9 @@ Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) 
 - **Website**: [fragmentui.com](https://fragmentui.com)
 - **Documentation**: [fragmentui.com/docs](https://fragmentui.com/docs)
 - **Components**: [fragmentui.com/components](https://fragmentui.com/components)
-- **GitHub**: [github.com/blazejrzepa/fragment-ui](https://github.com/blazejrzepa/fragment-ui)
+- **GitHub**: [github.com/blazejrzepa/fragment-ui-public](https://github.com/blazejrzepa/fragment-ui-public)
+  
+**Note:** This is the clean design system repository. For the full monorepo with Studio/Playground, see [fragment-ui](https://github.com/blazejrzepa/fragment-ui).
 
 ---
 
