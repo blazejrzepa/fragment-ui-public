@@ -1,0 +1,301 @@
+{
+  "timestamp": "2025-11-04T14:34:40.388Z",
+  "version": "0.0.1",
+  "components": [
+    {
+      "component": "accordion",
+      "size": 2307,
+      "gzipped": 776,
+      "sizeFormatted": "2.25 KB",
+      "gzippedFormatted": "776 B"
+    },
+    {
+      "component": "alert",
+      "size": 4572,
+      "gzipped": 1039,
+      "sizeFormatted": "4.46 KB",
+      "gzippedFormatted": "1.01 KB"
+    },
+    {
+      "component": "avatar",
+      "size": 1133,
+      "gzipped": 534,
+      "sizeFormatted": "1.11 KB",
+      "gzippedFormatted": "534 B"
+    },
+    {
+      "component": "badge",
+      "size": 1102,
+      "gzipped": 534,
+      "sizeFormatted": "1.08 KB",
+      "gzippedFormatted": "534 B"
+    },
+    {
+      "component": "breadcrumbs",
+      "size": 2500,
+      "gzipped": 757,
+      "sizeFormatted": "2.44 KB",
+      "gzippedFormatted": "757 B"
+    },
+    {
+      "component": "button",
+      "size": 1646,
+      "gzipped": 710,
+      "sizeFormatted": "1.61 KB",
+      "gzippedFormatted": "710 B"
+    },
+    {
+      "component": "card",
+      "size": 2641,
+      "gzipped": 607,
+      "sizeFormatted": "2.58 KB",
+      "gzippedFormatted": "607 B"
+    },
+    {
+      "component": "carousel",
+      "size": 6804,
+      "gzipped": 1921,
+      "sizeFormatted": "6.64 KB",
+      "gzippedFormatted": "1.88 KB"
+    },
+    {
+      "component": "checkbox",
+      "size": 1393,
+      "gzipped": 641,
+      "sizeFormatted": "1.36 KB",
+      "gzippedFormatted": "641 B"
+    },
+    {
+      "component": "combobox",
+      "size": 3758,
+      "gzipped": 1251,
+      "sizeFormatted": "3.67 KB",
+      "gzippedFormatted": "1.22 KB"
+    },
+    {
+      "component": "command-palette",
+      "size": 2902,
+      "gzipped": 1076,
+      "sizeFormatted": "2.83 KB",
+      "gzippedFormatted": "1.05 KB"
+    },
+    {
+      "component": "command",
+      "size": 5313,
+      "gzipped": 1308,
+      "sizeFormatted": "5.19 KB",
+      "gzippedFormatted": "1.28 KB"
+    },
+    {
+      "component": "context-menu",
+      "size": 7701,
+      "gzipped": 1362,
+      "sizeFormatted": "7.52 KB",
+      "gzippedFormatted": "1.33 KB"
+    },
+    {
+      "component": "date-picker",
+      "size": 5298,
+      "gzipped": 1586,
+      "sizeFormatted": "5.17 KB",
+      "gzippedFormatted": "1.55 KB"
+    },
+    {
+      "component": "dialog",
+      "size": 2245,
+      "gzipped": 632,
+      "sizeFormatted": "2.19 KB",
+      "gzippedFormatted": "632 B"
+    },
+    {
+      "component": "dropdown-menu",
+      "size": 5319,
+      "gzipped": 1132,
+      "sizeFormatted": "5.19 KB",
+      "gzippedFormatted": "1.11 KB"
+    },
+    {
+      "component": "form-field",
+      "size": 2956,
+      "gzipped": 826,
+      "sizeFormatted": "2.89 KB",
+      "gzippedFormatted": "826 B"
+    },
+    {
+      "component": "hover-card",
+      "size": 1286,
+      "gzipped": 548,
+      "sizeFormatted": "1.26 KB",
+      "gzippedFormatted": "548 B"
+    },
+    {
+      "component": "input",
+      "size": 698,
+      "gzipped": 381,
+      "sizeFormatted": "698 B",
+      "gzippedFormatted": "381 B"
+    },
+    {
+      "component": "menubar",
+      "size": 8536,
+      "gzipped": 1468,
+      "sizeFormatted": "8.34 KB",
+      "gzippedFormatted": "1.43 KB"
+    },
+    {
+      "component": "navigation-menu",
+      "size": 5013,
+      "gzipped": 1168,
+      "sizeFormatted": "4.9 KB",
+      "gzippedFormatted": "1.14 KB"
+    },
+    {
+      "component": "pagination",
+      "size": 3533,
+      "gzipped": 994,
+      "sizeFormatted": "3.45 KB",
+      "gzippedFormatted": "994 B"
+    },
+    {
+      "component": "popover",
+      "size": 1969,
+      "gzipped": 750,
+      "sizeFormatted": "1.92 KB",
+      "gzippedFormatted": "750 B"
+    },
+    {
+      "component": "progress",
+      "size": 955,
+      "gzipped": 488,
+      "sizeFormatted": "955 B",
+      "gzippedFormatted": "488 B"
+    },
+    {
+      "component": "radio",
+      "size": 2343,
+      "gzipped": 801,
+      "sizeFormatted": "2.29 KB",
+      "gzippedFormatted": "801 B"
+    },
+    {
+      "component": "select",
+      "size": 2364,
+      "gzipped": 706,
+      "sizeFormatted": "2.31 KB",
+      "gzippedFormatted": "706 B"
+    },
+    {
+      "component": "separator",
+      "size": 843,
+      "gzipped": 417,
+      "sizeFormatted": "843 B",
+      "gzippedFormatted": "417 B"
+    },
+    {
+      "component": "sheet",
+      "size": 4345,
+      "gzipped": 1222,
+      "sizeFormatted": "4.24 KB",
+      "gzippedFormatted": "1.19 KB"
+    },
+    {
+      "component": "skeleton",
+      "size": 515,
+      "gzipped": 307,
+      "sizeFormatted": "515 B",
+      "gzippedFormatted": "307 B"
+    },
+    {
+      "component": "slider",
+      "size": 1315,
+      "gzipped": 556,
+      "sizeFormatted": "1.28 KB",
+      "gzippedFormatted": "556 B"
+    },
+    {
+      "component": "spinner",
+      "size": 792,
+      "gzipped": 441,
+      "sizeFormatted": "792 B",
+      "gzippedFormatted": "441 B"
+    },
+    {
+      "component": "switch",
+      "size": 1129,
+      "gzipped": 535,
+      "sizeFormatted": "1.1 KB",
+      "gzippedFormatted": "535 B"
+    },
+    {
+      "component": "table",
+      "size": 2284,
+      "gzipped": 601,
+      "sizeFormatted": "2.23 KB",
+      "gzippedFormatted": "601 B"
+    },
+    {
+      "component": "tabs",
+      "size": 3765,
+      "gzipped": 1087,
+      "sizeFormatted": "3.68 KB",
+      "gzippedFormatted": "1.06 KB"
+    },
+    {
+      "component": "textarea",
+      "size": 772,
+      "gzipped": 415,
+      "sizeFormatted": "772 B",
+      "gzippedFormatted": "415 B"
+    },
+    {
+      "component": "toast",
+      "size": 410,
+      "gzipped": 178,
+      "sizeFormatted": "410 B",
+      "gzippedFormatted": "178 B"
+    },
+    {
+      "component": "tooltip",
+      "size": 1638,
+      "gzipped": 660,
+      "sizeFormatted": "1.6 KB",
+      "gzippedFormatted": "660 B"
+    },
+    {
+      "component": "virtual-list",
+      "size": 4768,
+      "gzipped": 1444,
+      "sizeFormatted": "4.66 KB",
+      "gzippedFormatted": "1.41 KB"
+    },
+    {
+      "component": "virtual-table",
+      "size": 4113,
+      "gzipped": 1166,
+      "sizeFormatted": "4.02 KB",
+      "gzippedFormatted": "1.14 KB"
+    }
+  ],
+  "package": {
+    "package": "@fragment_ui/ui",
+    "size": 1128,
+    "gzipped": 280,
+    "sizeFormatted": "1.1 KB",
+    "gzippedFormatted": "280 B"
+  },
+  "summary": {
+    "totalComponents": 39,
+    "totalSize": 112976,
+    "totalGzipped": 33025,
+    "averageSize": 2897,
+    "averageGzipped": 847
+  },
+  "limits": {
+    "componentMaxGzipped": 50000,
+    "componentMaxSize": 150000,
+    "totalMaxGzipped": 500000,
+    "totalMaxSize": 1500000,
+    "averageMaxGzipped": 30000,
+    "averageMaxSize": 100000
+  }
+}

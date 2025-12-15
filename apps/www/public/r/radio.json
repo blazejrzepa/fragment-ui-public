@@ -1,0 +1,15 @@
+{
+  "name": "radio",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Radio.tsx",
+      "content": "import * as React from \"react\";\nimport * as RadioGroupPrimitive from \"@radix-ui/react-radio-group\";\nimport clsx from \"clsx\";\n\nexport const RadioGroup = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof RadioGroupPrimitive.Root>,\n    React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>\n  >(function RadioGroup({ className, ...props }, ref) {\n    return (\n      <RadioGroupPrimitive.Root\n        ref={ref}\n        className={clsx(\"flex flex-col gap-2\", className)}\n        {...props}\n      />\n    );\n  })\n);\n\nexport const RadioGroupItem = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof RadioGroupPrimitive.Item>,\n    React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item>\n  >(function RadioGroupItem({ className, ...props }, ref) {\n    return (\n      <RadioGroupPrimitive.Item\n        ref={ref}\n        className={clsx(\n          \"aspect-square h-4 w-4 rounded-full border border-[color:var(--color-fg-muted)] text-brand ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60\",\n          className\n        )}\n        {...props}\n      >\n        <RadioGroupPrimitive.Indicator className=\"flex items-center justify-center\">\n          <div className=\"h-2.5 w-2.5 rounded-full bg-brand\" />\n        </RadioGroupPrimitive.Indicator>\n      </RadioGroupPrimitive.Item>\n    );\n  })\n);\n\nexport interface RadioProps\n  extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {\n  label?: string;\n  description?: string;\n}\n\nexport const Radio = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof RadioGroupPrimitive.Item>,\n    RadioProps\n  >(function Radio({ label, description, className, id, ...props }, ref) {\n  const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`;\n  \n  return (\n    <div className=\"flex items-start gap-2\">\n      <RadioGroupItem ref={ref} id={radioId} className={clsx(\"mt-0.5\", className)} {...props} />\n      <div className=\"flex-1\">\n        {label && (\n          <label\n            htmlFor={radioId}\n            className=\"text-sm font-medium text-[color:var(--color-fg-base)] cursor-pointer block\"\n          >\n            {label}\n          </label>\n        )}\n        {description && (\n          <p className=\"text-xs text-[color:var(--color-fg-muted)] mt-0.5\">\n            {description}\n          </p>\n        )}\n      </div>\n    </div>\n  );\n})\n);\n\n"
+    }
+  ]
+}

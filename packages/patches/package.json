@@ -1,0 +1,27 @@
+{
+  "name": "@fragment_ui/patches",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Overlay patches system for managing upstream (shadcn/ui) modifications",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "apply": "node dist/apply-patches.js",
+    "list": "node dist/list-patches.js",
+    "create": "node dist/create-patch.js"
+  },
+  "keywords": ["patches", "upstream", "shadcn"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "diff": "^5.1.0",
+    "glob": "^10.3.10"
+  }
+}
+

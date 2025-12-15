@@ -1,0 +1,4215 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.1.0",
+  "components": {
+    "Form": {
+      "import": "@fragment_ui/ui/form-enhanced",
+      "props": {
+        "onSubmit": "function",
+        "onError": "function",
+        "validationMode": [
+          "onChange",
+          "onBlur",
+          "onSubmit"
+        ],
+        "validateOnMount": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "form",
+        "notes": "Form should have accessible labels for all inputs"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "export default function Preview() {\n  return (\n    <FormEnhanced onSubmit={(data) => console.log(data)}>\n      <FormFieldEnhanced name=\"email\" label=\"Email\">\n        <Input type=\"email\" />\n      </FormFieldEnhanced>\n      <Button type=\"submit\">Submit</Button>\n    </FormEnhanced>\n  );\n}",
+          "description": "Default Form example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "FormField": {
+      "import": "@fragment_ui/ui/form-field",
+      "description": "A form field component that provides a consistent structure for form inputs with labels, error messages, and helper text. Ensures proper accessibility and validation display.",
+      "props": {
+        "name": "string",
+        "label": "string",
+        "error": "string | boolean",
+        "helperText": "string",
+        "required": "boolean",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Form field with label and input"
+        },
+        {
+          "name": "with-error",
+          "props": {
+            "error": "string"
+          },
+          "description": "Form field with error message"
+        },
+        {
+          "name": "with-helper",
+          "props": {
+            "helperText": "string"
+          },
+          "description": "Form field with helper text"
+        }
+      ],
+      "slots": [
+        "children"
+      ],
+      "features": [
+        "Label and input association",
+        "Error message display",
+        "Helper text support",
+        "Required field indication",
+        "Accessible by default with ARIA attributes",
+        "Proper focus management"
+      ],
+      "a11y": {
+        "role": "group",
+        "notes": "FormField must associate label with input via htmlFor/id. Error messages should be associated with aria-describedby. Required fields should have aria-required.",
+        "wcag": [
+          "1.3.1",
+          "3.3.1",
+          "3.3.2",
+          "4.1.2"
+        ]
+      },
+      "note": "FormField component from @fragment_ui/ui. Requires a form input element as children (e.g., Input, Textarea, Select).",
+      "related": [
+        "Input",
+        "Textarea",
+        "Select",
+        "FormEnhanced"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { FormField, Input } from \"@fragment_ui/ui/form-field\";\n\nexport default function Preview() {\n  return (\n    <FormField name=\"email\" label=\"Email\">\n      <Input placeholder=\"Enter email...\" />\n    </FormField>\n  );\n}",
+          "description": "Basic form field with input"
+        },
+        {
+          "name": "with-error",
+          "code": "import { FormField, Input } from \"@fragment_ui/ui/form-field\";\n\nexport default function Preview() {\n  return (\n    <FormField name=\"email\" label=\"Email\" error=\"Email is required\">\n      <Input placeholder=\"Enter email...\" />\n    </FormField>\n  );\n}",
+          "description": "Form field with error message"
+        }
+      ],
+      "stability": "stable"
+    },
+    "FormFieldEnhanced": {
+      "import": "@fragment_ui/ui/form-enhanced",
+      "props": {
+        "name": "string",
+        "label": "string",
+        "error": "string",
+        "helperText": "string",
+        "required": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "group",
+        "notes": "Label must be associated with input via htmlFor/id"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { FormFieldEnhanced } from \"@fragment_ui/ui\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <FormFieldEnhanced />\n    </div>\n  );\n}",
+          "description": "Default FormFieldEnhanced example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Input": {
+      "import": "@fragment_ui/ui/input",
+      "description": "A versatile input component supporting multiple types (text, email, password, etc.) with validation states and accessibility features.",
+      "props": {
+        "type": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "tel",
+          "url"
+        ],
+        "invalid": "boolean",
+        "placeholder": "string",
+        "disabled": "boolean",
+        "readOnly": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "invalid",
+          "props": {
+            "invalid": true
+          }
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          }
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Multiple input types (text, email, password, number, tel, url)",
+        "Validation states (invalid, disabled, readOnly)",
+        "Full keyboard navigation",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "textbox",
+        "notes": "Must have associated label. Use aria-invalid for error states. Use aria-describedby for helper text.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<Input type=\"email\" placeholder=\"Enter email\" />",
+          "description": "Default Input example"
+        }
+      ],
+      "related": [
+        "form-field",
+        "textarea",
+        "password-input"
+      ],
+      "stability": "stable"
+    },
+    "PasswordInput": {
+      "import": "@fragment_ui/ui/input",
+      "props": {
+        "type": "password",
+        "invalid": "boolean",
+        "placeholder": "string",
+        "showToggle": "boolean"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "textbox",
+        "notes": "Use Input with type='password' or dedicated PasswordInput component if available"
+      },
+      "note": "Use Input with type='password' or dedicated PasswordInput component if available",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { PasswordInput } from \"@fragment_ui/ui\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <PasswordInput />\n    </div>\n  );\n}",
+          "description": "Default PasswordInput example"
+        }
+      ],
+      "stability": "experimental"
+    },
+    "Checkbox": {
+      "import": "@fragment_ui/ui/checkbox",
+      "description": "A checkbox component for selecting one or more options from a list. Supports keyboard navigation, indeterminate state, and accessibility features.",
+      "props": {
+        "checked": "boolean",
+        "defaultChecked": "boolean",
+        "onCheckedChange": "function",
+        "disabled": "boolean",
+        "required": "boolean",
+        "name": "string",
+        "value": "string"
+      },
+      "variants": [
+        {
+          "name": "checked",
+          "props": {
+            "checked": true
+          },
+          "description": "Checked checkbox state"
+        },
+        {
+          "name": "unchecked",
+          "props": {
+            "checked": false
+          },
+          "description": "Unchecked checkbox state"
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          },
+          "description": "Disabled checkbox state"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Controlled and uncontrolled modes",
+        "Indeterminate state support",
+        "Full keyboard navigation (Space to toggle)",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "checkbox",
+        "notes": "Must have associated label via htmlFor/id or aria-labelledby. Use aria-checked for state. Use aria-disabled for disabled state.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Radio",
+        "Switch",
+        "Toggle"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Checkbox } from \"@fragment_ui/ui/checkbox\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      <Checkbox id=\"terms\" />\n      <label htmlFor=\"terms\" className=\"text-sm\">Accept terms and conditions</label>\n    </div>\n  );\n}",
+          "description": "Basic checkbox with label"
+        },
+        {
+          "name": "checked",
+          "code": "import { Checkbox } from \"@fragment_ui/ui/checkbox\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      <Checkbox id=\"newsletter\" checked />\n      <label htmlFor=\"newsletter\" className=\"text-sm\">Subscribe to newsletter</label>\n    </div>\n  );\n}",
+          "description": "Checked checkbox"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Select": {
+      "import": "@fragment_ui/ui/select",
+      "description": "A select component for choosing a single option from a list. Supports keyboard navigation, search, and accessibility features.",
+      "props": {
+        "value": "string",
+        "defaultValue": "string",
+        "onValueChange": "function",
+        "disabled": "boolean",
+        "name": "string",
+        "required": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Standard select with default styling"
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          },
+          "description": "Disabled select state"
+        }
+      ],
+      "slots": [
+        "trigger",
+        "value",
+        "content",
+        "item"
+      ],
+      "features": [
+        "Composable structure (SelectTrigger, SelectValue, SelectContent, SelectItem)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Search/filter support",
+        "Loading state support",
+        "Error state support",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "combobox",
+        "notes": "Requires SelectTrigger, SelectValue, SelectContent, SelectItem. Must have accessible label. Supports keyboard navigation.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires SelectTrigger, SelectValue, SelectContent, SelectItem subcomponents",
+      "related": [
+        "Combobox",
+        "MultiSelect",
+        "DropdownMenu"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from \"@fragment_ui/ui/select\";\n\nexport default function Preview() {\n  return (\n    <Select>\n      <SelectTrigger>\n        <SelectValue placeholder=\"Select an option\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectItem value=\"option1\">Option 1</SelectItem>\n        <SelectItem value=\"option2\">Option 2</SelectItem>\n        <SelectItem value=\"option3\">Option 3</SelectItem>\n      </SelectContent>\n    </Select>\n  );\n}",
+          "description": "Basic select with three options"
+        },
+        {
+          "name": "with-value",
+          "code": "import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from \"@fragment_ui/ui/select\";\n\nexport default function Preview() {\n  return (\n    <Select defaultValue=\"option2\">\n      <SelectTrigger>\n        <SelectValue placeholder=\"Select an option\" />\n      </SelectTrigger>\n      <SelectContent>\n        <SelectItem value=\"option1\">Option 1</SelectItem>\n        <SelectItem value=\"option2\">Option 2</SelectItem>\n        <SelectItem value=\"option3\">Option 3</SelectItem>\n      </SelectContent>\n    </Select>\n  );\n}",
+          "description": "Select with default value"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Switch": {
+      "import": "@fragment_ui/ui/switch",
+      "description": "A switch component for toggling between on and off states. Perfect for settings, preferences, and binary options. Supports keyboard navigation and accessibility features.",
+      "props": {
+        "checked": "boolean",
+        "defaultChecked": "boolean",
+        "onCheckedChange": "function",
+        "disabled": "boolean",
+        "required": "boolean",
+        "name": "string",
+        "value": "string"
+      },
+      "variants": [
+        {
+          "name": "checked",
+          "props": {
+            "checked": true
+          },
+          "description": "Switch in checked/on state"
+        },
+        {
+          "name": "unchecked",
+          "props": {
+            "checked": false
+          },
+          "description": "Switch in unchecked/off state"
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          },
+          "description": "Disabled switch state"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Space to toggle)",
+        "Smooth animations",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "switch",
+        "notes": "Must have associated label via htmlFor/id or aria-labelledby. Use aria-checked for state. Use aria-disabled for disabled state.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Checkbox",
+        "Toggle",
+        "Radio"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Switch } from \"@fragment_ui/ui/switch\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      <Switch id=\"notifications\" />\n      <label htmlFor=\"notifications\" className=\"text-sm\">Enable notifications</label>\n    </div>\n  );\n}",
+          "description": "Basic switch with label"
+        },
+        {
+          "name": "checked",
+          "code": "import { Switch } from \"@fragment_ui/ui/switch\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      <Switch id=\"dark-mode\" checked />\n      <label htmlFor=\"dark-mode\" className=\"text-sm\">Dark mode</label>\n    </div>\n  );\n}",
+          "description": "Checked switch"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Textarea": {
+      "import": "@fragment_ui/ui/textarea",
+      "description": "A textarea component for multi-line text input. Supports validation states, resizing, and accessibility features.",
+      "props": {
+        "value": "string",
+        "defaultValue": "string",
+        "onChange": "function",
+        "placeholder": "string",
+        "invalid": "boolean",
+        "error": "boolean",
+        "disabled": "boolean",
+        "readOnly": "boolean",
+        "rows": "number",
+        "cols": "number",
+        "maxLength": "number",
+        "name": "string",
+        "required": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Default textarea"
+        },
+        {
+          "name": "invalid",
+          "props": {
+            "invalid": true
+          },
+          "description": "Textarea with error state"
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          },
+          "description": "Disabled textarea"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Controlled and uncontrolled modes",
+        "Validation states (invalid/error)",
+        "Resizable (configurable)",
+        "Character count support",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "textbox",
+        "notes": "Must have associated label via htmlFor/id or aria-labelledby. Use aria-invalid for error state. Use aria-describedby for helper text.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Input",
+        "FormField"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Textarea } from \"@fragment_ui/ui/textarea\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <label htmlFor=\"message\" className=\"text-sm mb-2 block\">Message</label>\n      <Textarea id=\"message\" placeholder=\"Enter your message...\" rows={4} />\n    </div>\n  );\n}",
+          "description": "Basic textarea with label"
+        },
+        {
+          "name": "with-validation",
+          "code": "import { Textarea } from \"@fragment_ui/ui/textarea\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <label htmlFor=\"comment\" className=\"text-sm mb-2 block\">Comment</label>\n      <Textarea id=\"comment\" placeholder=\"Enter your comment...\" invalid />\n      <p className=\"text-sm text-red-500 mt-1\">This field is required</p>\n    </div>\n  );\n}",
+          "description": "Textarea with validation error"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Button": {
+      "import": "@fragment_ui/ui/button",
+      "props": {
+        "variant": [
+          "solid",
+          "outline",
+          "ghost"
+        ],
+        "type": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "disabled": "boolean",
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ]
+      },
+      "variants": [
+        {
+          "name": "solid",
+          "props": {
+            "variant": "solid"
+          },
+          "description": "Primary action button with solid background"
+        },
+        {
+          "name": "outline",
+          "props": {
+            "variant": "outline"
+          },
+          "description": "Secondary action button with outline border"
+        },
+        {
+          "name": "ghost",
+          "props": {
+            "variant": "ghost"
+          },
+          "description": "Tertiary action button with transparent background"
+        }
+      ],
+      "slots": [],
+      "description": "A versatile button component with multiple variants and sizes. Supports keyboard navigation and accessibility features.",
+      "features": [
+        "Multiple variants (solid, outline, ghost)",
+        "Three size options (sm, md, lg)",
+        "Full keyboard navigation support",
+        "Accessible by default",
+        "Disabled state support"
+      ],
+      "a11y": {
+        "role": "button",
+        "notes": "Keyboard navigable (Enter/Space). Must have accessible text or aria-label. Use aria-disabled for disabled state.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<Button variant=\"solid\" size=\"md\">Click me</Button>",
+          "description": "Default Button example"
+        }
+      ],
+      "related": [
+        "link",
+        "icon-button",
+        "split-button"
+      ],
+      "stability": "stable"
+    },
+    "Card": {
+      "import": "@fragment_ui/ui/card",
+      "description": "A flexible card component for displaying content with header, body, and footer sections. Perfect for organizing related information.",
+      "props": {
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "elevated",
+          "props": {
+            "className": "shadow-lg"
+          },
+          "description": "Card with elevated shadow"
+        }
+      ],
+      "slots": [
+        "header",
+        "title",
+        "content",
+        "footer"
+      ],
+      "features": [
+        "Composable structure (CardHeader, CardTitle, CardContent, CardFooter)",
+        "Flexible content areas",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Requires CardHeader, CardTitle, CardContent, CardFooter. Use aria-labelledby for title association.",
+        "wcag": [
+          "4.1.2"
+        ]
+      },
+      "note": "Requires CardHeader, CardTitle, CardContent, CardFooter",
+      "examples": [
+        {
+          "name": "default",
+          "code": "<Card>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n  </CardHeader>\n  <CardContent>Content</CardContent>\n</Card>",
+          "description": "Default Card example"
+        }
+      ],
+      "related": [
+        "metric-card",
+        "widget-container"
+      ],
+      "stability": "stable"
+    },
+    "Tabs": {
+      "import": "@fragment_ui/ui/tabs",
+      "description": "A tabbed interface component for organizing content into multiple panels. Supports keyboard navigation and accessibility features.",
+      "props": {
+        "defaultValue": "string",
+        "value": "string",
+        "onValueChange": "function"
+      },
+      "variants": [],
+      "slots": [
+        "list",
+        "trigger",
+        "content"
+      ],
+      "features": [
+        "Composable structure (TabsList, TabsTrigger, TabsContent)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Home, End)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "tablist",
+        "notes": "Requires TabsList, TabsTrigger, TabsContent. Use aria-controls to associate triggers with content.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires TabsList, TabsTrigger, TabsContent subcomponents",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@fragment_ui/ui/tabs\";\n\nexport default function Preview() {\n  return (\n    <Tabs defaultValue=\"tab1\" className=\"w-full max-w-md\">\n      <TabsList>\n        <TabsTrigger value=\"tab1\">Tab 1</TabsTrigger>\n        <TabsTrigger value=\"tab2\">Tab 2</TabsTrigger>\n      </TabsList>\n      <TabsContent value=\"tab1\">Content for tab 1</TabsContent>\n      <TabsContent value=\"tab2\">Content for tab 2</TabsContent>\n    </Tabs>\n  );\n}",
+          "description": "Basic tabs with two tabs"
+        }
+      ],
+      "related": [
+        "accordion",
+        "collapsible"
+      ],
+      "stability": "stable"
+    },
+    "TabsList": {
+      "import": "@fragment_ui/ui/tabs",
+      "props": {},
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "tablist",
+        "notes": "Container for tab triggers"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { TabsList } from \"@fragment_ui/ui\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <TabsList />\n    </div>\n  );\n}",
+          "description": "Default TabsList example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "TabTrigger": {
+      "import": "@fragment_ui/ui/tabs",
+      "props": {
+        "value": "string"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "tab",
+        "notes": "Must have aria-controls pointing to associated TabsContent"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@fragment_ui/ui/tabs\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <Tabs defaultValue=\"tab1\" className=\"w-full max-w-md\">\n        <TabsList>\n          <TabsTrigger value=\"tab1\">Tab 1</TabsTrigger>\n          <TabsTrigger value=\"tab2\">Tab 2</TabsTrigger>\n        </TabsList>\n        <TabsContent value=\"tab1\">Content for tab 1</TabsContent>\n        <TabsContent value=\"tab2\">Content for tab 2</TabsContent>\n      </Tabs>\n    </div>\n  );\n}",
+          "description": "TabTrigger must be used within Tabs and TabsList"
+        }
+      ],
+      "stability": "stable"
+    },
+    "TabContent": {
+      "import": "@fragment_ui/ui/tabs",
+      "props": {
+        "value": "string"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "tabpanel",
+        "notes": "Must be used within Tabs. Must have aria-labelledby pointing to associated TabsTrigger."
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@fragment_ui/ui/tabs\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <Tabs defaultValue=\"tab1\" className=\"w-full max-w-md\">\n        <TabsList>\n          <TabsTrigger value=\"tab1\">Tab 1</TabsTrigger>\n          <TabsTrigger value=\"tab2\">Tab 2</TabsTrigger>\n        </TabsList>\n        <TabsContent value=\"tab1\">Content for tab 1</TabsContent>\n        <TabsContent value=\"tab2\">Content for tab 2</TabsContent>\n      </Tabs>\n    </div>\n  );\n}",
+          "description": "TabContent must be used within Tabs"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Table": {
+      "import": "@fragment_ui/ui/table",
+      "description": "A table component for displaying structured data in rows and columns. Supports keyboard navigation, sorting, and accessibility features.",
+      "props": {
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Standard table with default styling"
+        },
+        {
+          "name": "striped",
+          "props": {
+            "className": "[&_tbody_tr:nth-child(even)]:bg-[color:var(--color-surface-2)]"
+          },
+          "description": "Table with alternating row colors"
+        }
+      ],
+      "slots": [
+        "header",
+        "body",
+        "row",
+        "head",
+        "cell"
+      ],
+      "features": [
+        "Composable structure (TableHeader, TableBody, TableRow, TableHead, TableCell)",
+        "Responsive design with horizontal scrolling",
+        "Full keyboard navigation (Arrow keys, Tab)",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling",
+        "Support for captions and footers"
+      ],
+      "a11y": {
+        "role": "table",
+        "notes": "Requires TableHeader, TableBody, TableRow, TableHead, TableCell. Use scope=\"col\" for header cells. Ensure proper heading hierarchy.",
+        "wcag": [
+          "1.3.1",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires TableHeader, TableBody, TableRow, TableHead, TableCell subcomponents",
+      "related": [
+        "DataTable",
+        "VirtualTable"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from \"@fragment_ui/ui/table\";\n\nexport default function Preview() {\n  return (\n    <Table>\n      <TableHeader>\n        <TableRow>\n          <TableHead>Name</TableHead>\n          <TableHead>Email</TableHead>\n          <TableHead>Role</TableHead>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        <TableRow>\n          <TableCell>John Doe</TableCell>\n          <TableCell>john@example.com</TableCell>\n          <TableCell>Admin</TableCell>\n        </TableRow>\n        <TableRow>\n          <TableCell>Jane Smith</TableCell>\n          <TableCell>jane@example.com</TableCell>\n          <TableCell>User</TableCell>\n        </TableRow>\n      </TableBody>\n    </Table>\n  );\n}",
+          "description": "Basic table with header and body"
+        },
+        {
+          "name": "with-multiple-rows",
+          "code": "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from \"@fragment_ui/ui/table\";\n\nexport default function Preview() {\n  return (\n    <Table>\n      <TableHeader>\n        <TableRow>\n          <TableHead>Product</TableHead>\n          <TableHead>Price</TableHead>\n          <TableHead>Stock</TableHead>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        <TableRow>\n          <TableCell>Product A</TableCell>\n          <TableCell>$29.99</TableCell>\n          <TableCell>50</TableCell>\n        </TableRow>\n        <TableRow>\n          <TableCell>Product B</TableCell>\n          <TableCell>$39.99</TableCell>\n          <TableCell>30</TableCell>\n        </TableRow>\n        <TableRow>\n          <TableCell>Product C</TableCell>\n          <TableCell>$49.99</TableCell>\n          <TableCell>20</TableCell>\n        </TableRow>\n      </TableBody>\n    </Table>\n  );\n}",
+          "description": "Table with multiple data rows"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Badge": {
+      "import": "@fragment_ui/ui/badge",
+      "description": "A badge component for displaying labels, tags, or status indicators. Supports multiple variants and sizes.",
+      "props": {
+        "variant": [
+          "default",
+          "secondary",
+          "destructive",
+          "outline"
+        ],
+        "size": "sm | md | lg",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {
+            "variant": "default"
+          },
+          "description": "Default badge variant"
+        },
+        {
+          "name": "secondary",
+          "props": {
+            "variant": "secondary"
+          },
+          "description": "Secondary badge variant"
+        },
+        {
+          "name": "destructive",
+          "props": {
+            "variant": "destructive"
+          },
+          "description": "Destructive badge variant for errors"
+        },
+        {
+          "name": "outline",
+          "props": {
+            "variant": "outline"
+          },
+          "description": "Outline badge variant"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Multiple variants (default, secondary, destructive, outline)",
+        "Multiple sizes (sm, md, lg)",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "status",
+        "notes": "Use aria-label for screen reader text if badge text is not descriptive",
+        "wcag": [
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Tag",
+        "Chip"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Badge } from \"@fragment_ui/ui/badge\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex gap-2\">\n      <Badge>New</Badge>\n      <Badge variant=\"secondary\">Secondary</Badge>\n      <Badge variant=\"destructive\">Error</Badge>\n      <Badge variant=\"outline\">Outline</Badge>\n    </div>\n  );\n}",
+          "description": "Badge with different variants"
+        }
+      ],
+      "stability": "stable"
+    },
+    "metric-card": {
+      "import": "@fragment_ui/ui/metric-card",
+      "props": {
+        "title": "string",
+        "value": "string | number",
+        "icon": "string | ReactNode",
+        "trend": [
+          "up",
+          "down",
+          "neutral"
+        ],
+        "trendValue": "string",
+        "description": "string",
+        "footer": "ReactNode",
+        "onClick": "function"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "withTrend",
+          "props": {
+            "trend": "up",
+            "trendValue": "+20.1%"
+          }
+        },
+        {
+          "name": "clickable",
+          "props": {
+            "onClick": "function"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "MetricCard displays key performance indicators. When clickable, ensure keyboard navigation and proper focus management."
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<MetricCard title=\"Total Revenue\" value=\"$45,231\" trend=\"up\" trendValue=\"+20.1%\" />",
+          "description": "Default metric-card example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "activity-feed": {
+      "import": "@fragment_ui/ui/activity-feed",
+      "description": "A component for displaying a chronological feed of activities or events. Supports user avatars, icons, timestamps, and different activity types.",
+      "props": {
+        "items": "ActivityItem[]",
+        "maxItems": "number",
+        "showTimestamps": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Default activity feed with timestamps"
+        },
+        {
+          "name": "withoutTimestamps",
+          "props": {
+            "showTimestamps": false
+          },
+          "description": "Activity feed without timestamps"
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "feed",
+        "notes": "ActivityFeed displays a chronological list of activities. Ensure proper ARIA live regions for dynamic updates."
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { ActivityFeed } from \"@fragment_ui/ui/activity-feed\";\n\nexport default function Preview() {\n  const activities = [\n    {\n      id: \"1\",\n      type: \"action\",\n      title: \"User created project\",\n      description: \"New project 'My Project' was created\",\n      timestamp: \"2 hours ago\",\n      user: {\n        name: \"John Doe\",\n        avatar: \"https://api.dicebear.com/7.x/avataaars/svg?seed=John\"\n      }\n    },\n    {\n      id: \"2\",\n      type: \"update\",\n      title: \"Project updated\",\n      description: \"Settings were modified\",\n      timestamp: \"5 hours ago\",\n      user: {\n        name: \"Jane Smith\",\n        avatar: \"https://api.dicebear.com/7.x/avataaars/svg?seed=Jane\"\n      }\n    },\n    {\n      id: \"3\",\n      type: \"comment\",\n      title: \"New comment\",\n      description: \"Added a comment to the discussion\",\n      timestamp: \"1 day ago\",\n      user: {\n        name: \"Bob Johnson\"\n      }\n    }\n  ];\n  return (\n    <div className=\"w-full p-4\">\n      <ActivityFeed items={activities} />\n    </div>\n  );\n}",
+          "description": "Basic activity feed with user activities"
+        }
+      ],
+      "stability": "stable"
+    },
+    "quick-actions": {
+      "import": "@fragment_ui/ui/quick-actions",
+      "props": {
+        "actions": "QuickAction[]",
+        "columns": [
+          2,
+          3,
+          4
+        ],
+        "layout": [
+          "grid",
+          "list"
+        ]
+      },
+      "variants": [
+        {
+          "name": "grid",
+          "props": {
+            "layout": "grid",
+            "columns": 3
+          }
+        },
+        {
+          "name": "list",
+          "props": {
+            "layout": "list"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "toolbar",
+        "notes": "QuickActions provides quick access to common actions. Ensure keyboard navigation and proper ARIA labels."
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<QuickActions actions={[{id: \"1\", label: \"New\", icon: \"➕\", onClick: () => {}}]} />",
+          "description": "Default quick-actions example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "filter-bar": {
+      "import": "@fragment_ui/ui/filter-bar",
+      "props": {
+        "filters": "Filter[]",
+        "onClear": "function",
+        "showClearButton": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "searchOnly",
+          "props": {
+            "filters": [
+              {
+                "id": "search",
+                "type": "search"
+              }
+            ]
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "search",
+        "notes": "FilterBar provides filter controls. Ensure proper form labels and keyboard navigation."
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<FilterBar filters={[{id: \"search\", type: \"search\", placeholder: \"Search...\"}]} />",
+          "description": "Default filter-bar example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "chart": {
+      "import": "@fragment_ui/ui/chart",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "data": "ChartDataPoint[]",
+        "type": [
+          "line",
+          "bar",
+          "area",
+          "pie",
+          "donut"
+        ],
+        "height": "number",
+        "showLegend": "boolean",
+        "showGrid": "boolean",
+        "renderChart": "function"
+      },
+      "variants": [
+        {
+          "name": "line",
+          "props": {
+            "type": "line"
+          }
+        },
+        {
+          "name": "bar",
+          "props": {
+            "type": "bar"
+          }
+        },
+        {
+          "name": "area",
+          "props": {
+            "type": "area"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "img",
+        "notes": "Chart displays data visualizations. Ensure proper alt text or aria-label describing the chart data."
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<Chart data={[{label: \"Jan\", value: 1000}]} type=\"line\" />",
+          "description": "Default chart example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "hero-section": {
+      "import": "@fragment_ui/blocks/hero-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "background": [
+          "gradient",
+          "image",
+          "solid"
+        ],
+        "image": "object"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "banner",
+        "notes": "Hero section should have clear heading hierarchy and accessible CTAs"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<HeroSection title=\"Welcome\" description=\"Build amazing experiences\" primaryCTA={{label: \"Get Started\", href: \"/signup\"}} />",
+          "description": "Default hero-section example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "feature-grid-section": {
+      "import": "@fragment_ui/blocks/feature-grid-section",
+      "props": {
+        "title": "string",
+        "features": "array",
+        "columns": [
+          2,
+          3,
+          4
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Feature grid should have clear headings and accessible feature descriptions"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<FeatureGridSection title=\"Features\" features={[{title: \"Fast\", description: \"Lightning fast\"}]} columns={3} />",
+          "description": "Default feature-grid-section example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "stats-section": {
+      "import": "@fragment_ui/blocks/stats-section",
+      "props": {
+        "items": "array",
+        "layout": [
+          "grid",
+          "row"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Stats should be clearly labeled and accessible"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<StatsSection items={[{label: \"Users\", value: \"1000\", trend: \"up\"}]} />",
+          "description": "Default stats-section example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "testimonials-section": {
+      "import": "@fragment_ui/blocks/testimonials-section",
+      "props": {
+        "title": "string",
+        "items": "array",
+        "layout": [
+          "grid",
+          "carousel"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Testimonials should have proper attribution and be accessible"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<TestimonialsSection title=\"Testimonials\" items={[{quote: \"Great product\", author: \"John Doe\"}]} />",
+          "description": "Default testimonials-section example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "faq-section": {
+      "import": "@fragment_ui/blocks/faq-section",
+      "props": {
+        "title": "string",
+        "items": "array"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FAQ should use proper heading hierarchy and accessible accordion controls"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<FAQSection title=\"FAQ\" items={[{question: \"What is this?\", answer: \"A design system\"}]} />",
+          "description": "Default faq-section example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "cta-section": {
+      "import": "@fragment_ui/blocks/cta-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "variant": [
+          "centered",
+          "split"
+        ],
+        "background": [
+          "solid",
+          "gradient",
+          "muted"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CTA section should have clear call-to-action buttons with accessible labels"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<CTASection title=\"Get Started\" description=\"Start building today\" primaryCTA={{label: \"Sign Up\", href: \"/signup\"}} />",
+          "description": "Default cta-section example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "widget-container": {
+      "import": "@fragment_ui/blocks/widget-container",
+      "props": {
+        "title": "string",
+        "children": "ReactNode",
+        "actions": "ReactNode",
+        "footer": "ReactNode",
+        "collapsible": "boolean",
+        "defaultCollapsed": "boolean",
+        "onRefresh": "function"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Widget container should have accessible title and controls"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<WidgetContainer title=\"Widget\" collapsible><div>Content</div></WidgetContainer>",
+          "description": "Default widget-container example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "dashboard-widgets": {
+      "import": "@fragment_ui/blocks/dashboard-widgets",
+      "props": {
+        "widgets": "array",
+        "columns": "number"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Dashboard widgets should be organized and accessible"
+      },
+      "examples": [
+        {
+          "name": "default",
+          "code": "<DashboardWidgets widgets={[{id: \"1\", type: \"metric\", content: <MetricCard title=\"Users\" value=\"100\" />}]} columns={12} />",
+          "description": "Default dashboard-widgets example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Accordion": {
+      "import": "@fragment_ui/ui/accordion",
+      "description": "A collapsible content component that allows users to expand and collapse sections. Perfect for FAQs, content organization, and progressive disclosure patterns.",
+      "props": {
+        "type": [
+          "single",
+          "multiple"
+        ],
+        "collapsible": "boolean",
+        "defaultValue": "string | string[]",
+        "value": "string | string[]",
+        "onValueChange": "function",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "single",
+          "props": {
+            "type": "single",
+            "collapsible": true
+          },
+          "description": "Single accordion - only one item can be open at a time"
+        },
+        {
+          "name": "multiple",
+          "props": {
+            "type": "multiple"
+          },
+          "description": "Multiple accordion - multiple items can be open simultaneously"
+        }
+      ],
+      "slots": [
+        "item",
+        "trigger",
+        "content"
+      ],
+      "features": [
+        "Composable structure (AccordionItem, AccordionTrigger, AccordionContent)",
+        "Single and multiple selection modes",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Home, End, Enter, Space)",
+        "Accessible by default with ARIA attributes",
+        "Smooth animations for expand/collapse",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Requires AccordionItem, AccordionTrigger, AccordionContent. Use aria-controls to associate triggers with content. Supports keyboard navigation.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires AccordionItem, AccordionTrigger, AccordionContent subcomponents",
+      "related": [
+        "Collapsible",
+        "Tabs",
+        "Disclosure"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from \"@fragment_ui/ui/accordion\";\n\nexport default function Preview() {\n  return (\n    <Accordion type=\"single\" collapsible className=\"w-full max-w-md\">\n      <AccordionItem value=\"item-1\">\n        <AccordionTrigger>Is it accessible?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It adheres to the WAI-ARIA design pattern.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-2\">\n        <AccordionTrigger>Is it styled?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It comes with default styles that matches the Fragment UI aesthetic.\n        </AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-3\">\n        <AccordionTrigger>Is it animated?</AccordionTrigger>\n        <AccordionContent>\n          Yes. It's animated by default, but you can disable it if you prefer.\n        </AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  );\n}",
+          "description": "Basic accordion with three items"
+        },
+        {
+          "name": "multiple",
+          "code": "import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from \"@fragment_ui/ui/accordion\";\n\nexport default function Preview() {\n  return (\n    <Accordion type=\"multiple\" className=\"w-full max-w-md\">\n      <AccordionItem value=\"item-1\">\n        <AccordionTrigger>Item 1</AccordionTrigger>\n        <AccordionContent>Content for item 1</AccordionContent>\n      </AccordionItem>\n      <AccordionItem value=\"item-2\">\n        <AccordionTrigger>Item 2</AccordionTrigger>\n        <AccordionContent>Content for item 2</AccordionContent>\n      </AccordionItem>\n    </Accordion>\n  );\n}",
+          "description": "Multiple accordion allowing multiple items to be open"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Alert": {
+      "import": "@fragment_ui/ui/alert",
+      "description": "An alert component for displaying important messages to users. Supports different variants for success, error, warning, and info states.",
+      "props": {
+        "variant": "default | destructive | success | warning | info",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Default alert variant"
+        },
+        {
+          "name": "destructive",
+          "props": {
+            "variant": "destructive"
+          },
+          "description": "Alert for error messages"
+        },
+        {
+          "name": "success",
+          "props": {
+            "variant": "success"
+          },
+          "description": "Alert for success messages"
+        },
+        {
+          "name": "warning",
+          "props": {
+            "variant": "warning"
+          },
+          "description": "Alert for warning messages"
+        },
+        {
+          "name": "info",
+          "props": {
+            "variant": "info"
+          },
+          "description": "Alert for informational messages"
+        }
+      ],
+      "slots": [
+        "title",
+        "description"
+      ],
+      "features": [
+        "Multiple variants (default, destructive, success, warning, info)",
+        "Composable structure (AlertTitle, AlertDescription)",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Alert, AlertTitle, AlertDescription } from \"@fragment_ui/ui/alert\";\nimport { Terminal } from \"lucide-react\";\n\nexport default function Preview() {\n  return (\n    <Alert>\n      <Terminal className=\"h-4 w-4\" />\n      <AlertTitle>Heads up!</AlertTitle>\n      <AlertDescription>\n        You can add components to your app using the cli.\n      </AlertDescription>\n    </Alert>\n  );\n}",
+          "description": "Basic alert with title and description"
+        },
+        {
+          "name": "info",
+          "code": "import { Alert, AlertTitle, AlertDescription } from \"@fragment_ui/ui/alert\";\nimport { Info } from \"lucide-react\";\n\nexport default function Preview() {\n  return (\n    <Alert variant=\"info\">\n      <Info className=\"h-4 w-4\" />\n      <AlertTitle>Information</AlertTitle>\n      <AlertDescription>\n        This is an informational message.\n      </AlertDescription>\n    </Alert>\n  );\n}",
+          "description": "Info alert variant"
+        },
+        {
+          "name": "success",
+          "code": "import { Alert, AlertTitle, AlertDescription } from \"@fragment_ui/ui/alert\";\nimport { CheckCircle2 } from \"lucide-react\";\n\nexport default function Preview() {\n  return (\n    <Alert variant=\"success\">\n      <CheckCircle2 className=\"h-4 w-4\" />\n      <AlertTitle>Success!</AlertTitle>\n      <AlertDescription>\n        Your operation was successful.\n      </AlertDescription>\n    </Alert>\n  );\n}",
+          "description": "Success alert variant"
+        },
+        {
+          "name": "warning",
+          "code": "import { Alert, AlertTitle, AlertDescription } from \"@fragment_ui/ui/alert\";\nimport { TriangleAlert } from \"lucide-react\";\n\nexport default function Preview() {\n  return (\n    <Alert variant=\"warning\">\n      <TriangleAlert className=\"h-4 w-4\" />\n      <AlertTitle>Warning</AlertTitle>\n      <AlertDescription>\n        Proceed with caution.\n      </AlertDescription>\n    </Alert>\n  );\n}",
+          "description": "Warning alert variant"
+        },
+        {
+          "name": "destructive",
+          "code": "import { Alert, AlertTitle, AlertDescription } from \"@fragment_ui/ui/alert\";\nimport { XCircle } from \"lucide-react\";\n\nexport default function Preview() {\n  return (\n    <Alert variant=\"destructive\">\n      <XCircle className=\"h-4 w-4\" />\n      <AlertTitle>Error</AlertTitle>\n      <AlertDescription>\n        Something went wrong.\n      </AlertDescription>\n    </Alert>\n  );\n}",
+          "description": "Destructive alert for errors"
+        }
+      ],
+      "a11y": {
+        "role": "alert",
+        "notes": "Use AlertTitle and AlertDescription for structured content. Use appropriate variant for semantic meaning.",
+        "wcag": [
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Toast",
+        "Notification"
+      ],
+      "stability": "stable"
+    },
+    "AspectRatio": {
+      "import": "@fragment_ui/ui/aspect-ratio",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "AspectRatio component"
+      },
+      "note": "Component AspectRatio from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { AspectRatio } from \"@fragment_ui/ui\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"w-full max-w-md\">\n        <AspectRatio ratio={16 / 9} className=\"bg-[color:var(--color-surface-2)] rounded-lg overflow-hidden\">\n          <div className=\"absolute inset-0 flex items-center justify-center text-[color:var(--color-fg-muted)]\">\n            16:9 Aspect Ratio\n          </div>\n        </AspectRatio>\n      </div>\n    </div>\n  );\n}",
+          "description": "Default AspectRatio example with 16:9 ratio"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Avatar": {
+      "import": "@fragment_ui/ui/avatar",
+      "description": "An avatar component for displaying user profile pictures or initials. Supports images, fallbacks, and multiple sizes.",
+      "props": {
+        "src": "string",
+        "alt": "string",
+        "fallback": "string | ReactNode",
+        "size": "sm | md | lg | xl",
+        "shape": "circle | square",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "sm",
+          "props": {
+            "size": "sm"
+          },
+          "description": "Small avatar"
+        },
+        {
+          "name": "md",
+          "props": {
+            "size": "md"
+          },
+          "description": "Medium avatar (default)"
+        },
+        {
+          "name": "lg",
+          "props": {
+            "size": "lg"
+          },
+          "description": "Large avatar"
+        },
+        {
+          "name": "square",
+          "props": {
+            "shape": "square"
+          },
+          "description": "Square avatar"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Image and fallback support",
+        "Multiple sizes (sm, md, lg, xl)",
+        "Circle and square shapes",
+        "Automatic initials generation",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "img",
+        "notes": "Must have alt text for images. Use aria-label for decorative avatars. Fallback text should be descriptive.",
+        "wcag": [
+          "1.1.1",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "AvatarGroup"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Avatar } from \"@fragment_ui/ui/avatar\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Avatar src=\"https://github.com/shadcn.png\" alt=\"User\" />\n      <Avatar fallback=\"JD\" />\n    </div>\n  );\n}",
+          "description": "Avatar with image and fallback"
+        },
+        {
+          "name": "sizes",
+          "code": "import { Avatar } from \"@fragment_ui/ui/avatar\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Avatar size=\"sm\" fallback=\"S\" />\n      <Avatar size=\"md\" fallback=\"M\" />\n      <Avatar size=\"lg\" fallback=\"L\" />\n    </div>\n  );\n}",
+          "description": "Avatars in different sizes"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Breadcrumbs": {
+      "import": "@fragment_ui/ui/breadcrumbs",
+      "description": "A breadcrumbs component for displaying navigation hierarchy. Supports links, custom separators, and accessibility features.",
+      "props": {
+        "items": "BreadcrumbItem[]",
+        "separator": "ReactNode",
+        "className": "string"
+      },
+      "variants": [],
+      "slots": [],
+      "features": [
+        "Array-based items structure",
+        "Custom separators",
+        "Clickable and non-clickable items",
+        "Automatic current page indication",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "navigation",
+        "notes": "Uses aria-label=\"Breadcrumb\" and aria-current=\"page\" for current item. Separators use aria-hidden=\"true\".",
+        "wcag": [
+          "2.4.8",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "NavigationMenu"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Breadcrumbs } from \"@fragment_ui/ui/breadcrumbs\";\n\nexport default function Preview() {\n  return (\n    <Breadcrumbs\n      items={[\n        { label: \"Home\", href: \"/\" },\n        { label: \"Products\", href: \"/products\" },\n        { label: \"Current Page\" }\n      ]}\n    />\n  );\n}",
+          "description": "Basic breadcrumbs with links"
+        },
+        {
+          "name": "custom-separator",
+          "code": "import { Breadcrumbs } from \"@fragment_ui/ui/breadcrumbs\";\n\nexport default function Preview() {\n  return (\n    <Breadcrumbs\n      items={[\n        { label: \"Home\", href: \"/\" },\n        { label: \"About\" }\n      ]}\n      separator={<span>→</span>}\n    />\n  );\n}",
+          "description": "Breadcrumbs with custom separator"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Calendar": {
+      "import": "@fragment_ui/ui/calendar",
+      "description": "A calendar component for selecting dates. Supports single date, date range, and multiple date selection modes. Built on react-day-picker with full keyboard navigation and accessibility.",
+      "props": {
+        "mode": [
+          "single",
+          "range",
+          "multiple"
+        ],
+        "value": "Date | { from?: Date; to?: Date } | Date[]",
+        "onChange": "function",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "single",
+          "props": {
+            "mode": "single"
+          },
+          "description": "Single date selection"
+        },
+        {
+          "name": "range",
+          "props": {
+            "mode": "range"
+          },
+          "description": "Date range selection"
+        },
+        {
+          "name": "multiple",
+          "props": {
+            "mode": "multiple"
+          },
+          "description": "Multiple date selection"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Single, range, and multiple date selection modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling",
+        "Internationalization support",
+        "Built on react-day-picker"
+      ],
+      "a11y": {
+        "role": "application",
+        "notes": "Calendar supports keyboard navigation. Use aria-label for calendar description. Ensure proper focus management.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Calendar component from @fragment_ui/ui. Supports single, range, and multiple selection modes.",
+      "related": [
+        "DatePicker"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Calendar } from \"@fragment_ui/ui/calendar\";\n\nexport default function Preview() {\n  const [date, setDate] = React.useState(new Date());\n  return (\n    <Calendar mode=\"single\" value={date} onChange={setDate} />\n  );\n}",
+          "description": "Basic calendar with single date selection"
+        },
+        {
+          "name": "range",
+          "code": "import { Calendar } from \"@fragment_ui/ui/calendar\";\n\nexport default function Preview() {\n  const [range, setRange] = React.useState({ from: undefined, to: undefined });\n  return (\n    <Calendar mode=\"range\" value={range} onChange={setRange} />\n  );\n}",
+          "description": "Calendar with date range selection"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Carousel": {
+      "import": "@fragment_ui/ui/carousel",
+      "description": "A carousel component for displaying a series of slides. Supports auto-play, navigation arrows, dots, and keyboard navigation.",
+      "props": {
+        "autoPlay": "boolean",
+        "autoPlayInterval": "number",
+        "showArrows": "boolean",
+        "showDots": "boolean",
+        "className": "string",
+        "onSlideChange": "function",
+        "children": "ReactNode"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Carousel with arrows and dots"
+        },
+        {
+          "name": "autoplay",
+          "props": {
+            "autoPlay": true,
+            "autoPlayInterval": 3000
+          },
+          "description": "Carousel with auto-play enabled"
+        },
+        {
+          "name": "minimal",
+          "props": {
+            "showArrows": false,
+            "showDots": false
+          },
+          "description": "Minimal carousel without navigation controls"
+        }
+      ],
+      "slots": [
+        "children"
+      ],
+      "features": [
+        "Auto-play functionality with configurable interval",
+        "Navigation arrows and dots",
+        "Keyboard navigation (Arrow keys, Home, End)",
+        "Touch/swipe support",
+        "Pause on hover",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Carousel requires CarouselItem children. Use aria-label for carousel description. Ensure proper focus management for keyboard navigation.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires CarouselItem children. Supports auto-play, navigation controls, and keyboard navigation.",
+      "related": [
+        "Tabs",
+        "Stepper"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Carousel, CarouselItem } from \"@fragment_ui/ui/carousel\";\n\nexport default function Preview() {\n  return (\n    <Carousel>\n      <CarouselItem>\n        <div className=\"p-8 bg-gray-100 rounded\">Slide 1</div>\n      </CarouselItem>\n      <CarouselItem>\n        <div className=\"p-8 bg-gray-100 rounded\">Slide 2</div>\n      </CarouselItem>\n      <CarouselItem>\n        <div className=\"p-8 bg-gray-100 rounded\">Slide 3</div>\n      </CarouselItem>\n    </Carousel>\n  );\n}",
+          "description": "Basic carousel with three slides"
+        },
+        {
+          "name": "autoplay",
+          "code": "import { Carousel, CarouselItem } from \"@fragment_ui/ui/carousel\";\n\nexport default function Preview() {\n  return (\n    <Carousel autoPlay={true} autoPlayInterval={3000}>\n      <CarouselItem>\n        <div className=\"p-8 bg-gray-100 rounded\">Slide 1</div>\n      </CarouselItem>\n      <CarouselItem>\n        <div className=\"p-8 bg-gray-100 rounded\">Slide 2</div>\n      </CarouselItem>\n    </Carousel>\n  );\n}",
+          "description": "Carousel with auto-play enabled"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Collapsible": {
+      "import": "@fragment_ui/ui/collapsible",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Collapsible component"
+      },
+      "note": "Component Collapsible from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from \"@fragment_ui/ui/collapsible\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"w-full max-w-md\">\n        <Collapsible>\n          <CollapsibleTrigger className=\"w-full p-4 text-left bg-[color:var(--color-surface-2)] rounded-lg\">\n            Click to expand\n          </CollapsibleTrigger>\n          <CollapsibleContent className=\"p-4 bg-[color:var(--color-surface-1)] rounded-lg mt-2\">\n            <p className=\"text-sm text-[color:var(--color-fg-muted)]\">\n              This is the collapsible content. It can contain any React elements.\n            </p>\n          </CollapsibleContent>\n        </Collapsible>\n      </div>\n    </div>\n  );\n}",
+          "description": "Default Collapsible example with trigger and content"
+        }
+      ],
+      "stability": "stable"
+    },
+    "ColorPicker": {
+      "import": "@fragment_ui/ui/color-picker",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ColorPicker component"
+      },
+      "note": "Component ColorPicker from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { ColorPicker } from \"@fragment_ui/ui/color-picker\";\nimport React, { useState } from \"react\";\n\nexport default function Preview() {\n  const [color, setColor] = useState(\"#3b82f6\");\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"flex flex-col items-center gap-4\">\n        <ColorPicker\n          value={color}\n          onChange={setColor}\n          showPresets\n        />\n        <div\n          className=\"w-32 h-32 rounded-lg border\"\n          style={{ backgroundColor: color }}\n        />\n      </div>\n    </div>\n  );\n}",
+          "description": "Default ColorPicker example with state management"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Combobox": {
+      "import": "@fragment_ui/ui/combobox",
+      "description": "A combobox component that combines an input field with a dropdown list. Supports search, keyboard navigation, and accessibility features.",
+      "props": {
+        "value": "string",
+        "defaultValue": "string",
+        "onValueChange": "function",
+        "disabled": "boolean",
+        "placeholder": "string"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "input",
+        "content",
+        "item"
+      ],
+      "features": [
+        "Composable structure (ComboboxTrigger, ComboboxInput, ComboboxContent, ComboboxItem)",
+        "Search and filter support",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "combobox",
+        "notes": "Requires ComboboxTrigger, ComboboxInput, ComboboxContent, ComboboxItem. Must have accessible label. Supports keyboard navigation.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires ComboboxTrigger, ComboboxInput, ComboboxContent, ComboboxItem subcomponents",
+      "related": [
+        "Select",
+        "MultiSelect"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Combobox, ComboboxTrigger, ComboboxInput, ComboboxContent, ComboboxItem } from \"@fragment_ui/ui/combobox\";\n\nexport default function Preview() {\n  return (\n    <Combobox>\n      <ComboboxTrigger>\n        <ComboboxInput placeholder=\"Search...\" />\n      </ComboboxTrigger>\n      <ComboboxContent>\n        <ComboboxItem value=\"option1\">Option 1</ComboboxItem>\n        <ComboboxItem value=\"option2\">Option 2</ComboboxItem>\n        <ComboboxItem value=\"option3\">Option 3</ComboboxItem>\n      </ComboboxContent>\n    </Combobox>\n  );\n}",
+          "description": "Basic combobox with search input"
+        }
+      ],
+      "stability": "stable"
+    },
+    "CommandPalette": {
+      "import": "@fragment_ui/ui/command-palette",
+      "description": "A command palette component for quick actions and search. Supports keyboard shortcuts, recent commands, and nested actions. Perfect for application-wide command access.",
+      "props": {
+        "actions": "CommandPaletteAction[]",
+        "trigger": "ReactNode",
+        "placeholder": "string",
+        "emptyText": "string",
+        "showRecentCommands": "boolean",
+        "maxRecentCommands": "number",
+        "recentCommandsStorageKey": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Command palette with default settings"
+        },
+        {
+          "name": "with-trigger",
+          "props": {
+            "trigger": "ReactNode"
+          },
+          "description": "Command palette with custom trigger button"
+        },
+        {
+          "name": "no-recent",
+          "props": {
+            "showRecentCommands": false
+          },
+          "description": "Command palette without recent commands"
+        }
+      ],
+      "slots": [
+        "trigger"
+      ],
+      "features": [
+        "Search and filter commands",
+        "Keyboard shortcuts support",
+        "Recent commands tracking",
+        "Nested command groups",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "dialog",
+        "notes": "CommandPalette opens as a dialog. Use aria-label for palette description. Supports keyboard navigation. Ensure proper focus management.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "CommandPalette component from @fragment_ui/ui. Typically triggered with Cmd+K (Mac) or Ctrl+K (Windows/Linux).",
+      "related": [
+        "Command",
+        "Combobox",
+        "Select"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { CommandPalette } from \"@fragment_ui/ui/command-palette\";\n\nexport default function Preview() {\n  return (\n    <CommandPalette actions={[\n      { id: \"1\", label: \"New File\", keywords: [\"new\", \"file\"] },\n      { id: \"2\", label: \"Open File\", keywords: [\"open\", \"file\"] },\n      { id: \"3\", label: \"Save File\", keywords: [\"save\", \"file\"] }\n    ]} />\n  );\n}",
+          "description": "Basic command palette with actions"
+        }
+      ],
+      "stability": "stable"
+    },
+    "ContextMenu": {
+      "import": "@fragment_ui/ui/context-menu",
+      "description": "A context menu component that appears on right-click. Supports keyboard navigation, submenus, and accessibility features.",
+      "props": {
+        "open": "boolean",
+        "defaultOpen": "boolean",
+        "onOpenChange": "function",
+        "modal": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "content",
+        "item",
+        "label",
+        "separator",
+        "checkbox-item",
+        "radio-group",
+        "radio-item"
+      ],
+      "features": [
+        "Composable structure (ContextMenuTrigger, ContextMenuContent, ContextMenuItem)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Submenu support",
+        "Checkbox and radio items",
+        "Separators and labels",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "menu",
+        "notes": "Requires ContextMenuTrigger, ContextMenuContent, ContextMenuItem. Supports keyboard navigation. Use aria-label for menu description.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires ContextMenuTrigger, ContextMenuContent, ContextMenuItem subcomponents",
+      "related": [
+        "DropdownMenu",
+        "Menubar"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from \"@fragment_ui/ui/context-menu\";\n\nexport default function Preview() {\n  return (\n    <ContextMenu>\n      <ContextMenuTrigger className=\"border p-4 rounded\">\n        Right-click here\n      </ContextMenuTrigger>\n      <ContextMenuContent>\n        <ContextMenuItem>Copy</ContextMenuItem>\n        <ContextMenuItem>Paste</ContextMenuItem>\n        <ContextMenuItem>Delete</ContextMenuItem>\n      </ContextMenuContent>\n    </ContextMenu>\n  );\n}",
+          "description": "Basic context menu with items"
+        }
+      ],
+      "stability": "stable"
+    },
+    "DataTable": {
+      "import": "@fragment_ui/ui/data-table",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "DataTable component"
+      },
+      "note": "Component DataTable from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { DataTable } from \"@fragment_ui/ui/data-table\";\nimport React from \"react\";\n\nconst mockData = [\n  { id: \"1\", name: \"John Doe\", email: \"john@example.com\", role: \"Admin\" },\n  { id: \"2\", name: \"Jane Smith\", email: \"jane@example.com\", role: \"User\" },\n  { id: \"3\", name: \"Bob Johnson\", email: \"bob@example.com\", role: \"User\" }\n];\n\nconst columns = [\n  { id: \"name\", header: \"Name\", accessor: (row) => row.name, sortable: true },\n  { id: \"email\", header: \"Email\", accessor: (row) => row.email, sortable: true },\n  { id: \"role\", header: \"Role\", accessor: (row) => row.role, sortable: true }\n];\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"w-full max-w-2xl\">\n        <DataTable data={mockData} columns={columns} sortable />\n      </div>\n    </div>\n  );\n}",
+          "description": "Default DataTable example with mock data"
+        }
+      ],
+      "stability": "stable"
+    },
+    "DatePicker": {
+      "import": "@fragment_ui/ui/date-picker",
+      "description": "A date picker component that combines an input field with a calendar popover. Supports single date and date range selection modes. Built on react-day-picker with full keyboard navigation.",
+      "props": {
+        "mode": [
+          "single",
+          "range"
+        ],
+        "value": "Date | { from?: Date; to?: Date }",
+        "onChange": "function",
+        "placeholder": "string",
+        "className": "string",
+        "disabled": "boolean"
+      },
+      "variants": [
+        {
+          "name": "single",
+          "props": {
+            "mode": "single"
+          },
+          "description": "Single date selection"
+        },
+        {
+          "name": "range",
+          "props": {
+            "mode": "range"
+          },
+          "description": "Date range selection"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Single and range date selection modes",
+        "Input field with calendar popover",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Accessible by default with ARIA attributes",
+        "Customizable placeholder",
+        "Disabled state support",
+        "Built on react-day-picker"
+      ],
+      "a11y": {
+        "role": "combobox",
+        "notes": "DatePicker combines input and calendar. Use aria-label for input description. Calendar popover should have proper focus management.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "DatePicker component from @fragment_ui/ui. Combines Input with Calendar in a Popover. Supports single and range modes.",
+      "related": [
+        "Calendar",
+        "Input",
+        "Popover"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { DatePicker } from \"@fragment_ui/ui/date-picker\";\n\nexport default function Preview() {\n  const [date, setDate] = React.useState(new Date());\n  return (\n    <DatePicker mode=\"single\" value={date} onChange={setDate} placeholder=\"Pick a date\" />\n  );\n}",
+          "description": "Basic date picker with single date selection"
+        },
+        {
+          "name": "range",
+          "code": "import { DatePicker } from \"@fragment_ui/ui/date-picker\";\n\nexport default function Preview() {\n  const [range, setRange] = React.useState({ from: undefined, to: undefined });\n  return (\n    <DatePicker mode=\"range\" value={range} onChange={setRange} placeholder=\"Pick a date range\" />\n  );\n}",
+          "description": "Date picker with range selection"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Dialog": {
+      "import": "@fragment_ui/ui/dialog",
+      "description": "A modal dialog component for displaying content in an overlay. Supports keyboard navigation, focus management, and accessibility features.",
+      "props": {
+        "open": "boolean",
+        "defaultOpen": "boolean",
+        "onOpenChange": "function",
+        "modal": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Standard dialog with default styling"
+        },
+        {
+          "name": "fullscreen",
+          "props": {
+            "variant": "fullscreen"
+          },
+          "description": "Fullscreen dialog variant"
+        }
+      ],
+      "slots": [
+        "trigger",
+        "content",
+        "header",
+        "title",
+        "description",
+        "footer"
+      ],
+      "features": [
+        "Composable structure (DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Escape to close, Tab for focus)",
+        "Focus trap and restoration",
+        "Overlay with backdrop",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "dialog",
+        "notes": "Requires DialogTrigger, DialogContent, DialogHeader, DialogTitle. Use aria-labelledby for title association. Supports keyboard navigation.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires DialogTrigger, DialogContent, DialogHeader, DialogTitle subcomponents",
+      "related": [
+        "Sheet",
+        "Popover",
+        "AlertDialog"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from \"@fragment_ui/ui/dialog\";\n\nexport default function Preview() {\n  return (\n    <Dialog>\n      <DialogTrigger asChild>\n        <button>Open Dialog</button>\n      </DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Dialog Title</DialogTitle>\n          <DialogDescription>Dialog description goes here.</DialogDescription>\n        </DialogHeader>\n        <p>Dialog content goes here.</p>\n      </DialogContent>\n    </Dialog>\n  );\n}",
+          "description": "Basic dialog with header and content"
+        },
+        {
+          "name": "with-footer",
+          "code": "import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter, Button } from \"@fragment_ui/ui/dialog\";\n\nexport default function Preview() {\n  return (\n    <Dialog>\n      <DialogTrigger asChild>\n        <button>Open Dialog</button>\n      </DialogTrigger>\n      <DialogContent>\n        <DialogHeader>\n          <DialogTitle>Confirm Action</DialogTitle>\n        </DialogHeader>\n        <p>Are you sure you want to proceed?</p>\n        <DialogFooter>\n          <Button variant=\"outline\">Cancel</Button>\n          <Button>Confirm</Button>\n        </DialogFooter>\n      </DialogContent>\n    </Dialog>\n  );\n}",
+          "description": "Dialog with footer actions"
+        }
+      ],
+      "stability": "stable"
+    },
+    "DropdownMenu": {
+      "import": "@fragment_ui/ui/dropdown-menu",
+      "description": "A dropdown menu component that displays a list of actions or options. Supports keyboard navigation, submenus, and accessibility features.",
+      "props": {
+        "open": "boolean",
+        "defaultOpen": "boolean",
+        "onOpenChange": "function",
+        "modal": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "content",
+        "item",
+        "label",
+        "separator",
+        "checkbox-item",
+        "radio-group",
+        "radio-item"
+      ],
+      "features": [
+        "Composable structure (DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Submenu support",
+        "Checkbox and radio items",
+        "Separators and labels",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "menu",
+        "notes": "Requires DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem. Supports keyboard navigation. Use aria-label for menu description.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem subcomponents",
+      "related": [
+        "ContextMenu",
+        "Menubar",
+        "Select"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from \"@fragment_ui/ui/dropdown-menu\";\n\nexport default function Preview() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <button>Open Menu</button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuItem>Profile</DropdownMenuItem>\n        <DropdownMenuItem>Settings</DropdownMenuItem>\n        <DropdownMenuItem>Logout</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}",
+          "description": "Basic dropdown menu with items"
+        },
+        {
+          "name": "with-separator",
+          "code": "import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from \"@fragment_ui/ui/dropdown-menu\";\n\nexport default function Preview() {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <button>Open Menu</button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent>\n        <DropdownMenuItem>New</DropdownMenuItem>\n        <DropdownMenuItem>Open</DropdownMenuItem>\n        <DropdownMenuSeparator />\n        <DropdownMenuItem>Delete</DropdownMenuItem>\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}",
+          "description": "Dropdown menu with separator"
+        }
+      ],
+      "stability": "stable"
+    },
+    "FileUpload": {
+      "import": "@fragment_ui/ui/file-upload",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FileUpload component"
+      },
+      "note": "Component FileUpload from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { FileUpload } from \"@fragment_ui/ui/file-upload\";\nimport React from \"react\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"w-full max-w-md\">\n        <FileUpload\n          onUpload={(files) => console.log(\"Uploaded files:\", files)}\n          accept=\"image/*,.pdf\"\n          multiple\n          maxSize={5 * 1024 * 1024}\n          showPreview\n        />\n      </div>\n    </div>\n  );\n}",
+          "description": "Default FileUpload example with basic props"
+        }
+      ],
+      "stability": "stable"
+    },
+    "FormContainer": {
+      "import": "@fragment_ui/blocks/form-container",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FormContainer component"
+      },
+      "note": "Component FormContainer from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { FormContainer } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <FormContainer />\n    </div>\n  );\n}",
+          "description": "Default FormContainer example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "HoverCard": {
+      "import": "@fragment_ui/ui/hover-card",
+      "description": "A hover card component that displays content when hovering over a trigger element. Supports keyboard navigation and accessibility features.",
+      "props": {
+        "open": "boolean",
+        "defaultOpen": "boolean",
+        "onOpenChange": "function",
+        "openDelay": "number",
+        "closeDelay": "number"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "content"
+      ],
+      "features": [
+        "Composable structure (HoverCardTrigger, HoverCardContent)",
+        "Controlled and uncontrolled modes",
+        "Configurable open/close delays",
+        "Positioning control",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "dialog",
+        "notes": "Requires HoverCardTrigger, HoverCardContent. Supports keyboard navigation. Use aria-label for content description.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires HoverCardTrigger, HoverCardContent subcomponents",
+      "related": [
+        "Popover",
+        "Tooltip"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { HoverCard, HoverCardTrigger, HoverCardContent } from \"@fragment_ui/ui/hover-card\";\n\nexport default function Preview() {\n  return (\n    <HoverCard>\n      <HoverCardTrigger asChild>\n        <button>Hover me</button>\n      </HoverCardTrigger>\n      <HoverCardContent>\n        <p>Hover card content goes here.</p>\n      </HoverCardContent>\n    </HoverCard>\n  );\n}",
+          "description": "Basic hover card with trigger and content"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Kbd": {
+      "import": "@fragment_ui/ui/kbd",
+      "description": "A keyboard key component for displaying keyboard shortcuts and key combinations. Supports grouping multiple keys.",
+      "props": {
+        "className": "string"
+      },
+      "variants": [],
+      "slots": [],
+      "features": [
+        "Keyboard key styling",
+        "Key group support (KbdGroup)",
+        "Monospace font",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "text",
+        "notes": "Use semantic <kbd> element. For key combinations, use KbdGroup to group keys visually.",
+        "wcag": [
+          "1.3.1",
+          "4.1.2"
+        ]
+      },
+      "note": "Can be used with KbdGroup for key combinations",
+      "related": [
+        "KbdGroup"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Kbd } from \"@fragment_ui/ui/kbd\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      Press <Kbd>Ctrl</Kbd> + <Kbd>C</Kbd> to copy\n    </div>\n  );\n}",
+          "description": "Basic keyboard keys"
+        },
+        {
+          "name": "group",
+          "code": "import { Kbd, KbdGroup } from \"@fragment_ui/ui/kbd\";\n\nexport default function Preview() {\n  return (\n    <KbdGroup>\n      <Kbd>⌘</Kbd>\n      <Kbd>K</Kbd>\n    </KbdGroup>\n  );\n}",
+          "description": "Keyboard key group"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Menubar": {
+      "import": "@fragment_ui/ui/menubar",
+      "description": "A menubar component for building application menus. Supports keyboard navigation, submenus, and accessibility features.",
+      "props": {
+        "value": "string",
+        "defaultValue": "string",
+        "onValueChange": "function"
+      },
+      "variants": [],
+      "slots": [
+        "menu",
+        "trigger",
+        "content",
+        "item",
+        "separator",
+        "label"
+      ],
+      "features": [
+        "Composable structure (MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape, Alt for menu access)",
+        "Submenu support",
+        "Separators and labels",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "menubar",
+        "notes": "Requires MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem. Supports keyboard navigation. Use aria-label for menu description.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem subcomponents",
+      "related": [
+        "NavigationMenu",
+        "DropdownMenu"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem } from \"@fragment_ui/ui/menubar\";\n\nexport default function Preview() {\n  return (\n    <Menubar>\n      <MenubarMenu>\n        <MenubarTrigger>File</MenubarTrigger>\n        <MenubarContent>\n          <MenubarItem>New</MenubarItem>\n          <MenubarItem>Open</MenubarItem>\n          <MenubarItem>Save</MenubarItem>\n        </MenubarContent>\n      </MenubarMenu>\n    </Menubar>\n  );\n}",
+          "description": "Basic menubar with menu items"
+        }
+      ],
+      "stability": "stable"
+    },
+    "MultiSelect": {
+      "import": "@fragment_ui/ui/multi-select",
+      "description": "A multi-select component that allows users to select multiple options from a list. Supports search, keyboard navigation, and accessibility features.",
+      "props": {
+        "value": "string[]",
+        "defaultValue": "string[]",
+        "onValueChange": "function",
+        "disabled": "boolean",
+        "placeholder": "string"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "input",
+        "content",
+        "item"
+      ],
+      "features": [
+        "Composable structure (MultiSelectTrigger, MultiSelectInput, MultiSelectContent, MultiSelectItem)",
+        "Multiple selection support",
+        "Search and filter support",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "listbox",
+        "notes": "Requires MultiSelectTrigger, MultiSelectInput, MultiSelectContent, MultiSelectItem. Must have accessible label. Supports keyboard navigation.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires MultiSelectTrigger, MultiSelectInput, MultiSelectContent, MultiSelectItem subcomponents",
+      "related": [
+        "Select",
+        "Combobox"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { MultiSelect, MultiSelectTrigger, MultiSelectInput, MultiSelectContent, MultiSelectItem } from \"@fragment_ui/ui/multi-select\";\n\nexport default function Preview() {\n  return (\n    <MultiSelect>\n      <MultiSelectTrigger>\n        <MultiSelectInput placeholder=\"Select multiple...\" />\n      </MultiSelectTrigger>\n      <MultiSelectContent>\n        <MultiSelectItem value=\"option1\">Option 1</MultiSelectItem>\n        <MultiSelectItem value=\"option2\">Option 2</MultiSelectItem>\n        <MultiSelectItem value=\"option3\">Option 3</MultiSelectItem>\n      </MultiSelectContent>\n    </MultiSelect>\n  );\n}",
+          "description": "Basic multi-select with multiple options"
+        }
+      ],
+      "stability": "stable"
+    },
+    "NavigationMenu": {
+      "import": "@fragment_ui/ui/navigation-menu",
+      "description": "A navigation menu component for building complex navigation structures. Supports keyboard navigation, submenus, and accessibility features.",
+      "props": {
+        "value": "string",
+        "defaultValue": "string",
+        "onValueChange": "function",
+        "orientation": "horizontal | vertical"
+      },
+      "variants": [],
+      "slots": [
+        "list",
+        "item",
+        "trigger",
+        "content",
+        "link"
+      ],
+      "features": [
+        "Composable structure (NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Enter, Escape)",
+        "Submenu support",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "navigation",
+        "notes": "Requires NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent. Supports keyboard navigation. Use aria-label for menu description.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent subcomponents",
+      "related": [
+        "Menubar",
+        "DropdownMenu"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from \"@fragment_ui/ui/navigation-menu\";\n\nexport default function Preview() {\n  return (\n    <NavigationMenu>\n      <NavigationMenuList>\n        <NavigationMenuItem>\n          <NavigationMenuTrigger>Item 1</NavigationMenuTrigger>\n          <NavigationMenuContent>\n            <NavigationMenuLink>Link 1</NavigationMenuLink>\n            <NavigationMenuLink>Link 2</NavigationMenuLink>\n          </NavigationMenuContent>\n        </NavigationMenuItem>\n      </NavigationMenuList>\n    </NavigationMenu>\n  );\n}",
+          "description": "Basic navigation menu with items"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Pagination": {
+      "import": "@fragment_ui/ui/pagination",
+      "description": "A pagination component for navigating through multiple pages of content. Supports first/last page buttons, ellipsis for large page counts, and keyboard navigation.",
+      "props": {
+        "currentPage": "number",
+        "totalPages": "number",
+        "onPageChange": "function",
+        "className": "string",
+        "showFirstLast": "boolean",
+        "maxVisible": "number"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Pagination with first/last buttons and ellipsis"
+        },
+        {
+          "name": "minimal",
+          "props": {
+            "showFirstLast": false,
+            "maxVisible": 3
+          },
+          "description": "Minimal pagination without first/last buttons"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "First and last page navigation",
+        "Ellipsis for large page counts",
+        "Configurable maximum visible pages",
+        "Full keyboard navigation (Arrow keys, Home, End)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "navigation",
+        "notes": "Pagination should have aria-label describing the pagination context. Current page should be marked with aria-current=\"page\".",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Pagination component from @fragment_ui/ui. Requires currentPage, totalPages, and onPageChange props.",
+      "related": [
+        "Table",
+        "DataTable"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Pagination } from \"@fragment_ui/ui/pagination\";\n\nexport default function Preview() {\n  const [currentPage, setCurrentPage] = React.useState(1);\n  return (\n    <Pagination currentPage={currentPage} totalPages={10} onPageChange={setCurrentPage} />\n  );\n}",
+          "description": "Basic pagination with 10 pages"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Popover": {
+      "import": "@fragment_ui/ui/popover",
+      "description": "A popover component that displays content in a floating panel. Supports positioning, keyboard navigation, and accessibility features.",
+      "props": {
+        "open": "boolean",
+        "defaultOpen": "boolean",
+        "onOpenChange": "function",
+        "modal": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "content"
+      ],
+      "features": [
+        "Composable structure (PopoverTrigger, PopoverContent)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Escape to close, Tab for focus)",
+        "Positioning control (top, bottom, left, right)",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "dialog",
+        "notes": "Requires PopoverTrigger, PopoverContent. Supports keyboard navigation. Use aria-label for content description.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires PopoverTrigger, PopoverContent subcomponents",
+      "related": [
+        "Dialog",
+        "HoverCard",
+        "Tooltip"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Popover, PopoverTrigger, PopoverContent } from \"@fragment_ui/ui/popover\";\n\nexport default function Preview() {\n  return (\n    <Popover>\n      <PopoverTrigger asChild>\n        <button>Open Popover</button>\n      </PopoverTrigger>\n      <PopoverContent>\n        <p>Popover content goes here.</p>\n      </PopoverContent>\n    </Popover>\n  );\n}",
+          "description": "Basic popover with trigger and content"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Progress": {
+      "import": "@fragment_ui/ui/progress",
+      "description": "A progress component for displaying the completion status of a task or process. Supports linear and circular variants, multiple sizes, and color states.",
+      "props": {
+        "value": "number",
+        "max": "number",
+        "label": "string",
+        "showValue": "boolean",
+        "variant": "linear | circular",
+        "size": "sm | md | lg",
+        "color": "default | success | warning | error | info",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "linear",
+          "props": {
+            "variant": "linear"
+          },
+          "description": "Linear progress bar"
+        },
+        {
+          "name": "circular",
+          "props": {
+            "variant": "circular"
+          },
+          "description": "Circular progress indicator"
+        },
+        {
+          "name": "success",
+          "props": {
+            "color": "success"
+          },
+          "description": "Progress with success color"
+        },
+        {
+          "name": "warning",
+          "props": {
+            "color": "warning"
+          },
+          "description": "Progress with warning color"
+        },
+        {
+          "name": "error",
+          "props": {
+            "color": "error"
+          },
+          "description": "Progress with error color"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Linear and circular variants",
+        "Multiple sizes (sm, md, lg)",
+        "Color states (default, success, warning, error, info)",
+        "Optional label and value display",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "progressbar",
+        "notes": "Use aria-label or aria-labelledby for description. Use aria-valuenow, aria-valuemin, aria-valuemax for current value.",
+        "wcag": [
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Spinner",
+        "Skeleton"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Progress } from \"@fragment_ui/ui/progress\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Progress value={33} />\n    </div>\n  );\n}",
+          "description": "Basic linear progress bar"
+        },
+        {
+          "name": "with-value",
+          "code": "import { Progress } from \"@fragment_ui/ui/progress\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Progress value={75} showValue label=\"Upload progress\" />\n    </div>\n  );\n}",
+          "description": "Progress with label and value"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Radio": {
+      "import": "@fragment_ui/ui/radio",
+      "description": "A radio button component for selecting a single option from a group. Supports keyboard navigation and accessibility features.",
+      "props": {
+        "value": "string",
+        "checked": "boolean",
+        "defaultChecked": "boolean",
+        "onCheckedChange": "function",
+        "disabled": "boolean",
+        "required": "boolean",
+        "name": "string"
+      },
+      "variants": [
+        {
+          "name": "checked",
+          "props": {
+            "checked": true
+          },
+          "description": "Radio button in checked state"
+        },
+        {
+          "name": "unchecked",
+          "props": {
+            "checked": false
+          },
+          "description": "Radio button in unchecked state"
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          },
+          "description": "Disabled radio button state"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Controlled and uncontrolled modes",
+        "Group support (RadioGroup)",
+        "Full keyboard navigation (Arrow keys to navigate, Space to select)",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "radio",
+        "notes": "Must be used within RadioGroup. Must have associated label via htmlFor/id or aria-labelledby. Use aria-checked for state.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "note": "Should be used within RadioGroup for proper functionality",
+      "related": [
+        "RadioGroup",
+        "Checkbox",
+        "Switch"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { RadioGroup, RadioGroupItem } from \"@fragment_ui/ui/radio\";\n\nexport default function Preview() {\n  return (\n    <RadioGroup defaultValue=\"option1\">\n      <div className=\"flex items-center gap-2\">\n        <RadioGroupItem value=\"option1\" id=\"option1\" />\n        <label htmlFor=\"option1\" className=\"text-sm\">Option 1</label>\n      </div>\n      <div className=\"flex items-center gap-2\">\n        <RadioGroupItem value=\"option2\" id=\"option2\" />\n        <label htmlFor=\"option2\" className=\"text-sm\">Option 2</label>\n      </div>\n    </RadioGroup>\n  );\n}",
+          "description": "Radio buttons in a group"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Rating": {
+      "import": "@fragment_ui/ui/rating",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Rating component"
+      },
+      "note": "Component Rating from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Rating } from \"@fragment_ui/ui/rating\";\nimport React, { useState } from \"react\";\n\nexport default function Preview() {\n  const [value, setValue] = useState(3);\n  return (\n    <div className=\"w-full h-full flex flex-col items-center justify-center gap-4 p-4\">\n      <Rating value={value} onChange={setValue} showValue />\n      <Rating defaultValue={4} readOnly />\n      <Rating defaultValue={2.5} half showValue />\n    </div>\n  );\n}",
+          "description": "Default Rating example with interactive and read-only variants"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Resizable": {
+      "import": "@fragment_ui/ui/resizable",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Resizable component"
+      },
+      "note": "Component Resizable from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Resizable, ResizablePanel, ResizableHandle } from \"@fragment_ui/ui/resizable\";\nimport React from \"react\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"w-full max-w-2xl h-64 border rounded-lg overflow-hidden\">\n        <Resizable direction=\"horizontal\">\n          <ResizablePanel defaultSize={50} minSize={20}>\n            <div className=\"h-full p-4 bg-[color:var(--color-surface-2)]\">\n              Left Panel\n            </div>\n          </ResizablePanel>\n          <ResizableHandle />\n          <ResizablePanel defaultSize={50} minSize={20}>\n            <div className=\"h-full p-4 bg-[color:var(--color-surface-1)]\">\n              Right Panel\n            </div>\n          </ResizablePanel>\n        </Resizable>\n      </div>\n    </div>\n  );\n}",
+          "description": "Default Resizable example with horizontal panels"
+        }
+      ],
+      "stability": "stable"
+    },
+    "ScrollArea": {
+      "import": "@fragment_ui/ui/scroll-area",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ScrollArea component"
+      },
+      "note": "Component ScrollArea from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { ScrollArea } from \"@fragment_ui/ui/scroll-area\";\nimport React from \"react\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <ScrollArea className=\"h-72 w-80 rounded-md border border-[color:var(--color-border-base)] p-4\">\n        <div className=\"space-y-2\">\n          {Array.from({ length: 20 }).map((_, i) => (\n            <div key={i} className=\"text-sm p-2 bg-[color:var(--color-surface-2)] rounded\">\n              Item {i + 1} - Scrollable content\n            </div>\n          ))}\n        </div>\n      </ScrollArea>\n    </div>\n  );\n}",
+          "description": "Default ScrollArea example with scrollable content"
+        }
+      ],
+      "stability": "stable"
+    },
+    "SegmentedControl": {
+      "import": "@fragment_ui/ui/segmented-control",
+      "description": "A segmented control component for selecting a single option or multiple options from a set. Supports icons, variants, sizes, and keyboard navigation.",
+      "props": {
+        "options": "SegmentedControlOption[]",
+        "value": "string | string[]",
+        "defaultValue": "string | string[]",
+        "onChange": "function",
+        "multiple": "boolean",
+        "variant": [
+          "default",
+          "outline",
+          "filled"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "disabled": "boolean",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {
+            "variant": "default"
+          },
+          "description": "Default segmented control variant"
+        },
+        {
+          "name": "outline",
+          "props": {
+            "variant": "outline"
+          },
+          "description": "Outline segmented control variant"
+        },
+        {
+          "name": "filled",
+          "props": {
+            "variant": "filled"
+          },
+          "description": "Filled segmented control variant"
+        },
+        {
+          "name": "multiple",
+          "props": {
+            "multiple": true
+          },
+          "description": "Segmented control with multiple selection"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Single and multiple selection modes",
+        "Icon support per option",
+        "Three variants (default, outline, filled)",
+        "Three sizes (sm, md, lg)",
+        "Full keyboard navigation (Arrow keys, Enter, Space)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "radiogroup",
+        "notes": "SegmentedControl should have aria-label. For single selection, use radiogroup role. For multiple selection, use group role with checkboxes.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "SegmentedControl component from @fragment_ui/ui. Supports single and multiple selection modes.",
+      "related": [
+        "ToggleGroup",
+        "Radio",
+        "Checkbox"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { SegmentedControl } from \"@fragment_ui/ui/segmented-control\";\n\nexport default function Preview() {\n  const [value, setValue] = React.useState(\"option1\");\n  return (\n    <SegmentedControl value={value} onValueChange={setValue} options={[\n      { value: \"option1\", label: \"Option 1\" },\n      { value: \"option2\", label: \"Option 2\" },\n      { value: \"option3\", label: \"Option 3\" }\n    ]} />\n  );\n}",
+          "description": "Basic segmented control with three options"
+        }
+      ],
+      "stability": "experimental"
+    },
+    "Separator": {
+      "import": "@fragment_ui/ui/separator",
+      "description": "A separator component for visually dividing content. Supports horizontal and vertical orientations and can be decorative or semantic.",
+      "props": {
+        "orientation": "horizontal | vertical",
+        "decorative": "boolean",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "horizontal",
+          "props": {
+            "orientation": "horizontal"
+          },
+          "description": "Horizontal separator (default)"
+        },
+        {
+          "name": "vertical",
+          "props": {
+            "orientation": "vertical"
+          },
+          "description": "Vertical separator"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Horizontal and vertical orientations",
+        "Decorative and semantic modes",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "separator",
+        "notes": "Use decorative={true} for visual-only separators. Use decorative={false} for semantic separators that divide content sections.",
+        "wcag": [
+          "1.3.1",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Divider"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Separator } from \"@fragment_ui/ui/separator\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <div>Content above</div>\n      <Separator />\n      <div>Content below</div>\n    </div>\n  );\n}",
+          "description": "Basic horizontal separator"
+        },
+        {
+          "name": "vertical",
+          "code": "import { Separator } from \"@fragment_ui/ui/separator\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <div>Left</div>\n      <Separator orientation=\"vertical\" />\n      <div>Right</div>\n    </div>\n  );\n}",
+          "description": "Vertical separator"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Sheet": {
+      "import": "@fragment_ui/ui/sheet",
+      "description": "A sheet component that slides in from the side of the screen. Perfect for mobile navigation, sidebars, and drawers. Supports keyboard navigation and accessibility features.",
+      "props": {
+        "open": "boolean",
+        "defaultOpen": "boolean",
+        "onOpenChange": "function",
+        "side": "top | bottom | left | right",
+        "modal": "boolean"
+      },
+      "variants": [
+        {
+          "name": "left",
+          "props": {
+            "side": "left"
+          },
+          "description": "Sheet slides in from the left"
+        },
+        {
+          "name": "right",
+          "props": {
+            "side": "right"
+          },
+          "description": "Sheet slides in from the right"
+        },
+        {
+          "name": "top",
+          "props": {
+            "side": "top"
+          },
+          "description": "Sheet slides in from the top"
+        },
+        {
+          "name": "bottom",
+          "props": {
+            "side": "bottom"
+          },
+          "description": "Sheet slides in from the bottom"
+        }
+      ],
+      "slots": [
+        "trigger",
+        "content",
+        "header",
+        "title",
+        "description",
+        "footer"
+      ],
+      "features": [
+        "Composable structure (SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Escape to close, Tab for focus)",
+        "Focus trap and restoration",
+        "Overlay with backdrop",
+        "Portal rendering",
+        "Multiple side positions",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "dialog",
+        "notes": "Requires SheetTrigger, SheetContent, SheetHeader, SheetTitle. Supports keyboard navigation. Use aria-labelledby for title association.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires SheetTrigger, SheetContent, SheetHeader, SheetTitle subcomponents",
+      "related": [
+        "Dialog",
+        "Drawer"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from \"@fragment_ui/ui/sheet\";\n\nexport default function Preview() {\n  return (\n    <Sheet>\n      <SheetTrigger asChild>\n        <button>Open Sheet</button>\n      </SheetTrigger>\n      <SheetContent>\n        <SheetHeader>\n          <SheetTitle>Sheet Title</SheetTitle>\n          <SheetDescription>Sheet description goes here.</SheetDescription>\n        </SheetHeader>\n        <p>Sheet content goes here.</p>\n      </SheetContent>\n    </Sheet>\n  );\n}",
+          "description": "Basic sheet with header and content"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Skeleton": {
+      "import": "@fragment_ui/ui/skeleton",
+      "description": "A skeleton component for displaying loading placeholders. Provides a pulsing animation to indicate content is loading.",
+      "props": {
+        "className": "string"
+      },
+      "variants": [],
+      "slots": [],
+      "features": [
+        "Pulsing animation",
+        "Customizable size and shape",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "status",
+        "notes": "Use aria-label=\"Loading\" or aria-busy=\"true\" on parent container. Skeleton should be replaced with actual content when loaded.",
+        "wcag": [
+          "2.3.2",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Spinner",
+        "Progress"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Skeleton } from \"@fragment_ui/ui/skeleton\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md space-y-2\">\n      <Skeleton className=\"h-4 w-full\" />\n      <Skeleton className=\"h-4 w-3/4\" />\n      <Skeleton className=\"h-4 w-1/2\" />\n    </div>\n  );\n}",
+          "description": "Basic skeleton placeholders"
+        },
+        {
+          "name": "card",
+          "code": "import { Skeleton } from \"@fragment_ui/ui/skeleton\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md space-y-4\">\n      <Skeleton className=\"h-32 w-full\" />\n      <Skeleton className=\"h-4 w-full\" />\n      <Skeleton className=\"h-4 w-2/3\" />\n    </div>\n  );\n}",
+          "description": "Skeleton for card layout"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Slider": {
+      "import": "@fragment_ui/ui/slider",
+      "description": "A slider component for selecting a value from a range. Supports single and range values, keyboard navigation, and accessibility features.",
+      "props": {
+        "value": "number[]",
+        "defaultValue": "number[]",
+        "onValueChange": "function",
+        "min": "number",
+        "max": "number",
+        "step": "number",
+        "disabled": "boolean",
+        "orientation": "horizontal | vertical",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Default horizontal slider"
+        },
+        {
+          "name": "vertical",
+          "props": {
+            "orientation": "vertical"
+          },
+          "description": "Vertical slider"
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          },
+          "description": "Disabled slider"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Single and range value support",
+        "Horizontal and vertical orientations",
+        "Configurable min, max, and step",
+        "Full keyboard navigation (Arrow keys, Home, End)",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "slider",
+        "notes": "Use aria-label or aria-labelledby for description. Use aria-valuenow, aria-valuemin, aria-valuemax for current value. Use aria-orientation for vertical sliders.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Input",
+        "Range"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Slider } from \"@fragment_ui/ui/slider\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Slider defaultValue={[50]} max={100} step={1} />\n    </div>\n  );\n}",
+          "description": "Basic slider with default value"
+        },
+        {
+          "name": "range",
+          "code": "import { Slider } from \"@fragment_ui/ui/slider\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <Slider defaultValue={[20, 80]} max={100} step={1} />\n    </div>\n  );\n}",
+          "description": "Range slider with two values"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Spinner": {
+      "import": "@fragment_ui/ui/spinner",
+      "description": "A spinner component for indicating loading states. Supports multiple sizes and is accessible by default.",
+      "props": {
+        "size": "sm | md | lg",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "sm",
+          "props": {
+            "size": "sm"
+          },
+          "description": "Small spinner"
+        },
+        {
+          "name": "md",
+          "props": {
+            "size": "md"
+          },
+          "description": "Medium spinner (default)"
+        },
+        {
+          "name": "lg",
+          "props": {
+            "size": "lg"
+          },
+          "description": "Large spinner"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Multiple sizes (sm, md, lg)",
+        "Smooth animation",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "status",
+        "notes": "Uses aria-label=\"Loading\" and sr-only text for screen readers. Already accessible by default.",
+        "wcag": [
+          "4.1.2"
+        ]
+      },
+      "related": [
+        "Progress",
+        "Skeleton"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Spinner } from \"@fragment_ui/ui/spinner\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center justify-center p-4\">\n      <Spinner />\n    </div>\n  );\n}",
+          "description": "Basic spinner"
+        },
+        {
+          "name": "sizes",
+          "code": "import { Spinner } from \"@fragment_ui/ui/spinner\";\n\nexport default function Preview() {\n  return (\n    <div className=\"flex items-center gap-4 p-4\">\n      <Spinner size=\"sm\" />\n      <Spinner size=\"md\" />\n      <Spinner size=\"lg\" />\n    </div>\n  );\n}",
+          "description": "Spinners in different sizes"
+        }
+      ],
+      "stability": "stable"
+    },
+    "SplitButton": {
+      "import": "@fragment_ui/ui/split-button",
+      "description": "A split button component that combines a primary action button with a dropdown menu for additional actions. Supports variants, sizes, and keyboard navigation.",
+      "props": {
+        "primaryAction": "object",
+        "options": "SplitButtonOption[]",
+        "variant": [
+          "solid",
+          "outline",
+          "ghost",
+          "link"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ],
+        "disabled": "boolean",
+        "align": [
+          "start",
+          "center",
+          "end"
+        ],
+        "side": [
+          "top",
+          "right",
+          "bottom",
+          "left"
+        ],
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Split button with default variant"
+        },
+        {
+          "name": "outline",
+          "props": {
+            "variant": "outline"
+          },
+          "description": "Split button with outline variant"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Primary action button with dropdown menu",
+        "Multiple action options in dropdown",
+        "Button variants and sizes",
+        "Dropdown positioning control",
+        "Full keyboard navigation",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "group",
+        "notes": "SplitButton should have aria-label. Primary button should have clear action description. Dropdown menu should be accessible.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "SplitButton component from @fragment_ui/ui. Combines Button with DropdownMenu. Requires primaryAction and options props.",
+      "related": [
+        "Button",
+        "DropdownMenu"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { SplitButton } from \"@fragment_ui/ui/split-button\";\n\nexport default function Preview() {\n  return (\n    <SplitButton\n      primaryAction={{ label: \"Save\", onClick: () => {} }}\n      options={[\n        { label: \"Save As\", onClick: () => {} },\n        { label: \"Export\", onClick: () => {} }\n      ]}\n    />\n  );\n}",
+          "description": "Basic split button with primary action and dropdown options"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Stepper": {
+      "import": "@fragment_ui/ui/stepper",
+      "description": "A stepper component for displaying progress through a multi-step process. Supports horizontal and vertical orientations, clickable steps, and custom icons.",
+      "props": {
+        "steps": "StepperStep[]",
+        "currentStep": "number",
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "clickable": "boolean",
+        "onStepClick": "function",
+        "className": "string",
+        "showLabels": "boolean",
+        "showDescriptions": "boolean"
+      },
+      "variants": [
+        {
+          "name": "horizontal",
+          "props": {
+            "orientation": "horizontal"
+          },
+          "description": "Horizontal stepper layout"
+        },
+        {
+          "name": "vertical",
+          "props": {
+            "orientation": "vertical"
+          },
+          "description": "Vertical stepper layout"
+        },
+        {
+          "name": "clickable",
+          "props": {
+            "clickable": true
+          },
+          "description": "Stepper with clickable steps"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Horizontal and vertical orientations",
+        "Clickable steps with callbacks",
+        "Custom icons per step",
+        "Step labels and descriptions",
+        "Visual progress indication",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "navigation",
+        "notes": "Stepper should have aria-label describing the process. Current step should be marked with aria-current=\"step\". Completed steps should be marked appropriately.",
+        "wcag": [
+          "1.3.1",
+          "4.1.2"
+        ]
+      },
+      "note": "Stepper component from @fragment_ui/ui. Requires steps array and currentStep number.",
+      "related": [
+        "Progress",
+        "Tabs"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Stepper } from \"@fragment_ui/ui/stepper\";\n\nexport default function Preview() {\n  return (\n    <Stepper steps={[\n      { id: \"1\", label: \"Step 1\", description: \"First step\" },\n      { id: \"2\", label: \"Step 2\", description: \"Second step\" },\n      { id: \"3\", label: \"Step 3\", description: \"Third step\" }\n    ]} currentStep={1} />\n  );\n}",
+          "description": "Basic stepper with three steps"
+        },
+        {
+          "name": "vertical",
+          "code": "import { Stepper } from \"@fragment_ui/ui/stepper\";\n\nexport default function Preview() {\n  return (\n    <Stepper orientation=\"vertical\" steps={[\n      { id: \"1\", label: \"Step 1\" },\n      { id: \"2\", label: \"Step 2\" },\n      { id: \"3\", label: \"Step 3\" }\n    ]} currentStep={1} />\n  );\n}",
+          "description": "Vertical stepper layout"
+        }
+      ],
+      "stability": "stable"
+    },
+    "TagInput": {
+      "import": "@fragment_ui/ui/tag-input",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "TagInput component"
+      },
+      "note": "Component TagInput from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { TagInput } from \"@fragment_ui/ui/tag-input\";\nimport React, { useState } from \"react\";\n\nexport default function Preview() {\n  const [tags, setTags] = useState([\"react\", \"typescript\"]);\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <div className=\"w-full max-w-md\">\n        <TagInput\n          value={tags}\n          onChange={setTags}\n          placeholder=\"Add tags...\"\n          maxTags={10}\n        />\n      </div>\n    </div>\n  );\n}",
+          "description": "Default TagInput example with state management"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Timeline": {
+      "import": "@fragment_ui/ui/timeline",
+      "description": "A timeline component for displaying a sequence of events or activities. Supports custom icons, status indicators, and vertical/horizontal layouts.",
+      "props": {
+        "events": "TimelineEvent[]",
+        "orientation": [
+          "horizontal",
+          "vertical"
+        ],
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "vertical",
+          "props": {
+            "orientation": "vertical"
+          },
+          "description": "Vertical timeline layout"
+        },
+        {
+          "name": "horizontal",
+          "props": {
+            "orientation": "horizontal"
+          },
+          "description": "Horizontal timeline layout"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Vertical and horizontal orientations",
+        "Custom icons per event",
+        "Status indicators (completed, current, upcoming)",
+        "Event titles and descriptions",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "list",
+        "notes": "Timeline should have aria-label describing the timeline context. Events should be marked with appropriate status indicators.",
+        "wcag": [
+          "1.3.1",
+          "4.1.2"
+        ]
+      },
+      "note": "Timeline component from @fragment_ui/ui. Requires events array with id, title, description, and status.",
+      "related": [
+        "Stepper",
+        "Progress"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Timeline } from \"@fragment_ui/ui/timeline\";\n\nexport default function Preview() {\n  return (\n    <Timeline events={[\n      { id: \"1\", title: \"Event 1\", description: \"First event\", status: \"completed\" },\n      { id: \"2\", title: \"Event 2\", description: \"Second event\", status: \"current\" },\n      { id: \"3\", title: \"Event 3\", description: \"Third event\", status: \"upcoming\" }\n    ]} />\n  );\n}",
+          "description": "Basic timeline with three events"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Toast": {
+      "import": "@fragment_ui/ui/toast",
+      "description": "A toast component for displaying temporary notifications. Supports multiple positions, types, and automatic dismissal.",
+      "props": {
+        "position": "top-left | top-center | top-right | bottom-left | bottom-center | bottom-right",
+        "richColors": "boolean",
+        "closeButton": "boolean",
+        "expand": "boolean",
+        "duration": "number",
+        "visibleToasts": "number",
+        "theme": "light | dark | system",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Default toast configuration"
+        },
+        {
+          "name": "success",
+          "props": {},
+          "description": "Success toast (via toast.success())"
+        },
+        {
+          "name": "error",
+          "props": {},
+          "description": "Error toast (via toast.error())"
+        },
+        {
+          "name": "warning",
+          "props": {},
+          "description": "Warning toast (via toast.warning())"
+        },
+        {
+          "name": "info",
+          "props": {},
+          "description": "Info toast (via toast.info())"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Multiple positions",
+        "Rich colors support",
+        "Automatic dismissal",
+        "Close button",
+        "Expandable toasts",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "status",
+        "notes": "Uses aria-live regions for announcements. Toasts are automatically announced to screen readers.",
+        "wcag": [
+          "4.1.2",
+          "4.1.3"
+        ]
+      },
+      "related": [
+        "Alert",
+        "Notification"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Toaster, toast } from \"@fragment_ui/ui/toast\";\n\nexport default function Preview() {\n  return (\n    <div>\n      <Toaster />\n      <button onClick={() => toast(\"Hello World\")}>Show Toast</button>\n    </div>\n  );\n}",
+          "description": "Basic toast with Toaster"
+        },
+        {
+          "name": "success",
+          "code": "import { Toaster, toast } from \"@fragment_ui/ui/toast\";\n\nexport default function Preview() {\n  return (\n    <div>\n      <Toaster />\n      <button onClick={() => toast.success(\"Success!\")}>Show Success</button>\n    </div>\n  );\n}",
+          "description": "Success toast"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Toggle": {
+      "import": "@fragment_ui/ui/toggle",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Toggle component"
+      },
+      "note": "Component Toggle from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Toggle } from \"@fragment_ui/ui/toggle\";\nimport React from \"react\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center gap-4 p-4\">\n      <Toggle aria-label=\"Toggle bold\">Bold</Toggle>\n      <Toggle aria-label=\"Toggle italic\" pressed>Italic</Toggle>\n      <Toggle aria-label=\"Toggle underline\" disabled>Underline</Toggle>\n    </div>\n  );\n}",
+          "description": "Default Toggle example with different states"
+        }
+      ],
+      "stability": "stable"
+    },
+    "ToggleGroup": {
+      "import": "@fragment_ui/ui/toggle-group",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ToggleGroup component"
+      },
+      "note": "Component ToggleGroup from @fragment_ui/ui",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { ToggleGroup, ToggleGroupItem } from \"@fragment_ui/ui/toggle-group\";\nimport React from \"react\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <ToggleGroup type=\"single\" defaultValue=\"center\" aria-label=\"Text alignment\">\n        <ToggleGroupItem value=\"left\" aria-label=\"Left aligned\">Left</ToggleGroupItem>\n        <ToggleGroupItem value=\"center\" aria-label=\"Center aligned\">Center</ToggleGroupItem>\n        <ToggleGroupItem value=\"right\" aria-label=\"Right aligned\">Right</ToggleGroupItem>\n      </ToggleGroup>\n    </div>\n  );\n}",
+          "description": "Default ToggleGroup example with items"
+        }
+      ],
+      "stability": "stable"
+    },
+    "Tooltip": {
+      "import": "@fragment_ui/ui/tooltip",
+      "description": "A tooltip component for displaying additional information on hover or focus. Supports positioning, delays, and accessibility features.",
+      "props": {
+        "content": "ReactNode",
+        "delayDuration": "number",
+        "side": "top | right | bottom | left",
+        "sideOffset": "number",
+        "className": "string"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "content"
+      ],
+      "features": [
+        "Composable structure (TooltipProvider, TooltipTrigger, TooltipContent)",
+        "Configurable delay duration",
+        "Positioning control (top, right, bottom, left)",
+        "Portal rendering",
+        "Accessible by default with ARIA attributes",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "tooltip",
+        "notes": "Requires TooltipProvider. Tooltip content is automatically associated with trigger. Use aria-describedby for additional context.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires TooltipProvider wrapper",
+      "related": [
+        "Popover",
+        "HoverCard"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { Tooltip, TooltipProvider } from \"@fragment_ui/ui/tooltip\";\n\nexport default function Preview() {\n  return (\n    <TooltipProvider>\n      <Tooltip content=\"This is a tooltip\">\n        <button>Hover me</button>\n      </Tooltip>\n    </TooltipProvider>\n  );\n}",
+          "description": "Basic tooltip with text content"
+        }
+      ],
+      "stability": "stable"
+    },
+    "TreeView": {
+      "import": "@fragment_ui/ui/tree-view",
+      "description": "A tree view component for displaying hierarchical data structures. Supports expandable/collapsible nodes, nested children, and keyboard navigation.",
+      "props": {
+        "nodes": "TreeNode[]",
+        "onNodeSelect": "function",
+        "onNodeToggle": "function",
+        "expandedNodes": "string[]",
+        "selectedNode": "string",
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {},
+          "description": "Tree view with default settings"
+        },
+        {
+          "name": "controlled",
+          "props": {
+            "expandedNodes": "string[]",
+            "selectedNode": "string"
+          },
+          "description": "Controlled tree view with managed state"
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Expandable and collapsible nodes",
+        "Nested children support",
+        "Node selection",
+        "Keyboard navigation (Arrow keys, Enter, Space)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "tree",
+        "notes": "TreeView should have aria-label. Nodes should have aria-expanded and aria-selected attributes. Use proper tree structure with treeitem roles.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "TreeView component from @fragment_ui/ui. Requires nodes array with id, label, and optional children.",
+      "related": [
+        "Accordion",
+        "Collapsible"
+      ],
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { TreeView } from \"@fragment_ui/ui/tree-view\";\n\nexport default function Preview() {\n  return (\n    <TreeView nodes={[\n      { id: \"1\", label: \"Node 1\", children: [\n        { id: \"1-1\", label: \"Child 1\" },\n        { id: \"1-2\", label: \"Child 2\" }\n      ]},\n      { id: \"2\", label: \"Node 2\" }\n    ]} />\n  );\n}",
+          "description": "Basic tree view with nested nodes"
+        }
+      ],
+      "stability": "stable"
+    },
+    "AuthenticationBlock": {
+      "import": "@fragment_ui/blocks/authentication-block",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "AuthenticationBlock component"
+      },
+      "note": "Component AuthenticationBlock from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { AuthenticationBlock } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <AuthenticationBlock />\n    </div>\n  );\n}",
+          "description": "Default AuthenticationBlock example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "CardGrid": {
+      "import": "@fragment_ui/blocks/card-grid",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CardGrid component"
+      },
+      "note": "Component CardGrid from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { CardGrid } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <CardGrid />\n    </div>\n  );\n}",
+          "description": "Default CardGrid example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "DashboardLayout": {
+      "import": "@fragment_ui/blocks/dashboard-layout",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "DashboardLayout component"
+      },
+      "note": "Component DashboardLayout from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { DashboardLayout } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <DashboardLayout />\n    </div>\n  );\n}",
+          "description": "Default DashboardLayout example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "NavigationHeader": {
+      "import": "@fragment_ui/blocks/navigation-header",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "NavigationHeader component"
+      },
+      "note": "Component NavigationHeader from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { NavigationHeader } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <NavigationHeader />\n    </div>\n  );\n}",
+          "description": "Default NavigationHeader example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "PricingTable": {
+      "import": "@fragment_ui/blocks/pricing-table",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "PricingTable component"
+      },
+      "note": "Component PricingTable from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { PricingTable } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <PricingTable />\n    </div>\n  );\n}",
+          "description": "Default PricingTable example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "SettingsScreen": {
+      "import": "@fragment_ui/blocks/settings-screen",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "SettingsScreen component"
+      },
+      "note": "Component SettingsScreen from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { SettingsScreen } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <SettingsScreen />\n    </div>\n  );\n}",
+          "description": "Default SettingsScreen example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "BenefitsSection": {
+      "import": "@fragment_ui/blocks/benefits-section",
+      "description": "A section component for displaying product or service benefits in a visually appealing layout.",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "BenefitsSection component"
+      },
+      "note": "Component BenefitsSection from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { BenefitsSection } from \"@fragment_ui/blocks/benefits-section\";\nimport { CheckCircle2, Zap, Shield } from \"lucide-react\";\nimport React from \"react\";\n\nconst mockBenefits = [\n  {\n    title: \"Easy to Use\",\n    description: \"Our platform is designed for simplicity and ease of use. Get started in minutes.\",\n    icon: <CheckCircle2 className=\"h-6 w-6 text-green-500\" />\n  },\n  {\n    title: \"Fast Performance\",\n    description: \"Experience lightning-fast performance with our optimized infrastructure.\",\n    icon: <Zap className=\"h-6 w-6 text-blue-500\" />\n  },\n  {\n    title: \"Secure & Reliable\",\n    description: \"Your data is safe with us, backed by robust security measures.\",\n    icon: <Shield className=\"h-6 w-6 text-purple-500\" />\n  }\n];\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <BenefitsSection\n        title=\"Key Benefits\"\n        description=\"Discover why our product is the best choice for you.\"\n        benefits={mockBenefits}\n        columns={3}\n      />\n    </div>\n  );\n}",
+          "description": "Default benefits section with mock data"
+        }
+      ],
+      "stability": "stable"
+    },
+    "ComparisonSection": {
+      "import": "@fragment_ui/blocks/comparison-section",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ComparisonSection component"
+      },
+      "note": "Component ComparisonSection from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { ComparisonSection } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <ComparisonSection />\n    </div>\n  );\n}",
+          "description": "Default ComparisonSection example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "FooterSection": {
+      "import": "@fragment_ui/blocks/footer-section",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FooterSection component"
+      },
+      "note": "Component FooterSection from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { FooterSection } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <FooterSection />\n    </div>\n  );\n}",
+          "description": "Default FooterSection example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "KpiDashboard": {
+      "import": "@fragment_ui/blocks/kpi-dashboard",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "KpiDashboard component"
+      },
+      "note": "Component KpiDashboard from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { KpiDashboard } from \"@fragment_ui/blocks\";\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <KpiDashboard />\n    </div>\n  );\n}",
+          "description": "Default KpiDashboard example"
+        }
+      ],
+      "stability": "stable"
+    },
+    "AnalyticsDashboard": {
+      "import": "@fragment_ui/blocks/analytics-dashboard",
+      "description": "A comprehensive analytics dashboard component displaying key metrics, charts, and data visualizations.",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "AnalyticsDashboard component"
+      },
+      "note": "Component AnalyticsDashboard from @fragment_ui/blocks",
+      "examples": [
+        {
+          "name": "default",
+          "code": "import { AnalyticsDashboard } from \"@fragment_ui/blocks/analytics-dashboard\";\nimport { DollarSign, Users, TrendingUp, Activity } from \"lucide-react\";\nimport React from \"react\";\n\nconst mockMetrics = [\n  {\n    id: \"revenue\",\n    title: \"Total Revenue\",\n    value: \"$45,231\",\n    description: \"From last month\",\n    trend: \"up\" as const,\n    trendValue: \"+20.1%\",\n    icon: <DollarSign className=\"h-4 w-4\" />\n  },\n  {\n    id: \"users\",\n    title: \"Active Users\",\n    value: \"8,765\",\n    description: \"Active this month\",\n    trend: \"up\" as const,\n    trendValue: \"+15%\",\n    icon: <Users className=\"h-4 w-4\" />\n  },\n  {\n    id: \"sales\",\n    title: \"Sales\",\n    value: \"1,234\",\n    description: \"This month\",\n    trend: \"down\" as const,\n    trendValue: \"-5%\",\n    icon: <TrendingUp className=\"h-4 w-4\" />\n  },\n  {\n    id: \"activity\",\n    title: \"Activity\",\n    value: \"12,345\",\n    description: \"Total activities\",\n    trend: \"neutral\" as const,\n    icon: <Activity className=\"h-4 w-4\" />\n  }\n];\n\nconst mockCharts = [\n  {\n    id: \"sales-chart\",\n    title: \"Sales Overview\",\n    type: \"line\" as const,\n    data: [\n      { name: \"Jan\", value: 4000 },\n      { name: \"Feb\", value: 3000 },\n      { name: \"Mar\", value: 2000 },\n      { name: \"Apr\", value: 2780 },\n      { name: \"May\", value: 1890 },\n      { name: \"Jun\", value: 2390 }\n    ]\n  },\n  {\n    id: \"users-chart\",\n    title: \"User Growth\",\n    type: \"bar\" as const,\n    data: [\n      { name: \"Jan\", value: 1000 },\n      { name: \"Feb\", value: 1200 },\n      { name: \"Mar\", value: 1500 },\n      { name: \"Apr\", value: 1800 },\n      { name: \"May\", value: 2000 },\n      { name: \"Jun\", value: 2500 }\n    ]\n  }\n];\n\nexport default function Preview() {\n  return (\n    <div className=\"w-full h-full flex items-center justify-center p-4\">\n      <AnalyticsDashboard\n        title=\"Analytics Dashboard\"\n        description=\"Overview of your key metrics and performance\"\n        metrics={mockMetrics}\n        charts={mockCharts}\n      />\n    </div>\n  );\n}",
+          "description": "Default analytics dashboard with mock data"
+        }
+      ],
+      "stability": "stable"
+    }
+  },
+  "aliases": {
+    "Tab": "TabTrigger",
+    "TabsHeader": "TabsList"
+  },
+  "patterns": {
+    "compare-3": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "Compare3",
+      "description": "Compare 3 options with cards and comparison matrix",
+      "dsl": {
+        "type": "decision",
+        "pattern": "compare-3",
+        "options": []
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"compare-3\",\n  \"id\": \"decision-1\",\n  \"title\": \"Choose Your Plan\",\n  \"options\": [\n    {\n      \"id\": \"option-1\",\n      \"name\": \"Starter\",\n      \"price\": \"$9\",\n      \"pricePeriod\": \"month\",\n      \"features\": [\n        {\"key\": \"storage\", \"label\": \"Storage\", \"value\": \"10GB\"}\n      ],\n      \"ctaText\": \"Get Started\"\n    }\n  ]\n}"
+      }
+    },
+    "recommendation": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "Recommendation",
+      "description": "Ranked list of options with justification",
+      "dsl": {
+        "type": "decision",
+        "pattern": "recommendation",
+        "options": []
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"recommendation\",\n  \"id\": \"decision-1\",\n  \"title\": \"Recommended for You\",\n  \"options\": [\n    {\n      \"id\": \"option-1\",\n      \"name\": \"Pro Plan\",\n      \"rank\": 1,\n      \"reasoning\": \"Best balance of features and price\",\n      \"score\": 95,\n      \"ctaText\": \"Get Started\"\n    }\n  ]\n}"
+      }
+    },
+    "tradeoffs": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "Tradeoffs",
+      "description": "Compare options across multiple dimensions (cost, risk, time)",
+      "dsl": {
+        "type": "decision",
+        "pattern": "tradeoffs",
+        "options": []
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"tradeoffs\",\n  \"id\": \"decision-1\",\n  \"title\": \"Compare Tradeoffs\",\n  \"options\": [\n    {\n      \"id\": \"option-1\",\n      \"name\": \"Quick Solution\",\n      \"dimensions\": [\n        {\"name\": \"Cost\", \"value\": 80, \"label\": \"High\"},\n        {\"name\": \"Risk\", \"value\": 30, \"label\": \"Low\"},\n        {\"name\": \"Time\", \"value\": 20, \"label\": \"Fast\"}\n      ],\n      \"ctaText\": \"Choose This\"\n    }\n  ]\n}"
+      }
+    },
+    "review-confirm": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "ReviewConfirm",
+      "description": "Review summary with hard action requiring confirmation",
+      "dsl": {
+        "type": "decision",
+        "pattern": "review-confirm",
+        "items": [],
+        "actionContractId": ""
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"review-confirm\",\n  \"id\": \"decision-1\",\n  \"title\": \"Review Your Order\",\n  \"items\": [\n    {\"key\": \"plan\", \"label\": \"Plan\", \"value\": \"Pro Plan\"},\n    {\"key\": \"price\", \"label\": \"Price\", \"value\": \"$29/month\"}\n  ],\n  \"confirmText\": \"Confirm Order\",\n  \"actionContractId\": \"action-confirm-order\"\n}"
+      }
+    },
+    "metric-card": {
+      "import": "@fragment_ui/ui/metric-card",
+      "props": {
+        "title": "string",
+        "value": "string | number",
+        "icon": "string | ReactNode",
+        "trend": [
+          "up",
+          "down",
+          "neutral"
+        ],
+        "trendValue": "string",
+        "description": "string",
+        "footer": "ReactNode",
+        "onClick": "function"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "withTrend",
+          "props": {
+            "trend": "up",
+            "trendValue": "+20.1%"
+          }
+        },
+        {
+          "name": "clickable",
+          "props": {
+            "onClick": "function"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "MetricCard displays key performance indicators. When clickable, ensure keyboard navigation and proper focus management."
+      },
+      "examples": {
+        "tsx": "<MetricCard title=\"Total Revenue\" value=\"$45,231\" trend=\"up\" trendValue=\"+20.1%\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"MetricCard\",\n  \"props\": {\n    \"title\": \"Total Revenue\",\n    \"value\": \"$45,231\",\n    \"trend\": \"up\",\n    \"trendValue\": \"+20.1%\"\n  }\n}"
+      }
+    },
+    "quick-actions": {
+      "import": "@fragment_ui/ui/quick-actions",
+      "props": {
+        "actions": "QuickAction[]",
+        "columns": [
+          2,
+          3,
+          4
+        ],
+        "layout": [
+          "grid",
+          "list"
+        ]
+      },
+      "variants": [
+        {
+          "name": "grid",
+          "props": {
+            "layout": "grid",
+            "columns": 3
+          }
+        },
+        {
+          "name": "list",
+          "props": {
+            "layout": "list"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "toolbar",
+        "notes": "QuickActions provides quick access to common actions. Ensure keyboard navigation and proper ARIA labels."
+      },
+      "examples": {
+        "tsx": "<QuickActions actions={[{id: \"1\", label: \"New\", icon: \"➕\", onClick: () => {}}]} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"QuickActions\",\n  \"props\": {\n    \"actions\": [{\"id\": \"1\", \"label\": \"New\", \"icon\": \"➕\"}]\n  }\n}"
+      }
+    },
+    "filter-bar": {
+      "import": "@fragment_ui/ui/filter-bar",
+      "props": {
+        "filters": "Filter[]",
+        "onClear": "function",
+        "showClearButton": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "searchOnly",
+          "props": {
+            "filters": [
+              {
+                "id": "search",
+                "type": "search"
+              }
+            ]
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "search",
+        "notes": "FilterBar provides filter controls. Ensure proper form labels and keyboard navigation."
+      },
+      "examples": {
+        "tsx": "<FilterBar filters={[{id: \"search\", type: \"search\", placeholder: \"Search...\"}]} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"FilterBar\",\n  \"props\": {\n    \"filters\": [{\"id\": \"search\", \"type\": \"search\", \"placeholder\": \"Search...\"}]\n  }\n}"
+      }
+    },
+    "chart": {
+      "import": "@fragment_ui/ui/chart",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "data": "ChartDataPoint[]",
+        "type": [
+          "line",
+          "bar",
+          "area",
+          "pie",
+          "donut"
+        ],
+        "height": "number",
+        "showLegend": "boolean",
+        "showGrid": "boolean",
+        "renderChart": "function"
+      },
+      "variants": [
+        {
+          "name": "line",
+          "props": {
+            "type": "line"
+          }
+        },
+        {
+          "name": "bar",
+          "props": {
+            "type": "bar"
+          }
+        },
+        {
+          "name": "area",
+          "props": {
+            "type": "area"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "img",
+        "notes": "Chart displays data visualizations. Ensure proper alt text or aria-label describing the chart data."
+      },
+      "examples": {
+        "tsx": "<Chart data={[{label: \"Jan\", value: 1000}]} type=\"line\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Chart\",\n  \"props\": {\n    \"data\": [{\"label\": \"Jan\", \"value\": 1000}],\n    \"type\": \"line\"\n  }\n}"
+      }
+    },
+    "hero-section": {
+      "import": "@fragment_ui/blocks/hero-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "background": [
+          "gradient",
+          "image",
+          "solid"
+        ],
+        "image": "object"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "banner",
+        "notes": "Hero section should have clear heading hierarchy and accessible CTAs"
+      },
+      "examples": {
+        "tsx": "<HeroSection title=\"Welcome\" description=\"Build amazing experiences\" primaryCTA={{label: \"Get Started\", href: \"/signup\"}} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/hero-section\",\n  \"inputs\": {\n    \"title\": \"Welcome\",\n    \"description\": \"Build amazing experiences\",\n    \"primaryCTA\": {\"label\": \"Get Started\", \"href\": \"/signup\"}\n  }\n}"
+      }
+    },
+    "feature-grid-section": {
+      "import": "@fragment_ui/blocks/feature-grid-section",
+      "props": {
+        "title": "string",
+        "features": "array",
+        "columns": [
+          2,
+          3,
+          4
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Feature grid should have clear headings and accessible feature descriptions"
+      },
+      "examples": {
+        "tsx": "<FeatureGridSection title=\"Features\" features={[{title: \"Fast\", description: \"Lightning fast\"}]} columns={3} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/feature-grid-section\",\n  \"inputs\": {\n    \"title\": \"Features\",\n    \"features\": [{\"title\": \"Fast\", \"description\": \"Lightning fast\"}],\n    \"columns\": 3\n  }\n}"
+      }
+    },
+    "stats-section": {
+      "import": "@fragment_ui/blocks/stats-section",
+      "props": {
+        "items": "array",
+        "layout": [
+          "grid",
+          "row"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Stats should be clearly labeled and accessible"
+      },
+      "examples": {
+        "tsx": "<StatsSection items={[{label: \"Users\", value: \"1000\", trend: \"up\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/stats-section\",\n  \"inputs\": {\n    \"items\": [{\"label\": \"Users\", \"value\": \"1000\", \"trend\": \"up\"}]\n  }\n}"
+      }
+    },
+    "testimonials-section": {
+      "import": "@fragment_ui/blocks/testimonials-section",
+      "props": {
+        "title": "string",
+        "items": "array",
+        "layout": [
+          "grid",
+          "carousel"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Testimonials should have proper attribution and be accessible"
+      },
+      "examples": {
+        "tsx": "<TestimonialsSection title=\"Testimonials\" items={[{quote: \"Great product\", author: \"John Doe\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/testimonials-section\",\n  \"inputs\": {\n    \"title\": \"Testimonials\",\n    \"items\": [{\"quote\": \"Great product\", \"author\": \"John Doe\"}]\n  }\n}"
+      }
+    },
+    "faq-section": {
+      "import": "@fragment_ui/blocks/faq-section",
+      "props": {
+        "title": "string",
+        "items": "array"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FAQ should use proper heading hierarchy and accessible accordion controls"
+      },
+      "examples": {
+        "tsx": "<FAQSection title=\"FAQ\" items={[{question: \"What is this?\", answer: \"A design system\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/faq-section\",\n  \"inputs\": {\n    \"title\": \"FAQ\",\n    \"items\": [{\"question\": \"What is this?\", \"answer\": \"A design system\"}]\n  }\n}"
+      }
+    },
+    "cta-section": {
+      "import": "@fragment_ui/blocks/cta-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "variant": [
+          "centered",
+          "split"
+        ],
+        "background": [
+          "solid",
+          "gradient",
+          "muted"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CTA section should have clear call-to-action buttons with accessible labels"
+      },
+      "examples": {
+        "tsx": "<CTASection title=\"Get Started\" description=\"Start building today\" primaryCTA={{label: \"Sign Up\", href: \"/signup\"}} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/cta-section\",\n  \"inputs\": {\n    \"title\": \"Get Started\",\n    \"description\": \"Start building today\",\n    \"primaryCTA\": {\"label\": \"Sign Up\", \"href\": \"/signup\"}\n  }\n}"
+      }
+    },
+    "widget-container": {
+      "import": "@fragment_ui/blocks/widget-container",
+      "props": {
+        "title": "string",
+        "children": "ReactNode",
+        "actions": "ReactNode",
+        "footer": "ReactNode",
+        "collapsible": "boolean",
+        "defaultCollapsed": "boolean",
+        "onRefresh": "function"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Widget container should have accessible title and controls"
+      },
+      "examples": {
+        "tsx": "<WidgetContainer title=\"Widget\" collapsible><div>Content</div></WidgetContainer>",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/widget-container\",\n  \"inputs\": {\n    \"title\": \"Widget\",\n    \"collapsible\": true\n  },\n  \"children\": [{\"type\": \"component\", \"component\": \"div\", \"copy\": \"Content\"}]\n}"
+      }
+    },
+    "dashboard-widgets": {
+      "import": "@fragment_ui/blocks/dashboard-widgets",
+      "props": {
+        "widgets": "array",
+        "columns": "number"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Dashboard widgets should be organized and accessible"
+      },
+      "examples": {
+        "tsx": "<DashboardWidgets widgets={[{id: \"1\", type: \"metric\", content: <MetricCard title=\"Users\" value=\"100\" />}]} columns={12} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/dashboard-widgets\",\n  \"inputs\": {\n    \"widgets\": [{\"id\": \"1\", \"type\": \"metric\"}],\n    \"columns\": 12\n  }\n}"
+      }
+    }
+  },
+  "rules": {
+    "forbiddenHtml": [
+      "input",
+      "button",
+      "select",
+      "textarea",
+      "div",
+      "span"
+    ],
+    "prefer": {
+      "input": "Input",
+      "button": "Button",
+      "select": "Select",
+      "textarea": "Textarea",
+      "div": "Card or appropriate container component",
+      "span": "Badge or appropriate text component"
+    }
+  }
+}

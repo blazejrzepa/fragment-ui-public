@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "id": "button-loading-state-example",
+    "componentName": "button",
+    "upstreamVersion": "latest",
+    "fragmentVersion": "1.8.0",
+    "createdAt": 1704470400000,
+    "updatedAt": 1704470400000,
+    "description": "Example patch: Add loading state support to Button component",
+    "author": "system",
+    "reason": "Fragment UI requires loading states for all interactive components to provide better UX feedback"
+  },
+  "targetFile": "button.tsx",
+  "patchType": "modify",
+  "changes": [
+    {
+      "type": "insert",
+      "line": 15,
+      "newContent": "  loading?: boolean;"
+    },
+    {
+      "type": "replace",
+      "line": 45,
+      "oldContent": "      disabled={disabled}",
+      "newContent": "      disabled={disabled || loading}"
+    }
+  ]
+}
+

@@ -1,0 +1,43 @@
+{
+  "name": "@fragment_ui/tokens",
+  "version": "1.0.0",
+  "description": "Design tokens for Fragment UI Design System",
+  "type": "module",
+  "main": "dist/tokens.css",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./dist/tokens.css",
+    "./dist/tokens.css": "./dist/tokens.css",
+    "./json": "./dist/tokens.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blazejrzepa/fragment-ui.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://fragment-ui.dev",
+  "bugs": "https://github.com/blazejrzepa/fragment-ui/issues",
+  "license": "MIT",
+  "keywords": [
+    "design-tokens",
+    "css-variables",
+    "design-system",
+    "fragment-ui",
+    "theming"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "tsx": "^4.16.0"
+  }
+}
+

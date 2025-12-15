@@ -1,0 +1,15 @@
+{
+  "name": "accordion",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Accordion.tsx",
+      "content": "import * as React from \"react\";\nimport * as AccordionPrimitive from \"@radix-ui/react-accordion\";\nimport clsx from \"clsx\";\n\nconst Accordion = AccordionPrimitive.Root;\n\nexport type AccordionProps = React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>;\n\nexport const AccordionItem = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>\n>(function AccordionItem({ className, ...props }, ref) {\n  return (\n    <AccordionPrimitive.Item\n      ref={ref}\n      className={clsx(\"border-b border-[color:var(--color-border-base)]\", className)}\n      suppressHydrationWarning\n      {...props}\n    />\n  );\n});\n\nexport const AccordionTrigger = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Trigger>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>\n>(function AccordionTrigger({ className, children, ...props }, ref) {\n  const id = React.useId();\n  return (\n    <AccordionPrimitive.Header className=\"flex mt-4 mb-4\" suppressHydrationWarning id={id}>\n      <AccordionPrimitive.Trigger\n        ref={ref}\n        className={clsx(\n          \"flex flex-1 items-center justify-between pt-0 pb-0 text-base font-normal transition-all hover:underline [&[data-state=open]>svg]:rotate-180\",\n          className\n        )}\n        suppressHydrationWarning\n        {...props}\n      >\n        {children}\n        <svg\n          className=\"h-4 w-4 shrink-0 transition-transform duration-200\"\n          xmlns=\"http://www.w3.org/2000/svg\"\n          viewBox=\"0 0 24 24\"\n          fill=\"none\"\n          stroke=\"currentColor\"\n          strokeWidth=\"2\"\n          strokeLinecap=\"round\"\n          strokeLinejoin=\"round\"\n        >\n          <polyline points=\"6 9 12 15 18 9\" />\n        </svg>\n      </AccordionPrimitive.Trigger>\n    </AccordionPrimitive.Header>\n  );\n});\n\nexport const AccordionContent = React.forwardRef<\n  React.ElementRef<typeof AccordionPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>\n>(function AccordionContent({ className, children, ...props }, ref) {\n  return (\n    <AccordionPrimitive.Content\n      ref={ref}\n      className=\"overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down\"\n      suppressHydrationWarning\n      {...props}\n    >\n      <div className={clsx(\"pb-4 pt-0 text-[color:var(--color-fg-base)] font-light\", className)}>{children}</div>\n    </AccordionPrimitive.Content>\n  );\n});\n\nexport { Accordion };\n\n"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "integration-figma-plugin",
+  "name": "Figma Integration Plugin",
+  "version": "0.1.0",
+  "description": "Integrates Fragment UI with Figma",
+  "author": "Fragment UI",
+  "entry": "./index.js",
+  "capabilities": {
+    "integration": true,
+    "custom": ["figma"]
+  }
+}
+

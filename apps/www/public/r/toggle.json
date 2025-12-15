@@ -1,0 +1,15 @@
+{
+  "name": "toggle",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Toggle.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport * as TogglePrimitive from \"@radix-ui/react-toggle\";\nimport clsx from \"clsx\";\n\nexport interface ToggleProps\n  extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> {}\n\nexport const Toggle = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof TogglePrimitive.Root>,\n    ToggleProps\n  >(function Toggle({ className, ...props }, ref) {\n    return (\n      <TogglePrimitive.Root\n        ref={ref}\n        className={clsx(\n          \"inline-flex items-center justify-center rounded-[var(--radius-sm)] px-3 py-1.5 text-sm font-medium\",\n          \"text-[color:var(--color-fg-base)]\",\n          \"bg-[color:var(--color-surface-1)]\",\n          \"border border-[color:var(--color-fg-muted)]\",\n          \"hover:bg-[color:var(--color-surface-2)]\",\n          \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n          \"disabled:pointer-events-none disabled:opacity-50\",\n          \"data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white data-[state=on]:border-[color:var(--color-brand-primary)]\",\n          \"transition-colors\",\n          className\n        )}\n        {...props}\n      />\n    );\n  })\n);\n\nToggle.displayName = TogglePrimitive.Root.displayName;\n\n"
+    }
+  ]
+}

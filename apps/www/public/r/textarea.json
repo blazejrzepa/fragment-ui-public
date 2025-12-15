@@ -1,0 +1,15 @@
+{
+  "name": "textarea",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Textarea.tsx",
+      "content": "import * as React from \"react\";\nimport clsx from \"clsx\";\n\nexport interface TextareaProps\n  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {\n  error?: boolean;\n}\n\nexport const Textarea = React.memo(\n  React.forwardRef<HTMLTextAreaElement, TextareaProps>(\n    function Textarea({ className, error, ...props }, ref) {\n      return (\n        <textarea\n          ref={ref}\n          className={clsx(\n            \"min-h-[80px] w-full rounded-[var(--radius-md)] border bg-[color:var(--color-surface-1)] px-3 py-2 text-sm text-[color:var(--color-fg-base)] placeholder:text-[color:var(--color-fg-muted)] focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed resize-y\",\n            error\n              ? \"border-[color:var(--color-status-error-border)]\"\n              : \"border-[color:var(--color-fg-muted)]\",\n            className\n          )}\n          {...props}\n        />\n      );\n    }\n  )\n);\n\n"
+    }
+  ]
+}

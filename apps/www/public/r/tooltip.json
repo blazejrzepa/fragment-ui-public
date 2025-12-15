@@ -1,0 +1,15 @@
+{
+  "name": "tooltip",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Tooltip.tsx",
+      "content": "import * as React from \"react\";\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\";\nimport clsx from \"clsx\";\n\nconst TooltipProvider = TooltipPrimitive.Provider;\nconst TooltipRoot = TooltipPrimitive.Root;\nconst TooltipTrigger = TooltipPrimitive.Trigger;\n\nexport interface TooltipProps {\n  children: React.ReactNode;\n  content: React.ReactNode;\n  delayDuration?: number;\n  className?: string;\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\";\n  sideOffset?: number;\n  style?: React.CSSProperties;\n}\n\nexport const Tooltip = React.forwardRef<\n  React.ElementRef<typeof TooltipPrimitive.Content>,\n  TooltipProps\n>(function Tooltip({ children, content, delayDuration = 500, className, side, sideOffset = 5, ...props }, ref) {\n  return (\n    <TooltipProvider delayDuration={delayDuration}>\n      <TooltipRoot>\n        <TooltipTrigger asChild>{children}</TooltipTrigger>\n        <TooltipPrimitive.Content\n          ref={ref}\n          side={side}\n          sideOffset={sideOffset}\n          align=\"center\"\n          className={clsx(\n            \"z-50 overflow-hidden animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2\",\n            className\n          )}\n          style={{\n            backgroundColor: \"var(--background-primary)\",\n            border: \"1px solid color-mix(in srgb, var(--foreground-primary) 5%, transparent)\",\n            borderRadius: \"2px\",\n            padding: \"4px 8px\",\n            fontSize: \"11px\",\n            lineHeight: \"1.4\",\n            color: \"var(--foreground-primary)\",\n            boxShadow: \"0 2px 8px rgba(0, 0, 0, 0.1)\",\n            ...props.style,\n          }}\n          {...props}\n        >\n          {content}\n        </TooltipPrimitive.Content>\n      </TooltipRoot>\n    </TooltipProvider>\n  );\n});\n\n"
+    }
+  ]
+}

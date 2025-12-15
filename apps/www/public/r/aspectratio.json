@@ -1,0 +1,15 @@
+{
+  "name": "aspectratio",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/AspectRatio.tsx",
+      "content": "import * as React from \"react\";\nimport * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\nimport clsx from \"clsx\";\n\nexport interface AspectRatioProps\n  extends React.ComponentPropsWithoutRef<typeof AspectRatioPrimitive.Root> {\n  ratio?: number;\n  className?: string;\n}\n\nconst AspectRatio = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof AspectRatioPrimitive.Root>,\n    AspectRatioProps\n  >(function AspectRatio({ className, ratio = 16 / 9, ...props }, ref) {\n    return (\n      <AspectRatioPrimitive.Root\n        ref={ref}\n        ratio={ratio}\n        className={clsx(\"relative w-full overflow-hidden\", className)}\n        {...props}\n      />\n    );\n  })\n);\n\nAspectRatio.displayName = AspectRatioPrimitive.Root.displayName;\n\nexport { AspectRatio };\n\n// Common aspect ratio presets\nexport const AspectRatioPresets = {\n  square: 1,\n  video: 16 / 9,\n  photo: 4 / 3,\n  portrait: 3 / 4,\n  wide: 21 / 9,\n  ultrawide: 32 / 9,\n  story: 9 / 16,\n} as const;\n\n"
+    }
+  ]
+}

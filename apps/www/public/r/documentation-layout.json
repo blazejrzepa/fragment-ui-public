@@ -1,0 +1,18 @@
+{
+  "name": "documentation-layout",
+  "type": "block",
+  "registryDependencies": ["table-of-contents"],
+  "files": [
+    {
+      "path": "components/documentation-layout.tsx",
+      "content": "import * as React from \"react\";\nimport { TableOfContents, extractHeadings, type Heading } from \"@fragment_ui/ui\";\n\nexport interface DocumentationLayoutProps {\n  children: React.ReactNode;\n  header?: React.ReactNode;\n  sidebar?: React.ReactNode;\n  rightSidebar?: React.ReactNode;\n  showTableOfContents?: boolean;\n  contentSelector?: string;\n  maxWidth?: string;\n  contentTopPadding?: string;\n  version?: string;\n}\n\nexport function DocumentationLayout({\n  children,\n  header,\n  sidebar,\n  rightSidebar,\n  showTableOfContents = true,\n  contentSelector = \"article\",\n  maxWidth = \"1536px\",\n  contentTopPadding = \"58px\",\n  version,\n}: DocumentationLayoutProps) {\n  const [headings, setHeadings] = React.useState<Heading[]>([]);\n\n  React.useEffect(() => {\n    const updateHeadings = () => {\n      const extracted = extractHeadings(contentSelector);\n      setHeadings(extracted);\n    };\n    updateHeadings();\n    const timeoutId1 = setTimeout(updateHeadings, 100);\n    const timeoutId2 = setTimeout(updateHeadings, 500);\n    const observer = new MutationObserver(() => {\n      updateHeadings();\n    });\n    const contentElement = document.querySelector(contentSelector);\n    if (contentElement) {\n      observer.observe(contentElement, {\n        childList: true,\n        subtree: true,\n      });\n    }\n    return () => {\n      clearTimeout(timeoutId1);\n      clearTimeout(timeoutId2);\n      observer.disconnect();\n    };\n  }, [children, contentSelector]);\n\n  return (\n    <div className=\"mx-auto\" style={{ maxWidth }}>\n      {header}\n      <div className=\"flex\" style={{ marginTop: header ? contentTopPadding : \"0\" }}>\n        {sidebar && (\n          <aside className=\"hidden lg:block flex-shrink-0\">\n            {sidebar}\n          </aside>\n        )}\n        <main className=\"flex-1\">\n          <div\n            className=\"px-3 lg:pl-8 lg:pr-[96px] pb-8\"\n            style={{\n              paddingTop: header ? contentTopPadding : \"0\",\n            }}\n          >\n            {children}\n          </div>\n        </main>\n        {(showTableOfContents || rightSidebar) && (\n          <aside className=\"hidden xl:block w-64 flex-shrink-0\">\n            {showTableOfContents && headings.length > 0 && (\n              <div className=\"sticky\" style={{ top: \"74px\", paddingTop: \"44px\" }}>\n                <TableOfContents headings={headings} showActive={true} scrollOffset={100} />\n              </div>\n            )}\n            {rightSidebar && (\n              <div className=\"sticky\" style={{ top: \"74px\", paddingTop: \"44px\" }}>\n                {rightSidebar}\n              </div>\n            )}\n          </aside>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block"
+    }
+  ],
+  "meta": {
+    "title": "DocumentationLayout",
+    "description": "Complete layout component for documentation sites with header, sidebar, and table of contents",
+    "stability": "stable"
+  }
+}
+

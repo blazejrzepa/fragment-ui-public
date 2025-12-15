@@ -1,0 +1,15 @@
+{
+  "name": "separator",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Separator.tsx",
+      "content": "import * as React from \"react\";\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\nimport clsx from \"clsx\";\n\nexport interface SeparatorProps\n  extends React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> {\n  orientation?: \"horizontal\" | \"vertical\";\n  decorative?: boolean;\n}\n\nexport const Separator = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof SeparatorPrimitive.Root>,\n    SeparatorProps\n  >(function Separator({ orientation = \"horizontal\", decorative = true, className, ...props }, ref) {\n    return (\n      <SeparatorPrimitive.Root\n        ref={ref}\n        decorative={decorative}\n        orientation={orientation}\n        className={clsx(\n          \"shrink-0 bg-[color:var(--color-fg-muted)]\",\n          orientation === \"horizontal\" ? \"h-[1px] w-full\" : \"h-full w-[1px]\",\n          className\n        )}\n        {...props}\n      />\n    );\n  })\n);\n\n"
+    }
+  ]
+}

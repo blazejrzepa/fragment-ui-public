@@ -1,0 +1,30 @@
+{
+  "designSystem": {
+    "tokens": {
+      "pathJson": "packages/tokens/src/tokens.json",
+      "pathCss": "packages/tokens/dist/tokens.css"
+    },
+    "components": {
+      "root": "packages/ui/src",
+      "conventions": {
+        "noRawValues": true,
+        "preferTokens": true,
+        "propCasing": "camelCase"
+      }
+    },
+    "figma": {
+      "codeConnect": true,
+      "mappedComponents": ["button", "input", "dialog", "tabs", "table"]
+    }
+  },
+  "lint": {
+    "ban": ["#[0-9A-Fa-f]{3,6}", "px\\b"],
+    "requireImports": ["@fragment_ui/tokens/dist/tokens.css"]
+  },
+  "guidance": [
+    "Używaj wrapperów z @fragment_ui/ui — nie importuj upstream bezpośrednio.",
+    "Preferuj warianty: solid/outline/ghost; rozmiary: sm/md/lg.",
+    "Pisz strony docs w apps/www/app/docs jako TSX (Overview/Install/Examples/A11y/Links)."
+  ]
+}
+

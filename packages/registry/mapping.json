@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "mappings": {
+    "Button": {
+      "figmaComponentId": "button-component-id",
+      "variants": {
+        "solid": {
+          "figma": "Button/Primary",
+          "code": "variant='solid'",
+          "tokens": {
+            "backgroundColor": "var(--color-brand-primary)",
+            "color": "var(--color-fg-on-brand)",
+            "borderColor": "var(--color-brand-primary)"
+          }
+        },
+        "outline": {
+          "figma": "Button/Secondary",
+          "code": "variant='outline'",
+          "tokens": {
+            "borderColor": "var(--color-border-primary)",
+            "color": "var(--color-fg-primary)",
+            "backgroundColor": "transparent"
+          }
+        },
+        "ghost": {
+          "figma": "Button/Tertiary",
+          "code": "variant='ghost'",
+          "tokens": {
+            "color": "var(--color-fg-primary)",
+            "backgroundColor": "transparent",
+            "borderColor": "transparent"
+          }
+        }
+      },
+      "props": {
+        "size": {
+          "figma": "Size",
+          "code": "size",
+          "values": ["sm", "md", "lg"]
+        },
+        "disabled": {
+          "figma": "Disabled",
+          "code": "disabled",
+          "values": [true, false]
+        },
+        "loading": {
+          "figma": "Loading",
+          "code": "loading",
+          "values": [true, false]
+        }
+      },
+      "constraints": {
+        "minWidth": 80,
+        "maxWidth": 300,
+        "minHeight": 32,
+        "maxHeight": 48
+      }
+    },
+    "Input": {
+      "figmaComponentId": "input-component-id",
+      "variants": {
+        "default": {
+          "figma": "Input/Default",
+          "code": "",
+          "tokens": {
+            "borderColor": "var(--color-border-primary)",
+            "color": "var(--color-fg-primary)",
+            "backgroundColor": "var(--color-surface-base)"
+          }
+        },
+        "invalid": {
+          "figma": "Input/Error",
+          "code": "invalid={true}",
+          "tokens": {
+            "borderColor": "var(--color-error)",
+            "color": "var(--color-fg-primary)",
+            "backgroundColor": "var(--color-surface-base)"
+          }
+        }
+      },
+      "props": {
+        "type": {
+          "figma": "Type",
+          "code": "type",
+          "values": ["text", "email", "password", "number", "tel", "url"]
+        },
+        "placeholder": {
+          "figma": "Placeholder",
+          "code": "placeholder",
+          "values": []
+        },
+        "size": {
+          "figma": "Size",
+          "code": "size",
+          "values": ["sm", "md", "lg"]
+        },
+        "disabled": {
+          "figma": "Disabled",
+          "code": "disabled",
+          "values": [true, false]
+        }
+      },
+      "constraints": {
+        "minWidth": 120,
+        "maxWidth": 500
+      }
+    },
+    "Card": {
+      "figmaComponentId": "card-component-id",
+      "variants": {
+        "default": {
+          "figma": "Card/Default",
+          "code": "",
+          "tokens": {
+            "backgroundColor": "var(--color-surface-base)",
+            "borderColor": "var(--color-border-primary)",
+            "borderRadius": "var(--radius-md)"
+          }
+        },
+        "elevated": {
+          "figma": "Card/Elevated",
+          "code": "className='shadow-lg'",
+          "tokens": {
+            "backgroundColor": "var(--color-surface-base)",
+            "borderColor": "var(--color-border-primary)",
+            "borderRadius": "var(--radius-md)",
+            "boxShadow": "var(--shadow-lg)"
+          }
+        }
+      },
+      "props": {
+        "padding": {
+          "figma": "Padding",
+          "code": "padding",
+          "values": ["sm", "md", "lg"]
+        }
+      },
+      "constraints": {
+        "minWidth": 200,
+        "maxWidth": 800
+      }
+    }
+  }
+}
+

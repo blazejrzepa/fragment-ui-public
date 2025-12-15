@@ -1,0 +1,15 @@
+{
+  "name": "switch",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Switch.tsx",
+      "content": "import * as React from \"react\";\nimport * as SwitchPrimitive from \"@radix-ui/react-switch\";\nimport clsx from \"clsx\";\n\nexport interface SwitchProps\n  extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root> {}\n\nexport const Switch = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof SwitchPrimitive.Root>,\n    SwitchProps\n  >(function Switch({ className, ...props }, ref) {\n    return (\n      <SwitchPrimitive.Root\n        ref={ref}\n        className={clsx(\n          \"peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:cursor-not-allowed disabled:opacity-60 data-[state=checked]:bg-brand data-[state=unchecked]:bg-[color:var(--color-fg-muted)]\",\n          className\n        )}\n        {...props}\n      >\n        <SwitchPrimitive.Thumb\n          className={clsx(\n            \"pointer-events-none block h-5 w-5 rounded-full bg-white shadow-lg ring-0 transition-transform data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0\"\n          )}\n        />\n      </SwitchPrimitive.Root>\n    );\n  })\n);\n\n"
+    }
+  ]
+}

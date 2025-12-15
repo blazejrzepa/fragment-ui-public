@@ -1,0 +1,15 @@
+{
+  "name": "avatar",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Avatar.tsx",
+      "content": "import * as React from \"react\";\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\";\nimport clsx from \"clsx\";\n\nexport interface AvatarProps\n  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {\n  src?: string;\n  alt?: string;\n  fallback?: React.ReactNode;\n}\n\nconst Avatar = React.memo(\n  React.forwardRef<\n    React.ElementRef<typeof AvatarPrimitive.Root>,\n    AvatarProps\n  >(function Avatar({ className, src, alt, fallback, ...props }, ref) {\n    return (\n      <AvatarPrimitive.Root\n        ref={ref}\n        className={clsx(\n          \"relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full\",\n          className\n        )}\n        {...props}\n      >\n        <AvatarPrimitive.Image\n          src={src}\n          alt={alt}\n          className=\"aspect-square h-full w-full object-cover\"\n        />\n        <AvatarPrimitive.Fallback\n          className={clsx(\n            \"flex h-full w-full items-center justify-center rounded-full bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)]\"\n          )}\n        >\n          {fallback || (alt?.[0]?.toUpperCase() ?? \"?\")}\n        </AvatarPrimitive.Fallback>\n      </AvatarPrimitive.Root>\n    );\n  })\n);\n\nexport { Avatar };\n\n"
+    }
+  ]
+}

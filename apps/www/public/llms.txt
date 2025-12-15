@@ -1,0 +1,233 @@
+# Fragment UI
+
+This is the documentation for the Fragment UI design system.
+It contains a collection of components, blocks, and utilities for building user interfaces in React.
+The library is designed to be composable, accessible, and AI-native.
+
+## Overview
+
+Fragment UI is an AI-native design system based on shadcn/ui with code-first distribution (registry).
+It provides 63+ production-ready components, pre-built blocks, comprehensive documentation, and enterprise-ready tooling.
+
+- [Quick Start](https://fragmentui.com/docs/get-started/quick-start): A quick guide to getting started with Fragment UI.
+- [Installation](https://fragmentui.com/docs/get-started/installation): Installation and setup instructions.
+- [Architecture Overview](https://fragmentui.com/docs/get-started/architecture-overview): System architecture and design decisions.
+
+## Packages
+
+- `@fragment_ui/ui` - Core component library (63+ components)
+- `@fragment_ui/blocks` - Pre-built screen compositions and blocks
+- `@fragment_ui/tokens` - Design tokens system
+- `@fragment_ui/registry` - Component registry for code-first distribution
+
+## Components
+
+Components are exported from `@fragment_ui/ui`:
+
+### Form Components
+- [Input](https://fragmentui.com/docs/components/input): Text input with size variants (sm, md, lg), loading states, and icons
+- [Textarea](https://fragmentui.com/docs/components/textarea): Multi-line text input
+- [Select](https://fragmentui.com/docs/components/select): Dropdown select component
+- [Combobox](https://fragmentui.com/docs/components/combobox): Autocomplete input with dropdown
+- [MultiSelect](https://fragmentui.com/docs/components/multi-select): Multi-select dropdown
+- [Checkbox](https://fragmentui.com/docs/components/checkbox): Checkbox input
+- [Radio](https://fragmentui.com/docs/components/radio): Radio button
+- [Switch](https://fragmentui.com/docs/components/switch): Toggle switch
+- [Slider](https://fragmentui.com/docs/components/slider): Range slider
+- [FileUpload](https://fragmentui.com/docs/components/file-upload): File upload component
+- [TagInput](https://fragmentui.com/docs/components/tag-input): Tag input component
+- [FormField](https://fragmentui.com/docs/components/form-field): Form field with label, error, and helper text
+- [FormEnhanced](https://fragmentui.com/docs/components/form-enhanced): Enhanced form with validation
+
+### Layout Components
+- [Card](https://fragmentui.com/docs/components/card): Container component with CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+- [Separator](https://fragmentui.com/docs/components/separator): Visual separator
+- [AspectRatio](https://fragmentui.com/docs/components/aspect-ratio): Maintain aspect ratio
+- [Resizable](https://fragmentui.com/docs/components/resizable): Resizable panels
+- [ScrollArea](https://fragmentui.com/docs/components/scroll-area): Custom scrollable area
+
+### Navigation Components
+- [NavigationMenu](https://fragmentui.com/docs/components/navigation-menu): Navigation menu with dropdowns
+- [Menubar](https://fragmentui.com/docs/components/menubar): Menu bar component
+- [Breadcrumbs](https://fragmentui.com/docs/components/breadcrumbs): Breadcrumb navigation
+- [Tabs](https://fragmentui.com/docs/components/tabs): Tab navigation
+- [Sidebar](https://fragmentui.com/docs/components/sidebar): Sidebar navigation
+
+### Overlay Components
+- [Dialog](https://fragmentui.com/docs/components/dialog): Modal dialog
+- [Sheet](https://fragmentui.com/docs/components/sheet): Slide-out panel
+- [Popover](https://fragmentui.com/docs/components/popover): Popover tooltip
+- [Tooltip](https://fragmentui.com/docs/components/tooltip): Tooltip component
+- [HoverCard](https://fragmentui.com/docs/components/hover-card): Hover card
+- [ContextMenu](https://fragmentui.com/docs/components/context-menu): Context menu
+- [DropdownMenu](https://fragmentui.com/docs/components/dropdown-menu): Dropdown menu
+
+### Data Display Components
+- [Table](https://fragmentui.com/docs/components/table): Table component
+- [DataTable](https://fragmentui.com/docs/components/data-table): Enhanced data table
+- [Timeline](https://fragmentui.com/docs/components/timeline): Timeline component
+- [TreeView](https://fragmentui.com/docs/components/tree-view): Tree view component
+- [VirtualList](https://fragmentui.com/docs/components/virtual-scrolling): Virtual scrolling list
+- [VirtualTable](https://fragmentui.com/docs/components/virtual-scrolling): Virtual scrolling table
+
+### Feedback Components
+- [Alert](https://fragmentui.com/docs/components/alert): Alert message
+- [Toast](https://fragmentui.com/docs/components/toast): Toast notification
+- [Progress](https://fragmentui.com/docs/components/progress): Progress bar
+- [Spinner](https://fragmentui.com/docs/components/spinner): Loading spinner
+- [Skeleton](https://fragmentui.com/docs/components/skeleton): Loading skeleton
+
+### Action Components
+- [Button](https://fragmentui.com/docs/components/button): Button component with variants
+- [SplitButton](https://fragmentui.com/docs/components/split-button): Split button
+- [Toggle](https://fragmentui.com/docs/components/toggle): Toggle button
+- [ToggleGroup](https://fragmentui.com/docs/components/toggle-group): Toggle group
+- [Rating](https://fragmentui.com/docs/components/rating): Rating component
+
+### Other Components
+- [Accordion](https://fragmentui.com/docs/components/accordion): Collapsible accordion
+- [Collapsible](https://fragmentui.com/docs/components/collapsible): Collapsible panel
+- [Avatar](https://fragmentui.com/docs/components/avatar): Avatar component
+- [Badge](https://fragmentui.com/docs/components/badge): Badge component
+- [Calendar](https://fragmentui.com/docs/components/calendar): Calendar picker
+- [DatePicker](https://fragmentui.com/docs/components/date-picker): Date picker
+- [ColorPicker](https://fragmentui.com/docs/components/color-picker): Color picker
+- [Command](https://fragmentui.com/docs/components/command): Command palette
+- [CommandPalette](https://fragmentui.com/docs/components/command-palette): Command palette
+- [Carousel](https://fragmentui.com/docs/components/carousel): Carousel component
+- [Stepper](https://fragmentui.com/docs/components/stepper): Stepper component
+- [SegmentedControl](https://fragmentui.com/docs/components/segmented-control): Segmented control
+- [Pagination](https://fragmentui.com/docs/components/pagination): Pagination component
+- [Kbd](https://fragmentui.com/docs/components/kbd): Keyboard key display
+- [Label](https://fragmentui.com/docs/components/label): Form label
+- [MetricCard](https://fragmentui.com/docs/components/metric-card): Metric display card
+- [ActivityFeed](https://fragmentui.com/docs/components/activity-feed): Activity feed component
+
+## Blocks
+
+Blocks are pre-built screen compositions exported from `@fragment_ui/blocks`:
+
+- [AuthenticationBlock](https://fragmentui.com/docs/components/authentication-block): Authentication forms and screens
+- [BenefitsSection](https://fragmentui.com/docs/components/benefits-section): Benefits showcase section
+- [CardGrid](https://fragmentui.com/docs/components/card-grid): Grid of cards
+- [ComparisonSection](https://fragmentui.com/docs/components/comparison-section): Feature comparison section
+- [CTASection](https://fragmentui.com/docs/components/cta-section): Call-to-action section
+- [DashboardLayout](https://fragmentui.com/docs/components/dashboard-layout): Dashboard layout structure
+- [DashboardWidgets](https://fragmentui.com/docs/components/dashboard-widgets): Dashboard widget components
+- [DataTable](https://fragmentui.com/docs/components/data-table): Enhanced data table block
+- [EmptyState](https://fragmentui.com/docs/components/empty-state): Empty state display
+- [FAQSection](https://fragmentui.com/docs/components/faq-section): FAQ section
+- [FeatureGridSection](https://fragmentui.com/docs/components/feature-grid-section): Feature grid section
+- [FooterSection](https://fragmentui.com/docs/components/footer-section): Footer section
+- [FormContainer](https://fragmentui.com/docs/components/form-container): Form container
+- [HeroSection](https://fragmentui.com/docs/components/hero-section): Hero section
+- [KPIDashboard](https://fragmentui.com/docs/components/kpi-dashboard): KPI dashboard
+- [KPIStrip](https://fragmentui.com/docs/components/kpi-strip): KPI strip display
+- [NavigationHeader](https://fragmentui.com/docs/components/navigation-header): Navigation header
+- [PricingTable](https://fragmentui.com/docs/components/pricing-table): Pricing table
+- [SettingsScreen](https://fragmentui.com/docs/components/settings-screen): Settings screen layout
+- [StatsSection](https://fragmentui.com/docs/components/stats-section): Statistics section
+- [TestimonialsSection](https://fragmentui.com/docs/components/testimonials-section): Testimonials section
+- [WidgetContainer](https://fragmentui.com/docs/components/widget-container): Widget container
+
+### Decision Blocks
+- [Compare3](https://fragmentui.com/docs/components/compare-3): Three-way comparison
+- [Recommendation](https://fragmentui.com/docs/components/recommendation): Recommendation display
+- [ReviewConfirm](https://fragmentui.com/docs/components/review-confirm): Review and confirm flow
+- [Tradeoffs](https://fragmentui.com/docs/components/tradeoffs): Tradeoffs display
+
+### Templates
+- [DashboardTemplate](https://fragmentui.com/docs/templates/dashboard-template): Complete dashboard template
+- [SettingsTemplate](https://fragmentui.com/docs/templates/settings-template): Settings page template
+- [UsersListTemplate](https://fragmentui.com/docs/templates/users-list-template): Users list template
+
+## Installation
+
+Components can be installed via the registry system:
+
+```bash
+npx shadcn@latest add https://fragmentui.com/r/[component-name].json
+```
+
+For example:
+```bash
+npx shadcn@latest add https://fragmentui.com/r/card.json
+npx shadcn@latest add https://fragmentui.com/r/button.json
+```
+
+## Usage
+
+### Basic Component Usage
+
+```tsx
+import { Button, Card, CardHeader, CardTitle, CardContent } from "@fragment_ui/ui";
+
+function MyComponent() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Title</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Button>Click me</Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+### Input with Size Variants
+
+```tsx
+import { Input } from "@fragment_ui/ui";
+
+<Input size="sm" placeholder="Small" />
+<Input size="md" placeholder="Medium" />
+<Input size="lg" placeholder="Large" />
+```
+
+### Card Component Structure
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@fragment_ui/ui";
+
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card description goes here</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>This is the card content area where you can place any content.</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Design System Features
+
+- **Dark Mode**: Complete dark mode support (dark mode is default)
+- **Design Tokens**: Extended token system with semantic colors, spacing, typography
+- **Accessibility**: All components are built with accessibility in mind (WCAG compliant)
+- **TypeScript**: Full TypeScript support
+- **Responsive**: Mobile-first responsive design
+- **Customizable**: Easy to customize with CSS variables and Tailwind classes
+
+## Documentation
+
+- Component Documentation: https://fragmentui.com/docs/components
+- Getting Started: https://fragmentui.com/docs/get-started
+- Architecture: https://fragmentui.com/docs/architecture
+- Guides: https://fragmentui.com/docs/guides
+
+## Component Registry
+
+All components are available via the registry at:
+- https://fragmentui.com/r/[component-name].json
+
+For example:
+- https://fragmentui.com/r/card.json
+- https://fragmentui.com/r/button.json
+- https://fragmentui.com/r/input.json
+

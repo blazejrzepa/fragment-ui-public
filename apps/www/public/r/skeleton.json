@@ -1,0 +1,15 @@
+{
+  "name": "skeleton",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/Skeleton.tsx",
+      "content": "import * as React from \"react\";\nimport clsx from \"clsx\";\n\nexport interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {\n  className?: string;\n}\n\nexport const Skeleton = React.memo(\n  React.forwardRef<HTMLDivElement, SkeletonProps>(\n    function Skeleton({ className, ...props }, ref) {\n      return (\n        <div\n          ref={ref}\n          className={clsx(\n            \"animate-pulse rounded-[var(--radius-md)] bg-[color:var(--color-surface-2)]\",\n            className\n          )}\n          {...props}\n        />\n      );\n    }\n  )\n);\n\n"
+    }
+  ]
+}

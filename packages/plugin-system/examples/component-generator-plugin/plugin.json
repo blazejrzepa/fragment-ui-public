@@ -1,0 +1,12 @@
+{
+  "id": "component-generator-plugin",
+  "name": "Component Generator Plugin",
+  "version": "0.1.0",
+  "description": "Generates Fragment UI components from templates",
+  "author": "Fragment UI",
+  "entry": "./index.js",
+  "capabilities": {
+    "componentGenerator": true
+  }
+}
+

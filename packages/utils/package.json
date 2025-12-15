@@ -1,0 +1,32 @@
+{
+  "name": "@fragment_ui/utils",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared utility functions for Fragment UI",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./naming": {
+      "import": "./dist/naming.js",
+      "types": "./dist/naming.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^1.0.0"
+  },
+  "keywords": ["utils", "fragment-ui", "naming"],
+  "license": "MIT"
+}
+
