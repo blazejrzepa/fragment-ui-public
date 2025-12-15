@@ -1,6 +1,6 @@
 {
   "name": "@fragment_ui/tokens",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Design tokens for Fragment UI Design System",
   "type": "module",
   "main": "dist/tokens.css",

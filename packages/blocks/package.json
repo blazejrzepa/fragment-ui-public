@@ -1,6 +1,6 @@
 {
   "name": "@fragment_ui/blocks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pre-built screen compositions and blocks for Fragment UI",
   "type": "module",
   "main": "./dist/index.js",
