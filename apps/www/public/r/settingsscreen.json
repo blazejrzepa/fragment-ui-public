@@ -1,0 +1,15 @@
+{
+  "name": "settingsscreen",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/SettingsScreen.tsx",
+      "content": "import * as React from \"react\";\nimport { Button, Switch, Input } from \"@fragment_ui/ui\";\n\nexport function SettingsScreen() {\n  return (\n    <div className=\"p-6 space-y-6\">\n      <h1 className=\"text-2xl font-semibold\">Settings</h1>\n      \n      <section className=\"space-y-4\">\n        <h2 className=\"text-lg font-medium\">Preferences</h2>\n        \n        <div className=\"flex items-center justify-between\">\n          <div>\n            <label className=\"font-medium\">Enable notifications</label>\n            <p className=\"text-sm text-[color:var(--color-fg-muted)]\">\n              Receive push notifications\n            </p>\n          </div>\n          <Switch defaultChecked />\n        </div>\n\n        <div className=\"flex items-center justify-between\">\n          <div>\n            <label className=\"font-medium\">Dark mode</label>\n            <p className=\"text-sm text-[color:var(--color-fg-muted)]\">\n              Use dark theme\n            </p>\n          </div>\n          <Switch />\n        </div>\n      </section>\n\n      <section className=\"space-y-4\">\n        <h2 className=\"text-lg font-medium\">Profile</h2>\n        \n        <div className=\"space-y-2\">\n          <label className=\"text-sm font-medium\">Display Name</label>\n          <Input placeholder=\"Enter your name\" />\n        </div>\n\n        <div className=\"space-y-2\">\n          <label className=\"text-sm font-medium\">Email</label>\n          <Input type=\"email\" placeholder=\"your@email.com\" />\n        </div>\n\n        <Button>Save Changes</Button>\n      </section>\n    </div>\n  );\n}\n\n"
+    }
+  ]
+}

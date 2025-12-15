@@ -1,0 +1,15 @@
+{
+  "name": "widget-container",
+  "type": "registry:block",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/widget-container.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Card, CardHeader, CardTitle, CardContent } from \"@fragment_ui/ui\";\nimport { Button } from \"@fragment_ui/ui\";\nimport clsx from \"clsx\";\n\nexport interface WidgetContainerProps {\n  title?: string;\n  children: React.ReactNode;\n  actions?: React.ReactNode;\n  footer?: React.ReactNode;\n  className?: string;\n  collapsible?: boolean;\n  defaultCollapsed?: boolean;\n  onRefresh?: () => void;\n}\n\nexport function WidgetContainer({\n  title,\n  children,\n  actions,\n  footer,\n  className,\n  collapsible = false,\n  defaultCollapsed = false,\n  onRefresh,\n}: WidgetContainerProps) {\n  const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed);\n\n  return (\n    <Card className={clsx(\"h-full flex flex-col\", className)}>\n      {(title || actions || onRefresh || collapsible) && (\n        <CardHeader className=\"flex flex-row items-center justify-between space-y-0 pb-2\">\n          {title && <CardTitle>{title}</CardTitle>}\n          <div className=\"flex items-center gap-2\">\n            {actions}\n            {onRefresh && (\n              <Button\n                variant=\"ghost\"\n                size=\"sm\"\n                onClick={onRefresh}\n                aria-label=\"Refresh\"\n              >\n                ↻\n              </Button>\n            )}\n            {collapsible && (\n              <Button\n                variant=\"ghost\"\n                size=\"sm\"\n                onClick={() => setIsCollapsed(!isCollapsed)}\n                aria-label={isCollapsed ? \"Expand\" : \"Collapse\"}\n              >\n                {isCollapsed ? \"↓\" : \"↑\"}\n              </Button>\n            )}\n          </div>\n        </CardHeader>\n      )}\n      {!isCollapsed && (\n        <CardContent className=\"flex-1 overflow-auto\">\n          {children}\n        </CardContent>\n      )}\n      {footer && !isCollapsed && (\n        <div className=\"px-6 pb-4 border-t border-[color:var(--color-border-base)] pt-4\">\n          {footer}\n        </div>\n      )}\n    </Card>\n  );\n}\n\n"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "cardgrid",
+  "type": "registry:component",
+  "dependencies": [
+    "react",
+    "react-dom",
+    "@fragment_ui/ui"
+  ],
+  "files": [
+    {
+      "path": "components/ui/CardGrid.tsx",
+      "content": "import { Button } from \"@fragment_ui/ui\";\n\ninterface Card {\n  title: string;\n  description?: string;\n  action?: {\n    label: string;\n    href?: string;\n    onClick?: () => void;\n  };\n}\n\ninterface CardGridProps {\n  title?: string;\n  cards?: Card[];\n  columns?: 1 | 2 | 3 | 4;\n}\n\nexport function CardGrid({\n  title,\n  cards,\n  columns = 3,\n}: CardGridProps) {\n  const defaultCards: Card[] = [\n    {\n      title: \"Card 1\",\n      description: \"This is a sample card with some description text.\",\n      action: { label: \"Learn More\" },\n    },\n    {\n      title: \"Card 2\",\n      description: \"Another card with different content.\",\n      action: { label: \"View Details\" },\n    },\n    {\n      title: \"Card 3\",\n      description: \"Third card in the grid layout.\",\n      action: { label: \"Explore\" },\n    },\n  ];\n\n  const displayCards = cards || defaultCards;\n  const gridCols = {\n    1: \"grid-cols-1\",\n    2: \"grid-cols-1 md:grid-cols-2\",\n    3: \"grid-cols-1 md:grid-cols-2 lg:grid-cols-3\",\n    4: \"grid-cols-1 md:grid-cols-2 lg:grid-cols-4\",\n  };\n\n  return (\n    <div className=\"space-y-6\">\n      {title && <h2 className=\"text-2xl font-semibold\">{title}</h2>}\n      <div className={`grid ${gridCols[columns]} gap-4`}>\n        {displayCards.map((card, index) => (\n          <div\n            key={index}\n            className=\"border rounded-lg p-6 border-[color:var(--color-fg-muted)] bg-[color:var(--color-surface-1)] hover:shadow-lg transition-shadow\"\n          >\n            <h3 className=\"text-lg font-semibold mb-2\">{card.title}</h3>\n            {card.description && (\n              <p className=\"text-[color:var(--color-fg-muted)] mb-4\">\n                {card.description}\n              </p>\n            )}\n            {card.action && (\n              card.action.href ? (\n                <a href={card.action.href}>\n                  <Button variant=\"outline\" size=\"sm\">\n                    {card.action.label}\n                  </Button>\n                </a>\n              ) : (\n                <Button\n                  variant=\"outline\"\n                  size=\"sm\"\n                  onClick={card.action.onClick}\n                >\n                  {card.action.label}\n                </Button>\n              )\n            )}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n\n"
+    }
+  ]
+}
