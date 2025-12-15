@@ -79,7 +79,7 @@ Configure the extension in VS Code settings:
 ```json
 {
   "fragment-ui.registryPath": "./registry.json",
-  "fragment-ui.storybookUrl": "https://storybook.fragment-ui.dev"
+  "fragment-ui.storybookUrl": "https://storybook.fragmentui.com"
 }
 ```
 
@@ -92,5 +92,5 @@ Configure the extension in VS Code settings:
 
 - [Extension Documentation](/docs/guides/vscode-extension-usage)
 - [Available Components](/components)
-- [Storybook](https://storybook.fragment-ui.dev)
+- [Storybook](https://storybook.fragmentui.com)
 

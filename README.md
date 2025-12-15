@@ -168,6 +168,19 @@ Packages are published to npm:
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
+## 📚 Documentation
+
+- **[Quick Start Guide](docs/getting-started.md)** - Get started quickly
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute
+- **[Changelog](CHANGELOG.md)** - Version history
+- **[Full Documentation](docs/README.md)** - Complete documentation index
+
+### Setup & Deployment
+- **[Deployment Guide](docs/setup/deployment.md)** - Deploy to production
+- **[Setup Steps](docs/setup/setup-steps.md)** - Step-by-step setup
+- **[Workflow Guide](docs/setup/workflow.md)** - Working with repositories
+- **[Publishing Guide](docs/guides/publishing.md)** - Publish to npm
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
