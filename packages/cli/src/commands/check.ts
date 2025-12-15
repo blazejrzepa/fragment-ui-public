@@ -129,7 +129,7 @@ export async function checkComponents(projectPath?: string) {
     }
 
     console.log(`💡 Install a component:`);
-    console.log(`   npx shadcn@latest add https://fragment-ui.dev/r/<component>.json\n`);
+    console.log(`   npx shadcn@latest add https://fragmentui.com/r/<component>.json\n`);
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") {
       console.log("\n⚠️  No Fragment UI components found in this project.");

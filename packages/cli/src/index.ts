@@ -46,7 +46,7 @@ Examples:
   ds update button           Update button component
   ds remove button           Remove button component
 
-For more information, visit: https://fragment-ui.dev
+For more information, visit: https://fragmentui.com
 `);
   process.exit(0);
 }

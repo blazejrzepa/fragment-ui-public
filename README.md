@@ -2,6 +2,12 @@
 
 > **Code-first, AI-ready design system** built on React, TypeScript, shadcn/ui, and Tailwind.
 
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/ui.svg)](https://www.npmjs.com/package/@fragment_ui/ui)
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/tokens.svg)](https://www.npmjs.com/package/@fragment_ui/tokens)
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/blocks.svg)](https://www.npmjs.com/package/@fragment_ui/blocks)
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/mcp-server.svg)](https://www.npmjs.com/package/@fragment_ui/mcp-server)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Fragment UI is a comprehensive design system that combines the flexibility of shadcn/ui with enterprise-ready tooling, documentation, and AI-native workflows.
 
 ## 🎯 What's in This Repository?

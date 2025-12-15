@@ -117,8 +117,8 @@ export async function getComponentInfo(
       importPath: component.files?.[0]
         ? `@fragment_ui/${component.category || "ui"}/${componentName}`
         : `@fragment_ui/ui/${componentName}`,
-      documentationUrl: `https://fragment-ui.dev/docs/components/${componentName}`,
-      storybookUrl: `https://fragment-ui.dev/storybook/?path=/story/${componentName}`,
+      documentationUrl: `https://fragmentui.com/docs/components/${componentName}`,
+      storybookUrl: `https://fragmentui.com/storybook/?path=/story/${componentName}`,
     };
   } catch (error) {
     console.error("Error getting component info:", error);

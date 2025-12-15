@@ -200,10 +200,10 @@ Fragment UI components are installed using the `shadcn` CLI:
 
 ```bash
 # Install a component
-npx shadcn@latest add https://fragment-ui.dev/r/button.json
+npx shadcn@latest add https://fragmentui.com/r/button.json
 
 # Install a block
-npx shadcn@latest add https://fragment-ui.dev/r/dashboard-layout.json
+npx shadcn@latest add https://fragmentui.com/r/dashboard-layout.json
 ```
 
 The `ds` CLI helps you:

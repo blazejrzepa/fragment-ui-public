@@ -39,7 +39,7 @@ export async function updateComponent(componentName: string, projectPath?: strin
     if (!fs.existsSync(componentFile) && !fs.existsSync(componentFileAlt)) {
       console.error(`❌ Component "${componentName}" is not installed.`);
       console.log(`\n💡 Install it first:`);
-      console.log(`   npx shadcn@latest add https://fragment-ui.dev/r/${componentName}.json\n`);
+      console.log(`   npx shadcn@latest add https://fragmentui.com/r/${componentName}.json\n`);
       process.exit(1);
     }
 
@@ -48,7 +48,7 @@ export async function updateComponent(componentName: string, projectPath?: strin
     // For now, we'll just reinstall using shadcn
     // In the future, we could implement smart diffing and updating
     console.log(`💡 To update this component, reinstall it:`);
-    console.log(`   npx shadcn@latest add https://fragment-ui.dev/r/${componentName}.json --overwrite\n`);
+    console.log(`   npx shadcn@latest add https://fragmentui.com/r/${componentName}.json --overwrite\n`);
 
     console.log(`⚠️  Note: Full update functionality coming soon!`);
     console.log(`   For now, please reinstall the component manually.\n`);

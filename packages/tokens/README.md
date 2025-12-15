@@ -37,9 +37,9 @@ Tokens are available as CSS variables:
 
 ## Documentation
 
-- **[Design Tokens](https://fragment-ui.dev/docs/foundations/tokens)** - Complete token reference
-- **[Theming](https://fragment-ui.dev/docs/foundations/theming)** - Customization guide
-- **[Dark Mode](https://fragment-ui.dev/docs/foundations/dark-mode)** - Dark mode configuration
+- **[Design Tokens](https://fragmentui.com/docs/foundations/tokens)** - Complete token reference
+- **[Theming](https://fragmentui.com/docs/foundations/theming)** - Customization guide
+- **[Dark Mode](https://fragmentui.com/docs/foundations/dark-mode)** - Dark mode configuration
 
 ## Token Categories
 

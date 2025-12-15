@@ -20,10 +20,10 @@ export default function MyPage() {
 
 ## Documentation
 
-- **[Full Documentation](https://fragment-ui.dev)** - Complete component library documentation
-- **[Components](https://fragment-ui.dev/docs/components)** - Browse all 63+ components
-- **[Getting Started](https://fragment-ui.dev/docs/get-started/introduction)** - Quick start guide
-- **[Examples](https://fragment-ui.dev/docs/examples)** - Real-world usage examples
+- **[Full Documentation](https://fragmentui.com)** - Complete component library documentation
+- **[Components](https://fragmentui.com/docs/components)** - Browse all 63+ components
+- **[Getting Started](https://fragmentui.com/docs/get-started/introduction)** - Quick start guide
+- **[Examples](https://fragmentui.com/docs/examples)** - Real-world usage examples
 
 ## Install Components via Registry
 
@@ -31,7 +31,7 @@ You can install individual components using the registry:
 
 ```bash
 # Using shadcn CLI
-npx shadcn@latest add https://fragment-ui.dev/r/button.json
+npx shadcn@latest add https://fragmentui.com/r/button.json
 
 # Or use the Fragment UI CLI
 npx @fragment-ui/cli add button
