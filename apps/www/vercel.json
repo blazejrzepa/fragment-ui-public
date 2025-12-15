@@ -1,5 +1,5 @@
 {
-  "buildCommand": "cd ../.. && pnpm install && pnpm tokens:build && pnpm registry:generate && pnpm -F @fragment_ui/ui build && pnpm -F @fragment_ui/blocks build && cd apps/www && pnpm build",
+  "buildCommand": "cd ../.. && pnpm tokens:build && pnpm registry:generate && pnpm -F @fragment_ui/ui build && pnpm -F @fragment_ui/blocks build && cd apps/www && pnpm build",
   "outputDirectory": ".next",
   "installCommand": "pnpm install",
   "framework": "nextjs"
