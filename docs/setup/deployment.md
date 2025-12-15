@@ -1,52 +1,52 @@
 # 🚀 Deployment Guide - fragmentui.com
 
-## 📋 Strategia repozytoriów (finalna)
+## 📋 Repository Strategy (Final)
 
-### 1. `fragment-ui` (PRIVATE - główne repo)
+### 1. `fragment-ui` (PRIVATE - main repo)
 - **Status**: PRIVATE 🔒
-- **Lokalizacja**: `/Users/blazejrzepa/Dev/fragment-ui`
-- **Zawartość**: Pełny monorepo z Studio/Playground/telemetry
-- **Przeznaczenie**: Główny workspace do codziennej pracy
+- **Location**: `/Users/blazejrzepa/Dev/fragment-ui`
+- **Contents**: Full monorepo with Studio/Playground/telemetry
+- **Purpose**: Main workspace for daily work
 
-### 2. `fragment-ui-public` (PUBLIC - oficjalne)
+### 2. `fragment-ui-public` (PUBLIC - official)
 - **Status**: PUBLIC 🌐
-- **Lokalizacja**: `/Users/blazejrzepa/Dev/fragment-ui-public`
+- **Location**: `/Users/blazejrzepa/Dev/fragment-ui-public`
 - **GitHub**: https://github.com/blazejrzepa/fragment-ui-public
-- **Domena**: fragmentui.com
-- **Zawartość**: Czysty design system + dokumentacja
-- **Przeznaczenie**: Oficjalna strona i publikacja na npm
+- **Domain**: fragmentui.com
+- **Contents**: Clean design system + documentation
+- **Purpose**: Official site and npm publication
 
-## 🔧 Konfiguracja Vercel dla fragmentui.com
+## 🔧 Vercel Configuration for fragmentui.com
 
-### Krok 1: Połącz repozytorium z Vercel
+### Step 1: Connect Repository to Vercel
 
-1. Przejdź do: https://vercel.com/new
-2. Importuj `fragment-ui-public` z GitHub
-3. Ustaw:
+1. Go to: https://vercel.com/new
+2. Import `fragment-ui-public` from GitHub
+3. Set:
    - **Framework Preset**: Next.js
    - **Root Directory**: `apps/www`
    - **Build Command**: `cd ../.. && pnpm install && pnpm tokens:build && pnpm registry:generate && pnpm -F @fragment_ui/ui build && pnpm -F @fragment_ui/blocks build && cd apps/www && pnpm build`
    - **Output Directory**: `.next`
    - **Install Command**: `pnpm install`
 
-### Krok 2: Skonfiguruj domenę
+### Step 2: Configure Domain
 
-1. W Vercel Dashboard → Project Settings → Domains
-2. Dodaj domenę: `fragmentui.com`
-3. Dodaj subdomeny:
-   - `www.fragmentui.com` (redirect do fragmentui.com)
-4. Skonfiguruj DNS:
-   - Dodaj rekordy DNS zgodnie z instrukcjami Vercel
-   - Zwykle: CNAME dla `www` i A record dla root domain
+1. In Vercel Dashboard → Project Settings → Domains
+2. Add domain: `fragmentui.com`
+3. Add subdomains:
+   - `www.fragmentui.com` (redirect to fragmentui.com)
+4. Configure DNS:
+   - Add DNS records according to Vercel instructions
+   - Usually: CNAME for `www` and A record for root domain
 
-### Krok 3: Zmienne środowiskowe (jeśli potrzebne)
+### Step 3: Environment Variables (if needed)
 
-W Vercel Dashboard → Settings → Environment Variables:
-- Dodaj zmienne, jeśli są potrzebne (np. dla API routes)
+In Vercel Dashboard → Settings → Environment Variables:
+- Add variables if needed (e.g., for API routes)
 
-### Krok 4: Aktualizuj konfigurację
+### Step 4: Update Configuration
 
-Zaktualizuj `apps/www/vercel.json`:
+Update `apps/www/vercel.json`:
 
 ```json
 {
@@ -63,106 +63,105 @@ Zaktualizuj `apps/www/vercel.json`:
 }
 ```
 
-## 🔄 Aktualizacja referencji do domeny
+## 🔄 Update Domain References
 
-### Pliki do zaktualizowania:
+### Files to Update:
 
-1. **package.json** (wszystkie pakiety):
+1. **package.json** (all packages):
    - `homepage`: `https://fragmentui.com`
    - `repository.url`: GitHub URL
 
 2. **README.md**:
-   - Wszystkie linki do `fragmentui.com`
+   - All links to `fragmentui.com`
 
 3. **apps/www**:
-   - Konfiguracja Next.js (jeśli potrzebna)
-   - Metadata w layout.tsx
+   - Next.js configuration (if needed)
+   - Metadata in layout.tsx
 
 4. **CLI** (`packages/cli`):
-   - Wszystkie referencje do registry URL
+   - All references to registry URL
 
-## 📝 Checklist przed deploymentem
+## 📝 Pre-Deployment Checklist
 
-### Przed pierwszym deploymentem:
+### Before First Deployment:
 
-- [ ] Zaktualizuj wszystkie referencje do `fragment-ui.dev` → `fragmentui.com`
-- [ ] Sprawdź czy `vercel.json` ma poprawny build command
-- [ ] Usuń referencje do telemetry (jeśli są w build command)
-- [ ] Sprawdź czy wszystkie zależności są dostępne
-- [ ] Przetestuj build lokalnie: `pnpm build`
-- [ ] Sprawdź czy dokumentacja się renderuje poprawnie
+- [ ] Update all references from `fragment-ui.dev` → `fragmentui.com`
+- [ ] Check if `vercel.json` has correct build command
+- [ ] Remove telemetry references (if in build command)
+- [ ] Check if all dependencies are available
+- [ ] Test build locally: `pnpm build`
+- [ ] Check if documentation renders correctly
 
-### Po deploymentem:
+### After Deployment:
 
-- [ ] Sprawdź czy strona się ładuje: https://fragmentui.com
-- [ ] Sprawdź czy wszystkie linki działają
-- [ ] Sprawdź czy komponenty się wyświetlają
-- [ ] Sprawdź czy registry działa: https://fragmentui.com/r/button.json
-- [ ] Sprawdź czy dokumentacja jest dostępna
-- [ ] Sprawdź SEO (meta tags, sitemap)
+- [ ] Check if site loads: https://fragmentui.com
+- [ ] Check if all links work
+- [ ] Check if components display correctly
+- [ ] Check if registry works: https://fragmentui.com/r/button.json
+- [ ] Check if documentation is available
+- [ ] Check SEO (meta tags, sitemap)
 
-## 🔗 Konfiguracja DNS
+## 🔗 DNS Configuration
 
-### Dla fragmentui.com:
+### For fragmentui.com:
 
 1. **A Record** (root domain):
    - Name: `@`
-   - Value: IP z Vercel (lub użyj CNAME jeśli provider to wspiera)
+   - Value: IP from Vercel (or use CNAME if provider supports it)
 
 2. **CNAME Record** (www):
    - Name: `www`
-   - Value: `cname.vercel-dns.com` (lub co Vercel poda)
+   - Value: `cname.vercel-dns.com` (or what Vercel provides)
 
-3. **Czekaj na propagację DNS** (zwykle 24-48h)
+3. **Wait for DNS propagation** (usually 24-48h)
 
-## 🚀 Automatyczny deployment
+## 🚀 Automatic Deployment
 
-Po połączeniu z GitHub, Vercel automatycznie:
-- ✅ Deployuje przy każdym push do `main`
-- ✅ Tworzy preview deployments dla PR
-- ✅ Pokazuje status w GitHub
+After connecting to GitHub, Vercel automatically:
+- ✅ Deploys on every push to `main`
+- ✅ Creates preview deployments for PRs
+- ✅ Shows status in GitHub
 
 ## 📊 Monitoring
 
-Po deploymentem:
+After deployment:
 
-1. **Vercel Analytics** (opcjonalnie):
-   - Włącz w Vercel Dashboard
-   - Tracking performance i errors
+1. **Vercel Analytics** (optional):
+   - Enable in Vercel Dashboard
+   - Track performance and errors
 
-2. **Google Analytics** (opcjonalnie):
-   - Dodaj tracking code do `apps/www/app/layout.tsx`
+2. **Google Analytics** (optional):
+   - Add tracking code to `apps/www/app/layout.tsx`
 
-3. **Error Tracking** (opcjonalnie):
+3. **Error Tracking** (optional):
    - Sentry, LogRocket, etc.
 
-## 🔄 Workflow deploymentu
+## 🔄 Deployment Workflow
 
-1. **Pracujesz w `fragment-ui`** (private)
-2. **Synchronizujesz do `fragment-ui-public`** (public)
-3. **Push do GitHub** → automatyczny deploy na Vercel
-4. **Strona aktualizuje się automatycznie** na fragmentui.com
+1. **Work in `fragment-ui`** (private)
+2. **Sync to `fragment-ui-public`** (public)
+3. **Push to GitHub** → automatic deploy to Vercel
+4. **Site updates automatically** on fragmentui.com
 
 ## 🐛 Troubleshooting
 
-### Build fails:
-- Sprawdź logi w Vercel Dashboard
-- Sprawdź czy wszystkie zależności są dostępne
-- Sprawdź czy build command jest poprawny
+### Build Fails:
+- Check logs in Vercel Dashboard
+- Check if all dependencies are available
+- Check if build command is correct
 
-### DNS nie działa:
-- Sprawdź konfigurację DNS w panelu domeny
-- Sprawdź propagację DNS: https://dnschecker.org
-- Sprawdź czy domena jest zweryfikowana w Vercel
+### DNS Doesn't Work:
+- Check DNS configuration in domain panel
+- Check DNS propagation: https://dnschecker.org
+- Check if domain is verified in Vercel
 
-### Strona się nie ładuje:
-- Sprawdź czy build się powiódł
-- Sprawdź logi w Vercel Dashboard
-- Sprawdź czy wszystkie assets są dostępne
+### Site Doesn't Load:
+- Check if build succeeded
+- Check logs in Vercel Dashboard
+- Check if all assets are available
 
-## 📚 Przydatne linki
+## 📚 Useful Links
 
 - **Vercel Dashboard**: https://vercel.com/dashboard
 - **Vercel Docs**: https://vercel.com/docs
 - **Next.js Deployment**: https://nextjs.org/docs/deployment
-

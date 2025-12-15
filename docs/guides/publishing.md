@@ -1,60 +1,60 @@
-# Publikacja pakietów na npm
+# Publishing Packages to npm
 
-## 📦 Pakiety do publikacji
+## 📦 Packages to Publish
 
 1. `@fragment_ui/ui` - UI components library
 2. `@fragment_ui/tokens` - Design tokens
 3. `@fragment_ui/blocks` - Layout blocks
 4. `@fragment_ui/mcp-server` - MCP server
 
-## 🔐 Krok 1: Zaloguj się do npm
+## 🔐 Step 1: Log in to npm
 
 ```bash
 npm login
 ```
 
-Wprowadź:
+Enter:
 - Username
 - Password
 - Email
-- OTP (jeśli masz 2FA)
+- OTP (if you have 2FA)
 
-Sprawdź czy jesteś zalogowany:
+Check if you're logged in:
 ```bash
 npm whoami
 ```
 
-## 📝 Krok 2: Sprawdź wersje pakietów
+## 📝 Step 2: Check Package Versions
 
 ```bash
 cd fragment-ui-public
 
-# Sprawdź wersje
+# Check versions
 cat packages/ui/package.json | grep '"version"'
 cat packages/tokens/package.json | grep '"version"'
 cat packages/blocks/package.json | grep '"version"'
 cat packages/mcp-server/package.json | grep '"version"'
 ```
 
-## 🏗️ Krok 3: Zbuduj wszystkie pakiety
+## 🏗️ Step 3: Build All Packages
 
 ```bash
 pnpm build
 ```
 
-## 📤 Krok 4: Publikuj pakiety
+## 📤 Step 4: Publish Packages
 
-### Opcja A: Publikuj wszystkie naraz
+### Option A: Publish All at Once
 
 ```bash
-# Z roota repozytorium
+# From repository root
 pnpm --filter @fragment_ui/ui publish --access public
 pnpm --filter @fragment_ui/tokens publish --access public
 pnpm --filter @fragment_ui/blocks publish --access public
 pnpm --filter @fragment_ui/mcp-server publish --access public
 ```
 
-### Opcja B: Publikuj pojedynczo (zalecane przy pierwszej publikacji)
+### Option B: Publish Individually (Recommended for First Publication)
 
 ```bash
 # 1. UI
@@ -74,32 +74,32 @@ cd ../mcp-server
 pnpm publish --access public
 ```
 
-## ✅ Krok 5: Sprawdź publikację
+## ✅ Step 5: Verify Publication
 
-Sprawdź na npm:
+Check on npm:
 - https://www.npmjs.com/package/@fragment_ui/ui
 - https://www.npmjs.com/package/@fragment_ui/tokens
 - https://www.npmjs.com/package/@fragment_ui/blocks
 - https://www.npmjs.com/package/@fragment_ui/mcp-server
 
-## ⚠️ Ważne uwagi
+## ⚠️ Important Notes
 
-1. **Wersjonowanie**: Po publikacji, każda kolejna zmiana wymaga zwiększenia wersji
-2. **Dry run**: Możesz najpierw przetestować z `--dry-run`:
+1. **Versioning**: After publication, each subsequent change requires version increment
+2. **Dry run**: You can test first with `--dry-run`:
    ```bash
    pnpm --filter @fragment_ui/ui publish --dry-run
    ```
-3. **OTP**: Jeśli masz 2FA, będziesz potrzebować OTP przy każdej publikacji
-4. **Registry**: Upewnij się, że publikujesz do właściwego registry (npmjs.org)
+3. **OTP**: If you have 2FA, you'll need OTP for each publication
+4. **Registry**: Make sure you're publishing to the correct registry (npmjs.org)
 
-## 🔄 Aktualizacja wersji
+## 🔄 Version Update
 
-Po zmianach, zaktualizuj wersję w `package.json`:
+After changes, update version in `package.json`:
 - Patch: `1.0.0` → `1.0.1` (bug fixes)
 - Minor: `1.0.0` → `1.1.0` (new features)
 - Major: `1.0.0` → `2.0.0` (breaking changes)
 
-Lub użyj Changesets (lepsze dla monorepo):
+Or use Changesets (better for monorepo):
 ```bash
 pnpm add -D @changesets/cli
 pnpm changeset init
@@ -108,9 +108,8 @@ pnpm changeset version
 pnpm changeset publish
 ```
 
-## 🎯 Po publikacji
+## 🎯 After Publication
 
-1. Zaktualizuj README z linkami do npm
-2. Utwórz GitHub Release
-3. Zaktualizuj dokumentację z instrukcjami instalacji
-
+1. Update README with links to npm
+2. Create GitHub Release
+3. Update documentation with installation instructions

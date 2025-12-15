@@ -1,153 +1,152 @@
-# 🔄 Migracja domeny z fragment-ui na fragment-ui-public w Vercel
+# 🔄 Migrating Domain from fragment-ui to fragment-ui-public in Vercel
 
-## 📋 Sytuacja
+## 📋 Situation
 
-Masz już:
-- ✅ Domena `fragmentui.com` skonfigurowana w Vercel
-- ✅ Podpięta do projektu `fragment-ui` (stary)
-- ❌ Chcesz przenieść na projekt `fragment-ui-public` (nowy)
+You already have:
+- ✅ Domain `fragmentui.com` configured in Vercel
+- ✅ Connected to project `fragment-ui` (old)
+- ❌ You want to move it to project `fragment-ui-public` (new)
 
-## 🚀 Rozwiązanie: Przenieś domenę do nowego projektu
+## 🚀 Solution: Move Domain to New Project
 
-### KROK 1: Dodaj nowy projekt `fragment-ui-public` do Vercel
+### STEP 1: Add New Project `fragment-ui-public` to Vercel
 
-1. **Otwórz Vercel Dashboard**: https://vercel.com/dashboard
-2. Kliknij **"Add New..."** → **"Project"**
-3. Kliknij **"Import Git Repository"**
-4. Znajdź i wybierz: **`blazejrzepa/fragment-ui-public`**
-5. **Skonfiguruj projekt:**
-   - **Framework Preset**: Next.js (automatycznie)
-   - **Root Directory**: `apps/www` (WAŻNE! Kliknij "Edit" i zmień)
-   - **Build Command**: (zostaw puste - użyjemy z vercel.json)
-   - **Output Directory**: `.next` (automatycznie)
-   - **Install Command**: `pnpm install` (lub zostaw puste)
-6. Kliknij **"Deploy"**
-7. Poczekaj na zakończenie builda (2-5 minut)
+1. **Open Vercel Dashboard**: https://vercel.com/dashboard
+2. Click **"Add New..."** → **"Project"**
+3. Click **"Import Git Repository"**
+4. Find and select: **`blazejrzepa/fragment-ui-public`**
+5. **Configure project:**
+   - **Framework Preset**: Next.js (automatic)
+   - **Root Directory**: `apps/www` (IMPORTANT! Click "Edit" and change)
+   - **Build Command**: (leave empty - we'll use from vercel.json)
+   - **Output Directory**: `.next` (automatic)
+   - **Install Command**: `pnpm install` (or leave empty)
+6. Click **"Deploy"**
+7. Wait for build to complete (2-5 minutes)
 
-**✅ Teraz masz dwa projekty w Vercel:**
-- `fragment-ui` (stary)
-- `fragment-ui-public` (nowy)
-
----
-
-### KROK 2: Przenieś domenę do nowego projektu
-
-#### Opcja A: Przenieś domenę (zalecane)
-
-1. **Otwórz projekt `fragment-ui-public`** w Vercel Dashboard
-2. Przejdź do **Settings** → **Domains**
-3. W polu "Add Domain", wpisz: `fragmentui.com`
-4. Kliknij **"Add"**
-5. Vercel wykryje, że domena jest już używana w innym projekcie
-6. Pojawi się opcja: **"Transfer from another project"** lub **"Move domain"**
-7. Wybierz projekt `fragment-ui` z listy
-8. Kliknij **"Transfer"** lub **"Move"**
-9. Potwierdź przeniesienie
-
-**✅ Domena jest teraz przypisana do `fragment-ui-public`**
-
-#### Opcja B: Usuń ze starego, dodaj do nowego (alternatywa)
-
-Jeśli Opcja A nie działa:
-
-1. **Otwórz projekt `fragment-ui`** (stary)
-2. Przejdź do **Settings** → **Domains**
-3. Znajdź `fragmentui.com` na liście
-4. Kliknij **"Remove"** obok domeny
-5. Potwierdź usunięcie
-6. **Otwórz projekt `fragment-ui-public`** (nowy)
-7. Przejdź do **Settings** → **Domains**
-8. W polu "Add Domain", wpisz: `fragmentui.com`
-9. Kliknij **"Add"**
-10. Vercel pokaże instrukcje DNS (ale powinny być już skonfigurowane)
-11. Kliknij **"Refresh"** - domena powinna się zweryfikować automatycznie
-
-**✅ Domena jest teraz przypisana do `fragment-ui-public`**
+**✅ Now you have two projects in Vercel:**
+- `fragment-ui` (old)
+- `fragment-ui-public` (new)
 
 ---
 
-### KROK 3: Zweryfikuj
+### STEP 2: Move Domain to New Project
 
-1. **Sprawdź w nowym projekcie:**
-   - Otwórz `fragment-ui-public` → Settings → Domains
-   - Sprawdź czy `fragmentui.com` jest na liście
-   - Status powinien być: **"Valid Configuration"** ✅
+#### Option A: Transfer Domain (Recommended)
 
-2. **Sprawdź czy strona działa:**
-   - Otwórz: https://fragmentui.com
-   - Sprawdź czy ładuje się nowa wersja (z `fragment-ui-public`)
-   - Sprawdź czy wszystkie linki działają
+1. **Open project `fragment-ui-public`** in Vercel Dashboard
+2. Go to **Settings** → **Domains**
+3. In "Add Domain" field, type: `fragmentui.com`
+4. Click **"Add"**
+5. Vercel will detect that the domain is already used in another project
+6. Option will appear: **"Transfer from another project"** or **"Move domain"**
+7. Select project `fragment-ui` from the list
+8. Click **"Transfer"** or **"Move"**
+9. Confirm the transfer
 
-3. **Sprawdź deployment:**
-   - W projekcie `fragment-ui-public` → Deployments
-   - Sprawdź czy ostatni deployment jest aktywny
-   - Sprawdź czy domena wskazuje na ten deployment
+**✅ Domain is now assigned to `fragment-ui-public`**
+
+#### Option B: Remove from Old, Add to New (Alternative)
+
+If Option A doesn't work:
+
+1. **Open project `fragment-ui`** (old)
+2. Go to **Settings** → **Domains**
+3. Find `fragmentui.com` in the list
+4. Click **"Remove"** next to the domain
+5. Confirm removal
+6. **Open project `fragment-ui-public`** (new)
+7. Go to **Settings** → **Domains**
+8. In "Add Domain" field, type: `fragmentui.com`
+9. Click **"Add"**
+10. Vercel will show DNS instructions (but they should already be configured)
+11. Click **"Refresh"** - domain should verify automatically
+
+**✅ Domain is now assigned to `fragment-ui-public`**
 
 ---
 
-### KROK 4: (Opcjonalnie) Usuń stary projekt
+### STEP 3: Verify
 
-Jeśli nie potrzebujesz już projektu `fragment-ui` w Vercel:
+1. **Check in new project:**
+   - Open `fragment-ui-public` → Settings → Domains
+   - Check if `fragmentui.com` is in the list
+   - Status should be: **"Valid Configuration"** ✅
 
-1. **Otwórz projekt `fragment-ui`** w Vercel Dashboard
-2. Przejdź do **Settings** → **General**
-3. Przewiń na dół do sekcji **"Danger Zone"**
-4. Kliknij **"Delete Project"**
-5. Wpisz nazwę projektu: `fragment-ui`
-6. Kliknij **"Delete"**
-7. Potwierdź usunięcie
+2. **Check if site works:**
+   - Open: https://fragmentui.com
+   - Check if new version loads (from `fragment-ui-public`)
+   - Check if all links work
 
-**⚠️ UWAGA:** To usunie tylko projekt z Vercel, nie usunie repozytorium z GitHub!
+3. **Check deployment:**
+   - In project `fragment-ui-public` → Deployments
+   - Check if latest deployment is active
+   - Check if domain points to this deployment
+
+---
+
+### STEP 4: (Optional) Delete Old Project
+
+If you no longer need project `fragment-ui` in Vercel:
+
+1. **Open project `fragment-ui`** in Vercel Dashboard
+2. Go to **Settings** → **General**
+3. Scroll down to **"Danger Zone"** section
+4. Click **"Delete Project"**
+5. Type project name: `fragment-ui`
+6. Click **"Delete"**
+7. Confirm deletion
+
+**⚠️ WARNING:** This will only delete the project from Vercel, it will NOT delete the repository from GitHub!
 
 ---
 
 ## 🔍 Troubleshooting
 
-### Problem: Vercel nie pozwala przenieść domeny
+### Problem: Vercel Won't Allow Domain Transfer
 
-**Rozwiązanie:**
-- Użyj Opcji B (usuń ze starego, dodaj do nowego)
-- DNS jest już skonfigurowany, więc domena powinna się zweryfikować automatycznie
+**Solution:**
+- Use Option B (remove from old, add to new)
+- DNS is already configured, so domain should verify automatically
 
-### Problem: Domena nie działa po przeniesieniu
+### Problem: Domain Doesn't Work After Transfer
 
-**Rozwiązanie:**
-1. Sprawdź czy domena jest przypisana do właściwego projektu
-2. Sprawdź czy deployment się powiódł
-3. Sprawdź czy DNS jest poprawnie skonfigurowany
-4. Poczekaj kilka minut na propagację
+**Solution:**
+1. Check if domain is assigned to correct project
+2. Check if deployment succeeded
+3. Check if DNS is correctly configured
+4. Wait a few minutes for propagation
 
-### Problem: Strona pokazuje starą wersję
+### Problem: Site Shows Old Version
 
-**Rozwiązanie:**
-1. Sprawdź cache przeglądarki (Ctrl+Shift+R lub Cmd+Shift+R)
-2. Sprawdź czy deployment w nowym projekcie się powiódł
-3. Sprawdź czy domena wskazuje na właściwy deployment
+**Solution:**
+1. Check browser cache (Ctrl+Shift+R or Cmd+Shift+R)
+2. Check if deployment in new project succeeded
+3. Check if domain points to correct deployment
 
 ---
 
 ## ✅ Checklist
 
-Po przeniesieniu domeny:
+After moving domain:
 
-- [ ] Projekt `fragment-ui-public` jest dodany do Vercel
-- [ ] Domena `fragmentui.com` jest przypisana do `fragment-ui-public`
-- [ ] Status domeny: "Valid Configuration"
-- [ ] https://fragmentui.com ładuje się poprawnie
-- [ ] Wszystkie linki działają
-- [ ] Registry działa: https://fragmentui.com/r/button.json
-- [ ] (Opcjonalnie) Stary projekt `fragment-ui` usunięty z Vercel
-
----
-
-## 🎉 Gotowe!
-
-Teraz:
-- ✅ `fragmentui.com` wskazuje na projekt `fragment-ui-public`
-- ✅ Każdy push do `fragment-ui-public` automatycznie deployuje się na fragmentui.com
-- ✅ Stary projekt `fragment-ui` może zostać usunięty (opcjonalnie)
+- [ ] Project `fragment-ui-public` is added to Vercel
+- [ ] Domain `fragmentui.com` is assigned to `fragment-ui-public`
+- [ ] Domain status: "Valid Configuration"
+- [ ] https://fragmentui.com loads correctly
+- [ ] All links work
+- [ ] Registry works: https://fragmentui.com/r/button.json
+- [ ] (Optional) Old project `fragment-ui` deleted from Vercel
 
 ---
 
-**Powodzenia! 🚀**
+## 🎉 Done!
 
+Now:
+- ✅ `fragmentui.com` points to project `fragment-ui-public`
+- ✅ Every push to `fragment-ui-public` automatically deploys to fragmentui.com
+- ✅ Old project `fragment-ui` can be deleted (optional)
+
+---
+
+**Good luck! 🚀**

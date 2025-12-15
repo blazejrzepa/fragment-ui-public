@@ -1,54 +1,53 @@
-# Quick Start - Push do Private Repo
+# Quick Start Guide
 
 ## ✅ Status
 
-- [x] Obecne `fragment-ui` jest już PUBLIC na GitHub
-- [x] Nowe repo `fragment-ui-public` gotowe lokalnie
-- [ ] Trzeba utworzyć PRIVATE repo na GitHub i push
+- [x] Current `fragment-ui` is already PUBLIC on GitHub
+- [x] New `fragment-ui-public` repo ready locally
+- [ ] Need to create PRIVATE repo on GitHub and push
 
-## 🚀 Szybkie kroki
+## 🚀 Quick Steps
 
-### 1. Utwórz PRIVATE repo na GitHub
+### 1. Create PRIVATE Repo on GitHub
 
-1. Przejdź do: https://github.com/new
-2. **Repository name**: `fragment-ui-ds` (lub wybierz inną nazwę)
+1. Go to: https://github.com/new
+2. **Repository name**: `fragment-ui-ds` (or choose another name)
 3. **Description**: "Clean Fragment UI Design System"
-4. **Visibility**: ✅ **Private** (ważne!)
-5. **NIE zaznaczaj**: README, .gitignore, LICENSE
-6. Kliknij **"Create repository"**
+4. **Visibility**: ✅ **Private** (important!)
+5. **DO NOT check**: README, .gitignore, LICENSE
+6. Click **"Create repository"**
 
-### 2. Push lokalnego repo
+### 2. Push Local Repo
 
-Po utworzeniu repo, GitHub pokaże instrukcje. Użyj tych komend:
+After creating repo, GitHub will show instructions. Use these commands:
 
 ```bash
 cd /Users/blazejrzepa/Dev/fragment-ui-public
 
-# Zastąp YOUR_USERNAME i fragment-ui-ds
+# Replace YOUR_USERNAME and fragment-ui-ds
 git remote add origin https://github.com/YOUR_USERNAME/fragment-ui-ds.git
 git branch -M main
 git push -u origin main
 ```
 
-### 3. Sprawdź
+### 3. Verify
 
 ```bash
 git remote -v
-# Powinno pokazać URL do Twojego private repo
+# Should show URL to your private repo
 ```
 
-## 📝 Notatki
+## 📝 Notes
 
-- To repo jest **private** - możesz spokojnie testować
-- Możesz później zmienić na public, gdy będzie gotowe
-- Wszystkie pakiety się budują ✅
-- Brak zależności od Studio/telemetry ✅
+- This repo is **private** - you can safely test
+- You can change to public later when ready
+- All packages build successfully ✅
+- No dependencies on Studio/telemetry ✅
 
-## 🎯 Co dalej?
+## 🎯 What's Next?
 
-Po pushu możesz:
-- Testować lokalnie
-- Dodać CI/CD (GitHub Actions)
-- Rozważyć publikację pakietów na npm
-- Zmienić na public, gdy będzie gotowe
-
+After push you can:
+- Test locally
+- Add CI/CD (GitHub Actions)
+- Consider publishing packages to npm
+- Change to public when ready

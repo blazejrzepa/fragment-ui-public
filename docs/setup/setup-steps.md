@@ -1,277 +1,276 @@
-# 🚀 Krok po kroku: Setup fragmentui.com
+# 🚀 Step-by-Step: Setup fragmentui.com
 
-## 📋 Przegląd kroków
+## 📋 Overview
 
-1. ✅ Zmień `fragment-ui` na PRIVATE
-2. ✅ Połącz `fragment-ui-public` z Vercel
-3. ✅ Skonfiguruj domenę fragmentui.com
-4. ✅ Przetestuj deployment
-5. ✅ Zweryfikuj wszystko działa
-
----
-
-## KROK 1: Zmień `fragment-ui` na PRIVATE
-
-### 1.1 Otwórz repozytorium na GitHub
-
-1. Przejdź do: https://github.com/blazejrzepa/fragment-ui
-2. Kliknij **Settings** (w górnym menu repozytorium)
-
-### 1.2 Zmień widoczność na PRIVATE
-
-1. W Settings, przewiń na dół do sekcji **"Danger Zone"**
-2. Kliknij **"Change visibility"**
-3. Wybierz **"Change to private"**
-4. Wpisz nazwę repozytorium: `blazejrzepa/fragment-ui`
-5. Kliknij **"I understand, change repository visibility"**
-6. Potwierdź zmianę
-
-### 1.3 Zweryfikuj
-
-- Sprawdź czy repo jest teraz PRIVATE (ikona kłódki obok nazwy)
-
-**✅ KROK 1 ZAKOŃCZONY**
+1. ✅ Change `fragment-ui` to PRIVATE
+2. ✅ Connect `fragment-ui-public` to Vercel
+3. ✅ Configure domain fragmentui.com
+4. ✅ Test deployment
+5. ✅ Verify everything works
 
 ---
 
-## KROK 2: Połącz `fragment-ui-public` z Vercel
+## STEP 1: Change `fragment-ui` to PRIVATE
 
-### 2.1 Zaloguj się do Vercel
+### 1.1 Open Repository on GitHub
 
-1. Przejdź do: https://vercel.com
-2. Zaloguj się (użyj GitHub account - zalecane)
-3. Jeśli nie masz konta, utwórz je (darmowe)
+1. Go to: https://github.com/blazejrzepa/fragment-ui
+2. Click **Settings** (in top menu of repository)
 
-### 2.2 Importuj repozytorium
+### 1.2 Change Visibility to PRIVATE
 
-1. W Vercel Dashboard, kliknij **"Add New..."** → **"Project"**
-2. Kliknij **"Import Git Repository"**
-3. Znajdź i wybierz: **`blazejrzepa/fragment-ui-public`**
-4. Jeśli nie widzisz repo, kliknij **"Adjust GitHub App Permissions"** i zezwól na dostęp
+1. In Settings, scroll down to **"Danger Zone"** section
+2. Click **"Change visibility"**
+3. Select **"Change to private"**
+4. Type repository name: `blazejrzepa/fragment-ui`
+5. Click **"I understand, change repository visibility"**
+6. Confirm change
 
-### 2.3 Skonfiguruj projekt
+### 1.3 Verify
 
-Po wybraniu repozytorium, Vercel pokaże konfigurację:
+- Check if repo is now PRIVATE (lock icon next to name)
+
+**✅ STEP 1 COMPLETE**
+
+---
+
+## STEP 2: Connect `fragment-ui-public` to Vercel
+
+### 2.1 Log in to Vercel
+
+1. Go to: https://vercel.com
+2. Log in (use GitHub account - recommended)
+3. If you don't have an account, create one (free)
+
+### 2.2 Import Repository
+
+1. In Vercel Dashboard, click **"Add New..."** → **"Project"**
+2. Click **"Import Git Repository"**
+3. Find and select: **`blazejrzepa/fragment-ui-public`**
+4. If you don't see repo, click **"Adjust GitHub App Permissions"** and allow access
+
+### 2.3 Configure Project
+
+After selecting repository, Vercel will show configuration:
 
 **Framework Preset:**
-- Wybierz: **Next.js** (powinno być automatycznie wykryte)
+- Select: **Next.js** (should be automatically detected)
 
 **Root Directory:**
-- Kliknij **"Edit"** obok "Root Directory"
-- Zmień na: `apps/www`
-- Kliknij **"Continue"**
+- Click **"Edit"** next to "Root Directory"
+- Change to: `apps/www`
+- Click **"Continue"**
 
 **Build and Output Settings:**
-- **Build Command:** (zostaw puste - użyjemy z vercel.json)
-- **Output Directory:** `.next` (powinno być automatycznie)
-- **Install Command:** `pnpm install` (lub zostaw puste)
+- **Build Command:** (leave empty - we'll use from vercel.json)
+- **Output Directory:** `.next` (should be automatic)
+- **Install Command:** `pnpm install` (or leave empty)
 
 **Environment Variables:**
-- Na razie zostaw puste (dodamy później jeśli potrzeba)
+- Leave empty for now (we'll add later if needed)
 
 ### 2.4 Deploy
 
-1. Kliknij **"Deploy"**
-2. Poczekaj na zakończenie builda (2-5 minut)
-3. Po zakończeniu, zobaczysz link: `https://fragment-ui-public-xxx.vercel.app`
+1. Click **"Deploy"**
+2. Wait for build to complete (2-5 minutes)
+3. After completion, you'll see link: `https://fragment-ui-public-xxx.vercel.app`
 
-**✅ KROK 2 ZAKOŃCZONY**
+**✅ STEP 2 COMPLETE**
 
 ---
 
-## KROK 3: Skonfiguruj domenę fragmentui.com
+## STEP 3: Configure Domain fragmentui.com
 
-### 3.1 Dodaj domenę w Vercel
+### 3.1 Add Domain in Vercel
 
-1. W Vercel Dashboard, otwórz projekt `fragment-ui-public`
-2. Przejdź do zakładki **"Settings"**
-3. Kliknij **"Domains"** w lewym menu
-4. W polu "Add Domain", wpisz: `fragmentui.com`
-5. Kliknij **"Add"**
+1. In Vercel Dashboard, open project `fragment-ui-public`
+2. Go to **"Settings"** tab
+3. Click **"Domains"** in left menu
+4. In "Add Domain" field, type: `fragmentui.com`
+5. Click **"Add"**
 
-### 3.2 Skonfiguruj DNS
+### 3.2 Configure DNS
 
-Vercel pokaże instrukcje konfiguracji DNS. Masz dwie opcje:
+Vercel will show DNS configuration instructions. You have two options:
 
-#### Opcja A: Root Domain (fragmentui.com)
+#### Option A: Root Domain (fragmentui.com)
 
-**Jeśli Twój provider DNS wspiera ANAME/ALIAS:**
-- Dodaj rekord: `ANAME` lub `ALIAS`
-- Name: `@` (lub puste)
+**If your DNS provider supports ANAME/ALIAS:**
+- Add record: `ANAME` or `ALIAS`
+- Name: `@` (or empty)
 - Value: `cname.vercel-dns.com`
 
-**Jeśli NIE wspiera ANAME/ALIAS:**
-- Dodaj rekord: `A`
-- Name: `@` (lub puste)
-- Value: IP z Vercel (Vercel pokaże IP do użycia)
+**If it does NOT support ANAME/ALIAS:**
+- Add record: `A`
+- Name: `@` (or empty)
+- Value: IP from Vercel (Vercel will show IP to use)
 
-#### Opcja B: CNAME dla www (www.fragmentui.com)
+#### Option B: CNAME for www (www.fragmentui.com)
 
-- Dodaj rekord: `CNAME`
+- Add record: `CNAME`
 - Name: `www`
 - Value: `cname.vercel-dns.com`
 
-### 3.3 Gdzie skonfigurować DNS?
+### 3.3 Where to Configure DNS?
 
-**Jeśli masz domenę na:**
+**If you have domain on:**
 - **Cloudflare**: Dashboard → DNS → Records
 - **Namecheap**: Domain List → Manage → Advanced DNS
 - **GoDaddy**: My Products → DNS → Records
 - **Google Domains**: DNS → Custom records
 
-### 3.4 Dodaj rekordy DNS
+### 3.4 Add DNS Records
 
-1. Zaloguj się do panelu swojego providera DNS
-2. Znajdź sekcję "DNS Records" lub "DNS Management"
-3. Dodaj rekordy zgodnie z instrukcjami Vercel:
-   - Dla root domain: A record lub ANAME
-   - Dla www: CNAME record
-4. Zapisz zmiany
+1. Log in to your DNS provider's panel
+2. Find "DNS Records" or "DNS Management" section
+3. Add records according to Vercel instructions:
+   - For root domain: A record or ANAME
+   - For www: CNAME record
+4. Save changes
 
-### 3.5 Zweryfikuj w Vercel
+### 3.5 Verify in Vercel
 
-1. Wróć do Vercel → Settings → Domains
-2. Kliknij **"Refresh"** obok domeny
-3. Vercel sprawdzi konfigurację DNS
-4. Status zmieni się na **"Valid Configuration"** (może zająć kilka minut)
+1. Return to Vercel → Settings → Domains
+2. Click **"Refresh"** next to domain
+3. Vercel will check DNS configuration
+4. Status will change to **"Valid Configuration"** (may take a few minutes)
 
-**⚠️ UWAGA:** Propagacja DNS może zająć 24-48 godzin, ale zwykle działa w ciągu kilku minut do godziny.
+**⚠️ NOTE:** DNS propagation can take 24-48 hours, but usually works within a few minutes to an hour.
 
-**✅ KROK 3 ZAKOŃCZONY**
-
----
-
-## KROK 4: Przetestuj deployment
-
-### 4.1 Sprawdź czy build się powiódł
-
-1. W Vercel Dashboard → Project → **"Deployments"**
-2. Sprawdź czy ostatni deployment ma status **"Ready"** (zielony)
-3. Jeśli jest błąd, kliknij na deployment i sprawdź logi
-
-### 4.2 Sprawdź preview URL
-
-1. Kliknij na deployment
-2. Kliknij **"Visit"** (lub użyj linku `https://fragment-ui-public-xxx.vercel.app`)
-3. Sprawdź czy strona się ładuje
-
-### 4.3 Sprawdź domenę (jeśli DNS jest gotowe)
-
-1. Otwórz: https://fragmentui.com
-2. Sprawdź czy strona się ładuje
-3. Sprawdź czy wszystkie linki działają
-
-### 4.4 Sprawdź registry
-
-1. Otwórz: https://fragmentui.com/r/button.json
-2. Sprawdź czy zwraca JSON z komponentem
-
-**✅ KROK 4 ZAKOŃCZONY**
+**✅ STEP 3 COMPLETE**
 
 ---
 
-## KROK 5: Zweryfikuj wszystko działa
+## STEP 4: Test Deployment
 
-### 5.1 Sprawdź główne strony
+### 4.1 Check if Build Succeeded
 
-- [ ] https://fragmentui.com - strona główna
-- [ ] https://fragmentui.com/docs - dokumentacja
-- [ ] https://fragmentui.com/components - lista komponentów
+1. In Vercel Dashboard → Project → **"Deployments"**
+2. Check if latest deployment has status **"Ready"** (green)
+3. If there's an error, click on deployment and check logs
+
+### 4.2 Check Preview URL
+
+1. Click on deployment
+2. Click **"Visit"** (or use link `https://fragment-ui-public-xxx.vercel.app`)
+3. Check if site loads
+
+### 4.3 Check Domain (if DNS is ready)
+
+1. Open: https://fragmentui.com
+2. Check if site loads
+3. Check if all links work
+
+### 4.4 Check Registry
+
+1. Open: https://fragmentui.com/r/button.json
+2. Check if it returns JSON with component
+
+**✅ STEP 4 COMPLETE**
+
+---
+
+## STEP 5: Verify Everything Works
+
+### 5.1 Check Main Pages
+
+- [ ] https://fragmentui.com - homepage
+- [ ] https://fragmentui.com/docs - documentation
+- [ ] https://fragmentui.com/components - component list
 - [ ] https://fragmentui.com/r/button.json - registry
 
-### 5.2 Sprawdź komponenty
+### 5.2 Check Components
 
-- [ ] Komponenty się wyświetlają
-- [ ] Przykłady kodu działają
-- [ ] Dark mode działa
-- [ ] Nawigacja działa
+- [ ] Components display correctly
+- [ ] Code examples work
+- [ ] Dark mode works
+- [ ] Navigation works
 
-### 5.3 Sprawdź npm packages
+### 5.3 Check npm Packages
 
 - [ ] https://www.npmjs.com/package/@fragment_ui/ui
 - [ ] https://www.npmjs.com/package/@fragment_ui/tokens
 - [ ] https://www.npmjs.com/package/@fragment_ui/blocks
 - [ ] https://www.npmjs.com/package/@fragment_ui/mcp-server
 
-### 5.4 Sprawdź GitHub
+### 5.4 Check GitHub
 
 - [ ] https://github.com/blazejrzepa/fragment-ui-public - PUBLIC ✅
 - [ ] https://github.com/blazejrzepa/fragment-ui - PRIVATE ✅
 
-**✅ KROK 5 ZAKOŃCZONY**
+**✅ STEP 5 COMPLETE**
 
 ---
 
-## 🎉 Gotowe!
+## 🎉 Done!
 
-Teraz masz:
-- ✅ `fragment-ui` jako PRIVATE (gdzie pracujesz)
-- ✅ `fragment-ui-public` jako PUBLIC (oficjalne repo)
-- ✅ fragmentui.com działa i jest podpięte
-- ✅ Automatyczny deployment przy każdym push
+Now you have:
+- ✅ `fragment-ui` as PRIVATE (where you work)
+- ✅ `fragment-ui-public` as PUBLIC (official repo)
+- ✅ fragmentui.com works and is connected
+- ✅ Automatic deployment on every push
 
 ---
 
-## 🔄 Co dalej?
+## 🔄 What's Next?
 
-### Automatyczny deployment
+### Automatic Deployment
 
-Od teraz, każdy push do `main` w `fragment-ui-public` automatycznie:
-1. Triggeruje build w Vercel
-2. Deployuje nową wersję
-3. Aktualizuje fragmentui.com
+From now on, every push to `main` in `fragment-ui-public` automatically:
+1. Triggers build in Vercel
+2. Deploys new version
+3. Updates fragmentui.com
 
-### Workflow pracy
+### Workflow
 
-1. **Pracujesz w `fragment-ui`** (private)
-2. **Synchronizujesz do `fragment-ui-public`** (public)
-3. **Push do GitHub** → automatyczny deploy
-4. **Strona aktualizuje się automatycznie**
+1. **Work in `fragment-ui`** (private)
+2. **Sync to `fragment-ui-public`** (public)
+3. **Push to GitHub** → automatic deploy
+4. **Site updates automatically**
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Build fails w Vercel
+### Build Fails in Vercel
 
-**Problem:** Build się nie powiódł
+**Problem:** Build failed
 
-**Rozwiązanie:**
-1. Sprawdź logi w Vercel Dashboard → Deployments → kliknij na failed deployment
-2. Sprawdź czy wszystkie zależności są dostępne
-3. Sprawdź czy `vercel.json` ma poprawny build command
-4. Sprawdź czy root directory jest ustawione na `apps/www`
+**Solution:**
+1. Check logs in Vercel Dashboard → Deployments → click on failed deployment
+2. Check if all dependencies are available
+3. Check if `vercel.json` has correct build command
+4. Check if root directory is set to `apps/www`
 
-### DNS nie działa
+### DNS Doesn't Work
 
-**Problem:** fragmentui.com nie ładuje się
+**Problem:** fragmentui.com doesn't load
 
-**Rozwiązanie:**
-1. Sprawdź konfigurację DNS w panelu providera
-2. Sprawdź propagację DNS: https://dnschecker.org
-3. Sprawdź czy domena jest zweryfikowana w Vercel
-4. Poczekaj na propagację DNS (może zająć do 48h)
+**Solution:**
+1. Check DNS configuration in provider panel
+2. Check DNS propagation: https://dnschecker.org
+3. Check if domain is verified in Vercel
+4. Wait for DNS propagation (can take up to 48h)
 
-### Strona się nie ładuje
+### Site Doesn't Load
 
-**Problem:** Strona zwraca błąd
+**Problem:** Site returns error
 
-**Rozwiązanie:**
-1. Sprawdź logi w Vercel Dashboard
-2. Sprawdź czy build się powiódł
-3. Sprawdź czy wszystkie assets są dostępne
-4. Sprawdź czy nie ma błędów w konsoli przeglądarki
-
----
-
-## 📞 Potrzebujesz pomocy?
-
-Jeśli napotkasz problemy:
-1. Sprawdź logi w Vercel Dashboard
-2. Sprawdź dokumentację Vercel: https://vercel.com/docs
-3. Sprawdź dokumentację Next.js: https://nextjs.org/docs
+**Solution:**
+1. Check logs in Vercel Dashboard
+2. Check if build succeeded
+3. Check if all assets are available
+4. Check if there are no errors in browser console
 
 ---
 
-**Powodzenia! 🚀**
+## 📞 Need Help?
 
+If you encounter problems:
+1. Check logs in Vercel Dashboard
+2. Check Vercel documentation: https://vercel.com/docs
+3. Check Next.js documentation: https://nextjs.org/docs
+
+---
+
+**Good luck! 🚀**
