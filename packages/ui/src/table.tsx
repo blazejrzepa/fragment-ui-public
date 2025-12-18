@@ -52,7 +52,7 @@ export const TableRow = React.forwardRef<
     <tr
       ref={ref}
       className={clsx(
-        "border-b border-[color:var(--color-border-base)] transition-colors hover:bg-[color:var(--color-surface-2)]",
+        "border-b border-[color:var(--color-border-base)] transition-colors duration-[var(--motion-duration-base)] hover:bg-[color:var(--color-surface-2)]",
         className
       )}
       {...props}
@@ -68,7 +68,7 @@ export const TableHead = React.forwardRef<
     <th
       ref={ref}
       className={clsx(
-        "h-10 pl-3 pr-2 text-left align-middle font-medium text-[color:var(--color-fg-base)] whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        "h-10 pl-[var(--space-3)] pr-[var(--space-2)] text-left align-middle font-medium text-[color:var(--color-fg-base)] whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className
       )}
       {...props}
@@ -84,7 +84,7 @@ export const TableCell = React.forwardRef<
     <td
       ref={ref}
       className={clsx(
-        "pl-3 pr-2 py-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
+        "pl-[var(--space-3)] pr-[var(--space-2)] py-[var(--space-2)] align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className
       )}
       {...props}
@@ -100,7 +100,7 @@ export const TableCaption = React.forwardRef<
     <caption
       ref={ref}
       className={clsx(
-        "mt-4 text-sm text-[color:var(--color-fg-muted)]",
+        "mt-[var(--space-4)] text-sm text-[color:var(--color-fg-muted)]",
         className
       )}
       {...props}

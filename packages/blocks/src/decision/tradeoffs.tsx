@@ -11,7 +11,6 @@
  */
 
 import * as React from "react";
-import { Link } from "../link-helper";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@fragment_ui/ui";
 import { Button } from "@fragment_ui/ui";
 import clsx from "clsx";
@@ -86,15 +85,13 @@ export function Tradeoffs({ title, description, options, className }: TradeoffsP
             </CardContent>
             <CardFooter>
               {option.ctaHref ? (
-                <Link href={option.ctaHref}>
-                  <Button
+                <Button asChild
                     variant="outline"
                     data-action-id={option.actionContractId}
                     data-action-kind={option.actionContractId ? "soft" : undefined}
-                  >
+                  ><a href={option.ctaHref}>
                     {option.ctaText}
-                  </Button>
-                </Link>
+                  </a></Button>
               ) : (
                 <Button
                   variant="outline"

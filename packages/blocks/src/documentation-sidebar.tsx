@@ -194,16 +194,16 @@ export function DocumentationSidebar({
         <LinkComponent
           href={item.href}
           className={clsx(
-            "peer/menu-button flex items-center gap-2 rounded-md p-2 text-left outline-hidden transition-[width,height,padding] focus-visible:ring-2 focus-visible:ring-[color:var(--color-border-base)] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-normal after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md",
+            "peer/menu-button flex items-center gap-2 rounded-md p-2 text-left outline-hidden transition-[width,height,padding] focus-visible:ring-2 focus-visible:ring-[color:var(--color-border-base)] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 relative h-[30px] w-fit overflow-visible border border-transparent text-[0.8rem] font-medium after:absolute after:inset-x-0 after:-inset-y-1 after:z-0 after:rounded-md",
             active
-              ? "font-normal text-[color:var(--color-fg-base)] bg-[color:var(--color-surface-2)] border-[color:var(--color-border-base)] data-[active=true]:bg-accent data-[active=true]:border-accent"
-              : "text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)]"
+              ? "font-medium text-[color:color-mix(in_oklab,var(--color-fg-base)_90%,transparent)] bg-[color:var(--color-surface-1)] border-[color:var(--color-border-base)] data-[active=true]:bg-accent data-[active=true]:border-accent"
+              : "text-[color:color-mix(in_oklab,var(--color-fg-base)_90%,transparent)] hover:bg-[color:var(--color-surface-1)] hover:text-[color:color-mix(in_oklab,var(--color-fg-base)_90%,transparent)]"
           )}
           data-active={active}
         >
           <span className="absolute inset-0 flex w-[var(--sidebar-width)] bg-transparent"></span>
           {item.icon && <span>{item.icon}</span>}
-          <span>{item.title}</span>
+          <span className="font-medium">{item.title}</span>
           {item.badge && (
             <span className="ml-auto text-xs px-1.5 py-0.5 rounded bg-[color:var(--color-surface-2)]">
               {item.badge}

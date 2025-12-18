@@ -43,7 +43,7 @@ const CollapsibleTrigger = React.forwardRef<
     >
       {children}
       {showIcon && (
-        <ChevronDown className="h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
+        <ChevronDown className="h-4 w-4 transition-transform duration-[var(--motion-duration-base)] data-[state=open]:rotate-180" />
       )}
     </CollapsiblePrimitive.Trigger>
   );

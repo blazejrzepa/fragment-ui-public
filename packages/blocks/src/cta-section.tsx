@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Button } from "@fragment_ui/ui";
-import { Link } from "./link-helper";
 import clsx from "clsx";
 
 export interface CTAAction {
@@ -59,16 +58,14 @@ export function CTASection({
             <div className="flex flex-col sm:flex-row gap-4">
               {secondaryCTA && (
                 secondaryCTA.href ? (
-                  <Link href={secondaryCTA.href}>
-                    <Button
+                  <Button asChild
                       variant={secondaryCTA.variant || "outline"}
                       size="lg"
                       data-action-id={secondaryCTA.action}
                       data-action-kind="secondaryCTA"
-                    >
+                    ><a href={secondaryCTA.href}>
                       {secondaryCTA.label}
-                    </Button>
-                  </Link>
+                    </a></Button>
                 ) : (
                   <Button
                     variant={secondaryCTA.variant || "outline"}
@@ -83,16 +80,14 @@ export function CTASection({
               )}
               {primaryCTA && (
                 primaryCTA.href ? (
-                  <Link href={primaryCTA.href}>
-                    <Button
+                  <Button asChild
                       variant={primaryCTA.variant || "solid"}
                       size="lg"
                       data-action-id={primaryCTA.action}
                       data-action-kind="primaryCTA"
-                    >
+                    ><a href={primaryCTA.href}>
                       {primaryCTA.label}
-                    </Button>
-                  </Link>
+                    </a></Button>
                 ) : (
                   <Button
                     variant={primaryCTA.variant || "solid"}
@@ -129,16 +124,14 @@ export function CTASection({
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {primaryCTA && (
               primaryCTA.href ? (
-                <Link href={primaryCTA.href}>
-                  <Button
+                <Button asChild
                     variant={primaryCTA.variant || "solid"}
                     size="lg"
                     data-action-id={primaryCTA.action}
                     data-action-kind="primaryCTA"
-                  >
+                  ><a href={primaryCTA.href}>
                     {primaryCTA.label}
-                  </Button>
-                </Link>
+                  </a></Button>
               ) : (
                 <Button
                   variant={primaryCTA.variant || "solid"}
@@ -153,16 +146,14 @@ export function CTASection({
             )}
             {secondaryCTA && (
               secondaryCTA.href ? (
-                <Link href={secondaryCTA.href}>
-                  <Button
+                <Button asChild
                     variant={secondaryCTA.variant || "outline"}
                     size="lg"
                     data-action-id={secondaryCTA.action}
                     data-action-kind="secondaryCTA"
-                  >
+                  ><a href={secondaryCTA.href}>
                     {secondaryCTA.label}
-                  </Button>
-                </Link>
+                  </a></Button>
               ) : (
                 <Button
                   variant={secondaryCTA.variant || "outline"}

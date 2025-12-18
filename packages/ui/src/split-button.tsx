@@ -94,7 +94,7 @@ export const SplitButton = React.memo(
               size={size}
               disabled={disabled}
               className={clsx(
-                "rounded-l-none px-2",
+                "rounded-l-none px-[var(--space-2)]",
                 variant === "outline" && "border-l-0"
               )}
               aria-label="More options"
@@ -112,7 +112,7 @@ export const SplitButton = React.memo(
                 }}
                 disabled={option.disabled}
               >
-                {option.icon && <span className="mr-2">{option.icon}</span>}
+                {option.icon && <span className="mr-[var(--space-2)]">{option.icon}</span>}
                 {option.label}
               </DropdownMenuItem>
             ))}

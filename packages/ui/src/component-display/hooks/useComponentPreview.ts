@@ -79,7 +79,7 @@ export function useComponentPreview(
         }
         
         // Debug: log normalization for problematic components (only in development)
-        if (typeof window !== 'undefined' && (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development')) {
+        if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
           const problematicComponents = ['combobox', 'pricingtable', 'pricing-table', 'formfieldenhanced', 'form-field-enhanced', 'tabslist', 'tabs-list'];
           if (problematicComponents.includes(normalizedName)) {
             console.log(`[useComponentPreview] Normalizing ${normalizedName}:`, {
@@ -376,7 +376,7 @@ export default function Preview() {
         }
         
         // Debug: log for Accordion (only in development)
-        if (typeof window !== 'undefined' && (typeof process !== 'undefined' && process.env?.NODE_ENV === 'development') && normalizedName === 'accordion') {
+        if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development' && normalizedName === 'accordion') {
           console.log('[useComponentPreview] Accordion: Using example from registry', {
             hasExamples: true,
             examplesCount: componentInfo.examples.length,

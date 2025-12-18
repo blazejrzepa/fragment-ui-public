@@ -167,7 +167,7 @@ export function Carousel({
           <button
             type="button"
             onClick={goToPrevious}
-            className="absolute left-[var(--space-2,8px)] top-1/2 -translate-y-1/2 z-10 rounded-full bg-[color:var(--color-surface-1)]/80 hover:bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)] p-[var(--space-2,8px)] shadow-[var(--shadow-md,0_4px_10px_rgba(0,0,0,.15))] transition-colors focus:outline-none focus:ring-2 focus:ring-brand"
+            className="absolute left-[var(--space-2,8px)] top-1/2 -translate-y-1/2 z-10 rounded-full bg-[color:var(--color-surface-1)]/80 hover:bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)] p-[var(--space-2,8px)] transition-colors focus:outline-none focus:ring-2 focus:ring-brand"
             aria-label="Previous slide"
           >
             <ArrowLeft className="h-5 w-5 text-[color:var(--color-fg-base)]" />
@@ -175,7 +175,7 @@ export function Carousel({
           <button
             type="button"
             onClick={goToNext}
-            className="absolute right-[var(--space-2,8px)] top-1/2 -translate-y-1/2 z-10 rounded-full bg-[color:var(--color-surface-1)]/80 hover:bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)] p-[var(--space-2,8px)] shadow-[var(--shadow-md,0_4px_10px_rgba(0,0,0,.15))] transition-colors focus:outline-none focus:ring-2 focus:ring-brand"
+            className="absolute right-[var(--space-2,8px)] top-1/2 -translate-y-1/2 z-10 rounded-full bg-[color:var(--color-surface-1)]/80 hover:bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)] p-[var(--space-2,8px)] transition-colors focus:outline-none focus:ring-2 focus:ring-brand"
             aria-label="Next slide"
           >
             <ArrowRight className="h-5 w-5 text-[color:var(--color-fg-base)]" />
@@ -196,10 +196,10 @@ export function Carousel({
               type="button"
               onClick={() => goToSlide(index)}
               className={clsx(
-                "h-2 w-2 rounded-full transition-all",
+                "rounded-full transition-all h-2 w-2",
                 index === currentIndex
-                  ? "bg-[color:var(--color-brand-primary)] w-8"
-                  : "bg-[color:var(--color-fg-muted)]/50 hover:bg-[color:var(--color-fg-muted)]"
+                  ? "bg-[color:var(--color-fg-base)]"
+                  : "bg-[color:var(--color-surface-1)] hover:bg-[color:var(--color-surface-1)]"
               )}
               role="tab"
               aria-selected={index === currentIndex}

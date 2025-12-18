@@ -124,9 +124,10 @@ function TreeNodeComponent({
     <div className={clsx("tree-node", node.className)} data-node-id={node.id} role="treeitem" aria-expanded={hasChildren ? isExpanded : undefined} aria-selected={isSelected}>
       <div
         className={clsx(
-          "group flex items-center gap-2 py-1 px-2 rounded-[var(--radius-sm)]",
+          "group flex items-center gap-[var(--space-2)] py-[var(--space-1)] px-[var(--space-2)] rounded-[var(--radius-sm)]",
           "hover:bg-[color:var(--color-surface-2)]",
           "cursor-pointer select-none",
+          "transition-colors duration-[var(--motion-duration-base)]",
           isSelected && "bg-[color:var(--color-surface-2)]",
           node.disabled && "opacity-50 cursor-not-allowed"
         )}
@@ -181,7 +182,7 @@ function TreeNodeComponent({
           >
             <ChevronRight
               className={clsx(
-                "h-4 w-4 transition-transform duration-200",
+                "h-4 w-4 transition-transform duration-[var(--motion-duration-base)]",
                 isExpanded && "rotate-90"
               )}
             />
@@ -202,7 +203,7 @@ function TreeNodeComponent({
           const actions = renderNodeActions(node);
           if (!actions) return null;
           return (
-            <div className="tree-node-actions opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 ml-2" style={{ minWidth: '24px' }}>
+            <div className="tree-node-actions opacity-0 group-hover:opacity-100 transition-opacity duration-[var(--motion-duration-base)] flex-shrink-0 ml-[var(--space-2)]" style={{ minWidth: '24px' }}>
               {actions}
             </div>
           );
@@ -372,7 +373,7 @@ export const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
       <div
         ref={ref}
         className={clsx(
-          "tree-view w-full border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-2",
+          "tree-view w-full border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-2)]",
           "bg-[color:var(--color-surface-1)]",
           className
         )}

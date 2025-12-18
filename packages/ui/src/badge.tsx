@@ -10,14 +10,15 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 const badgeClasses = {
   base: "inline-flex items-center justify-center rounded-full font-medium transition-colors",
   size: {
-    sm: "px-2 py-0.5 text-xs",
-    md: "px-2.5 py-1 text-xs",
-    lg: "px-3 py-1.5 text-sm",
+    sm: "px-[var(--space-2)] py-[var(--space-1)] text-xs",
+    md: "px-[var(--space-3)] py-[var(--space-2)] text-xs",
+    lg: "px-[var(--space-3)] py-[var(--space-2)] text-sm",
   },
   variant: {
     solid: "bg-[color:var(--color-brand-primary)] text-[color:var(--color-brand-primary-600)]",
     outline: "border border-[color:var(--color-border-base)] text-[color:var(--color-fg-base)]",
-    subtle: "bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)]",
+    subtle:
+      "bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-2)] active:bg-[color:var(--color-surface-2)]",
   },
 } as const;
 

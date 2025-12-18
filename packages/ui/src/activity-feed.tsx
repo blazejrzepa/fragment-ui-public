@@ -67,11 +67,14 @@ export const ActivityFeed = React.memo(
       };
 
       return (
-        <div ref={ref} className={clsx("space-y-4", className)}>
+        <div
+          ref={ref}
+          className={clsx("fragment-activity-feed space-y-[var(--space-4)]", className)}
+        >
           {displayItems.map((item) => (
             <div
               key={item.id}
-              className="flex gap-3 items-start pb-4 border-b border-[color:var(--color-border-base)] last:border-0 last:pb-0"
+              className="flex gap-[var(--space-3)] items-start pb-[var(--space-4)] border-b border-[color:var(--color-border-base)] last:border-0 last:pb-0"
             >
               {item.user?.avatar ? (
                 <Avatar src={item.user.avatar} alt={item.user.name} />
@@ -94,7 +97,7 @@ export const ActivityFeed = React.memo(
                 </Avatar>
               )}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-[var(--space-2)] mb-[var(--space-1)]">
                   <span className="font-medium text-[color:var(--color-fg-base)]">
                     {item.title}
                   </span>
@@ -103,7 +106,7 @@ export const ActivityFeed = React.memo(
                   </Badge>
                 </div>
                 {item.description && (
-                  <p className="text-sm text-[color:var(--color-fg-muted)] mb-1">
+                  <p className="text-sm text-[color:var(--color-fg-muted)] mb-[var(--space-1)]">
                     {item.description}
                   </p>
                 )}

@@ -63,7 +63,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const pages = getPageNumbers();
 
     return (
-      <nav ref={ref} className={clsx("flex items-center gap-2", className)}>
+      <nav ref={ref} className={clsx("flex items-center gap-[var(--space-2)]", className)}>
         {showFirstLast && (
           <Button
             key="first"
@@ -92,7 +92,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             return (
               <span
                 key={`ellipsis-${index}`}
-                className="px-2 text-[color:var(--color-fg-muted)]"
+                className="px-[var(--space-2)] text-[color:var(--color-fg-muted)]"
               >
                 ...
               </span>

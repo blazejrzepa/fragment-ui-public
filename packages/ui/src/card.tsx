@@ -32,7 +32,7 @@ const Card = React.memo(
         <div
           ref={ref}
           className={clsx(
-            "inline-flex flex-col items-start rounded-[var(--radius-md,12px)] p-[var(--space-6,24px)]",
+            "inline-flex flex-col items-start rounded-[var(--radius-md)] p-[var(--space-6)]",
             "bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)]",
             className
           )}
@@ -50,7 +50,7 @@ const CardHeader = React.memo(
       return (
         <div
           ref={ref}
-          className={clsx("flex flex-col space-y-0 w-full", className)}
+          className={clsx("flex flex-col space-y-[var(--space-0)] w-full", className)}
           {...props}
         />
       );
@@ -66,12 +66,12 @@ const CardTitle = React.memo(
           ref={ref}
           className={clsx(
             "text-[color:var(--color-fg-base)] font-medium",
-            "text-lg leading-tight",
-            "mb-1.5",
+            "text-[var(--typography-size-lg)] leading-tight",
+            "mb-[calc(var(--space-1)+2px)]",
             className
           )}
           style={{
-            marginBottom: "0.375rem", // mb-1.5 = 6px
+            marginBottom: "calc(var(--space-1) + 2px)", // 6px
             ...style,
           }}
           {...props}
@@ -88,8 +88,8 @@ const CardDescription = React.memo(
         <p
           ref={ref}
           className={clsx(
-            "text-sm text-[color:var(--color-fg-muted)] leading-relaxed",
-            "mt-0",
+            "text-[var(--typography-size-sm)] text-[color:var(--color-fg-muted)] leading-relaxed",
+            "mt-[var(--space-0)]",
             className
           )}
           style={{
@@ -110,12 +110,12 @@ const CardContent = React.memo(
         <div
           ref={ref}
           className={clsx(
-            "text-[color:var(--color-fg-base)] text-sm leading-relaxed",
+            "text-[color:var(--color-fg-base)] text-[var(--typography-size-sm)] leading-relaxed",
             // Default vertical spacing between card header and content
-            "mt-4",
+            "mt-[var(--space-4)]",
             // Reset margin-bottom for CardContent and p elements inside
-            "mb-0",
-            "[&_p]:mb-0",
+            "mb-[var(--space-0)]",
+            "[&_p]:mb-[var(--space-0)]",
             className
           )}
           {...props}
@@ -136,8 +136,8 @@ const CardFooter = React.memo(
             className
           )}
           style={{
-            marginTop: "0",
-            paddingTop: "1.5rem", // 24px - force override any global styles
+            marginTop: "var(--space-0)",
+            paddingTop: "var(--space-6)", // 24px - force override any global styles
             ...style,
           }}
           {...props}

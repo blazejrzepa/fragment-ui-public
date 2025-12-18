@@ -20,7 +20,7 @@ const ToggleGroup = React.forwardRef<
       data-spacing={spacing}
       className={clsx(
         "inline-flex items-center",
-        spacing === "default" && "gap-1",
+        spacing === "default" && "gap-[var(--space-1)]",
         spacing === "0" && "gap-0",
         className
       )}
@@ -49,13 +49,13 @@ const ToggleGroupItem = React.forwardRef<
       data-variant={variant}
       data-spacing={spacing}
       className={clsx(
-        "inline-flex items-center justify-center gap-2 text-sm font-medium",
+        "inline-flex items-center justify-center gap-[var(--space-2)] text-sm font-medium",
         "whitespace-nowrap",
         "disabled:pointer-events-none disabled:opacity-50",
-        "outline-none transition-[color,box-shadow]",
+        "outline-none transition-[color,box-shadow] duration-[var(--motion-duration-base)]",
         "focus-visible:z-10",
         // Base styles
-        "h-9 px-3",
+        "h-9 px-[var(--space-3)]",
         // Default spacing styles
         spacing === "default" && [
           "rounded-[var(--radius-sm)]",

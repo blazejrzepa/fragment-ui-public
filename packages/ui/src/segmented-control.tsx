@@ -40,30 +40,30 @@ export type SegmentedControlProps =
   | SegmentedControlMultipleProps;
 
 const sizeClasses = {
-  sm: "h-8 text-xs px-2",
-  md: "h-10 text-sm px-3",
-  lg: "h-12 text-base px-4",
+  sm: "h-[var(--space-8)] px-[var(--space-3)] leading-[1.5]",
+  md: "h-[calc(var(--space-8)+var(--space-2))] px-[var(--space-4)] leading-[1.5]",
+  lg: "h-[calc(var(--space-8)+var(--space-4))] px-[var(--space-6)] leading-[1.5]",
 };
 
 const variantClasses = {
   default: {
-    container: "bg-[color:var(--color-surface-2)] p-1",
+    container: "bg-[color:var(--color-surface-2)] !p-0 ring-1 ring-inset ring-[color:var(--color-border-base)] gap-[var(--space-0)]",
     item: {
       base: "text-[color:var(--color-fg-base)]",
       active:
-        "bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] shadow-sm",
+        "bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] shadow-xs",
     },
   },
   outline: {
-    container: "border border-[color:var(--color-border-base)] p-1",
+    container: "ring-1 ring-inset ring-[color:var(--color-border-base)] !p-0 gap-[var(--space-0)]",
     item: {
       base: "text-[color:var(--color-fg-base)]",
       active:
-        "bg-[color:var(--color-brand-primary)] text-white border-[color:var(--color-brand-primary)]",
+        "bg-[color:var(--color-brand-primary)] text-white ring-1 ring-inset ring-[color:var(--color-brand-primary)]",
     },
   },
   filled: {
-    container: "bg-[color:var(--color-surface-1)] p-1 border border-[color:var(--color-border-base)]",
+    container: "bg-[color:var(--color-surface-1)] !p-0 ring-1 ring-inset ring-[color:var(--color-border-base)] gap-[var(--space-0)]",
     item: {
       base: "text-[color:var(--color-fg-muted)]",
       active:
@@ -98,11 +98,23 @@ export const SegmentedControl = React.memo(
 
   const handleValueChange = React.useCallback(
     (newValue: string | string[]) => {
+      // Prevent deselecting all options - always keep at least one selected
+      if (!multiple) {
+        // For single selection, if newValue is empty string, keep the current value
+        if (newValue === "" || newValue === undefined || newValue === null) {
+          return; // Don't allow deselecting
+        }
+      } else {
+        // For multiple selection, ensure at least one option is selected
+        if (Array.isArray(newValue) && newValue.length === 0) {
+          return; // Don't allow deselecting all options
+        }
+      }
       if (onChange) {
         onChange(newValue as any);
       }
     },
-    [onChange]
+    [onChange, multiple]
   );
 
   const variantStyle = variantClasses[variant];
@@ -116,10 +128,11 @@ export const SegmentedControl = React.memo(
         onValueChange={handleValueChange as (value: string[]) => void}
         disabled={disabled}
         className={clsx(
-          "inline-flex items-center rounded-[var(--radius-md)]",
+          "inline-flex items-center rounded-[var(--radius-sm)]",
           variantStyle.container,
           className
         )}
+        style={{ padding: 0 }}
       >
         {safeOptions.map((option) => (
           <ToggleGroupPrimitive.Item
@@ -127,28 +140,30 @@ export const SegmentedControl = React.memo(
             value={option.value}
             disabled={disabled || option.disabled}
             className={clsx(
-              "inline-flex items-center justify-center gap-1.5 rounded-[var(--radius-sm)] font-medium",
-              "transition-all duration-200",
+              "inline-flex items-center justify-center gap-[var(--space-2)] rounded-[var(--radius-sm)] font-semibold",
+              "transition-all duration-[var(--motion-duration-base)]",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
               "disabled:pointer-events-none disabled:opacity-50",
               sizeClasses[size],
               variantStyle.item.base,
-              "data-[state=on]:font-semibold",
               variant === "default" &&
-                "data-[state=on]:bg-[color:var(--color-surface-1)] data-[state=on]:text-[color:var(--color-fg-base)] data-[state=on]:shadow-sm",
+                "data-[state=on]:bg-[color:var(--color-surface-1)] data-[state=on]:text-[color:var(--color-fg-base)] data-[state=on]:shadow-xs",
               variant === "outline" &&
-                "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white data-[state=on]:border data-[state=on]:border-[color:var(--color-brand-primary)]",
+                "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white data-[state=on]:ring-1 data-[state=on]:ring-inset data-[state=on]:ring-[color:var(--color-brand-primary)]",
               variant === "filled" &&
                 "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white"
             )}
-            aria-label={option.label}
+            style={{
+              fontSize: size === "sm" ? "12px" : size === "md" ? "var(--typography-size-sm)" : "var(--typography-size-md)"
+            }}
+            aria-label={option.label || option.value}
           >
             {option.icon && (
               <span className="flex-shrink-0" aria-hidden="true">
                 {option.icon}
               </span>
             )}
-            <span>{option.label}</span>
+            {option.label && <span>{option.label}</span>}
           </ToggleGroupPrimitive.Item>
         ))}
       </ToggleGroupPrimitive.Root>
@@ -163,39 +178,42 @@ export const SegmentedControl = React.memo(
       onValueChange={handleValueChange as (value: string) => void}
       disabled={disabled}
       className={clsx(
-        "inline-flex items-center rounded-[var(--radius-md)]",
+        "inline-flex items-center rounded-[var(--radius-sm)]",
         variantStyle.container,
         className
       )}
+      style={{ padding: 0 }}
     >
       {safeOptions.map((option) => (
-        <ToggleGroupPrimitive.Item
-          key={option.value}
-          value={option.value}
-          disabled={disabled || option.disabled}
-          className={clsx(
-            "inline-flex items-center justify-center gap-1.5 rounded-[var(--radius-sm)] font-medium",
-            "transition-all duration-200",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
-            "disabled:pointer-events-none disabled:opacity-50",
-            sizeClasses[size],
-            variantStyle.item.base,
-            "data-[state=on]:font-semibold",
-            variant === "default" &&
-              "data-[state=on]:bg-[color:var(--color-surface-1)] data-[state=on]:text-[color:var(--color-fg-base)] data-[state=on]:shadow-sm",
-            variant === "outline" &&
-              "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white data-[state=on]:border data-[state=on]:border-[color:var(--color-brand-primary)]",
-            variant === "filled" &&
-              "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white"
-          )}
-          aria-label={option.label}
-        >
+          <ToggleGroupPrimitive.Item
+            key={option.value}
+            value={option.value}
+            disabled={disabled || option.disabled}
+            className={clsx(
+              "inline-flex items-center justify-center gap-[var(--space-2)] rounded-[var(--radius-sm)] font-semibold",
+              "transition-all duration-[var(--motion-duration-base)]",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2",
+              "disabled:pointer-events-none disabled:opacity-50",
+              sizeClasses[size],
+              variantStyle.item.base,
+              variant === "default" &&
+                "data-[state=on]:bg-[color:var(--color-surface-1)] data-[state=on]:text-[color:var(--color-fg-base)] data-[state=on]:shadow-xs",
+              variant === "outline" &&
+                "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white data-[state=on]:ring-1 data-[state=on]:ring-inset data-[state=on]:ring-[color:var(--color-brand-primary)]",
+              variant === "filled" &&
+                "data-[state=on]:bg-[color:var(--color-brand-primary)] data-[state=on]:text-white"
+            )}
+            style={{
+              fontSize: size === "sm" ? "12px" : size === "md" ? "var(--typography-size-sm)" : "var(--typography-size-md)"
+            }}
+            aria-label={option.label || option.value}
+          >
           {option.icon && (
             <span className="flex-shrink-0" aria-hidden="true">
               {option.icon}
             </span>
           )}
-          <span>{option.label}</span>
+          {option.label && <span>{option.label}</span>}
         </ToggleGroupPrimitive.Item>
       ))}
     </ToggleGroupPrimitive.Root>

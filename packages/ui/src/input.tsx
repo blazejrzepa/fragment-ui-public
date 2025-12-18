@@ -14,11 +14,11 @@ export interface InputProps
 }
 
 const classesBy = {
-  base: "flex items-center flex-1 rounded-[var(--radius-sm,8px)] bg-[color:var(--color-surface-2)] placeholder:text-[color:var(--color-fg-muted)] text-[color:var(--color-fg-base)] focus:outline-none disabled:opacity-60",
+  base: "flex items-center flex-1 rounded-[var(--radius-sm)] bg-[color:var(--color-surface-1)] placeholder:text-[color:var(--color-fg-base)] text-[color:color-mix(in_oklab,var(--color-fg-base)_90%,transparent)] focus:outline-none disabled:opacity-60 font-medium",
   size: {
-    sm: "h-8 py-1.5 px-3 text-sm",
-    md: "h-10 py-2 px-4 text-sm",
-    lg: "h-12 py-3 px-4 text-base",
+    sm: "h-[var(--space-8)] py-[calc(var(--space-1)+2px)] px-[var(--space-3)] text-[var(--typography-size-sm)]",
+    md: "h-[calc(var(--space-8)+var(--space-2))] py-[var(--space-2)] px-[var(--space-4)] text-[var(--typography-size-sm)]",
+    lg: "h-[calc(var(--space-8)+var(--space-4))] py-[var(--space-3)] px-[var(--space-4)] text-[var(--typography-size-md)]",
   },
   state: {
     default: "",
@@ -61,9 +61,7 @@ export const Input = React.memo(
             style={{
               fontFamily: "Geist, sans-serif",
               fontStyle: "normal",
-              fontWeight: 500,
               lineHeight: "160%",
-              color: "var(--color-fg-base)",
               ...style,
             }}
             {...props}

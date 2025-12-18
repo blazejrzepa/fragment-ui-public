@@ -22,7 +22,7 @@ const SelectTrigger = React.forwardRef<
       ref={ref}
       suppressHydrationWarning
       className={clsx(
-        "flex h-10 items-center justify-between rounded-[6px] border bg-[color:var(--color-surface-1)] px-3 text-sm focus:outline-none disabled:opacity-60",
+        "flex h-[calc(var(--space-8)+var(--space-2))] items-center justify-between rounded-[var(--radius-sm)] border bg-[color:var(--color-surface-1)] px-[var(--space-3)] text-[var(--typography-size-sm)] focus:outline-none disabled:opacity-60",
         error
           ? "border-[color:var(--color-status-error-border)]"
           : "border-[color:var(--color-border-base)]",
@@ -56,13 +56,13 @@ const SelectContent = React.forwardRef<
         position={position}
         sideOffset={sideOffset}
         className={clsx(
-          "relative z-50 min-w-[8rem] overflow-hidden rounded-[6px] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          "relative z-50 min-w-[8rem] overflow-hidden rounded-[var(--radius-sm)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           position === "popper" && "w-[var(--radix-select-trigger-width)]",
           className
         )}
         {...props}
       >
-        <SelectPrimitive.Viewport className="p-1">
+        <SelectPrimitive.Viewport className="p-[var(--space-1)]">
           {children}
         </SelectPrimitive.Viewport>
       </SelectPrimitive.Content>
@@ -78,7 +78,7 @@ const SelectItem = React.forwardRef<
     <SelectPrimitive.Item
       ref={ref}
       className={clsx(
-        "relative flex w-full cursor-pointer select-none items-center rounded-[var(--radius-sm)] py-1.5 pl-2 pr-2 text-sm outline-none focus:bg-[color:var(--color-surface-2)] data-[disabled]:pointer-events-none data-[disabled]:opacity-60",
+        "relative flex w-full cursor-pointer select-none items-center rounded-[var(--radius-sm)] py-[var(--space-1-5)] pl-[var(--space-2)] pr-[var(--space-2)] text-[var(--typography-size-sm)] outline-none focus:bg-[color:var(--color-surface-2)] data-[disabled]:pointer-events-none data-[disabled]:opacity-60",
         className
       )}
       {...props}
@@ -98,7 +98,7 @@ const SelectLabel = React.forwardRef<
     <SelectPrimitive.Label
       ref={ref}
       className={clsx(
-        "px-2 py-1.5 text-xs font-medium text-[color:var(--foreground-secondary)]",
+        "px-[var(--space-2)] py-[var(--space-1-5)] text-[10px] font-medium text-[color:var(--color-fg-muted)]",
         className
       )}
       {...props}

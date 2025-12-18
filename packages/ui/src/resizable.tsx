@@ -295,8 +295,8 @@ export const ResizableHandle = React.forwardRef<HTMLDivElement, ResizableHandleP
           direction === "vertical" && "h-[2px] cursor-row-resize",
           direction === "both" && "w-[2px] h-[2px] cursor-nwse-resize",
           "bg-transparent",
-          "hover:bg-zinc-500",
-          "transition-colors",
+          "hover:bg-[color:var(--color-fg-muted)]",
+          "transition-colors duration-[var(--motion-duration-base)]",
           disabled && "cursor-not-allowed opacity-50",
           className
         )}

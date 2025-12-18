@@ -4,6 +4,7 @@ import clsx from "clsx";
 export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: "sm" | "md" | "lg";
   className?: string;
+  children?: React.ReactNode;
 }
 
 const sizeClasses = {
@@ -14,7 +15,27 @@ const sizeClasses = {
 
 export const Spinner = React.memo(
   React.forwardRef<HTMLDivElement, SpinnerProps>(
-    function Spinner({ size = "md", className, ...props }, ref) {
+    function Spinner({ size = "md", className, children, ...props }, ref) {
+      // If children are provided, wrap them in a spinning container
+      if (children) {
+        return (
+          <div
+            ref={ref}
+            className={clsx(
+              "inline-flex items-center justify-center animate-spin",
+              sizeClasses[size],
+              className
+            )}
+            role="status"
+            aria-label="Loading"
+            {...props}
+          >
+            {children}
+          </div>
+        );
+      }
+      
+      // Default spinner without children
       return (
         <div
           ref={ref}

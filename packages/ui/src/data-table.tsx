@@ -53,7 +53,7 @@ function RowActionsMenu<T extends Record<string, any>>({
               disabled={disabled}
               onClick={() => action.onClick(row, index)}
             >
-              {action.icon && <span className="mr-2">{action.icon}</span>}
+              {action.icon && <span className="mr-[var(--space-2)]">{action.icon}</span>}
               {action.label}
             </DropdownMenuItem>
           );
@@ -298,7 +298,7 @@ export function DataTable<T extends Record<string, any>>({
     <div className={clsx("w-full", className)}>
       {/* Filters */}
       {filterable && (
-        <div className="mb-4 flex gap-2 flex-wrap">
+        <div className="mb-[var(--space-4)] flex gap-[var(--space-2)] flex-wrap">
           {columns
             .filter((col) => col.filterable)
             .map((column) => (
@@ -313,12 +313,12 @@ export function DataTable<T extends Record<string, any>>({
         </div>
       )}
 
-      <div className="rounded-md border border-[color:var(--color-border-base)] mt-2.5 mb-2.5">
+      <div className="rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] mt-[var(--space-2-5)] mb-[var(--space-2-5)]">
         <Table>
           <TableHeader>
             <TableRow>
               {selectable && (
-                <TableHead className="w-12 pl-4">
+                <TableHead className="w-12 pl-[var(--space-4)]">
                   <Checkbox
                     checked={allSelected}
                     onCheckedChange={handleSelectAll}
@@ -346,19 +346,19 @@ export function DataTable<T extends Record<string, any>>({
                     )}
                     style={columnWidth ? { width: columnWidth } : undefined}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-[var(--space-2)]">
                       {column.sortable ? (
                         <button
                           onClick={() => handleSort(column.id)}
-                          className="flex items-center gap-1"
+                          className="flex items-center gap-[var(--space-1)]"
                         >
                           <span>{column.header}</span>
                           {sortDirection === "asc" ? (
-                            <ArrowUp className="h-4 w-4" />
+                            <ArrowUp className="h-[var(--space-4)] w-[var(--space-4)]" />
                           ) : sortDirection === "desc" ? (
-                            <ArrowDown className="h-4 w-4" />
+                            <ArrowDown className="h-[var(--space-4)] w-[var(--space-4)]" />
                           ) : (
-                            <ArrowUpDown className="h-4 w-4 opacity-50" />
+                            <ArrowUpDown className="h-[var(--space-4)] w-[var(--space-4)] opacity-50" />
                           )}
                         </button>
                       ) : (
@@ -367,7 +367,7 @@ export function DataTable<T extends Record<string, any>>({
                       {resizable && column.resizable !== false && (
                         <div
                           className={clsx(
-                            "ml-auto cursor-col-resize hover:bg-[color:var(--color-brand-primary)] w-1 h-4 rounded",
+                            "ml-auto cursor-col-resize hover:bg-[color:var(--color-brand-primary)] w-[var(--space-1)] h-[var(--space-4)] rounded",
                             resizingColumn === column.id && "bg-[color:var(--color-brand-primary)]"
                           )}
                           onMouseDown={(e) => handleResizeStart(e, column.id)}
@@ -403,7 +403,7 @@ export function DataTable<T extends Record<string, any>>({
                     onClick={() => onRowClick?.(row, index)}
                   >
                     {selectable && (
-                      <TableCell className="pl-4">
+                      <TableCell className="pl-[var(--space-4)]">
                         <Checkbox
                           checked={isSelected}
                           onCheckedChange={() => handleSelectRow(rowKey)}

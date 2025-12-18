@@ -43,6 +43,10 @@ export function EditOnGitHub({
   branch = "main",
   className,
 }: EditOnGitHubProps) {
+  // Disabled: docs site no longer shows "Edit this page on GitHub" footer.
+  // Keep the component for backward compatibility in case other packages still import it.
+  return null;
+
   const editUrl = `https://github.com/${owner}/${repo}/edit/${branch}/${filePath}`;
   const viewUrl = `https://github.com/${owner}/${repo}/blob/${branch}/${filePath}`;
 

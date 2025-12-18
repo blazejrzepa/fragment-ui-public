@@ -5,16 +5,6 @@ import { Button } from "./button";
 import { Card } from "./card";
 import clsx from "clsx";
 
-// Conditional Next.js Link import - fallback to anchor tag if not available
-let Link: React.ComponentType<{ href: string; children: React.ReactNode; className?: string }>;
-try {
-  Link = require("next/link").default;
-} catch {
-  Link = ({ href, children, className, ...props }: { href: string; children: React.ReactNode; className?: string; [key: string]: any }) => (
-    <a href={href} className={className} {...props}>{children}</a>
-  );
-}
-
 export interface QuickAction {
   id: string;
   label: string;
@@ -47,18 +37,22 @@ export const QuickActions = React.memo(
 
       if (layout === "list") {
         return (
-          <div ref={ref} className={clsx("space-y-2", className)}>
+          <div ref={ref} className={clsx("space-y-[var(--space-2)]", className)}>
             {actions.map((action) =>
               action.href ? (
-                <Link key={action.id} href={action.href}>
-                  <Button
-                    variant={action.variant || "solid"}
-                    disabled={action.disabled}
-                    className="w-full justify-start"
-                    data-action-id={action.id}
-                    data-action-kind="quickAction"
-                  >
-                    {action.icon && <span className="mr-2">{action.icon}</span>}
+                <Button
+                  key={action.id}
+                  asChild
+                  variant={action.variant || "solid"}
+                  disabled={action.disabled}
+                  className="w-full justify-start"
+                  data-action-id={action.id}
+                  data-action-kind="quickAction"
+                >
+                  <a href={action.href}>
+                    {action.icon && (
+                      <span className="mr-[var(--space-2)]">{action.icon}</span>
+                    )}
                     <div className="flex-1 text-left">
                       <div className="font-medium">{action.label}</div>
                       {action.description && (
@@ -67,8 +61,8 @@ export const QuickActions = React.memo(
                         </div>
                       )}
                     </div>
-                  </Button>
-                </Link>
+                  </a>
+                </Button>
               ) : (
                 <Button
                   key={action.id}
@@ -98,18 +92,18 @@ export const QuickActions = React.memo(
       return (
         <div
           ref={ref}
-          className={clsx("grid gap-4", gridCols[columns], className)}
+          className={clsx("grid gap-[var(--space-4)]", gridCols[columns], className)}
         >
           {actions.map((action) => (
             <Card
               key={action.id}
               className={clsx(
-                "p-4 cursor-pointer hover:shadow-lg transition-shadow",
+                "p-[var(--space-4)] cursor-pointer hover:shadow-lg transition-shadow",
                 action.disabled && "opacity-50 cursor-not-allowed"
               )}
               onClick={action.disabled ? undefined : action.onClick}
             >
-              <div className="flex flex-col items-center text-center space-y-2">
+              <div className="flex flex-col items-center text-center space-y-[var(--space-2)]">
                 {action.icon && (
                   <div className="text-2xl text-[color:var(--color-brand-primary)]">
                     {action.icon}

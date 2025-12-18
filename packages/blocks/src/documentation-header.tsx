@@ -125,7 +125,7 @@ export function DocumentationHeader({
       style={{
         height,
         backgroundColor: blur
-          ? "color-mix(in srgb, var(--background-primary) 60%, transparent)"
+          ? "color-mix(in oklab, var(--background-primary) 60%, transparent)"
           : "var(--background-primary)",
         backdropFilter: blur ? "blur(12px)" : "none",
         WebkitBackdropFilter: blur ? "blur(12px)" : "none",
@@ -137,7 +137,7 @@ export function DocumentationHeader({
           style={{ height }}
         >
           {/* Left: Logo + Navigation Links */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 ml-1">
             {logo}
             {/* Custom Navigation or Default Navigation Links (desktop only) */}
             {!isMobile && customNavigation ? (
@@ -158,7 +158,7 @@ export function DocumentationHeader({
                             <div
                               className="h-4 mx-2 border-l"
                               style={{
-                                borderColor: "color-mix(in srgb, var(--foreground-primary) 10%, transparent)",
+                                borderColor: "color-mix(in oklab, var(--foreground-primary) 10%, transparent)",
                               }}
                             />
                           )}
@@ -210,7 +210,7 @@ export function DocumentationHeader({
                 <div
                   className="h-4 border-l"
                   style={{
-                    borderColor: "color-mix(in srgb, var(--foreground-primary) 10%, transparent)",
+                    borderColor: "color-mix(in oklab, var(--foreground-primary) 10%, transparent)",
                   }}
                 />
                 <div style={{ marginLeft: "6px" }}>{actions}</div>

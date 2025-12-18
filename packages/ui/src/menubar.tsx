@@ -11,7 +11,7 @@ const Menubar = React.forwardRef<
   <MenubarPrimitive.Root
     ref={ref}
     className={clsx(
-      "flex h-10 items-center space-x-1 rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-1",
+      "flex h-10 items-center space-x-[var(--space-1)] rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-[var(--space-1)]",
       className
     )}
     {...props}
@@ -32,7 +32,7 @@ const MenubarTrigger = React.forwardRef<
   <MenubarPrimitive.Trigger
     ref={ref}
     className={clsx(
-      "flex cursor-default select-none items-center rounded-sm px-3 py-1.5 text-sm font-medium outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[state=open]:bg-[color:var(--color-surface-2)] data-[state=open]:text-[color:var(--color-fg-base)]",
+      "flex cursor-default select-none items-center rounded-[var(--radius-sm)] px-[var(--space-3)] py-[var(--space-1-5)] text-sm font-medium outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[state=open]:bg-[color:var(--color-surface-2)] data-[state=open]:text-[color:var(--color-fg-base)]",
       className
     )}
     {...props}
@@ -49,8 +49,8 @@ const MenubarSubTrigger = React.forwardRef<
   <MenubarPrimitive.SubTrigger
     ref={ref}
     className={clsx(
-      "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[state=open]:bg-[color:var(--color-surface-2)] data-[state=open]:text-[color:var(--color-fg-base)]",
-      inset && "pl-8",
+      "flex cursor-default select-none items-center rounded-[var(--radius-sm)] px-[var(--space-2)] py-[var(--space-1-5)] text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[state=open]:bg-[color:var(--color-surface-2)] data-[state=open]:text-[color:var(--color-fg-base)]",
+      inset && "pl-[var(--space-8)]",
       className
     )}
     {...props}
@@ -68,7 +68,7 @@ const MenubarSubContent = React.forwardRef<
   <MenubarPrimitive.SubContent
     ref={ref}
     className={clsx(
-      "z-50 min-w-[8rem] overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-1 text-[color:var(--color-fg-base)] shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      "z-50 min-w-[8rem] overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-[var(--space-1)] text-[color:var(--color-fg-base)] shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
       className
     )}
     {...props}
@@ -87,7 +87,7 @@ const MenubarContent = React.forwardRef<
       alignOffset={alignOffset}
       sideOffset={sideOffset}
       className={clsx(
-        "z-50 min-w-[12rem] overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-1 text-[color:var(--color-fg-base)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        "z-50 min-w-[12rem] overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-[var(--space-1)] text-[color:var(--color-fg-base)] shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
         className
       )}
       {...props}
@@ -106,8 +106,8 @@ const MenubarItem = React.forwardRef<
   <MenubarPrimitive.Item
     ref={ref}
     className={clsx(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      inset && "pl-8",
+      "relative flex cursor-default select-none items-center rounded-[var(--radius-sm)] px-[var(--space-2)] py-[var(--space-1-5)] text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      inset && "pl-[var(--space-8)]",
       className
     )}
     {...props}
@@ -129,13 +129,13 @@ const MenubarCheckboxItem = React.forwardRef<
   <MenubarPrimitive.CheckboxItem
     ref={ref}
     className={clsx(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-[var(--radius-sm)] py-[var(--space-1-5)] pl-[var(--space-8)] pr-[var(--space-2)] text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-[var(--space-2)] flex h-3.5 w-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
         <span className="h-4 w-4">✓</span>
       </MenubarPrimitive.ItemIndicator>
@@ -152,12 +152,12 @@ const MenubarRadioItem = React.forwardRef<
   <MenubarPrimitive.RadioItem
     ref={ref}
     className={clsx(
-      "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      "relative flex cursor-default select-none items-center rounded-[var(--radius-sm)] py-[var(--space-1-5)] pl-[var(--space-8)] pr-[var(--space-2)] text-sm outline-none transition-colors hover:bg-[color:var(--color-surface-2)] hover:text-[color:var(--color-fg-base)] focus:bg-[color:var(--color-surface-2)] focus:text-[color:var(--color-fg-base)] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-[var(--space-2)] flex h-3.5 w-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
         <span className="h-2 w-2 rounded-full bg-[color:var(--color-brand-primary)]" />
       </MenubarPrimitive.ItemIndicator>
@@ -175,7 +175,7 @@ const MenubarLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <MenubarPrimitive.Label
     ref={ref}
-    className={clsx("px-2 py-1.5 text-sm font-semibold", inset && "pl-8", className)}
+    className={clsx("px-[var(--space-2)] py-[var(--space-1-5)] text-sm font-semibold", inset && "pl-[var(--space-8)]", className)}
     {...props}
   />
 ));
@@ -187,7 +187,7 @@ const MenubarSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <MenubarPrimitive.Separator
     ref={ref}
-    className={clsx("-mx-1 my-1 h-px bg-[color:var(--color-border-base)]", className)}
+    className={clsx("-mx-[var(--space-1)] my-[var(--space-1)] h-px bg-[color:var(--color-border-base)]", className)}
     {...props}
   />
 ));

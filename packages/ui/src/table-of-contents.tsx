@@ -226,8 +226,19 @@ export function extractHeadings(
         return;
       }
     } else {
-      // Heading is in article/main - only skip if it's inside a card
+      // Heading is in article/main - skip if it's inside a card
       if (heading.closest('[class*="card"]')) {
+        return;
+      }
+      
+      // Skip if heading is inside a component example/preview container
+      // Component examples are typically in containers with "group relative" class
+      if (heading.closest('.group.relative')) {
+        return;
+      }
+      
+      // Skip if heading is inside a preview container
+      if (heading.closest('.preview')) {
         return;
       }
     }

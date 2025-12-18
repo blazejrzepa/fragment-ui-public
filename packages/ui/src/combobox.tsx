@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import clsx from "clsx";
-import { ChevronsUpDown, Check, Search } from "lucide-react";
+import { ChevronDown, Check, Search } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Button } from "./button";
 import {
@@ -29,6 +29,7 @@ export interface ComboboxProps {
   emptyText?: string;
   className?: string;
   disabled?: boolean;
+  size?: "sm" | "md" | "lg";
 }
 
 export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
@@ -42,6 +43,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
       emptyText = "No results found.",
       className,
       disabled,
+      size = "sm",
     },
     ref
   ) {
@@ -70,27 +72,26 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         <PopoverTrigger asChild>
           <Button
             ref={ref}
-            variant="outline"
+            variant="secondary"
+            size={size}
+            trailingIcon={<ChevronDown className="h-3.5 w-3.5 shrink-0 opacity-50" />}
             role="combobox"
             aria-expanded={open}
             className={clsx("justify-between", widthClass, open && "focus-visible:ring-0", className)}
             disabled={disabled}
           >
-            <>
-              <span className="flex-1 text-left truncate">
-                {selectedOption ? selectedOption.label : placeholder}
-              </span>
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </>
+            <span className="flex-1 text-left truncate text-xs">
+              {selectedOption ? selectedOption.label : placeholder}
+            </span>
           </Button>
         </PopoverTrigger>
         <PopoverContent className={clsx(popoverWidth, "p-0")} align="start">
           <Command shouldFilter={false}>
-            <div className="flex h-9 items-center gap-2 border-b border-[color:var(--color-border-base)] px-3">
+            <div className="flex h-9 items-center gap-[var(--space-2)] border-b border-[color:var(--color-border-base)] px-[var(--space-3)]">
               <Search className="h-4 w-4 shrink-0 opacity-50" />
               <input
                 placeholder={searchPlaceholder}
-                className="flex w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-[color:var(--color-fg-muted)] disabled:cursor-not-allowed disabled:opacity-50 h-9 focus-visible:ring-0 focus-visible:outline-none"
+                className="flex w-full rounded-[var(--radius-sm)] bg-transparent py-[var(--space-3)] text-sm outline-hidden placeholder:text-[color:var(--color-fg-muted)] disabled:cursor-not-allowed disabled:opacity-50 h-9 focus-visible:ring-0 focus-visible:outline-none"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />

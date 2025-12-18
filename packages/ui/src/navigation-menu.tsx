@@ -52,7 +52,7 @@ const NavigationMenu = React.forwardRef<
         style={{
           height,
           backgroundColor: blur
-            ? "color-mix(in srgb, var(--background-primary) 60%, transparent)"
+            ? "color-mix(in oklab, var(--background-primary) 60%, transparent)"
             : "var(--background-primary)",
           backdropFilter: blur ? "blur(12px)" : "none",
           WebkitBackdropFilter: blur ? "blur(12px)" : "none",
@@ -135,7 +135,7 @@ const NavigationMenuTrigger = React.forwardRef<
   <NavigationMenuPrimitive.Trigger
     ref={ref}
     className={clsx(
-      "group inline-flex h-auto w-max items-center justify-center rounded-md bg-transparent px-2.5 py-1.5 text-sm font-normal transition-colors hover:bg-[color:var(--color-surface-2)] focus:bg-[color:var(--color-surface-2)] focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-[color:var(--color-surface-2)] data-[state=open]:bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] no-underline",
+      "group inline-flex h-auto w-max items-center justify-center rounded-md bg-transparent px-2.5 py-1.5 text-sm font-medium transition-colors hover:bg-[color:var(--color-surface-1)] focus:bg-[color:var(--color-surface-1)] focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-[color:var(--color-surface-1)] data-[state=open]:bg-[color:var(--color-surface-1)] text-[color:color-mix(in_oklab,var(--color-fg-base)_90%,transparent)] no-underline",
       className
     )}
     style={{
@@ -175,23 +175,41 @@ const NavigationMenuContent = React.forwardRef<
 });
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 
+type NavigationMenuLinkVariant = "pill" | "unstyled";
+
 const NavigationMenuLink = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Link>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link>
->(({ className, style, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Link> & {
+    /**
+     * Visual style preset for the link.
+     * - pill: default top-nav style (padding + hover/focus background)
+     * - unstyled: minimal (no padding/hover bg) so consumers can fully control layout (e.g. “tile” links)
+     */
+    variant?: NavigationMenuLinkVariant;
+  }
+>(({ className, style, variant = "pill", ...props }, ref) => {
+  const disabled = "disabled:pointer-events-none disabled:opacity-50";
+  const text = "text-[color:color-mix(in_oklab,var(--color-fg-base)_90%,transparent)]";
+
+  const pill =
+    "group inline-flex h-auto w-max items-center justify-center rounded-md bg-transparent px-2.5 py-1.5 text-sm font-medium transition-colors hover:bg-[color:var(--color-surface-1)] focus:bg-[color:var(--color-surface-1)] focus:outline-none no-underline";
+
+  // Minimal: no padding, no hover/focus background, no forced rounding/decoration.
+  // Consumers can fully control layout + interaction styles.
+  const unstyled = "group";
+
+  return (
   <NavigationMenuPrimitive.Link
     ref={ref}
-    className={clsx(
-      "group inline-flex h-auto w-max items-center justify-center rounded-md bg-transparent px-2.5 py-1.5 text-sm font-normal transition-colors hover:bg-[color:var(--color-surface-2)] focus:bg-[color:var(--color-surface-2)] focus:outline-none disabled:pointer-events-none disabled:opacity-50 text-[color:var(--color-fg-base)] no-underline",
-      className
-    )}
+      className={clsx(text, disabled, variant === "pill" ? pill : unstyled, className)}
     style={{
       textDecoration: "none",
       ...style,
     }}
     {...props}
   />
-));
+  );
+});
 NavigationMenuLink.displayName = NavigationMenuPrimitive.Link.displayName;
 
 const NavigationMenuViewport = React.forwardRef<

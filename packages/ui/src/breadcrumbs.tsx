@@ -34,7 +34,7 @@ export const Breadcrumbs = React.memo(
           className={clsx("flex items-center", className)}
           {...props}
         >
-          <div className="flex items-center gap-2 text-sm text-[color:var(--color-fg-muted)] flex-wrap">
+          <div className="flex items-center gap-[var(--space-2)] text-sm text-[color:var(--color-fg-muted)] flex-wrap">
             {items.map((item, index) => {
               const isLast = index === items.length - 1;
               const isClickable = !isLast && (item.href || item.onClick);
@@ -42,7 +42,7 @@ export const Breadcrumbs = React.memo(
               return (
                 <React.Fragment key={index}>
                   {index > 0 && (
-                    <span className="flex items-center px-1" aria-hidden="true">
+                    <span className="flex items-center px-[var(--space-1)]" aria-hidden="true">
                       {SeparatorComponent}
                     </span>
                   )}

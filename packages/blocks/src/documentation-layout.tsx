@@ -45,7 +45,7 @@ export function DocumentationLayout({
             </aside>
           )}
           <main className="min-w-0">
-            <ContentContainer maxWidthClass="max-w-[720px]">
+            <ContentContainer maxWidthClass="max-w-[800px]">
               <div
                 className="mx-auto flex w-full min-w-0 flex-1 flex-col gap-8 py-6"
                 style={{

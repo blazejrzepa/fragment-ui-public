@@ -58,7 +58,7 @@ export function ComponentCard({
       className={`transition-all hover:shadow-lg relative overflow-hidden ${className}`}
       style={{
         backgroundColor: "var(--color-surface-1)",
-        borderColor: "color-mix(in srgb, var(--foreground-primary) 5%, transparent)",
+        borderColor: "color-mix(in oklab, var(--foreground-primary) 5%, transparent)",
       }}
     >
       <CardHeader className="pb-2">
@@ -78,7 +78,7 @@ export function ComponentCard({
                 backgroundColor: "transparent",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--foreground-primary) 5%, transparent)";
+                e.currentTarget.style.backgroundColor = "color-mix(in oklab, var(--foreground-primary) 5%, transparent)";
                 e.currentTarget.style.color = "var(--foreground-primary)";
               }}
               onMouseLeave={(e) => {
@@ -104,7 +104,7 @@ export function ComponentCard({
             paddingLeft: "24px",
             paddingRight: "24px",
             backgroundColor: "var(--background-primary)",
-            borderColor: "color-mix(in srgb, var(--foreground-primary) 5%, transparent)",
+            borderColor: "color-mix(in oklab, var(--foreground-primary) 5%, transparent)",
             overflow: "hidden",
             position: "relative",
             zIndex: 1,

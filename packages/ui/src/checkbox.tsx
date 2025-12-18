@@ -15,14 +15,14 @@ export const Checkbox = React.memo(
       <CheckboxPrimitive.Root
         ref={ref}
         className={clsx(
-          "peer h-4 w-4 shrink-0 rounded-[4px] border border-[color:var(--color-border-base)]",
+          "peer h-4 w-4 shrink-0 rounded-[var(--radius-sm)] border border-[color:var(--color-border-base)]",
           "bg-[color:var(--color-surface-1)]",
           "ring-offset-background",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-primary)] focus-visible:ring-offset-2",
           "disabled:cursor-not-allowed disabled:opacity-60 disabled:border-[color:var(--color-fg-muted)]",
           "data-[state=checked]:bg-[color:var(--color-brand-primary)] data-[state=checked]:text-white data-[state=checked]:border-[color:var(--color-brand-primary)]",
           "hover:border-[color:var(--color-brand-primary)] data-[state=checked]:hover:bg-[color:var(--color-brand-primary)]",
-          "transition-colors duration-200",
+          "transition-colors duration-[var(--motion-duration-base)]",
           className
         )}
         {...props}

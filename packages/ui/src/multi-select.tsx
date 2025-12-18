@@ -118,7 +118,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
             )}
             disabled={disabled}
           >
-            <div className="flex flex-wrap gap-1 flex-1 text-left">
+            <div className="flex flex-wrap gap-[var(--space-1)] flex-1 text-left">
               {selectedOptions.length === 0 ? (
                 <span className="text-[color:var(--color-fg-muted)]">
                   {placeholder}
@@ -128,7 +128,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                   {selectedOptions.slice(0, maxCount).map((option) => (
                     <span
                       key={option.value}
-                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[var(--radius-sm)] bg-[color:var(--color-surface-2)] text-sm"
+                      className="inline-flex items-center gap-[var(--space-1)] px-[var(--space-2)] py-[var(--space-1)] rounded-[var(--radius-sm)] bg-[color:var(--color-surface-2)] text-sm"
                     >
                       {option.label}
                       {clearable && (
@@ -142,7 +142,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                               handleRemove(option.value, e as any);
                             }
                           }}
-                          className="ml-1 hover:bg-[color:var(--color-surface-3)] rounded p-0.5 cursor-pointer"
+                          className="ml-[var(--space-1)] hover:bg-[color:var(--color-surface-3)] rounded p-[var(--space-1)] cursor-pointer"
                           aria-label={`Remove ${option.label}`}
                         >
                           <X className="h-3 w-3" />
@@ -158,7 +158,7 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                 </>
               )}
             </div>
-            <div className="flex items-center gap-1 ml-2">
+            <div className="flex items-center gap-[var(--space-1)] ml-[var(--space-2)]">
               {clearable && selectedOptions.length > 0 && (
                 <span
                   role="button"
@@ -170,13 +170,13 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                       handleClear(e as any);
                     }
                   }}
-                  className="hover:bg-[color:var(--color-surface-2)] rounded p-1 cursor-pointer"
+                  className="hover:bg-[color:var(--color-surface-2)] rounded p-[var(--space-1)] cursor-pointer"
                   aria-label="Clear all"
                 >
                   <X className="h-4 w-4" />
                 </span>
               )}
-              <span className="ml-1">▼</span>
+              <span className="ml-[var(--space-1)]">▼</span>
             </div>
           </Button>
         </PopoverTrigger>
@@ -191,21 +191,21 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
             shouldFilter={false}
             loop
           >
-            <div className="flex items-center border-b px-3">
+            <div className="flex items-center border-b px-[var(--space-3)]">
               <CommandPrimitive.Input
                 placeholder={searchPlaceholder}
                 value={search}
                 onValueChange={setSearch}
-                className="flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-[color:var(--color-fg-muted)] disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex h-11 w-full rounded-[var(--radius-md)] bg-transparent py-[var(--space-3)] text-sm outline-none placeholder:text-[color:var(--color-fg-muted)] disabled:cursor-not-allowed disabled:opacity-50"
               />
             </div>
             {loading ? (
-              <div className="py-6 text-center text-sm flex items-center justify-center gap-2">
+              <div className="py-[var(--space-6)] text-center text-sm flex items-center justify-center gap-[var(--space-2)]">
                 <Spinner className="h-4 w-4" />
                 <span>Loading...</span>
               </div>
             ) : (
-              <CommandPrimitive.Empty className="py-6 text-center text-sm">
+              <CommandPrimitive.Empty className="py-[var(--space-6)] text-center text-sm">
                 {emptyText}
               </CommandPrimitive.Empty>
             )}
@@ -235,12 +235,12 @@ export const MultiSelect = React.forwardRef<HTMLButtonElement, MultiSelectProps>
                       }}
                       tabIndex={option.disabled ? -1 : 0}
                       className={clsx(
-                        "relative flex cursor-pointer select-none items-center rounded-[var(--radius-sm)] px-2 py-1.5 text-sm outline-none hover:bg-[color:var(--color-surface-2)]",
+                        "relative flex cursor-pointer select-none items-center rounded-[var(--radius-sm)] px-[var(--space-2)] py-[var(--space-1-5)] text-sm outline-none hover:bg-[color:var(--color-surface-2)]",
                         isSelected && "bg-[color:var(--color-surface-2)]",
                         option.disabled && "opacity-50 cursor-not-allowed pointer-events-none"
                       )}
                     >
-                      <div className="flex items-center gap-2 flex-1 w-full">
+                      <div className="flex items-center gap-[var(--space-2)] flex-1 w-full">
                         <div
                           className={clsx(
                             "h-4 w-4 rounded border flex items-center justify-center flex-shrink-0",

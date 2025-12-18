@@ -31,19 +31,16 @@ export const Tooltip = React.forwardRef<
           align="center"
           className={clsx(
             "z-50 overflow-hidden animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+            "bg-[color:var(--color-surface-1)]",
+            "border border-[color:var(--color-border-base)]",
+            "rounded-[var(--radius-sm)]",
+            "px-[var(--space-2)] py-[var(--space-1)]",
+            "text-[10px]",
+            "text-[color:var(--color-fg-base)]",
+            "shadow-[0_2px_8px_rgba(0,0,0,0.1)]",
             className
           )}
-          style={{
-            backgroundColor: "var(--background-primary)",
-            border: "1px solid color-mix(in srgb, var(--foreground-primary) 5%, transparent)",
-            borderRadius: "2px",
-            padding: "4px 8px",
-            fontSize: "11px",
-            lineHeight: "1.4",
-            color: "var(--foreground-primary)",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-            ...props.style,
-          }}
+          style={props.style}
           {...props}
         >
           {content}

@@ -43,8 +43,8 @@ interface TrendBadgeProps {
 const TrendBadge = React.memo(({ trend, value }: TrendBadgeProps) => (
   <div
     className={clsx(
-      "inline-flex items-center justify-center gap-1 rounded-full",
-      "px-2.5 py-1 text-xs font-normal",
+      "inline-flex items-center justify-center gap-[var(--space-1)] rounded-full",
+      "px-[var(--space-2-5)] py-[var(--space-1)] text-xs font-normal",
       "border border-[color:var(--color-border-base)]",
       "transition-colors",
       getTrendColor(trend)
@@ -95,8 +95,8 @@ export const MetricCard = React.memo(
           onClick={onClick}
         >
           {/* Header Section */}
-          <div className="flex items-start justify-between gap-3 pb-2 w-full">
-            <div className="flex items-center justify-start gap-2 min-w-0 flex-1">
+          <div className="flex items-start justify-between gap-[var(--space-3)] pb-[var(--space-2)] w-full">
+            <div className="flex items-center justify-start gap-[var(--space-2)] min-w-0 flex-1">
               {icon && (
                 <div className="text-[color:var(--color-fg-muted)] flex-shrink-0">
                   {icon}
@@ -112,17 +112,17 @@ export const MetricCard = React.memo(
           </div>
 
           {/* Content Section */}
-          <CardContent className="mt-2 mb-1">
+          <CardContent className="mt-[var(--space-2)] mb-[var(--space-1)]">
             <div className="text-2xl font-medium text-[color:var(--color-fg-base)]">
               {value}
             </div>
             {description && (
-              <p className="text-xs font-medium text-[color:var(--color-fg-muted)] mt-1">
+              <p className="text-xs font-medium text-[color:var(--color-fg-muted)] mt-[var(--space-1)]">
                 {description}
               </p>
             )}
             {showContentFooter && (
-              <div className="mt-4">{finalFooter}</div>
+              <div className="mt-[var(--space-4)]">{finalFooter}</div>
             )}
           </CardContent>
         </Card>

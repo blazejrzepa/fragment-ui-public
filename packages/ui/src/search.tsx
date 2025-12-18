@@ -209,7 +209,7 @@ export function Search({
           ref={inputRef}
           type="search"
           placeholder={placeholder}
-          className="w-full pr-20 cursor-pointer"
+          className="w-full pr-20 cursor-pointer text-sm"
           size="sm"
           readOnly
         />

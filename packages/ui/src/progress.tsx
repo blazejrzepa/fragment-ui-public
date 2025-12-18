@@ -55,7 +55,7 @@ export const Progress = React.memo(
     const strokeWidth = size === "sm" ? 4 : size === "md" ? 6 : 8;
 
     return (
-      <div className="inline-flex flex-col items-center gap-2">
+      <div className="inline-flex flex-col items-center gap-[var(--space-2)]">
         <div className="relative" style={{ width: sizePx, height: sizePx }}>
           <svg
             className="transform -rotate-90"
@@ -82,7 +82,7 @@ export const Progress = React.memo(
               strokeDasharray={circumference}
               strokeDashoffset={offset}
               strokeLinecap="round"
-              className={clsx("transition-all duration-300", colorClasses[color])}
+              className={clsx("transition-all duration-[var(--motion-duration-slow)]", colorClasses[color])}
             />
           </svg>
           {(showValue || label) && (
@@ -108,7 +108,7 @@ export const Progress = React.memo(
   return (
     <div className="w-full">
       {(label || showValue) && (
-        <div className="flex justify-between items-center mb-2">
+        <div className="flex justify-between items-center mb-[var(--space-2)]">
           {label && <span className="text-sm text-[color:var(--color-fg-base)]">{label}</span>}
           {showValue && (
             <span className="text-sm font-semibold text-[color:var(--color-fg-base)]">
@@ -128,7 +128,7 @@ export const Progress = React.memo(
       >
         <ProgressPrimitive.Indicator
           className={clsx(
-            "h-full w-full flex-1 transition-all duration-300",
+            "h-full w-full flex-1 transition-all duration-[var(--motion-duration-slow)]",
             colorClasses[color]
           )}
           style={{ transform: `translateX(-${100 - percentage}%)` }}
@@ -154,9 +154,9 @@ export const StepProgress: React.FC<StepProgressProps> = ({
 }) => {
   if (orientation === "vertical") {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-[var(--space-4)]">
         {steps.map((step, index) => (
-          <div key={index} className="flex items-start gap-3">
+          <div key={index} className="flex items-start gap-[var(--space-3)]">
             <div className="flex flex-col items-center">
               <div
                 className={clsx(
@@ -201,13 +201,13 @@ export const StepProgress: React.FC<StepProgressProps> = ({
 
   return (
     <div className="w-full">
-      <div className="relative flex items-center justify-between mb-4">
+      <div className="relative flex items-center justify-between mb-[var(--space-4)]">
         {steps.map((step, index) => (
           <React.Fragment key={index}>
             <div className="flex-1 flex flex-col items-center relative z-10">
               <div
                 className={clsx(
-                  "w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-colors mb-2 bg-[color:var(--color-surface-1)]",
+                  "w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-colors mb-[var(--space-2)] bg-[color:var(--color-surface-1)]",
                   step.completed
                     ? "bg-[color:var(--color-status-success-base)] border-[color:var(--color-status-success-base)] text-white"
                     : step.current

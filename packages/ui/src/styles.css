@@ -8,28 +8,18 @@
 }
 
 /* Global font rendering optimization - Chrome specific */
-/* Apply to text elements only, not layout elements */
-p, span, a, h1, h2, h3, h4, h5, h6, li, td, th, label, button, input, textarea, select, code, pre {
+* {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Chrome: use auto instead of optimizeLegibility to prevent blur */
   text-rendering: auto;
   /* Chrome: prevent subpixel rendering blur */
   -webkit-text-stroke: 0.35px transparent;
-  /* Chrome: force hardware acceleration for text only */
+  /* Chrome: force hardware acceleration */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-}
-
-/* Exclude layout elements from transform to prevent positioning issues */
-header, nav, aside, main, section, article, div, body, html {
-  /* Only font smoothing, no transform */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: auto;
-  -webkit-text-stroke: 0.35px transparent;
 }
 
 @layer base {
@@ -100,6 +90,22 @@ header, nav, aside, main, section, article, div, body, html {
 /* NavigationMenu styles - ensure text color stays foreground-primary on hover/focus */
 /* Using inline styles in component + CSS for maximum specificity */
 @layer components {
+  /* Button secondary variant - darker hover */
+  :root:not([data-theme="dark"]) button[data-button-variant="secondary"]:hover,
+  [data-theme="light"] button[data-button-variant="secondary"]:hover {
+    background-color: var(--color-surface-2) !important; /* Darker hover color in light mode */
+  }
+
+  [data-theme="dark"] button[data-button-variant="secondary"]:hover {
+    background-color: color-mix(in oklab, var(--color-surface-2) 80%, var(--color-surface-1)) !important; /* Darker hover color in dark mode */
+  }
+
+  /* SegmentedControl - darker border in dark mode */
+  [data-theme="dark"] [role="group"].ring-1[class*="ring-[color:var(--color-border-base)]"] {
+    --tw-ring-color: var(--color-border-muted) !important;
+    box-shadow: inset 0 0 0 1px var(--color-border-muted) !important;
+  }
+
   /* Button solid variant - ensure text color uses token */
   /* Using data attribute selector with high specificity to override Tailwind utilities */
   button[data-button-variant="solid"],
@@ -292,8 +298,8 @@ header, nav, aside, main, section, article, div, body, html {
   .document-content .not-prose pre {
     /* Reset prose styles and apply CodeBlock styles */
     background-color: var(--color-surface-1) !important;
-    padding: 1rem 1.25rem !important;
-    border-radius: 0.5rem !important;
+    padding: var(--space-4) var(--space-6) !important; /* 16px 24px - zgodne z tokenami DS */
+    border-radius: var(--radius-sm) !important; /* 8px - zgodne z tokenami DS */
     border: 1px solid var(--color-border-base) !important;
     max-height: 400px !important;
     overflow-y: auto !important;
@@ -303,11 +309,15 @@ header, nav, aside, main, section, article, div, body, html {
   /* Shiki-generated pre inside CodeBlock wrapper */
   .not-prose > div > pre,
   article .not-prose > div > pre,
-  .document-content .not-prose > div > pre {
+  .document-content .not-prose > div > pre,
+  /* Override Shiki inline styles with higher specificity */
+  .not-prose > div > pre[style],
+  article .not-prose > div > pre[style],
+  .document-content .not-prose > div > pre[style] {
     /* Ensure Shiki pre uses our styles - matching shadcn/ui appearance */
     background-color: var(--color-surface-1) !important;
-    padding: 1rem 1.25rem !important;
-    border-radius: 0.5rem !important;
+    padding: var(--space-4) var(--space-6) !important; /* 16px 24px - zgodne z tokenami DS */
+    border-radius: var(--radius-sm) !important; /* 8px - zgodne z tokenami DS */
     border: 1px solid var(--color-border-base) !important;
     max-height: 400px !important;
     overflow-y: auto !important;
@@ -316,25 +326,36 @@ header, nav, aside, main, section, article, div, body, html {
   
   /* Shiki-generated pre with data-theme attribute */
   .not-prose > div > pre[data-theme],
-  article .not-prose > div > pre[data-theme] {
+  article .not-prose > div > pre[data-theme],
+  .document-content .not-prose > div > pre[data-theme],
+  /* Override Shiki inline styles with maximum specificity */
+  .document-content .not-prose > div > pre[data-theme][style] {
     /* Override Shiki's inline styles to match our design */
     background-color: var(--color-surface-1) !important;
     border: 1px solid var(--color-border-base) !important;
-    padding: 1rem 1.25rem !important;
+    border-radius: var(--radius-sm) !important; /* 8px - zgodne z tokenami DS */
+    padding: var(--space-4) var(--space-6) !important; /* 16px 24px - zgodne z tokenami DS */
     margin: 0 !important;
   }
   
   /* Light mode Shiki pre */
   [data-theme="light"] .not-prose > div > pre[data-theme],
-  :root:not([data-theme="dark"]) .not-prose > div > pre[data-theme] {
+  :root:not([data-theme="dark"]) .not-prose > div > pre[data-theme],
+  [data-theme="light"] .document-content .not-prose > div > pre[data-theme],
+  :root:not([data-theme="dark"]) .document-content .not-prose > div > pre[data-theme] {
     background-color: var(--color-surface-1) !important;
+    border: 1px solid var(--color-border-base) !important;
+    border-radius: var(--radius-sm) !important;
     border-color: var(--color-border-base) !important;
     margin: 0 !important;
   }
   
   /* Dark mode Shiki pre */
-  [data-theme="dark"] .not-prose > div > pre[data-theme] {
+  [data-theme="dark"] .not-prose > div > pre[data-theme],
+  [data-theme="dark"] .document-content .not-prose > div > pre[data-theme] {
     background-color: var(--color-surface-1) !important;
+    border: 1px solid var(--color-border-base) !important;
+    border-radius: var(--radius-sm) !important;
     border-color: var(--color-border-base) !important;
     margin: 0 !important;
   }
@@ -370,13 +391,27 @@ header, nav, aside, main, section, article, div, body, html {
     padding-left: 0 !important;
     position: relative !important;
     display: block !important;
+    /* Optimize counter rendering */
+    contain: layout style !important;
+    will-change: contents !important;
   }
 
   /* Each line gets a number using CSS counter */
   pre code.line-numbers .line,
   pre code[data-line-numbers] .line,
   .not-prose pre code.line-numbers .line,
-  .not-prose pre code[data-line-numbers] .line {
+  .not-prose pre code[data-line-numbers] .line,
+  pre[class*="shiki"] code.line-numbers .line,
+  pre[class*="shiki"] code[data-line-numbers] .line,
+  .not-prose pre[class*="shiki"] code.line-numbers .line,
+  .not-prose pre[class*="shiki"] code[data-line-numbers] .line,
+  article .not-prose pre[class*="shiki"] code.line-numbers .line,
+  article .not-prose pre[class*="shiki"] code[data-line-numbers] .line,
+  /* Override inline styles from Shiki */
+  pre[class*="shiki"] code.line-numbers .line[style],
+  pre[class*="shiki"] code[data-line-numbers] .line[style],
+  .not-prose pre[class*="shiki"] code.line-numbers .line[style],
+  .not-prose pre[class*="shiki"] code[data-line-numbers] .line[style] {
     counter-increment: line !important;
     position: relative !important;
     display: inline-block !important;
@@ -384,8 +419,10 @@ header, nav, aside, main, section, article, div, body, html {
     margin: 0 !important;
     padding: 0 !important;
     padding-left: 4em !important;
-    line-height: 1.7 !important;
-    min-height: 1.7em !important;
+    line-height: 1.5 !important;
+    min-height: 1.5em !important;
+    /* Optimize counter rendering */
+    contain: layout style !important;
   }
 
   /* Ensure empty lines are visible and numbered */
@@ -394,14 +431,37 @@ header, nav, aside, main, section, article, div, body, html {
   .not-prose pre code.line-numbers .line:empty,
   .not-prose pre code[data-line-numbers] .line:empty {
     display: inline-block !important;
-    min-height: 1.7em !important;
+    min-height: 1.5em !important;
   }
 
-  /* Line number styling */
-  pre code.line-numbers .line::before,
-  pre code[data-line-numbers] .line::before,
-  .not-prose pre code.line-numbers .line::before,
-  .not-prose pre code[data-line-numbers] .line::before {
+  /* Line number styling - use data-line attribute for immediate rendering */
+  pre code.line-numbers .line[data-line]::before,
+  pre code[data-line-numbers] .line[data-line]::before,
+  .not-prose pre code.line-numbers .line[data-line]::before,
+  .not-prose pre code[data-line-numbers] .line[data-line]::before {
+    content: attr(data-line) !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 2em !important;
+    text-align: right !important;
+    padding-right: 0.5em !important;
+    color: var(--color-fg-muted) !important;
+    user-select: none !important;
+    font-variant-numeric: tabular-nums !important;
+    opacity: 0.6 !important;
+    line-height: 1.5 !important;
+    display: inline-block !important;
+    /* Optimize rendering - force immediate paint */
+    will-change: contents !important;
+    contain: layout style paint !important;
+  }
+
+  /* Fallback to counter for lines without data-line attribute */
+  pre code.line-numbers .line:not([data-line])::before,
+  pre code[data-line-numbers] .line:not([data-line])::before,
+  .not-prose pre code.line-numbers .line:not([data-line])::before,
+  .not-prose pre code[data-line-numbers] .line:not([data-line])::before {
     content: counter(line) !important;
     position: absolute !important;
     left: 0 !important;
@@ -413,27 +473,39 @@ header, nav, aside, main, section, article, div, body, html {
     user-select: none !important;
     font-variant-numeric: tabular-nums !important;
     opacity: 0.6 !important;
-    line-height: 1.7 !important;
+    line-height: 1.5 !important;
     display: inline-block !important;
   }
 
   /* Dark mode line numbers */
-  [data-theme="dark"] pre code.line-numbers .line::before,
-  [data-theme="dark"] pre code[data-line-numbers] .line::before,
-  [data-theme="dark"] .not-prose pre code.line-numbers .line::before,
-  [data-theme="dark"] .not-prose pre code[data-line-numbers] .line::before {
+  [data-theme="dark"] pre code.line-numbers .line[data-line]::before,
+  [data-theme="dark"] pre code[data-line-numbers] .line[data-line]::before,
+  [data-theme="dark"] .not-prose pre code.line-numbers .line[data-line]::before,
+  [data-theme="dark"] .not-prose pre code[data-line-numbers] .line[data-line]::before,
+  [data-theme="dark"] pre code.line-numbers .line:not([data-line])::before,
+  [data-theme="dark"] pre code[data-line-numbers] .line:not([data-line])::before,
+  [data-theme="dark"] .not-prose pre code.line-numbers .line:not([data-line])::before,
+  [data-theme="dark"] .not-prose pre code[data-line-numbers] .line:not([data-line])::before {
     opacity: 0.5 !important;
   }
 
   /* Light mode line numbers */
-  [data-theme="light"] pre code.line-numbers .line::before,
-  [data-theme="light"] pre code[data-line-numbers] .line::before,
-  :root:not([data-theme="dark"]) pre code.line-numbers .line::before,
-  :root:not([data-theme="dark"]) pre code[data-line-numbers] .line::before,
-  [data-theme="light"] .not-prose pre code.line-numbers .line::before,
-  [data-theme="light"] .not-prose pre code[data-line-numbers] .line::before,
-  :root:not([data-theme="dark"]) .not-prose pre code.line-numbers .line::before,
-  :root:not([data-theme="dark"]) .not-prose pre code[data-line-numbers] .line::before {
+  [data-theme="light"] pre code.line-numbers .line[data-line]::before,
+  [data-theme="light"] pre code[data-line-numbers] .line[data-line]::before,
+  :root:not([data-theme="dark"]) pre code.line-numbers .line[data-line]::before,
+  :root:not([data-theme="dark"]) pre code[data-line-numbers] .line[data-line]::before,
+  [data-theme="light"] .not-prose pre code.line-numbers .line[data-line]::before,
+  [data-theme="light"] .not-prose pre code[data-line-numbers] .line[data-line]::before,
+  :root:not([data-theme="dark"]) .not-prose pre code.line-numbers .line[data-line]::before,
+  :root:not([data-theme="dark"]) .not-prose pre code[data-line-numbers] .line[data-line]::before,
+  [data-theme="light"] pre code.line-numbers .line:not([data-line])::before,
+  [data-theme="light"] pre code[data-line-numbers] .line:not([data-line])::before,
+  :root:not([data-theme="dark"]) pre code.line-numbers .line:not([data-line])::before,
+  :root:not([data-theme="dark"]) pre code[data-line-numbers] .line:not([data-line])::before,
+  [data-theme="light"] .not-prose pre code.line-numbers .line:not([data-line])::before,
+  [data-theme="light"] .not-prose pre code[data-line-numbers] .line:not([data-line])::before,
+  :root:not([data-theme="dark"]) .not-prose pre code.line-numbers .line:not([data-line])::before,
+  :root:not([data-theme="dark"]) .not-prose pre code[data-line-numbers] .line:not([data-line])::before {
     opacity: 0.6 !important;
   }
   
@@ -450,6 +522,19 @@ header, nav, aside, main, section, article, div, body, html {
     display: block !important;
     width: 100% !important;
     margin: 0 !important;
+  }
+
+  /* Override line-height for .line elements inside code blocks */
+  .not-prose pre code.line-numbers .line,
+  .not-prose pre code[data-line-numbers] .line,
+  .document-content .not-prose pre code.line-numbers .line,
+  .document-content .not-prose pre code[data-line-numbers] .line,
+  pre[class*="shiki"] code.line-numbers .line,
+  pre[class*="shiki"] code[data-line-numbers] .line,
+  .not-prose pre[class*="shiki"] code.line-numbers .line,
+  .not-prose pre[class*="shiki"] code[data-line-numbers] .line {
+    line-height: 1.5 !important;
+    min-height: 1.5em !important;
   }
   
   /* Force font-weight on all elements inside code blocks - maximum specificity */
@@ -480,19 +565,60 @@ header, nav, aside, main, section, article, div, body, html {
     font-weight: 300 !important; /* Duplicate for extra emphasis */
   }
   
-  /* Direct selectors for Shiki pre elements - remove margins */
+  /* Direct selectors for Shiki pre elements - apply DS tokens */
   pre[class*="shiki"],
+  pre.shiki,
+  pre.shiki-themes,
   .not-prose pre[class*="shiki"],
+  .not-prose pre.shiki,
+  .not-prose pre.shiki-themes,
   article .not-prose pre[class*="shiki"],
-  .document-content .not-prose pre[class*="shiki"] {
+  article .not-prose pre.shiki,
+  article .not-prose pre.shiki-themes,
+  .document-content .not-prose pre[class*="shiki"],
+  .document-content .not-prose pre.shiki,
+  .document-content .not-prose pre.shiki-themes,
+  /* Override Shiki inline styles with maximum specificity */
+  .document-content .not-prose > div > pre[class*="shiki"][style],
+  .document-content .not-prose > div > pre.shiki[style],
+  .document-content .not-prose > div > pre.shiki-themes[style],
+  .document-content .not-prose > div > pre[data-theme][style],
+  /* Maximum specificity for document-content Shiki pre - override all inline styles */
+  .document-content .not-prose > div > pre[data-theme][style*="background"],
+  .document-content .not-prose > div > pre[data-theme][style*="border"],
+  .document-content .not-prose > div > pre[data-theme][style*="padding"] {
     margin: 0 !important;
+    background-color: var(--color-surface-1) !important;
+    border: 1px solid var(--color-border-base) !important;
+    border-radius: var(--radius-sm) !important; /* 8px - zgodne z tokenami DS */
+    padding: var(--space-4) var(--space-6) !important; /* 16px 24px - zgodne z tokenami DS */
   }
 
-  /* CodeBlock wrapper div - remove margins */
+  /* Remove all borders and border-radius for code blocks in overflow-hidden containers */
+  .overflow-hidden pre[class*="shiki"],
+  .overflow-hidden .not-prose pre[class*="shiki"],
+  .overflow-hidden article .not-prose pre[class*="shiki"],
+  .overflow-hidden .document-content .not-prose pre[class*="shiki"],
+  div.overflow-hidden > div > pre[class*="shiki"],
+  div.overflow-hidden > div.not-prose > pre[class*="shiki"],
+  .overflow-hidden > div > div > pre[class*="shiki"],
+  .overflow-hidden > div.not-prose > pre[class*="shiki"] {
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* CodeBlock wrapper div - remove margins by default */
   .relative.not-prose,
   .not-prose.relative {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+  }
+  
+  /* Add spacing after h2 when followed by CodeBlock */
+  .document-content h2 + .relative.not-prose,
+  .document-content h2 + .not-prose.relative,
+  .document-content h2 + div.relative.not-prose {
+    margin-top: 1rem !important;
   }
 
   /* Light mode CodeBlock */
@@ -520,40 +646,46 @@ header, nav, aside, main, section, article, div, body, html {
   /* DocumentContent - Typography styles for documentation content */
   /* Replaces .prose class - uses DS tokens */
   .document-content {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
     color: var(--color-fg-base);
     width: 100%;
-    max-width: 640px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
   }
 
   /* Constrain Article width while allowing responsive shrink */
   article.document-content {
-    width: min(100%, 640px);
-    max-width: 640px;
+    width: min(100%, 800px);
+    max-width: 800px;
   }
   
   /* Headings in DocumentContent - using DS typography values from tailwind.config.ts */
   .document-content h1 {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
-    font-size: 36px; /* text-display-md from tailwind.config.ts */
-    font-weight: 500; /* font-medium */
-    line-height: 110%;
-    letter-spacing: -0.72px;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-display-md-size, 36px);
+    font-weight: var(--typography-weight-medium, 500);
+    line-height: var(--typography-display-md-line-height, var(--typography-line-height-display, 1.1));
+    letter-spacing: var(--typography-display-md-letter-spacing, -0.72px);
     margin-top: 0;
     margin-bottom: 1rem;
-    color: var(--color-fg-base);
+    color: color-mix(in oklab, var(--color-fg-base) 90%, transparent);
   }
   
   .document-content h2 {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
-    font-size: 18px; /* text-lg - zmniejszone o 2 rozmiary z 24px */
-    font-weight: 400; /* font-normal - zmniejszona grubość */
-    line-height: 110%;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    color: var(--color-fg-base);
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-size-lg, 18px);
+    font-weight: var(--typography-weight-semibold, 600);
+    line-height: var(--typography-line-height-display, 1.1);
+    margin-top: calc(var(--space-8, 32px) + var(--space-4, 16px)); /* 48px */
+    margin-bottom: 1rem; /* 16px */
+    color: color-mix(in oklab, var(--color-fg-base) 90%, transparent) !important;
+  }
+  
+  /* Override margin-top and margin-bottom for h2 elements with m-0 class */
+  .document-content h2.m-0 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
   
   /* Typography styles for documentation content only - exclude components */
@@ -561,12 +693,12 @@ header, nav, aside, main, section, article, div, body, html {
   .document-content > h3,
   .document-content h2 + h3,
   .document-content p + h3 {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
-    font-size: 18px; /* text-lg - zmniejszone o 1 rozmiar z 20px */
-    font-weight: 400; /* font-normal - zmniejszona grubość */
-    line-height: 110%;
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-size-lg, 18px);
+    font-weight: var(--typography-weight-medium, 500);
+    line-height: var(--typography-line-height-display, 1.1);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     color: var(--color-fg-base);
   }
   
@@ -580,30 +712,30 @@ header, nav, aside, main, section, article, div, body, html {
   /* Components outside .preview also use their own DS tokens */
   
   .document-content h4 {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
-    font-size: 22px; /* text-2xl from tailwind.config.ts */
-    font-weight: 600; /* font-semibold */
-    line-height: 150%;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-size-2xl, 22px);
+    font-weight: var(--typography-weight-semibold, 600);
+    line-height: var(--typography-line-height-text, 1.5);
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     color: var(--color-fg-base);
   }
   
   .document-content h5 {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
-    font-size: 20px; /* text-xl from tailwind.config.ts */
-    font-weight: 600; /* font-semibold */
-    line-height: 150%;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-size-xl, 20px);
+    font-weight: var(--typography-weight-semibold, 600);
+    line-height: var(--typography-line-height-text, 1.5);
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     color: var(--color-fg-base);
   }
   
   .document-content h6 {
-    font-family: Geist, ui-sans-serif, system-ui, sans-serif;
-    font-size: 18px; /* text-lg from tailwind.config.ts */
-    font-weight: 600; /* font-semibold */
-    line-height: 150%;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-size-lg, 18px);
+    font-weight: var(--typography-weight-semibold, 600);
+    line-height: var(--typography-line-height-text, 1.5);
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
     color: var(--color-fg-base);
@@ -611,20 +743,36 @@ header, nav, aside, main, section, article, div, body, html {
   
   /* Paragraphs in DocumentContent */
   .document-content p {
-    color: var(--color-fg-base);
-    font-family: Geist, sans-serif;
-    font-size: 15px;
+    /* Light mode: slightly higher alpha for readability */
+    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent);
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+    font-size: var(--typography-size-md, 16px);
     font-style: normal;
-    font-weight: 300; /* Light */
-    line-height: 160%;
+    font-weight: var(--typography-weight-regular, 400);
+    line-height: var(--typography-line-height-body, 1.6);
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-6, 24px);
+  }
+
+  /* Dark mode: keep paragraphs a bit softer */
+  [data-theme="dark"] .document-content p {
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
+  }
+
+  /* Emphasis in DocumentContent */
+  .document-content strong {
+    font-weight: var(--typography-weight-semibold, 600);
   }
   
-  /* Exclude ActivityFeed timestamps from document-content p styles - they have their own size */
-  .document-content .space-y-4 p.text-xs[class*="text-[color:var(--color-fg-muted)]"],
-  .document-content .space-y-4 p[class*="text-[10px]"][class*="text-[color:var(--color-fg-muted)]"] {
+  /* ActivityFeed inside docs: avoid .document-content p typography overrides (size, color, spacing) */
+  .document-content .fragment-activity-feed p.text-sm[class*="text-[color:var(--color-fg-muted)]"] {
+    color: var(--color-fg-muted) !important;
+    margin-bottom: var(--space-1) !important;
+  }
+  .document-content .fragment-activity-feed p.text-xs[class*="text-[color:var(--color-fg-muted)]"],
+  .document-content .fragment-activity-feed p[class*="text-[10px]"][class*="text-[color:var(--color-fg-muted)]"] {
     font-size: 0.75rem !important; /* text-xs = 12px */
+    font-weight: 400 !important;
     color: var(--color-fg-muted) !important;
     margin-bottom: 0 !important;
   }
@@ -672,17 +820,23 @@ header, nav, aside, main, section, article, div, body, html {
   
   /* Intro paragraph - smaller and darker - must come after .document-content p */
   .document-content p.intro-text {
-    color: var(--color-fg-base) !important;
-    font-size: 15px !important;
-    font-weight: 400 !important;
+    color: var(--color-fg-muted) !important;
+    font-size: var(--typography-size-md) !important; /* 16px - zgodne z tokenami DS */
+    font-weight: 500 !important;
     line-height: 160% !important;
     font-family: Geist, sans-serif !important;
-    margin-bottom: 2rem !important; /* Increased spacing below (32px) */
+    margin-bottom: 0.5rem !important; /* Reduced spacing below to make room for badges */
   }
   
-  /* Dark mode - darker color for intro text */
+  /* Position badges after intro-text */
+  .document-content p.intro-text + .document-content-badges-container {
+    margin-top: 1.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  /* Dark mode: intro text uses the same semantic token */
   [data-theme="dark"] .document-content p.intro-text {
-    color: var(--foreground-secondary) !important; /* Darker in dark mode (#71717A) */
+    color: var(--color-fg-muted) !important;
   }
   
   /* Lists in DocumentContent */
@@ -703,40 +857,103 @@ header, nav, aside, main, section, article, div, body, html {
   .document-content li {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--color-fg-base);
+    font-size: var(--typography-size-md, 16px);
+    font-weight: var(--typography-weight-regular, 400);
+    /* Light mode: match paragraph readability */
+    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent);
     display: list-item; /* Zapewnia wyświetlanie markerów listy */
+  }
+
+  /* Force list item text + markers to match paragraph alpha tint */
+  .document-content ul > li,
+  .document-content ol > li {
+    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent) !important;
+  }
+
+  .document-content ul > li::marker,
+  .document-content ol > li::marker {
+    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent) !important;
+  }
+
+  /* Dark mode: keep lists a bit softer */
+  [data-theme="dark"] .document-content li {
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
+  }
+
+  [data-theme="dark"] .document-content ul > li,
+  [data-theme="dark"] .document-content ol > li {
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent) !important;
+  }
+
+  [data-theme="dark"] .document-content ul > li::marker,
+  [data-theme="dark"] .document-content ol > li::marker {
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent) !important;
   }
   
   .document-content li p {
-    color: var(--color-fg-base);
+    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent);
+    margin-bottom: 0;
+  }
+
+  [data-theme="dark"] .document-content li p {
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
+  }
+
+  /* Strong inside paragraphs: slightly higher alpha for emphasis */
+  .document-content p strong {
+    color: color-mix(in oklab, var(--color-fg-base) 90%, transparent) !important;
+    font-weight: var(--typography-weight-medium, 500);
+  }
+
+  /* Strong inside list items: slightly higher alpha for emphasis */
+  .document-content li strong {
+    /* Light mode: slightly softer emphasis */
+    color: color-mix(in oklab, var(--color-fg-base) 90%, transparent) !important;
+    font-weight: var(--typography-weight-medium, 500);
+  }
+
+  /* Dark mode: keep emphasis but not as strong as headings */
+  [data-theme="dark"] .document-content li strong {
+    color: color-mix(in oklab, var(--color-fg-base) 90%, transparent) !important;
+    font-weight: var(--typography-weight-medium, 500);
   }
   
   /* Links in DocumentContent */
   .document-content a {
-    color: var(--foreground-primary);
+    color: var(--color-fg-base);
     text-decoration: underline;
     text-underline-offset: var(--space-1);
+  }
+  
+  /* Remove underline from badge links */
+  .document-content .document-content-badges a,
+  .document-content .document-content-badges-container a {
+    text-decoration: none !important;
   }
   
   .document-content a:hover {
     opacity: 0.8;
   }
   
+  .document-content .document-content-badges a:hover,
+  .document-content .document-content-badges-container a:hover {
+    opacity: 1;
+  }
+  
   /* Code in DocumentContent */
   .document-content code {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-    font-size: 0.875rem;
-    line-height: 1.5;
+    font-family: var(--typography-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-size: var(--typography-size-sm, 14px);
+    line-height: var(--typography-line-height-text, 1.5);
+    font-weight: var(--typography-weight-regular, 400);
   }
   
   /* Inline code (not in pre blocks) */
   .document-content :not(pre) > code {
-    background-color: color-mix(in srgb, var(--foreground-primary) 5%, transparent);
-    padding: 0.125rem 0.375rem;
+    background-color: var(--color-surface-1); /* Używa tokena DS dla tła */
+    padding: var(--space-1) var(--space-3); /* 4px 12px - zgodne z tokenami DS */
     margin: 0;
-    border-radius: 0.75rem;
+    border-radius: var(--radius-md); /* 12px - zgodne z tokenami DS */
     font-size: 0.8125em;
     color: var(--color-fg-base);
     font-weight: 400;
@@ -744,18 +961,10 @@ header, nav, aside, main, section, article, div, body, html {
     display: inline-block;
     vertical-align: baseline;
   }
-  
-  /* Light mode DocumentContent */
-  [data-theme="light"] .document-content :not(pre) > code,
-  :root:not([data-theme="dark"]) .document-content :not(pre) > code {
-    background-color: color-mix(in srgb, var(--foreground-primary) 5%, transparent);
-    color: var(--foreground-primary);
-  }
-  
-  /* Dark mode DocumentContent */
-  [data-theme="dark"] .document-content :not(pre) > code {
-    background-color: color-mix(in srgb, var(--foreground-primary, #FAFAFA) 5%, transparent);
-    color: var(--color-fg-base);
+
+  /* Hide legacy "Edit this page on GitHub" footer if present */
+  .document-content div.mt-16.border-t[style*="padding-top"][style*="3rem"] {
+    display: none !important;
   }
   
   /* Spacing adjustments */
@@ -770,13 +979,13 @@ header, nav, aside, main, section, article, div, body, html {
   }
   
   /* rehype-pretty-code styles - matching shadcn/ui appearance */
-  /* rehype-pretty-code wraps code in a figure element */
-  .document-content [data-rehype-pretty-code-figure] {
+  /* Block code: rehype-pretty-code wraps fenced code blocks in a figure */
+  .document-content figure[data-rehype-pretty-code-figure] {
     margin: 1rem 0;
     position: relative;
   }
   
-  .document-content [data-rehype-pretty-code-figure] pre {
+  .document-content figure[data-rehype-pretty-code-figure] pre {
     overflow-x: auto;
     padding: 1rem 1.25rem;
     background-color: var(--color-surface-1);
@@ -788,14 +997,20 @@ header, nav, aside, main, section, article, div, body, html {
     line-height: 1.7;
     font-weight: 300 !important;
   }
+
+  /* Inline code: rehype-pretty-code may wrap backticks in a span.
+     Keep the wrapper neutral so the existing inline <code> styling applies. */
+  .document-content span[data-rehype-pretty-code-figure] {
+    display: inline;
+  }
   
   /* Fallback for pre without figure wrapper */
   .document-content pre {
     overflow-x: auto;
-    padding: 1rem 1.25rem;
+    padding: var(--space-4) var(--space-6); /* 16px 24px - zgodne z tokenami DS */
     background-color: var(--color-surface-1);
     border: 1px solid var(--color-border-base);
-    border-radius: 0.5rem;
+    border-radius: var(--radius-sm); /* 8px - zgodne z tokenami DS */
     margin: 1rem 0;
     font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
     font-size: 0.875rem;
@@ -804,7 +1019,7 @@ header, nav, aside, main, section, article, div, body, html {
   }
   
   /* rehype-pretty-code code element */
-  .document-content [data-rehype-pretty-code-figure] pre code {
+  .document-content figure[data-rehype-pretty-code-figure] pre code {
     display: grid;
     min-width: 100%;
     background: transparent;
@@ -814,23 +1029,23 @@ header, nav, aside, main, section, article, div, body, html {
   }
   
   /* Shiki colors for rehype-pretty-code */
-  .document-content [data-rehype-pretty-code-figure] code span[style*="--shiki"],
+  .document-content figure[data-rehype-pretty-code-figure] code span[style*="--shiki"],
   .document-content pre code span[style*="--shiki"] {
     color: var(--shiki-dark, var(--color-fg-base));
     font-style: var(--shiki-dark-font-style, normal);
   }
   
   /* Light mode rehype-pretty-code */
-  [data-theme="light"] .document-content [data-rehype-pretty-code-figure] pre,
-  :root:not([data-theme="dark"]) .document-content [data-rehype-pretty-code-figure] pre,
+  [data-theme="light"] .document-content figure[data-rehype-pretty-code-figure] pre,
+  :root:not([data-theme="dark"]) .document-content figure[data-rehype-pretty-code-figure] pre,
   [data-theme="light"] .document-content pre,
   :root:not([data-theme="dark"]) .document-content pre {
     background-color: var(--color-surface-1);
     border-color: var(--color-border-base);
   }
   
-  [data-theme="light"] .document-content [data-rehype-pretty-code-figure] code span[style*="--shiki"],
-  :root:not([data-theme="dark"]) .document-content [data-rehype-pretty-code-figure] code span[style*="--shiki"],
+  [data-theme="light"] .document-content figure[data-rehype-pretty-code-figure] code span[style*="--shiki"],
+  :root:not([data-theme="dark"]) .document-content figure[data-rehype-pretty-code-figure] code span[style*="--shiki"],
   [data-theme="light"] .document-content pre code span[style*="--shiki"],
   :root:not([data-theme="dark"]) .document-content pre code span[style*="--shiki"] {
     color: var(--shiki-light, var(--foreground-primary));
@@ -838,37 +1053,37 @@ header, nav, aside, main, section, article, div, body, html {
   }
   
   /* Dark mode rehype-pretty-code */
-  [data-theme="dark"] .document-content [data-rehype-pretty-code-figure] pre,
+  [data-theme="dark"] .document-content figure[data-rehype-pretty-code-figure] pre,
   [data-theme="dark"] .document-content pre {
     background-color: var(--color-surface-1);
     border-color: var(--color-border-base);
   }
   
-  [data-theme="dark"] .document-content [data-rehype-pretty-code-figure] code span[style*="--shiki"],
+  [data-theme="dark"] .document-content figure[data-rehype-pretty-code-figure] code span[style*="--shiki"],
   [data-theme="dark"] .document-content pre code span[style*="--shiki"] {
     color: var(--shiki-dark, var(--color-fg-base));
     font-style: var(--shiki-dark-font-style, normal);
   }
   
   /* Code lines with data-line attribute - minimal default styles */
-  .document-content [data-rehype-pretty-code-figure] [data-line] {
+  .document-content figure[data-rehype-pretty-code-figure] [data-line] {
     padding: 0 1rem;
   }
   
-  .document-content [data-rehype-pretty-code-figure] [data-line]:empty {
+  .document-content figure[data-rehype-pretty-code-figure] [data-line]:empty {
     display: none;
   }
   
-  .document-content [data-rehype-pretty-code-figure] code [data-line] > span {
+  .document-content figure[data-rehype-pretty-code-figure] code [data-line] > span {
     display: inline;
   }
   
   /* Line numbers */
-  .document-content [data-rehype-pretty-code-figure] code[data-line-numbers] {
+  .document-content figure[data-rehype-pretty-code-figure] code[data-line-numbers] {
     counter-reset: line;
   }
   
-  .document-content [data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
+  .document-content figure[data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
     counter-increment: line;
     content: counter(line);
     margin-right: 1rem;
@@ -879,36 +1094,36 @@ header, nav, aside, main, section, article, div, body, html {
   }
   
   /* Highlighted lines */
-  .document-content [data-rehype-pretty-code-figure] [data-line][data-highlighted] {
+  .document-content figure[data-rehype-pretty-code-figure] [data-line][data-highlighted] {
     background-color: rgba(255, 255, 255, 0.05);
-    border-left: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent);
+    border-left: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent);
     padding-left: calc(1rem - 1px);
     margin-left: -1rem;
     margin-right: -1rem;
     padding-right: 1rem;
   }
   
-  [data-theme="light"] .document-content [data-rehype-pretty-code-figure] [data-line][data-highlighted],
-  :root:not([data-theme="dark"]) .document-content [data-rehype-pretty-code-figure] [data-line][data-highlighted] {
+  [data-theme="light"] .document-content figure[data-rehype-pretty-code-figure] [data-line][data-highlighted],
+  :root:not([data-theme="dark"]) .document-content figure[data-rehype-pretty-code-figure] [data-line][data-highlighted] {
     background-color: rgba(0, 0, 0, 0.05);
-    border-left: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent);
+    border-left: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent);
   }
   
   /* Highlighted characters/words */
-  .document-content [data-rehype-pretty-code-figure] [data-highlighted-chars] {
+  .document-content figure[data-rehype-pretty-code-figure] [data-highlighted-chars] {
     border-radius: 0.25rem;
-    background-color: color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
-    box-shadow: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-brand-primary) 20%, transparent);
+    background-color: color-mix(in oklab, var(--color-brand-primary) 20%, transparent);
+    box-shadow: 0 0 0 var(--space-1) color-mix(in oklab, var(--color-brand-primary) 20%, transparent);
   }
   
-  [data-theme="light"] .document-content [data-rehype-pretty-code-figure] [data-highlighted-chars],
-  :root:not([data-theme="dark"]) .document-content [data-rehype-pretty-code-figure] [data-highlighted-chars] {
-    background-color: color-mix(in srgb, var(--color-brand-primary) 15%, transparent);
-    box-shadow: 0 0 0 var(--space-1) color-mix(in srgb, var(--color-brand-primary) 15%, transparent);
+  [data-theme="light"] .document-content figure[data-rehype-pretty-code-figure] [data-highlighted-chars],
+  :root:not([data-theme="dark"]) .document-content figure[data-rehype-pretty-code-figure] [data-highlighted-chars] {
+    background-color: color-mix(in oklab, var(--color-brand-primary) 15%, transparent);
+    box-shadow: 0 0 0 var(--space-1) color-mix(in oklab, var(--color-brand-primary) 15%, transparent);
   }
   
-  .document-content [data-rehype-pretty-code-figure] [data-chars-id] {
-    border-bottom: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent);
+  .document-content figure[data-rehype-pretty-code-figure] [data-chars-id] {
+    border-bottom: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent);
     padding: 0.25rem 0;
     box-shadow: none;
   }
@@ -933,7 +1148,7 @@ header, nav, aside, main, section, article, div, body, html {
   
   .document-content pre code span[data-line][data-highlighted] {
     background-color: rgba(255, 255, 255, 0.05);
-    border-left: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent);
+    border-left: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent);
     padding-left: calc(1rem - 1px);
     margin-left: -1rem;
     margin-right: -1rem;
@@ -943,7 +1158,7 @@ header, nav, aside, main, section, article, div, body, html {
   [data-theme="light"] .document-content pre code span[data-line][data-highlighted],
   :root:not([data-theme="dark"]) .document-content pre code span[data-line][data-highlighted] {
     background-color: rgba(0, 0, 0, 0.05);
-    border-left: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent);
+    border-left: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent);
   }
   
   /* CommandItem hover effect - ensure it works even with data-selected */

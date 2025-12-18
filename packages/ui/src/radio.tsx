@@ -10,7 +10,7 @@ export const RadioGroup = React.memo(
     return (
       <RadioGroupPrimitive.Root
         ref={ref}
-        className={clsx("flex flex-col gap-2", className)}
+        className={clsx("flex flex-col gap-[var(--space-2)]", className)}
         {...props}
       />
     );
@@ -53,7 +53,7 @@ export const Radio = React.memo(
   const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`;
   
   return (
-    <div className="flex items-start gap-2">
+    <div className="flex items-start gap-[var(--space-2)]">
       <RadioGroupItem ref={ref} id={radioId} className={clsx("mt-0.5", className)} {...props} />
       <div className="flex-1">
         {label && (

@@ -130,7 +130,7 @@ export const Rating = React.memo(
       <div
         ref={ref}
         className={clsx(
-          "inline-flex items-center gap-2",
+          "inline-flex items-center gap-[var(--space-2)]",
           disabled && "opacity-60 cursor-not-allowed",
           readOnly && "cursor-default",
           !disabled && !readOnly && "cursor-pointer",

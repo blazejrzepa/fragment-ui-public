@@ -245,7 +245,7 @@ export const TagInput = React.memo(
       <div ref={ref} className={clsx("w-full", className)} {...props}>
         <div
           className={clsx(
-            "flex flex-wrap items-center gap-2 min-h-[2.5rem] w-full rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] px-3 py-2",
+            "flex flex-wrap items-center gap-[var(--space-2)] min-h-[2.5rem] w-full rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] px-[var(--space-3)] py-[var(--space-2)]",
             disabled && "opacity-60 cursor-not-allowed",
             error && "border-[color:var(--color-status-error-border)]"
           )}
@@ -261,7 +261,7 @@ export const TagInput = React.memo(
               key={`${tag}-${index}`}
               variant="outline"
               className={clsx(
-                "flex items-center gap-1 px-2 py-0.5",
+                "flex items-center gap-[var(--space-1)] px-[var(--space-2)] py-[var(--space-0-5)]",
                 tagClassName
               )}
             >
@@ -273,7 +273,7 @@ export const TagInput = React.memo(
                     e.stopPropagation();
                     removeTag(tag);
                   }}
-                  className="ml-1 rounded-full hover:bg-[color:var(--color-surface-2)] p-0.5 transition-colors"
+                  className="ml-[var(--space-1)] rounded-full hover:bg-[color:var(--color-surface-2)] p-[var(--space-0-5)] transition-colors duration-[var(--motion-duration-base)]"
                   aria-label={`Remove ${tag}`}
                 >
                   <X className="h-3 w-3" />
@@ -303,12 +303,12 @@ export const TagInput = React.memo(
 
         {/* Error Message */}
         {error && (
-          <p className="mt-1 text-xs text-[color:var(--color-status-error-fg)]">{error}</p>
+          <p className="mt-[var(--space-1)] text-xs text-[color:var(--color-status-error-fg)]">{error}</p>
         )}
 
         {/* Helper Text */}
         {maxTags && (
-          <p className="mt-1 text-xs text-[color:var(--color-fg-muted)]">
+          <p className="mt-[var(--space-1)] text-xs text-[color:var(--color-fg-muted)]">
             {tags.length} / {maxTags} tags
           </p>
         )}

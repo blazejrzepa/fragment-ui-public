@@ -71,8 +71,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 isHorizontal ? "flex-row items-start" : "flex-col items-start",
                 index < steps.length - 1 && (
                   isHorizontal
-                    ? "flex-1 mr-4"
-                    : "mb-4 pb-4 relative"
+                    ? "flex-1 mr-[var(--space-4)]"
+                    : "mb-[var(--space-4)] pb-[var(--space-4)] relative"
                 )
               )}
             >
@@ -107,7 +107,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
 
                 {/* Step Label & Description */}
                 {showLabels && (
-                  <div className={clsx("ml-3", isHorizontal && "flex-1")}>
+                  <div className={clsx("ml-[var(--space-3)]", isHorizontal && "flex-1")}>
                     <div
                       className={clsx(
                         "font-medium",
@@ -119,7 +119,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                       {step.label}
                     </div>
                     {showDescriptions && step.description && (
-                      <div className="text-sm text-[color:var(--color-fg-muted)] mt-1">
+                      <div className="text-sm text-[color:var(--color-fg-muted)] mt-[var(--space-1)]">
                         {step.description}
                       </div>
                     )}

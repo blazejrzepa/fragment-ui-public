@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Copy, Check } from "lucide-react";
 import { Button } from "./button";
+import { Skeleton } from "./skeleton";
 
 export interface CodeBlockProps {
   /**
@@ -115,7 +116,7 @@ export function CodeBlock({
     };
 
     highlightCode();
-  }, [children, language, highlightApiUrl]);
+  }, [children, language, highlightApiUrl, showLineNumbers]);
 
   // Copy to clipboard
   const handleCopy = React.useCallback(async () => {
@@ -128,12 +129,17 @@ export function CodeBlock({
     }
   }, [children]);
 
-  // Loading state
+  // Calculate number of lines for skeleton
+  const lineCount = React.useMemo(() => {
+    return children.trim().split('\n').length;
+  }, [children]);
+
+  // Loading state with skeleton
   if (isLoading) {
     return (
-      <div className={`relative not-prose ${className}`}>
+      <div className={`relative not-prose ${className}`} style={{ marginTop: "0", marginBottom: "0" }}>
         {showCopyButton && (
-          <div className="absolute top-2 right-2 z-10">
+          <div className="absolute top-1/2 -translate-y-1/2 right-2 z-10">
             <Button
               variant="ghost"
               size="sm"
@@ -146,7 +152,7 @@ export function CodeBlock({
         )}
         <pre
           ref={codeRef}
-          className="bg-[color:var(--color-surface-1)] rounded-lg overflow-x-auto border border-[color:var(--color-border-base)]"
+          className="bg-[color:var(--color-surface-1)] overflow-x-auto border border-[color:var(--color-border-base)]"
           style={{
             fontFamily: "'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace",
             fontSize: "0.875rem",
@@ -157,10 +163,58 @@ export function CodeBlock({
             padding: "1rem 1.25rem",
             backgroundColor: "var(--color-surface-1)",
             borderColor: "var(--color-border-base)",
+            borderRadius: "var(--radius-sm)",
           }}
         >
-          <code>
-            {children.trim()}
+          <code
+            className={showLineNumbers ? "line-numbers" : ""}
+            style={{
+              display: "block",
+              counterReset: showLineNumbers ? "line" : undefined,
+            }}
+          >
+            {Array.from({ length: lineCount }).map((_, index) => (
+              <span
+                key={index}
+                className="line"
+                style={{
+                  display: "inline-block",
+                  width: "100%",
+                  paddingLeft: showLineNumbers ? "4em" : "0",
+                  lineHeight: "1.5",
+                  minHeight: "1.5em",
+                  position: "relative",
+                }}
+              >
+                {showLineNumbers && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      left: "0",
+                      top: "0",
+                      width: "2em",
+                      textAlign: "right",
+                      paddingRight: "0.5em",
+                      color: "var(--color-fg-muted)",
+                      userSelect: "none",
+                      fontVariantNumeric: "tabular-nums",
+                      opacity: 0.6,
+                      lineHeight: "1.5",
+                      display: "inline-block",
+                    }}
+                  >
+                    {index + 1}
+                  </span>
+                )}
+                <Skeleton
+                  className="h-4"
+                  style={{
+                    width: `${(index % 5) * 8 + 60}%`,
+                    marginTop: "0.35em",
+                  }}
+                />
+              </span>
+            ))}
           </code>
         </pre>
       </div>
@@ -200,7 +254,7 @@ export function CodeBlock({
   return (
     <pre
       ref={codeRef}
-      className={`relative not-prose bg-[color:var(--color-surface-1)] rounded-lg overflow-x-auto border border-[color:var(--color-border-base)] ${className}`}
+      className={`relative not-prose bg-[color:var(--color-surface-1)] overflow-x-auto border border-[color:var(--color-border-base)] ${className}`}
       style={{
         fontFamily: "'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace",
         fontSize: "0.875rem",
@@ -211,10 +265,11 @@ export function CodeBlock({
         marginBottom: "0",
         backgroundColor: "var(--color-surface-1)",
         borderColor: "var(--color-border-base)",
+        borderRadius: "var(--radius-sm)",
       }}
     >
       {showCopyButton && (
-        <div className="absolute top-2 right-2 z-10">
+        <div className="absolute top-1/2 -translate-y-1/2 right-2 z-10">
           <Button
             variant="ghost"
             size="sm"

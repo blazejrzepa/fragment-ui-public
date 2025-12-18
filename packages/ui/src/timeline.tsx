@@ -53,8 +53,8 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
           className={clsx(
             "absolute bg-[color:var(--color-fg-muted)]",
             isVertical
-              ? "left-5 top-0 bottom-0 w-0.5"
-              : "top-5 left-0 right-0 h-0.5"
+              ? "left-[var(--space-5)] top-0 bottom-0 w-0.5"
+              : "top-[var(--space-5)] left-0 right-0 h-0.5"
           )}
         />
 
@@ -68,7 +68,7 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
               key={event.id}
               className={clsx(
                 "relative flex",
-                isVertical ? "flex-row items-start pb-8" : "flex-col items-start pr-8",
+                isVertical ? "flex-row items-start pb-[var(--space-8)]" : "flex-col items-start pr-[var(--space-8)]",
                 index === events.length - 1 && (isVertical ? "pb-0" : "pr-0")
               )}
             >
@@ -91,9 +91,9 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
               </div>
 
               {/* Content */}
-              <div className={clsx(isVertical ? "ml-4 flex-1" : "mt-4 w-48")}>
+              <div className={clsx(isVertical ? "ml-[var(--space-4)] flex-1" : "mt-[var(--space-4)] w-48")}>
                 {showTimestamps && event.timestamp && (
-                  <div className="text-xs text-[color:var(--color-fg-muted)] mb-1">
+                  <div className="text-xs text-[color:var(--color-fg-muted)] mb-[var(--space-1)]">
                     {event.timestamp}
                   </div>
                 )}
@@ -113,7 +113,7 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
                   {event.title}
                 </div>
                 {event.description && (
-                  <div className="text-sm text-[color:var(--color-fg-muted)] mt-1">
+                  <div className="text-sm text-[color:var(--color-fg-muted)] mt-[var(--space-1)]">
                     {event.description}
                   </div>
                 )}

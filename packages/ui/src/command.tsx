@@ -13,7 +13,7 @@ const Command = React.forwardRef<
   <CommandPrimitive
     ref={ref}
     className={clsx(
-      "flex h-full w-full flex-col overflow-hidden rounded-md bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)]",
+      "flex h-full w-full flex-col overflow-hidden rounded-[var(--radius-md)] bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)]",
       className
     )}
     {...props}
@@ -46,11 +46,11 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex h-9 items-center gap-2 border-b border-[color:var(--color-border-base)] px-3">
+  <div className="flex h-9 items-center gap-[var(--space-2)] border-b border-[color:var(--color-border-base)] px-[var(--space-3)]">
     <CommandPrimitive.Input
       ref={ref}
       className={clsx(
-        "flex w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-[color:var(--color-fg-muted)] disabled:cursor-not-allowed disabled:opacity-50 h-9 focus-visible:ring-0 focus-visible:outline-none",
+        "flex w-full rounded-[var(--radius-sm)] bg-transparent py-[var(--space-3)] text-sm outline-hidden placeholder:text-[color:var(--color-fg-muted)] disabled:cursor-not-allowed disabled:opacity-50 h-9 focus-visible:ring-0 focus-visible:outline-none",
         className
       )}
       {...props}
@@ -96,7 +96,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={clsx(
-      "overflow-hidden p-1 text-[color:var(--color-fg-base)] [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-[color:var(--color-fg-muted)]",
+      "overflow-hidden p-[var(--space-1)] text-[color:var(--color-fg-base)] [&_[cmdk-group-heading]]:px-[var(--space-2)] [&_[cmdk-group-heading]]:py-[var(--space-1-5)] [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-[color:var(--color-fg-muted)]",
       className
     )}
     {...props}
@@ -124,7 +124,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={clsx(
-      "relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors duration-150",
+      "relative flex cursor-pointer select-none items-center gap-[var(--space-2)] rounded-[var(--radius-sm)] px-[var(--space-2)] py-[var(--space-1-5)] text-sm outline-hidden transition-colors duration-[var(--motion-duration-base)]",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[disabled]:cursor-not-allowed",
       "data-[selected=true]:bg-[color:var(--color-surface-2)] data-[selected=true]:text-[color:var(--color-fg-base)]",
       "aria-selected:bg-[color:var(--color-surface-2)] aria-selected:text-[color:var(--color-fg-base)]",

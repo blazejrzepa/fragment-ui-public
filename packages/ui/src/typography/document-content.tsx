@@ -30,7 +30,7 @@ export const DocumentContent = React.memo(
     function DocumentContent({ as: Component = "article", className, children, ...props }, ref) {
       const baseClasses = clsx(
         "document-content",
-        "max-w-none min-w-0",
+        "min-w-0",
         // Typography styles applied via CSS class
         className
       );

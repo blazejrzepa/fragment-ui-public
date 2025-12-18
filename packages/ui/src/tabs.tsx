@@ -27,11 +27,11 @@ const TabsList = React.forwardRef<
         className={clsx(
           "flex items-center",
           orientation === "horizontal"
-            ? "inline-flex h-10 justify-center rounded-[var(--radius-md)] bg-[color:var(--color-surface-1)] p-1"
-            : "flex-col h-auto w-auto items-stretch gap-1",
-          variant === "pills" && "gap-1",
-          variant === "underline" && "bg-transparent p-0 gap-6 border-b border-[color:var(--color-border-base)]",
-          variant === "boxed" && "bg-transparent p-0 gap-1",
+            ? "inline-flex h-10 justify-center rounded-[var(--radius-md)] bg-[color:var(--color-surface-1)] p-[var(--space-1)]"
+            : "flex-col h-auto w-auto items-stretch gap-[var(--space-1)]",
+          variant === "pills" && "gap-[var(--space-1)]",
+          variant === "underline" && "bg-transparent p-0 gap-[var(--space-6)] border-b border-[color:var(--color-border-base)]",
+          variant === "boxed" && "bg-transparent p-0 gap-[var(--space-1)]",
           className
         )}
         {...props}
@@ -59,24 +59,24 @@ const TabsTrigger = React.forwardRef<
     <TabsPrimitive.Trigger
       ref={ref}
       className={clsx(
-        "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-50",
-        iconOnly && "p-2 w-10 h-10",
+        "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all duration-[var(--motion-duration-base)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-50",
+        iconOnly && "p-[var(--space-2)] w-10 h-10",
         effectiveVariant === "default" &&
-          "rounded-[var(--radius-sm)] px-3 py-1.5 data-[state=active]:bg-[color:var(--color-surface-2)] data-[state=active]:text-[color:var(--color-fg-base)]",
+          "rounded-[var(--radius-sm)] px-[var(--space-3)] py-[var(--space-1-5)] data-[state=active]:bg-[color:var(--color-surface-2)] data-[state=active]:text-[color:var(--color-fg-base)]",
         effectiveVariant === "pills" &&
-          "rounded-full px-4 py-1.5 data-[state=active]:bg-[color:var(--color-brand-primary)] data-[state=active]:text-white",
+          "rounded-full px-[var(--space-4)] py-[var(--space-1-5)] data-[state=active]:bg-[color:var(--color-brand-primary)] data-[state=active]:text-white",
         effectiveVariant === "underline" &&
-          "rounded-none px-1 py-2 border-b-2 border-transparent data-[state=active]:border-[color:var(--color-brand-primary)] data-[state=active]:text-[color:var(--color-brand-primary)] transition-colors relative",
+          "rounded-none px-[var(--space-1)] py-[var(--space-2)] border-b-2 border-transparent data-[state=active]:border-[color:var(--color-brand-primary)] data-[state=active]:text-[color:var(--color-brand-primary)] transition-colors duration-[var(--motion-duration-base)] relative",
         effectiveVariant === "boxed" &&
-          "rounded-[var(--radius-sm)] px-4 py-2 border border-[color:var(--color-border-base)] data-[state=active]:border-[color:var(--color-brand-primary)] data-[state=active]:bg-[color:var(--color-brand-primary)] data-[state=active]:text-white",
+          "rounded-[var(--radius-sm)] px-[var(--space-4)] py-[var(--space-2)] border border-[color:var(--color-border-base)] data-[state=active]:border-[color:var(--color-brand-primary)] data-[state=active]:bg-[color:var(--color-brand-primary)] data-[state=active]:text-white",
         className
       )}
       {...props}
       aria-label={iconOnly ? children?.toString() : undefined}
     >
-      {icon && <span className={clsx(!iconOnly && "mr-2")}>{icon}</span>}
+      {icon && <span className={clsx(!iconOnly && "mr-[var(--space-2)]")}>{icon}</span>}
       {!iconOnly && children}
-      {badge && <span className={clsx(!iconOnly && "ml-2", "absolute -top-1 -right-1")}>{badge}</span>}
+      {badge && <span className={clsx(!iconOnly && "ml-[var(--space-2)]", "absolute -top-1 -right-1")}>{badge}</span>}
     </TabsPrimitive.Trigger>
   );
 });
@@ -89,7 +89,7 @@ const TabsContent = React.forwardRef<
     <TabsPrimitive.Content
       ref={ref}
       className={clsx(
-        "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
+        "mt-[var(--space-2)] ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand",
         className
       )}
       {...props}
