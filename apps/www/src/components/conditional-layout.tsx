@@ -24,7 +24,7 @@ export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   // If we're on the homepage, render a full-width, chrome-free layout (no doc sidebars)
   if (isHomePage) {
     return (
-      <div className="min-h-screen w-full px-4 sm:px-6 lg:px-8 pt-[60px] pb-10">
+      <div className="min-h-screen w-full px-4 sm:px-6 lg:px-8 pt-[80px] pb-10">
         <div className="w-full">{children}</div>
       </div>
     );
