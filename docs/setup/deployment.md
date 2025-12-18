@@ -29,6 +29,16 @@
    - **Output Directory**: `.next`
    - **Install Command**: `pnpm install`
 
+#### Registry generation (required)
+
+The docs site relies on a public **component registry** (used by shadcn-style installers):
+
+- **Source**: `packages/registry/registry.json`
+- **Generator**: `pnpm registry:generate` → `scripts/build/generate-registry-json.mjs`
+- **Output**: `apps/www/public/r/*.json` (e.g. `https://fragmentui.com/r/button.json`)
+
+If your build fails with `ENOENT ... packages/registry/registry.json`, it usually means the generator is resolving the repo root incorrectly (it must resolve from `scripts/build/` to the repo root).
+
 ### Step 2: Configure Domain
 
 1. In Vercel Dashboard → Project Settings → Domains

@@ -128,6 +128,9 @@ pnpm install
 # Run documentation site
 pnpm dev:www
 
+# (Optional) Generate shadcn-style registry files (served from /r/*.json on the website)
+pnpm registry:generate
+
 # Run Storybook for UI components
 pnpm storybook
 
