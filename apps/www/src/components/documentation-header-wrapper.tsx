@@ -110,7 +110,7 @@ export function DocumentationHeaderWrapper() {
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Theme Builder
                           </div>
-                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Customize and export design tokens for your theme.
                           </p>
                         </Link>
@@ -122,7 +122,7 @@ export function DocumentationHeaderWrapper() {
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Bundle Tracking
                           </div>
-                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Monitor and analyze your bundle size over time.
                           </p>
                         </Link>
@@ -134,7 +134,7 @@ export function DocumentationHeaderWrapper() {
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             VS Code Extension
                           </div>
-                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Enhanced development experience in VS Code.
                           </p>
                         </Link>
@@ -150,7 +150,7 @@ export function DocumentationHeaderWrapper() {
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             CLI
                           </div>
-                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Command-line tools for component management.
                           </p>
                         </Link>
@@ -162,7 +162,7 @@ export function DocumentationHeaderWrapper() {
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Figma Code
                           </div>
-                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Connect Figma designs to your code components.
                           </p>
                         </Link>
@@ -174,7 +174,7 @@ export function DocumentationHeaderWrapper() {
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             MCP Server
                           </div>
-                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Model Context Protocol server for AI integration.
                           </p>
                         </Link>
