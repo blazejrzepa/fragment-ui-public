@@ -1,7 +1,8 @@
 "use client";
 
-import { ScrollArea, DocumentContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { ScrollArea, DocumentContent, Badge } from "@fragment_ui/ui";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 const TAGS = Array.from({ length: 50 }).map(
   (_, i, a) => `v1.2.0-beta.${a.length - i}`
@@ -11,7 +12,7 @@ export default function ScrollAreaPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Scroll Area</h1>
+        <h1 id="scroll-area">Scroll Area</h1>
       </div>
       <p className="mb-6 intro-text">
         A customizable scroll area component with styled scrollbars. Useful for creating
@@ -81,10 +82,7 @@ export default function ScrollAreaPage() {
         scroll accessibility. Content remains fully accessible to screen readers.
       </p>
       
-      <h2 id="links">Links</h2>
-      <ul>
-        <li><StorybookLink path="/docs/core-scrollarea--docs">View in Storybook</StorybookLink></li>
-      </ul>
+      
 
 
     </DocumentContent>

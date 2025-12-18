@@ -1,174 +1,175 @@
 "use client";
 
-import { Progress, StepProgress, DocumentContent, CodeBlock } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { Progress, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const progressLinearCode = `import { Progress } from "@fragment_ui/ui";
+
+export function ProgressLinearDemo() {
+  return (
+    <div className="space-y-[var(--space-4)]">
+      <Progress value={30} label="Uploading" showValue />
+      <Progress value={75} color="success" />
+    </div>
+  );
+}`;
+
+const progressCircularCode = `import { Progress } from "@fragment_ui/ui";
+
+export function ProgressCircularDemo() {
+  return (
+    <div className="flex gap-[var(--space-8)] items-center">
+      <Progress value={40} variant="circular" size="sm" />
+      <Progress value={65} variant="circular" size="md" />
+      <Progress value={90} variant="circular" size="lg" color="info" />
+    </div>
+  );
+}`;
+
+const progressColorsCode = `import { Progress } from "@fragment_ui/ui";
+
+export function ProgressColorsDemo() {
+  return (
+    <div className="space-y-[var(--space-4)]">
+      <Progress value={40} color="default" />
+      <Progress value={60} color="warning" />
+      <Progress value={80} color="error" />
+    </div>
+  );
+}`;
 
 export default function ProgressPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">
-          Progress
-        </h1>
+        <h1 id="progress">Progress</h1>
       </div>
-      <p className="mb-6 intro-text">Indicate completion of a task or process.</p>
+      <p className="mb-6 intro-text">Visualize completion or loading state.</p>
       
-      {/* Linear Progress */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
-          <div className="w-full max-w-md space-y-4">
+      <ExampleSection
+        id="progress-linear"
+        title="Linear Progress"
+        code={progressLinearCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="w-full max-w-md space-y-[var(--space-4)]">
             <Progress value={30} label="Uploading" showValue />
             <Progress value={75} color="success" />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Progress } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="space-y-4">
-  <Progress value={30} label="Uploading" showValue />
-  <Progress value={75} color="success" />
-</div>`}
-          </CodeBlock>
-        </div>
-      </div>
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add progress`}
+      </CodeBlock>
 
-      {/* Circular Progress */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
-          <div className="flex gap-8 items-center">
+      <ExampleSection
+        id="progress-circular"
+        title="Circular Progress"
+        code={progressCircularCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex gap-[var(--space-8)] items-center justify-center w-full">
             <Progress value={40} variant="circular" size="sm" />
             <Progress value={65} variant="circular" size="md" />
             <Progress value={90} variant="circular" size="lg" color="info" />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Progress } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="flex gap-8 items-center">
-  <Progress value={40} variant="circular" size="sm" />
-  <Progress value={65} variant="circular" size="md" />
-  <Progress value={90} variant="circular" size="lg" color="info" />
-</div>`}
-          </CodeBlock>
-        </div>
-      </div>
-
-      {/* Colors */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
-          <div className="w-full max-w-md space-y-4">
+      <ExampleSection
+        id="progress-colors"
+        title="Progress Colors"
+        code={progressColorsCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="w-full max-w-md space-y-[var(--space-4)]">
             <Progress value={40} color="default" />
             <Progress value={60} color="warning" />
             <Progress value={80} color="error" />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Progress } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="space-y-4">
-  <Progress value={40} color="default" />
-  <Progress value={60} color="warning" />
-  <Progress value={80} color="error" />
-</div>`}
-          </CodeBlock>
-        </div>
-      </div>
-      
-      <h2 id="features">Features</h2>
-      <ul>
-        <li>Linear and circular progress variants</li>
-        <li>Step progress for multi-step workflows</li>
-        <li>Custom colors (success, warning, error, info)</li>
-        <li>Labels and value display</li>
-        <li>Multiple sizes (sm, md, lg)</li>
-        <li>Animated progress bar</li>
-        <li>Customizable max value</li>
-        <li>Accessible via Radix UI</li>
-        <li>Smooth transitions</li>
-      </ul>
-      
-      <h2 id="step-progress">Step Progress</h2>
-      <p>Use StepProgress for multi-step workflows:</p>
-      <div className="my-6">
-        <StepProgress
-          steps={[
-            { label: "Order Placed", completed: true },
-            { label: "Processing", completed: true },
-            { label: "Shipped", current: true },
-            { label: "Out for Delivery" },
-            { label: "Delivered" },
-          ]}
-          orientation="horizontal"
-        />
-      </div>
-
-      <h2 id="props">Props</h2>
-      <div className="overflow-x-auto my-4">
-        <table className="min-w-full border border-[color:var(--color-fg-muted)]">
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
           <thead>
-            <tr>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Prop</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Type</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Default</th>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">value</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">number</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">0</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">max</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">number</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">100</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">label</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">string</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">-</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">showValue</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">boolean</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">false</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">variant</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"linear" | "circular"</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"linear"</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">size</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"sm" | "md" | "lg"</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"md"</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">color</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"default" | "success" | "warning" | "error" | "info"</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"default"</td>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Progress</code></td>
+              <td className="py-2 px-4"><code>value?, max?, variant?, size?, color?, label?, showValue?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Progress indicator component (linear or circular)</td>
             </tr>
           </tbody>
         </table>
       </div>
-      
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        npx shadcn@latest add /r/progress.json
-      </CodeBlock>
-      <h2 id="accessibility">Accessibility</h2>
-      <p>Progress uses Radix UI which provides proper ARIA attributes for screen readers.</p>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/feedback-progress--docs">View in Storybook</StorybookLink>
-        </li>
-      </ul>
+
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>Progress</code> is a component for indicating completion of a task or process. Use it when you need to show the progress of an operation, upload, download, or any process that takes time. The component supports both linear and circular variants, with customizable colors, sizes, and labels.
+          </p>
+
+          <h3>When to use</h3>
+          <ul>
+            <li>File upload/download progress</li>
+            <li>Form submission progress</li>
+            <li>Loading states with progress indication</li>
+            <li>Multi-step process tracking</li>
+            <li>Task completion indicators</li>
+            <li>Any scenario requiring progress visualization</li>
+          </ul>
+
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "Progress"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>value?</code> – number (default: 0). Progress value (0-100) (optional)</li>
+            <li><code>max?</code> – number (default: 100). Maximum value (optional)</li>
+            <li><code>variant?</code> – "linear" | "circular" (default: "linear"). Progress variant (optional)</li>
+            <li><code>size?</code> – "sm" | "md" | "lg" (default: "md"). Size of the progress indicator (optional)</li>
+            <li><code>color?</code> – "default" | "success" | "warning" | "error" | "info" (default: "default"). Progress color (optional)</li>
+            <li><code>label?</code> – string. Label text displayed above or inside the progress (optional)</li>
+            <li><code>showValue?</code> – boolean (default: false). Show value percentage (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+          </ul>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Progress",
+  "props": {
+    "value": 75,
+    "variant": "linear",
+    "color": "success",
+    "label": "Uploading",
+    "showValue": true
+  }
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

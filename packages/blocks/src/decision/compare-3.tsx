@@ -11,6 +11,7 @@
  */
 
 import * as React from "react";
+import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@fragment_ui/ui";
 import { Button } from "@fragment_ui/ui";
 import { Badge } from "@fragment_ui/ui";
@@ -132,15 +133,17 @@ export function Compare3({ title, description, options, className }: Compare3Pro
             </CardContent>
             <CardFooter>
               {option.ctaHref ? (
-                <Button asChild
+                <Link href={option.ctaHref} className="w-full">
+                  <Button
                     variant={option.popular ? "solid" : "outline"}
                     className="w-full"
                     disabled={option.disabled}
                     data-action-id={option.actionContractId}
                     data-action-kind={option.actionContractId ? "soft" : undefined}
-                  ><a href={option.ctaHref} className="w-full">
+                  >
                     {option.ctaText}
-                  </a></Button>
+                  </Button>
+                </Link>
               ) : (
                 <Button
                   variant={option.popular ? "solid" : "outline"}

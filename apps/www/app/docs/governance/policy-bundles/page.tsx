@@ -1,6 +1,5 @@
 import { processMarkdownContent } from "../../../../src/lib/markdown-loader";
 import { DocLayout } from "../../../../src/components/doc-layout";
-import { EditOnGitHub } from "@fragment_ui/ui";
 // Import markdown as raw string - webpack will bundle it
 import markdownContent from "./content.md?raw";
 
@@ -36,8 +35,6 @@ export default async function PolicyBundlesPage() {
           className="max-w-none"
           dangerouslySetInnerHTML={{ __html: content }}
         />
-
-        <EditOnGitHub filePath="apps/www/app/docs/governance/policy-bundles/content.md" />
       </DocLayout>
     );
   } catch (error) {

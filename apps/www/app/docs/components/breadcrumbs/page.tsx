@@ -1,85 +1,177 @@
 "use client";
 
-import { Breadcrumbs, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Breadcrumbs, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const defaultCode = `import { Breadcrumbs } from "@fragment_ui/ui";
+
+export function BreadcrumbsDefaultDemo() {
+  return (
+    <Breadcrumbs
+      items={[
+        { label: "Home", href: "/" },
+        { label: "Components", href: "/components" },
+        { label: "Breadcrumbs" },
+      ]}
+    />
+  );
+}`;
+
+const arrowCode = `import { Breadcrumbs } from "@fragment_ui/ui";
+
+export function BreadcrumbsArrowDemo() {
+  return (
+    <Breadcrumbs
+      variant="arrow"
+      items={[
+        { label: "Home", href: "/" },
+        { label: "Documentation", href: "/docs" },
+        { label: "Components", href: "/docs/components" },
+        { label: "Breadcrumbs" },
+      ]}
+    />
+  );
+}`;
 
 export default function BreadcrumbsPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="breadcrumbs" className="text-3xl font-medium mb-4">Breadcrumbs</h1>
+        <h1 id="breadcrumbs">Breadcrumbs</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Show location within a navigation hierarchy.
-      </p>
+      <p className="mb-6 intro-text">Show current location in navigation hierarchy.</p>
       
-      
-      {/* All Variants */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
-            <div className="flex justify-center">
-              <Breadcrumbs
-                items={[
-                  { label: "Home", href: "/" },
-                  { label: "Components", href: "/components" },
-                  { label: "Breadcrumbs" },
-                ]}
-              />
-            </div>
-            <div className="flex justify-center">
-              <Breadcrumbs
-                variant="arrow"
-                items={[
-                  { label: "Home", href: "/" },
-                  { label: "Documentation", href: "/docs" },
-                  { label: "Components", href: "/docs/components" },
-                  { label: "Breadcrumbs" },
-                ]}
-              />
-            </div>
-          </div>
+      {/* Default variant */}
+      <ExampleSection
+        id="breadcrumbs-default"
+        title="Example"
+        code={defaultCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Components", href: "/components" },
+              { label: "Breadcrumbs" },
+            ]}
+          />
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Breadcrumbs } from "@fragment_ui/ui";
+      </ExampleSection>
 
-// Slash variant (default)
-<Breadcrumbs
-  items={[
-    { label: "Home", href: "/" },
-    { label: "Components", href: "/components" },
-    { label: "Breadcrumbs" },
-  ]}
-/>
-
-// Arrow variant
-<Breadcrumbs
-  variant="arrow"
-  items={[
-    { label: "Home", href: "/" },
-    { label: "Documentation", href: "/docs" },
-    { label: "Components", href: "/docs/components" },
-    { label: "Breadcrumbs" },
-  ]}
-/>`}</CodeBlock>
+      {/* Arrow variant */}
+      <ExampleSection
+        id="breadcrumbs-arrow"
+        title="Arrow Variant"
+        code={arrowCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Breadcrumbs
+            variant="arrow"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Documentation", href: "/docs" },
+              { label: "Components", href: "/docs/components" },
+              { label: "Breadcrumbs" },
+            ]}
+          />
         </div>
-      </div>
+      </ExampleSection>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/breadcrumbs.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add breadcrumbs`}
+      </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>items</code></td>
+              <td className="py-2 px-4"><code>BreadcrumbItem[]</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Array of breadcrumb items (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>variant</code></td>
+              <td className="py-2 px-4">
+                <div className="flex gap-1 flex-wrap">
+                  <code>"slash"</code>
+                  <code>"arrow"</code>
+                </div>
+              </td>
+              <td className="py-2 px-4"><code>"slash"</code></td>
+              <td className="py-2 px-4 text-sm">Separator style variant</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>separator</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Custom separator element (optional)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">BreadcrumbItem Property</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Required</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>label</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">✓</td>
+              <td className="py-2 px-4 text-sm">Display text or React node (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>href</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Link URL (optional, makes item clickable)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>onClick</code></td>
+              <td className="py-2 px-4"><code>() =&gt; void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Click handler (optional, used if no href)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
           <p><strong>Intent</strong></p>
           <p>
-            <code>Breadcrumbs</code> is a navigation component that displays the current page's location within a site hierarchy.<br />
-            Use it when you need to show users where they are in a multi-level navigation structure and provide quick access to parent pages.
+            <code>Breadcrumbs</code> is a navigation component that displays the current page's location within a site hierarchy. Use it when you need to show users where they are in a multi-level navigation structure and provide quick access to parent pages.
           </p>
 
           <p><strong>When to use</strong></p>
@@ -91,26 +183,27 @@ export default function BreadcrumbsPage() {
             <li>Any hierarchical content organization</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <p><strong>UI-DSL Usage</strong></p>
           <p>
             Use <code>type: "component"</code> with <code>component: "Breadcrumbs"</code> and provide an <code>items</code> array.
           </p>
-          <p>Props:</p>
+          
+          <p><strong>Props</strong></p>
           <ul>
-            <li><code>items</code> – array of breadcrumb items (required)</li>
-            <li><code>variant?</code> – <code>"slash"</code> (default) or <code>"arrow"</code></li>
-            <li><code>separator?</code> – custom separator element (optional)</li>
-            <li><code>className?</code> – additional CSS classes (optional)</li>
-          </ul>
-          <p>Each item in <code>items</code> should include:</p>
-          <ul>
-            <li><code>label</code> – display text or React node (required)</li>
-            <li><code>href?</code> – link URL (optional, makes item clickable)</li>
-            <li><code>onClick?</code> – click handler (optional, used if no href)</li>
+            <li><code>items</code> – array of breadcrumb items (required). Each item should include:
+              <ul>
+                <li><code>label</code> – React.ReactNode. Display text or React node (required)</li>
+                <li><code>href?</code> – string. Link URL (optional, makes item clickable)</li>
+                <li><code>onClick?</code> – function. Click handler (optional, used if no href)</li>
+              </ul>
+            </li>
+            <li><code>variant?</code> – <code>"slash"</code> (default) or <code>"arrow"</code>. Separator style variant</li>
+            <li><code>separator?</code> – React.ReactNode. Custom separator element (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes</li>
           </ul>
           <p>The last item typically has no <code>href</code> as it represents the current page.</p>
 
-          <p><strong>Example</strong></p>
+          <h3 className="mt-6 mb-4">Basic Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Breadcrumbs",
@@ -131,7 +224,8 @@ export default function BreadcrumbsPage() {
     ]
   }
 }`}</CodeBlock>
-          <p className="mt-6"><strong>With arrow variant:</strong></p>
+
+          <h3 className="mt-6 mb-4">Arrow Variant</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Breadcrumbs",
@@ -158,16 +252,6 @@ export default function BreadcrumbsPage() {
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-breadcrumbs--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
-
     </DocumentContent>
   );
 }
-

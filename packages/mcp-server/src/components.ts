@@ -5,10 +5,11 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
+import { getRepoRoot } from "./root.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.join(__dirname, "../../..");
+const ROOT = getRepoRoot();
 
 export interface ComponentInfo {
   name: string;
@@ -117,8 +118,8 @@ export async function getComponentInfo(
       importPath: component.files?.[0]
         ? `@fragment_ui/${component.category || "ui"}/${componentName}`
         : `@fragment_ui/ui/${componentName}`,
-      documentationUrl: `https://fragmentui.com/docs/components/${componentName}`,
-      storybookUrl: `https://fragmentui.com/storybook/?path=/story/${componentName}`,
+      documentationUrl: `https://fragment-ui.dev/docs/components/${componentName}`,
+      storybookUrl: `https://fragment-ui.dev/storybook/?path=/story/${componentName}`,
     };
   } catch (error) {
     console.error("Error getting component info:", error);

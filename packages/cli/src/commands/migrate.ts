@@ -7,7 +7,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { parse } from "@babel/parser";
-import traverse, { type NodePath } from "@babel/traverse";
+import traverse from "@babel/traverse";
 import generate from "@babel/generator";
 import * as t from "@babel/types";
 
@@ -39,7 +39,7 @@ const migrationRules: MigrationRule[] = [
       if (t.isJSXOpeningElement(node) && t.isJSXIdentifier(node.name)) {
         if (node.name.name === "Button") {
           const variantAttr = node.attributes.find(
-            (attr: t.JSXAttribute | t.JSXSpreadAttribute) => t.isJSXAttribute(attr) && t.isJSXIdentifier(attr.name) && attr.name.name === "variant"
+            (attr) => t.isJSXAttribute(attr) && t.isJSXIdentifier(attr.name) && attr.name.name === "variant"
           ) as t.JSXAttribute | undefined;
 
           if (variantAttr && t.isStringLiteral(variantAttr.value)) {
@@ -100,7 +100,7 @@ export function migrateFile(
     }
 
     traverse(ast, {
-      JSXOpeningElement(path: NodePath<t.JSXOpeningElement>) {
+      JSXOpeningElement(path) {
         rules.forEach((rule) => {
           const transformed = rule.transform(path.node);
           if (transformed && transformed !== path.node) {

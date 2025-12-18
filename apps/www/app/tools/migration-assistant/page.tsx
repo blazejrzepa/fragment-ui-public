@@ -280,14 +280,14 @@ export default function MigrationAssistantPage() {
                 >
                   <div className="flex items-start gap-3 mb-2">
                     {result.success ? (
-                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 text-[color:var(--color-status-success-fg)] mt-0.5" />
                     ) : (
-                      <XCircle className="h-5 w-5 text-red-600 mt-0.5" />
+                      <XCircle className="h-5 w-5 text-[color:var(--color-status-error-fg)] mt-0.5" />
                     )}
                     <div className="flex-1">
                       <div className="font-medium">{result.file}</div>
                       {result.error && (
-                        <div className="text-sm text-red-600 mt-1">{result.error}</div>
+                        <div className="text-sm text-[color:var(--color-status-error-fg)] mt-1">{result.error}</div>
                       )}
                       {result.changes.length > 0 && (
                         <div className="mt-2">

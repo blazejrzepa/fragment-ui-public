@@ -50,8 +50,8 @@ const sections: NavigationSection[] = [
   {
     title: "Get Started",
     items: [
-      { title: "Introduction", href: "/docs/get-started/introduction" },
-      { title: "Setup", href: "/docs/get-started/setup" },
+      { title: "Introduction", href: "/docs/introduction" },
+      { title: "Setup", href: "/docs/setup" },
     ],
   },
   {

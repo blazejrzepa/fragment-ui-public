@@ -1,8 +1,6 @@
 ---
-title: Testing Guide - Comprehensive Checks
+title: Test Guide
 ---
-
-A complete guide to running all tests in the Fragment UI project.
 
 ## 📋 Test types
 

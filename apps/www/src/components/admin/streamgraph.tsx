@@ -119,7 +119,7 @@ export function Streamgraph({
     };
 
     const defaultColors = colors || [
-      getCSSColor("--color-brand-primary", "#6B8CFF"),
+      getCSSColor("--color-brand-primary", "#6366F1"),
       getCSSColor("--color-accent-green", "#22C55E"),
       getCSSColor("--color-accent-red", "#EF4444"),
       "#8B5CF6",

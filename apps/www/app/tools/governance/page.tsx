@@ -70,11 +70,11 @@ export default function GovernanceDashboardPage() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "compliant":
-        return <CheckCircle className="h-5 w-5 text-green-600" />;
+        return <CheckCircle className="h-5 w-5 text-[color:var(--color-status-success-fg)]" />;
       case "warning":
-        return <AlertTriangle className="h-5 w-5 text-yellow-600" />;
+        return <AlertTriangle className="h-5 w-5 text-[color:var(--color-status-warning-fg)]" />;
       case "non-compliant":
-        return <XCircle className="h-5 w-5 text-red-600" />;
+        return <XCircle className="h-5 w-5 text-[color:var(--color-status-error-fg)]" />;
       default:
         return null;
     }
@@ -100,11 +100,11 @@ export default function GovernanceDashboardPage() {
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case "high":
-        return "text-red-600 bg-red-50 border-red-200";
+        return "text-status-error-fg bg-status-error-bg border-status-error-border";
       case "medium":
-        return "text-yellow-600 bg-yellow-50 border-yellow-200";
+        return "text-status-warning-fg bg-status-warning-bg border-status-warning-border";
       case "low":
-        return "text-blue-600 bg-blue-50 border-blue-200";
+        return "text-status-info-fg bg-status-info-bg border-status-info-border";
       default:
         return "";
     }
@@ -115,8 +115,8 @@ export default function GovernanceDashboardPage() {
       <DocLayout>
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading governance data...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[color:var(--color-brand-primary)] mx-auto mb-4"></div>
+            <p className="text-[color:var(--color-fg-muted)]">Loading governance data...</p>
           </div>
         </div>
       </DocLayout>
@@ -212,10 +212,10 @@ export default function GovernanceDashboardPage() {
                 <div
                   className={`h-2 rounded-full ${
                     metric.status === "compliant"
-                      ? "bg-green-600"
+                      ? "bg-[color:var(--color-status-success-base)]"
                       : metric.status === "warning"
-                        ? "bg-yellow-600"
-                        : "bg-red-600"
+                        ? "bg-[color:var(--color-status-warning-base)]"
+                        : "bg-[color:var(--color-status-error-base)]"
                   }`}
                   style={{ width: `${metric.score}%` }}
                 />
@@ -236,17 +236,17 @@ export default function GovernanceDashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-3 gap-4">
-            <div className="p-4 rounded-md border-2 border-red-200 bg-red-50">
-              <div className="text-2xl font-bold text-red-600">{data.issuesBySeverity.high}</div>
-              <div className="text-sm text-red-600 font-medium">High Priority</div>
+            <div className="p-4 rounded-md border-2 border-[color:var(--color-status-error-border)] bg-[color:var(--color-status-error-bg)]">
+              <div className="text-2xl font-bold text-[color:var(--color-status-error-fg)]">{data.issuesBySeverity.high}</div>
+              <div className="text-sm text-[color:var(--color-status-error-fg)] font-medium">High Priority</div>
             </div>
-            <div className="p-4 rounded-md border-2 border-yellow-200 bg-yellow-50">
-              <div className="text-2xl font-bold text-yellow-600">{data.issuesBySeverity.medium}</div>
-              <div className="text-sm text-yellow-600 font-medium">Medium Priority</div>
+            <div className="p-4 rounded-md border-2 border-[color:var(--color-status-warning-border)] bg-[color:var(--color-status-warning-bg)]">
+              <div className="text-2xl font-bold text-[color:var(--color-status-warning-fg)]">{data.issuesBySeverity.medium}</div>
+              <div className="text-sm text-[color:var(--color-status-warning-fg)] font-medium">Medium Priority</div>
             </div>
-            <div className="p-4 rounded-md border-2 border-blue-200 bg-blue-50">
-              <div className="text-2xl font-bold text-blue-600">{data.issuesBySeverity.low}</div>
-              <div className="text-sm text-blue-600 font-medium">Low Priority</div>
+            <div className="p-4 rounded-md border-2 border-[color:var(--color-status-info-border)] bg-[color:var(--color-status-info-bg)]">
+              <div className="text-2xl font-bold text-[color:var(--color-status-info-fg)]">{data.issuesBySeverity.low}</div>
+              <div className="text-sm text-[color:var(--color-status-info-fg)] font-medium">Low Priority</div>
             </div>
           </div>
         </CardContent>
@@ -273,10 +273,10 @@ export default function GovernanceDashboardPage() {
                         <div
                           className={`h-2 rounded-full ${
                             component.complianceScore >= 90
-                              ? "bg-green-600"
+                              ? "bg-[color:var(--color-status-success-base)]"
                               : component.complianceScore >= 70
-                                ? "bg-yellow-600"
-                                : "bg-red-600"
+                                ? "bg-[color:var(--color-status-warning-base)]"
+                                : "bg-[color:var(--color-status-error-base)]"
                           }`}
                           style={{ width: `${component.complianceScore}%` }}
                         />

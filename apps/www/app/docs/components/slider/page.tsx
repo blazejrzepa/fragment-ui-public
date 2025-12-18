@@ -1,8 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import { Slider, DocumentContent, CodeBlock } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { Slider, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const sliderCode = `import { Slider } from "@fragment_ui/ui";
+import { useState } from "react";
+
+export function SliderDemo() {
+  const [value, setValue] = useState([50]);
+  
+  return (
+    <div className="w-full max-w-md space-y-[var(--space-2)]">
+      <p className="text-sm text-[color:var(--color-fg-muted)]">Value: {value[0]}</p>
+      <Slider value={value} onValueChange={setValue} max={100} />
+    </div>
+  );
+}`;
+
+const sliderRangeCode = `import { Slider } from "@fragment_ui/ui";
+import { useState } from "react";
+
+export function SliderRangeDemo() {
+  const [rangeValue, setRangeValue] = useState([20, 80]);
+  
+  return (
+    <div className="w-full max-w-md space-y-[var(--space-2)]">
+      <Slider value={rangeValue} onValueChange={setRangeValue} max={100} step={5} />
+      <p className="text-sm text-[color:var(--color-fg-muted)]">
+        Range: {rangeValue[0]} - {rangeValue[1]}
+      </p>
+    </div>
+  );
+}`;
 
 export default function SliderPage() {
   const [value, setValue] = useState([50]);
@@ -11,105 +43,130 @@ export default function SliderPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">
-          Slider
-        </h1>
+        <h1 id="slider">Slider</h1>
       </div>
-      <p className="mb-6 intro-text">Pick a value from a continuous range.</p>
+      <p className="mb-6 intro-text">Adjust a numeric value along a track.</p>
 
-      {/* Default */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
-          <div className="w-full max-w-md space-y-2">
+      <ExampleSection
+        id="slider-example"
+        title="Example"
+        code={sliderCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="w-full max-w-md space-y-[var(--space-2)]">
             <p className="text-sm text-[color:var(--color-fg-muted)]">Value: {value[0]}</p>
             <Slider value={value} onValueChange={setValue} max={100} />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Slider } from "@fragment_ui/ui";
-import { useState } from "react";
+      </ExampleSection>
 
-const [value, setValue] = useState([50]);
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add slider`}
+      </CodeBlock>
 
-<div className="w-full max-w-md space-y-2">
-  <p className="text-sm text-[color:var(--color-fg-muted)]">Value: {value[0]}</p>
-  <Slider value={value} onValueChange={setValue} max={100} />
-</div>`}
-          </CodeBlock>
-        </div>
-      </div>
-
-      {/* Range */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
-          <div className="w-full max-w-md space-y-2">
+      <ExampleSection
+        id="slider-range"
+        title="Range"
+        code={sliderRangeCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="w-full max-w-md space-y-[var(--space-2)]">
             <Slider value={rangeValue} onValueChange={setRangeValue} max={100} step={5} />
             <p className="text-sm text-[color:var(--color-fg-muted)]">
               Range: {rangeValue[0]} - {rangeValue[1]}
             </p>
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Slider } from "@fragment_ui/ui";
-import { useState } from "react";
+      </ExampleSection>
 
-const [rangeValue, setRangeValue] = useState([20, 80]);
-
-<div className="w-full max-w-md space-y-2">
-  <Slider value={rangeValue} onValueChange={setRangeValue} max={100} step={5} />
-  <p className="text-sm text-[color:var(--color-fg-muted)]">
-    Range: {rangeValue[0]} - {rangeValue[1]}
-  </p>
-</div>`}
-          </CodeBlock>
-        </div>
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-2 px-4"><code>Slider</code></td>
+              <td className="py-2 px-4"><code>value?, defaultValue?, onValueChange?, min?, max?, step?, disabled?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Range slider component for selecting numeric values</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <h2 id="props">Props</h2>
-      <ul>
-        <li>
-          <code>value</code> - Controlled value (array of numbers)
-        </li>
-        <li>
-          <code>defaultValue</code> - Default value (array of numbers)
-        </li>
-        <li>
-          <code>onValueChange</code> - Callback when value changes
-        </li>
-        <li>
-          <code>min</code> - Minimum value (default: 0)
-        </li>
-        <li>
-          <code>max</code> - Maximum value (default: 100)
-        </li>
-        <li>
-          <code>step</code> - Step increment (default: 1)
-        </li>
-        <li>
-          <code>disabled</code> - Disable the slider
-        </li>
-        <li>
-          <code>className</code> - Additional CSS classes
-        </li>
-      </ul>
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>Slider</code> is a component for picking a value from a continuous range. Use it when you need to allow users to select a numeric value by dragging a handle along a track. The component supports both single value and range selection, with customizable min, max, and step values.
+          </p>
 
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        npx shadcn@latest add /r/slider.json
-      </CodeBlock>
-      <h2 id="accessibility">Accessibility</h2>
-      <p>
-        Slider is fully keyboard accessible with arrow keys, Home/End keys, and Page Up/Down. It includes proper ARIA
-        attributes and is compliant with WCAG 2.1.
-      </p>
+          <h3>When to use</h3>
+          <ul>
+            <li>Volume or brightness controls</li>
+            <li>Price range filters</li>
+            <li>Numeric input with visual feedback</li>
+            <li>Settings with continuous values</li>
+            <li>Any scenario requiring range selection</li>
+          </ul>
 
-      <h2 id="links">Links</h2>
-      <ul>
-        <li></li>
-      </ul>
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "Slider"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>value?</code> – number[]. Controlled value (array of numbers) (optional)</li>
+            <li><code>defaultValue?</code> – number[]. Default value (array of numbers) (optional)</li>
+            <li><code>onValueChange?</code> – function. Callback when value changes: <code>(value: number[]) {'=>'} void</code> (optional)</li>
+            <li><code>min?</code> – number (default: 0). Minimum value (optional)</li>
+            <li><code>max?</code> – number (default: 100). Maximum value (optional)</li>
+            <li><code>step?</code> – number (default: 1). Step increment (optional)</li>
+            <li><code>disabled?</code> – boolean. Disable the slider (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+          </ul>
+          <p><strong>Note:</strong> For single value, use <code>value={[50]}</code>. For range, use <code>value={[20, 80]}</code>.</p>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Slider",
+  "props": {
+    "value": [50],
+    "onValueChange": "handleValueChange",
+    "min": 0,
+    "max": 100,
+    "step": 1
+  }
+}`}</CodeBlock>
+          <p className="mt-6"><strong>Range slider example:</strong></p>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Slider",
+  "props": {
+    "value": [20, 80],
+    "onValueChange": "handleRangeChange",
+    "min": 0,
+    "max": 100,
+    "step": 5
+  }
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

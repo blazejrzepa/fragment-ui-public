@@ -4,6 +4,13 @@
 @tailwind utilities;
 
 /* CRITICAL CSS - Prevent FOUC (Flash of Unstyled Content) - must load early */
+/* Next.js portal positioning */
+nextjs-portal {
+  position: absolute !important;
+  left: 7.9899px !important;
+  top: 7.9899px !important;
+}
+
 /* Force admin sidebar to be at left edge immediately - prevent 8px flash */
 aside.fixed.left-0,
 aside[class*="fixed"][class*="left-0"],
@@ -32,6 +39,25 @@ body aside.fixed[class*="w-64"] {
 
 /* Import Design System styles - includes DocumentContent typography styles */
 @import "@fragment_ui/ui/styles.css";
+
+/* CRITICAL: Override transform from packages/ui/src/styles.css for html and body */
+/* The * { transform: translate3d(0, 0, 0); } rule in ui/styles.css applies to all elements */
+/* We need to explicitly remove it from html and body to prevent positioning issues */
+html {
+  transform: none !important;
+  -webkit-transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+}
+
+body {
+  transform: none !important;
+  -webkit-transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+}
 
 :root {
   color-scheme: light dark;
@@ -62,24 +88,11 @@ header, nav, aside, main, section, article, div, body, html {
   -webkit-text-stroke: 0.35px transparent;
 }
 
-html {
-  /* No transform on html to prevent layout issues */
-}
-
 html,
 body {
-  margin: 0;
-  padding: 0;
   height: 100%;
   background: var(--background-primary, var(--color-bg-base));
   color: var(--color-fg-base);
-  /* Chrome: Font rendering optimization for crisp text */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* Chrome: use auto to prevent blur from optimizeLegibility */
-  text-rendering: auto;
-  /* Chrome: Prevent subpixel rendering blur - thinner stroke for better clarity */
-  -webkit-text-stroke: 0.35px transparent;
   /* Chrome: Force GPU acceleration */
   will-change: auto;
   /* Hide scrollbars globally */
@@ -97,6 +110,60 @@ body[class*="admin"] {
 #__next {
   margin: 0 !important;
   padding: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Hide or reposition Vercel Speed Insights badge if it's causing layout issues */
+[data-vercel-speed-insights],
+iframe[src*="vercel"],
+div[data-vercel-speed-insights],
+script[src*="vercel"],
+a[href*="vercel"][target="_blank"],
+div[class*="vercel"],
+div[id*="vercel"] {
+  position: fixed !important;
+  top: auto !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Reposition Next.js Dev Tools widget to bottom-left */
+#devtools-indicator,
+.nextjs-toast {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  right: auto !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: auto !important;
+}
+
+/* Ensure fixed header is always at the top, regardless of parent container */
+header.fixed.top-0 {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 50 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* Ensure parent containers don't create stacking context that affects fixed positioning */
+div:has(> header.fixed.top-0) {
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
 }
 
 /* Force admin sidebar to be at left edge - override any padding/margin */
@@ -199,21 +266,7 @@ nav[aria-label="Main"] {
   margin-left: 0 !important;
 }
 
-/* Breadcrumb styles - portal-specific */
-nav[aria-label="Breadcrumb"] a {
-  text-decoration: none !important;
-  color: rgb(113 113 122) !important; /* zinc-500 */
-}
-
-nav[aria-label="Breadcrumb"] a:hover {
-  color: rgb(244, 244, 245) !important; /* zinc-100 */
-  opacity: 1;
-}
-
-/* Setup breadcrumb item should be zinc-100 */
-nav[aria-label="Breadcrumb"] li span[class*="text-zinc-100"] {
-  color: rgb(244, 244, 245) !important; /* zinc-100 */
-}
+/* Breadcrumb styles are handled by DS (`@fragment_ui/ui` Breadcrumbs) via tokens. */
 
 /* Override mb-4 for h1 in documentation pages - apply consistent spacing */
 h1.text-3xl.mb-4,
@@ -258,7 +311,7 @@ main .not-prose ~ pre:not([style*="--shiki"]):not([data-theme]) {
   overflow-x: auto !important;
   margin-top: 1rem !important;
   margin-bottom: 1rem !important;
-  border: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent) !important;
+  border: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent) !important;
   font-size: 0.875rem !important;
   line-height: 1.5 !important;
   font-weight: 300 !important;
@@ -278,7 +331,7 @@ article pre[data-theme],
 main pre[data-theme],
 div pre[data-theme] {
   background-color: var(--color-surface-1, var(--background-secondary)) !important;
-  border: 1px solid color-mix(in srgb, var(--foreground-primary) 2%, transparent) !important;
+  border: 1px solid color-mix(in oklab, var(--foreground-primary) 2%, transparent) !important;
   border-radius: 0.5rem !important;
   padding: 1rem 1.25rem !important;
   margin-top: 1rem !important;
@@ -351,7 +404,7 @@ main pre code {
 [data-theme="light"] main pre,
 :root:not([data-theme="dark"]) main pre {
   background-color: var(--color-surface-1, #f4f4f5) !important;
-  border-color: color-mix(in srgb, var(--foreground-primary) 2%, transparent) !important;
+  border-color: color-mix(in oklab, var(--foreground-primary) 2%, transparent) !important;
 }
 
 [data-theme="light"] article pre code,
@@ -368,7 +421,7 @@ main pre code {
 [data-theme="dark"] .DocLayout pre,
 [data-theme="dark"] main pre {
   background-color: var(--color-surface-1, #18181b) !important;
-  border-color: color-mix(in srgb, var(--foreground-primary) 2%, transparent) !important;
+  border-color: color-mix(in oklab, var(--foreground-primary) 2%, transparent) !important;
 }
 
 [data-theme="dark"] article pre code,
@@ -504,16 +557,16 @@ aside *::-webkit-scrollbar-corner {
 /* Logo positioning in top navigation - desktop offset */
 @media (min-width: 1024px) {
   header nav a[href="/"],
-  header nav a[href="/docs/get-started/introduction"],
+  header nav a[href="/docs/introduction"],
   header > div > div > a[href="/"],
-  header > div > div > a[href="/docs/get-started/introduction"] {
+  header > div > div > a[href="/docs/introduction"] {
     margin-left: 4px !important;
   }
 }
 
 /* Ensure logo is visible in mobile */
 header > div > div > a[href="/"],
-header > div > div > a[href="/docs/get-started/introduction"] {
+header > div > div > a[href="/docs/introduction"] {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
@@ -521,7 +574,7 @@ header > div > div > a[href="/docs/get-started/introduction"] {
 
 /* Ensure logo image has dimensions in mobile */
 header > div > div > a[href="/"] img,
-header > div > div > a[href="/docs/get-started/introduction"] img {
+header > div > div > a[href="/docs/introduction"] img {
   width: 24px !important;
   height: 24px !important;
   min-width: 24px !important;
@@ -553,6 +606,15 @@ aside:last-child nav[class*="sticky"] a:hover {
   gap: 0.75rem;
 }
 
+/* Components pages: reduce spacing between headline row and intro-text */
+.document-content > .flex.items-center.gap-4.mb-1 {
+  margin-bottom: var(--space-2, 8px) !important;
+}
+
+.document-content > .flex.items-center.gap-4.mb-1 h1 {
+  margin-bottom: 0 !important;
+}
+
 /* Inline code styling inside documentation content (only non-pre) */
 .document-content :not(pre) > code {
   display: inline-block !important;
@@ -560,7 +622,25 @@ aside:last-child nav[class*="sticky"] a:hover {
   padding: 0.125rem 0.375rem !important;
   margin: 0 !important;
   border-radius: 0.75rem !important;
-  background: color-mix(in srgb, var(--foreground-primary, #fafafa) 5%, transparent) !important;
+  background: var(--color-surface-2) !important;
+  color: var(--color-fg-base) !important;
+  font-size: 0.8125em !important;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace) !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  border: none !important;
+}
+
+/* Code elements in API Reference tables */
+.document-content table code,
+.document-content table td code,
+.document-content table th code {
+  display: inline-block !important;
+  vertical-align: baseline !important;
+  padding: 0.125rem 0.375rem !important;
+  margin: 0 !important;
+  border-radius: 0.75rem !important;
+  background: var(--color-surface-2) !important;
   color: var(--color-fg-base) !important;
   font-size: 0.8125em !important;
   font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace) !important;
@@ -591,7 +671,7 @@ aside:last-child nav[class*="sticky"] a:hover {
   padding: 0.125rem 0.375rem !important;
   margin: 0 !important;
   border-radius: 0.75rem !important;
-  background: color-mix(in srgb, var(--foreground-primary, #fafafa) 5%, transparent) !important;
+  background: var(--color-surface-2) !important;
   color: var(--color-fg-base) !important;
   font-size: 0.8125em !important;
   font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace) !important;
@@ -603,7 +683,7 @@ aside:last-child nav[class*="sticky"] a:hover {
 
 /* Fallback: any rehype plaintext code with data-theme */
 code[data-language="plaintext"][data-theme] {
-  background: color-mix(in srgb, var(--foreground-primary, #fafafa) 5%, transparent) !important;
+  background: var(--color-surface-2) !important;
   padding: 0.125rem 0.375rem !important;
   margin: 0 !important;
   border: none !important;
@@ -626,15 +706,7 @@ aside:last-child nav[class*="sticky"] a:focus-visible {
   box-shadow: none !important;
 }
 
-/* Table of Contents - set inactive links to zinc-500 */
-/* Only apply to TOC (right sidebar), not left navigation sidebar */
-/* TOC: aside.sticky > nav.sticky > a */
-/* Left nav: aside.fixed > nav > a (NavItem handles its own colors) */
-aside[class*="sticky"] nav[class*="sticky"] a.text-zinc-500,
-aside.sticky nav.sticky a.text-zinc-500,
-aside[class*="sticky"] nav[class*="sticky"] a:not(.font-medium):not([class*="brand-primary"]) {
-  color: rgb(113, 113, 122) !important; /* zinc-500 for inactive links */
-}
+/* Table of Contents colors are handled by DS (`@fragment_ui/ui` TableOfContents) via tokens. */
 
 /* Components page - remove custom right padding */
 main.components-page {
@@ -643,7 +715,7 @@ main.components-page {
 
 /* Override list font size in docs */
 .document-content li {
-  font-size: 15px !important;
+  font-size: 16px !important;
 }
 
 /* Reduce padding on screens below 1366px */
@@ -661,24 +733,13 @@ main.components-page {
 /* Search input - override focus ring to use Zinc color instead of brand */
 div[class*="relative"] input[type="search"]:focus,
 div[class*="relative"] input[type="search"]:focus-visible {
-  --tw-ring-color: rgb(113, 113, 122) !important; /* zinc-500 */
-  box-shadow: 0 0 0 2px rgb(113, 113, 122) !important; /* zinc-500 ring */
+  --tw-ring-color: var(--color-border-base) !important;
+  box-shadow: 0 0 0 2px var(--color-border-base) !important;
 }
 
-/* Ensure spacing before EditOnGitHub component */
-div.max-w-none + div[class*="border-t"] {
-  margin-top: 4rem !important; /* 64px - increased spacing */
-}
-
-/* Alternative selector for EditOnGitHub */
-div[class*="max-w-none"] + div[class*="mt-"] {
-  margin-top: 4rem !important; /* 64px - increased spacing */
-}
-
-/* Force padding-top for EditOnGitHub - ensure spacing between border and text */
-/* Exclude sidebar footer from this rule */
-div[class*="border-t"][class*="mt-"]:not([class*="flex-shrink-0"][class*="mt-auto"]) {
-  padding-top: 3rem !important; /* 48px - odstęp od linii do tekstu */
+/* Hide legacy "Edit this page on GitHub" footer if present */
+.document-content div.mt-16.border-t[style*="padding-top"][style*="3rem"] {
+  display: none !important;
 }
 
 /* Smooth page transitions - prevent layout shift */
@@ -798,10 +859,12 @@ nav[aria-label="Breadcrumb"] {
 /* Intro text utility (outside document-content) */
 .intro-text {
   color: var(--color-fg-base);
-  font-family: Geist, sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 160%;
+  font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--typography-size-intro, 15px);
+  font-weight: var(--typography-weight-regular, 400);
+  line-height: var(--typography-line-height-body, 1.6);
+  /* Add breathing room from the headline row above (h1 + top actions) */
+  margin-top: var(--space-4, 16px);
   /* Chrome: prevent blur */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
@@ -847,6 +910,87 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity 0.15s ease-in-out;
   /* Chrome: prevent blur - transform already applied via text element selector */
   will-change: auto;
+}
+
+/* Override button solid variant text color for custom background buttons */
+button.button-custom-text[data-button-variant="solid"],
+button.button-custom-text[data-button-variant="solid"] *,
+button.button-custom-text[data-button-variant="solid"] span,
+button.button-custom-text[data-button-variant="solid"] svg,
+button.button-custom-text[data-button-variant="solid"] svg path {
+  color: var(--color-fg-base) !important;
+}
+
+/* Add border to secondary buttons */
+button.button-custom-text[data-button-variant="solid"] {
+  border: 1px solid var(--color-border-base) !important;
+}
+
+button.button-custom-text[data-button-variant="solid"]:hover,
+button.button-custom-text[data-button-variant="solid"]:hover *,
+button.button-custom-text[data-button-variant="solid"]:hover span,
+button.button-custom-text[data-button-variant="solid"]:hover svg,
+button.button-custom-text[data-button-variant="solid"]:hover svg path {
+  color: var(--color-fg-base) !important;
+}
+
+/* Override hover background for custom buttons - ensure surface-1 is applied on hover */
+button.button-custom-text[data-button-variant="solid"]:hover {
+  background-color: var(--color-surface-1) !important;
+  opacity: 1 !important; /* Override default solid hover opacity */
+  border-color: var(--color-border-base) !important;
+}
+
+button.button-custom-text[data-button-variant="solid"]:active {
+  background-color: var(--color-surface-1) !important;
+  border-color: var(--color-border-base) !important;
+}
+
+button.button-custom-text[data-button-variant="solid"]:disabled,
+button.button-custom-text[data-button-variant="solid"]:disabled *,
+button.button-custom-text[data-button-variant="solid"]:disabled span,
+button.button-custom-text[data-button-variant="solid"]:disabled svg,
+button.button-custom-text[data-button-variant="solid"]:disabled svg path {
+  color: var(--color-fg-base) !important;
+}
+
+button.button-custom-text[data-button-variant="solid"]:disabled {
+  border-color: var(--color-border-base) !important;
+}
+
+/* Remove border from secondary buttons */
+button[data-button-variant="secondary"] {
+  border: none !important;
+}
+
+/* ExampleSection - Ensure CodeBlock fills full height */
+.overflow-auto.h-\[360px\] {
+  height: 360px !important;
+}
+
+.overflow-auto.h-\[360px\] .not-prose,
+.overflow-auto.h-\[360px\] .not-prose.h-full,
+.overflow-auto.h-\[360px\] .not-prose > div {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.overflow-auto.h-\[360px\] .not-prose pre,
+.overflow-auto.h-\[360px\] .not-prose.h-full pre,
+.overflow-auto.h-\[360px\] .not-prose > div > pre {
+  height: 100% !important;
+  max-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: auto !important;
+}
+
+.overflow-auto.h-\[360px\] .not-prose pre code,
+.overflow-auto.h-\[360px\] .not-prose.h-full pre code,
+.overflow-auto.h-\[360px\] .not-prose > div > pre code {
+  flex: 1 !important;
+  overflow: auto !important;
 }
 
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { DocLayout } from "../../../../src/components/doc-layout";
-import { EditOnGitHub, Button } from "@fragment_ui/ui";
+import { Button } from "@fragment_ui/ui";
 import { useTheme } from "../../../../src/lib/theme";
 
 export default function DarkModePage() {
@@ -238,7 +238,6 @@ function App() {
         </li>
       </ul>
 
-      <EditOnGitHub filePath="apps/www/app/docs/foundations/dark-mode/page.tsx" />
     </DocLayout>
   );
 }

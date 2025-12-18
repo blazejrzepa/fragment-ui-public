@@ -1,112 +1,149 @@
 ---
-title: CLI
-description: The CLI is available as a package in the Fragment UI monorepo.
+title: CLI Usage Guide
 ---
 
-The Fragment UI CLI provides utilities around the registry-driven install flow (shadcn-style) and a few maintainer helpers.
+The Fragment UI CLI (`fragmentui`, alias `ds`) helps you install and manage Fragment UI
+components and blocks in your project. It installs files from the registry into your repo
+(code-first distribution, similar to shadcn).
 
-## What it's for
+## Key Features
 
-- **For app projects**: initialize a local structure, list available components, check what you have installed, and get the correct install/update commands.
-- **For maintainers of this repo**: generate or verify documentation pages for components.
+- Install components/blocks from the registry into your codebase
+- Initialize a project (`components/ui`, `components/blocks`, `components.json`)
+- Check component installation status
+- List all available components
+- Remove installed components
+- Patch & plugin utilities (advanced)
 
-## Run it locally (from this repo)
+## Installation
 
-This repo contains the CLI package at `packages/cli`.
+### Use without installing (recommended)
+
+```bash
+npx fragmentui@latest --help
+```
+
+### Install globally (optional)
+
+```bash
+npm install -g fragmentui
+# or: pnpm add -g fragmentui
+
+fragmentui --help
+# alias:
+ds --help
+```
+
+### Develop locally (monorepo)
 
 ```bash
 # Build the CLI
-pnpm --filter @fragment_ui/cli build
+pnpm --filter fragmentui build
 
-# Run via node
-node packages/cli/dist/index.js help
-
-# If you have it on PATH as a bin, you can also run:
-# ds help
-```
-
-## Install components into your app
-
-The CLI does **not** directly install components. Use the registry URL with shadcn:
-
-```bash
-npx shadcn@latest add https://fragmentui.com/r/button.json
+# Use directly
+node packages/cli/dist/index.js <command>
 ```
 
 ## Commands
 
-### ds init [path]
+The primary entrypoint is `fragmentui`, and `ds` is an alias.
 
-Initializes a project for Fragment UI by creating `components/ui` and `components/blocks` (plus a basic `components.json` if missing).
+### fragmentui add &lt;name&gt; [path] [--overwrite]
 
-```bash
-ds init
-# or
+Install a component (or block) from the registry into your project.
 
-ds init /absolute/path/to/your-app
-```
-
-### ds list
-
-Lists all available components from the registry.
+Registry URL pattern: `https://fragmentui.com/r/[name].json`
 
 ```bash
-ds list
+npx fragmentui@latest add button
+npx fragmentui@latest add dashboard-layout
+
+# Overwrite existing files
+npx fragmentui@latest add button --overwrite
+
+# Target a specific project directory
+npx fragmentui@latest add button ./my-app
 ```
 
-### ds check [path]
+### fragmentui list
 
-Checks which components are installed in a project.
+List all available components.
 
 ```bash
-ds check
-# or
-
-ds check /absolute/path/to/your-app
+npx fragmentui@latest list
 ```
 
-### ds update <name> [path]
+### fragmentui check [path]
 
-At the moment, update is implemented as a **reinstall hint** (it prints the correct command to rerun with `--overwrite`).
+Check which components are installed in your project.
 
 ```bash
-ds update button
+npx fragmentui@latest check
+npx fragmentui@latest check ./my-app
 ```
 
-### ds remove <name> [path]
+### fragmentui init [path]
 
-Removes a component from a project.
+Initialize Fragment UI in a project (creates `components/ui`, `components/blocks`, and `components.json`).
 
 ```bash
-ds remove button
+npx fragmentui@latest init
+npx fragmentui@latest init ./my-app
 ```
 
-### ds add <name>
+### fragmentui update &lt;name&gt; [path]
 
-**Maintainer command**: generates or verifies a documentation page for a component in this repository.
+Update is currently **instructional**: it tells you how to reinstall the component (full smart updates are coming).
 
 ```bash
-ds add button
+npx fragmentui@latest update button
 ```
 
-### ds plugin list / ds plugin run <id> [action]
+### fragmentui remove &lt;name&gt; [path]
 
-Lists installed plugins, or runs a plugin action.
+Remove a component from your project.
 
 ```bash
-ds plugin list
-
-ds plugin run your-plugin-id
+npx fragmentui@latest remove button
 ```
 
-### ds patch list / ds patch apply <id> / ds patch check <id>
+### fragmentui plugin list / fragmentui plugin run
 
-Work with overlay patches.
+Plugin management (advanced).
 
 ```bash
-ds patch list
-
-ds patch check example-patch
-
-ds patch apply example-patch
+npx fragmentui@latest plugin list
+npx fragmentui@latest plugin run theme-preset default
 ```
+
+### fragmentui patch list / patch apply / patch check
+
+Overlay patch utilities (advanced).
+
+```bash
+npx fragmentui@latest patch list
+npx fragmentui@latest patch check <patch-id>
+npx fragmentui@latest patch apply <patch-id>
+```
+
+## Examples
+
+```bash
+# Initialize Fragment UI in the current project
+npx fragmentui@latest init
+
+# Install a component
+npx fragmentui@latest add button
+
+# Check what's installed
+npx fragmentui@latest check
+
+# Remove a component
+npx fragmentui@latest remove button
+```
+
+## Learn More
+
+- [CLI Documentation](/docs/cli-usage)
+- [Available Components](/components)
+

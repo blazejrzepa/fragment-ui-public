@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Button } from "./button";
 import { Card } from "./card";
 import clsx from "clsx";
@@ -40,19 +41,15 @@ export const QuickActions = React.memo(
           <div ref={ref} className={clsx("space-y-[var(--space-2)]", className)}>
             {actions.map((action) =>
               action.href ? (
-                <Button
-                  key={action.id}
-                  asChild
-                  variant={action.variant || "solid"}
-                  disabled={action.disabled}
-                  className="w-full justify-start"
-                  data-action-id={action.id}
-                  data-action-kind="quickAction"
-                >
-                  <a href={action.href}>
-                    {action.icon && (
-                      <span className="mr-[var(--space-2)]">{action.icon}</span>
-                    )}
+                <Link key={action.id} href={action.href}>
+                  <Button
+                    variant={action.variant || "solid"}
+                    disabled={action.disabled}
+                    className="w-full justify-start"
+                    data-action-id={action.id}
+                    data-action-kind="quickAction"
+                  >
+                    {action.icon && <span className="mr-[var(--space-2)]">{action.icon}</span>}
                     <div className="flex-1 text-left">
                       <div className="font-medium">{action.label}</div>
                       {action.description && (
@@ -61,8 +58,8 @@ export const QuickActions = React.memo(
                         </div>
                       )}
                     </div>
-                  </a>
-                </Button>
+                  </Button>
+                </Link>
               ) : (
                 <Button
                   key={action.id}

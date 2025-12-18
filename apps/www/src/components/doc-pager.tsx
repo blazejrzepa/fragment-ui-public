@@ -3,8 +3,8 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Button } from "@fragment_ui/ui";
+import { ArrowLeft, ArrowRight, Share2, Copy, Check } from "lucide-react";
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@fragment_ui/ui";
 import { getDocumentationSections } from "./documentation-sidebar-wrapper";
 
 type PagerPlacement = "top" | "bottom";
@@ -42,6 +42,7 @@ export function DocPager({
 }) {
   const pathname = usePathname();
   const [items] = React.useState<FlatItem[]>(() => buildFlatList());
+  const [copied, setCopied] = React.useState(false);
 
   if (!pathname) return null;
 
@@ -50,6 +51,16 @@ export function DocPager({
 
   const prev = items[currentIndex - 1];
   const next = items[currentIndex + 1];
+
+  // Map pathname to GitHub file path
+  const getGitHubFilePath = (path: string): string => {
+    if (!path || path === '/') {
+      return 'apps/www/app/page.tsx';
+    }
+    // Remove leading slash and map to app directory structure
+    const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+    return `apps/www/app/${cleanPath}/page.tsx`;
+  };
 
   if (!prev && !next) return null;
 
@@ -73,32 +84,95 @@ export function DocPager({
       : "justify-start";
 
   const isIconOnly = variant === "icon";
+  const buttonPadding = isIconOnly ? "p-0 gap-0" : "";
 
-  const buttonBase =
-    "inline-flex items-center justify-center select-none rounded-[var(--radius-sm,8px)] font-medium transition-all duration-[var(--motion-duration-base,200ms)] ease-[var(--motion-easing-ease-in-out,cubic-bezier(0.4,0,0.2,1))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-surface-1)] h-8 text-sm leading-[1.5] border border-[color:var(--color-border-base)] bg-transparent text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-2)] hover:border-[color:var(--color-border-base)] active:bg-[color:var(--color-surface-2)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent whitespace-nowrap";
-  const buttonPadding = isIconOnly ? "w-8 p-0 gap-0" : "px-[var(--space-3,12px)] gap-[var(--space-2,8px)]";
+  const handleCopyLink = async () => {
+    if (typeof window !== 'undefined' && pathname) {
+      const url = `${window.location.origin}${pathname}`;
+      try {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (error) {
+        console.error('Failed to copy link:', error);
+      }
+    }
+  };
+
+  const handleShareTwitter = () => {
+    if (typeof window !== 'undefined' && pathname) {
+      const url = `${window.location.origin}${pathname}`;
+      const text = encodeURIComponent(`Check out this page: ${document.title}`);
+      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}`, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleShareLinkedIn = () => {
+    if (typeof window !== 'undefined' && pathname) {
+      const url = `${window.location.origin}${pathname}`;
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank', 'noopener,noreferrer');
+    }
+  };
 
   return (
-    <div className={`flex items-center flex-nowrap gap-2 ${alignment} ${spacing}`}>
+    <div className={`flex items-center flex-nowrap gap-1.5 ${alignment} ${spacing}`}>
+      {placement === "top" && (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button 
+              variant="secondary" 
+              size="sm" 
+              className={buttonPadding}
+            >
+              <Share2 className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={handleCopyLink}>
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4 mr-2" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4 mr-2" />
+                  Copy link
+                </>
+              )}
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleShareTwitter}>
+              Share on Twitter
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleShareLinkedIn}>
+              Share on LinkedIn
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
       {prev && (
-        <Link href={prev.href} className="inline-flex">
-          <Button variant="outline" size="sm" className={`${buttonBase} ${buttonPadding}`}>
-            <span className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              {!isIconOnly && <span className="text-sm">{prev.title}</span>}
-            </span>
+          <Button 
+          asChild
+            variant="secondary" 
+            size="sm"
+            leadingIcon={!isIconOnly ? <ArrowLeft className="h-4 w-4" /> : undefined}
+          >
+          <Link href={prev.href} className="inline-flex">
+            {!isIconOnly ? prev.title : <ArrowLeft className="h-4 w-4" />}
+          </Link>
           </Button>
-        </Link>
       )}
       {next && (
-        <Link href={next.href} className="inline-flex">
-          <Button variant="outline" size="sm" className={`${buttonBase} ${buttonPadding}`}>
-            <span className="flex items-center gap-2">
-              {!isIconOnly && <span className="text-sm">{next.title}</span>}
-              <ArrowRight className="h-4 w-4" />
-            </span>
+          <Button 
+          asChild
+            variant="secondary" 
+            size="sm"
+            trailingIcon={!isIconOnly ? <ArrowRight className="h-4 w-4" /> : undefined}
+          >
+          <Link href={next.href} className="inline-flex">
+            {!isIconOnly ? next.title : <ArrowRight className="h-4 w-4" />}
+          </Link>
           </Button>
-        </Link>
       )}
     </div>
   );

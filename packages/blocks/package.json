@@ -1,6 +1,6 @@
 {
   "name": "@fragment_ui/blocks",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Pre-built screen compositions and blocks for Fragment UI",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,7 +22,7 @@
     "url": "https://github.com/blazejrzepa/fragment-ui.git",
     "directory": "packages/blocks"
   },
-  "homepage": "https://fragmentui.com",
+  "homepage": "https://fragment-ui.dev",
   "bugs": "https://github.com/blazejrzepa/fragment-ui/issues",
   "license": "MIT",
   "keywords": [
@@ -39,9 +39,7 @@
     "react-dom": "^18.3.0"
   },
   "dependencies": {
-    "@fragment_ui/ui": "workspace:*",
-    "clsx": "^2.0.0",
-    "lucide-react": "^0.552.0"
+    "@fragment_ui/ui": "workspace:*"
   },
   "publishConfig": {
     "access": "public",

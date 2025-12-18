@@ -61,11 +61,11 @@ export default function ComponentAnalyticsPage() {
   const getTrendIcon = (trend: string) => {
     switch (trend) {
       case "increasing":
-        return <TrendingUp className="h-4 w-4 text-green-600" />;
+        return <TrendingUp className="h-4 w-4 text-[color:var(--color-status-success-fg)]" />;
       case "decreasing":
-        return <TrendingDown className="h-4 w-4 text-red-600" />;
+        return <TrendingDown className="h-4 w-4 text-[color:var(--color-status-error-fg)]" />;
       default:
-        return <Minus className="h-4 w-4 text-gray-400" />;
+        return <Minus className="h-4 w-4 text-[color:var(--color-fg-muted)]" />;
     }
   };
 
@@ -81,8 +81,8 @@ export default function ComponentAnalyticsPage() {
       <DocLayout>
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brand mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Loading analytics...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[color:var(--color-brand-primary)] mx-auto mb-4"></div>
+            <p className="text-[color:var(--color-fg-muted)]">Loading analytics...</p>
           </div>
         </div>
       </DocLayout>
@@ -179,7 +179,7 @@ export default function ComponentAnalyticsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="h-5 w-5 text-green-600" />
+              <TrendingUp className="h-5 w-5 text-[color:var(--color-status-success-fg)]" />
               Trending Up
             </CardTitle>
             <CardDescription>Components with increasing usage</CardDescription>
@@ -207,7 +207,7 @@ export default function ComponentAnalyticsPage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <TrendingDown className="h-5 w-5 text-red-600" />
+              <TrendingDown className="h-5 w-5 text-[color:var(--color-status-error-fg)]" />
               Trending Down
             </CardTitle>
             <CardDescription>Components with decreasing usage</CardDescription>

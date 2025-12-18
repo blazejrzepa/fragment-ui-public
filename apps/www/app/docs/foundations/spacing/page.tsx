@@ -1,9 +1,8 @@
 "use client";
 
 import { DocLayout } from "../../../../src/components/doc-layout";
-import { Button, CodeBlock } from "@fragment_ui/ui";
-import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { DocPager } from "../../../../src/components/doc-pager";
+import { CodeBlock } from "@fragment_ui/ui";
 import { useState } from "react";
 
 // Spacing scale from tokens.json
@@ -23,23 +22,11 @@ export default function SpacingPage() {
   return (
     <DocLayout>
       <div className="flex items-center justify-between mb-1">
-        <h1 id="spacing" className="text-3xl font-medium mb-4">Spacing Scale</h1>
-        <div className="flex items-center gap-2">
-          <Link href={"/docs/foundations/semantic-colors"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link href={"/docs/foundations/typography"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
+        <h1 id="spacing" className="text-3xl font-medium mb-4">Spacing</h1>
+        <DocPager placement="top" align="end" variant="icon" dense />
       </div>
       <p className="mb-6 intro-text">
-        Fragment UI uses a consistent spacing scale based on a 4px base unit. This scale ensures
-        visual harmony and consistency across all components and layouts.
+        Spacing tokens for consistent layout and rhythm across the design system.
       </p>
 
       <h2 id="scale">Spacing Scale</h2>

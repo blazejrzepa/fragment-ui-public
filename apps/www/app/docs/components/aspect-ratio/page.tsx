@@ -1,14 +1,16 @@
 "use client";
 
-import { AspectRatio, AspectRatioPresets, DocumentContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+import { AspectRatio, AspectRatioPresets, DocumentContent, Badge } from "@fragment_ui/ui";
 import { CodeBlock } from "@fragment_ui/ui";
 
 export default function AspectRatioPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Aspect Ratio</h1>
+        <h1 id="aspect-ratio">Aspect Ratio</h1>
       </div>
       <p className="mb-6 intro-text">
         AspectRatio component maintains a consistent aspect ratio for media content like images, videos, or custom content.
@@ -115,12 +117,6 @@ export default function AspectRatioPage() {
         (alt text for images, captions for videos, etc.).
       </p>
       
-      <h2>Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-aspectratio--docs">View in Storybook</StorybookLink>
-        </li>
-      </ul>
 
 
     </DocumentContent>

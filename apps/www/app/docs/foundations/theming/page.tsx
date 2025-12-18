@@ -1,32 +1,22 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { DocLayout } from "../../../../src/components/doc-layout";
-import { EditOnGitHub, Button, CodeBlock } from "@fragment_ui/ui";
+import { DocPager } from "../../../../src/components/doc-pager";
+import { Button, CodeBlock } from "@fragment_ui/ui";
+import { useTheme } from "../../../../src/lib/theme";
 
 export default function ThemingPage() {
-  const [themeMode, setThemeMode] = useState<"light" | "dark" | "system" | "high-contrast">("dark");
+  const { theme, setTheme } = useTheme();
   const [density, setDensity] = useState<"compact" | "normal" | "comfortable">("normal");
   const [direction, setDirection] = useState<"ltr" | "rtl">("ltr");
+  const [motion, setMotion] = useState<"normal" | "reduced">("normal");
 
   return (
     <DocLayout>
       <div className="flex items-center justify-between mb-1">
         <h1 id="theming" className="text-3xl font-medium mb-4">Theming &amp; Modes</h1>
-        <div className="flex items-center gap-2">
-          <Link href={"/docs/foundations/tokens"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link href={"/docs/foundations/semantic-colors"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
+        <DocPager placement="top" align="end" variant="icon" dense />
       </div>
       <p className="mb-6 intro-text">
         Customize themes, density modes, and text directions through data attributes.
@@ -38,37 +28,33 @@ export default function ThemingPage() {
       <div className="space-y-4 my-6">
         <div className="flex gap-2 flex-wrap">
           <Button 
-            variant={themeMode === "dark" ? "solid" : "outline"}
+            variant={theme === "dark" ? "solid" : "outline"}
             onClick={() => {
-              setThemeMode("dark");
-              document.documentElement.setAttribute("data-theme", "dark");
+              setTheme("dark");
             }}
           >
             Dark Theme
           </Button>
           <Button 
-            variant={themeMode === "light" ? "solid" : "outline"}
+            variant={theme === "light" ? "solid" : "outline"}
             onClick={() => {
-              setThemeMode("light");
-              document.documentElement.setAttribute("data-theme", "light");
+              setTheme("light");
             }}
           >
             Light Theme
           </Button>
           <Button 
-            variant={themeMode === "system" ? "solid" : "outline"}
+            variant={theme === "system" ? "solid" : "outline"}
             onClick={() => {
-              setThemeMode("system");
-              document.documentElement.removeAttribute("data-theme");
+              setTheme("system");
             }}
           >
             System
           </Button>
           <Button 
-            variant={themeMode === "high-contrast" ? "solid" : "outline"}
+            variant={theme === "high-contrast" ? "solid" : "outline"}
             onClick={() => {
-              setThemeMode("high-contrast");
-              document.documentElement.setAttribute("data-theme", "high-contrast");
+              setTheme("high-contrast");
             }}
           >
             High Contrast
@@ -76,15 +62,15 @@ export default function ThemingPage() {
         </div>
       </div>
 
-      <CodeBlock language="html" highlightApiUrl="/api/highlight-code">{`<html data-theme="dark">      <!-- Dark theme (default) -->
-<html data-theme="light">     <!-- Light theme -->
+      <CodeBlock language="html" highlightApiUrl="/api/highlight-code">{`<html data-theme="light">          <!-- Light theme -->
+<html data-theme="dark">           <!-- Dark theme -->
 <html data-theme="high-contrast">  <!-- High contrast theme -->
 <!-- System: remove data-theme attribute -->`}</CodeBlock>
       
       <h3 id="using-themeprovider">Using ThemeProvider</h3>
-      <p>For React applications, use the <code>ThemeProvider</code> component and <code>useTheme</code> hook:</p>
-      <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`import { ThemeProvider } from "@/components/theme-provider";
-import { useTheme } from "@/lib/theme";
+      <p>For React applications, persist theme choice (e.g. localStorage) and set <code>data-theme</code> on the root element. This portal includes a simple implementation:</p>
+      <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`import { ThemeProvider } from "@/src/components/theme-provider";
+import { useTheme } from "@/src/lib/theme";
 
 function App() {
   return (
@@ -140,8 +126,8 @@ function ThemeToggle() {
       </div>
 
       <CodeBlock language="html" highlightApiUrl="/api/highlight-code">{`<html data-density="compact">
-<html data-density="normal">  <!-- default -->
-<html data-density="comfortable">`}</CodeBlock>
+<html data-density="comfortable">
+<!-- Default (normal): remove data-density attribute -->`}</CodeBlock>
 
       <h3 id="density-effects">Density Effects</h3>
       <ul>
@@ -193,11 +179,42 @@ margin-inline-end: var(--space-2);
       <CodeBlock language="html" highlightApiUrl="/api/highlight-code">{`<html
   data-theme="high-contrast"
   data-density="comfortable"
+  data-motion="reduced"
   dir="rtl"
   lang="ar"
 >
-  <!-- High contrast, comfortable density, RTL layout -->
+  <!-- High contrast, comfortable density, reduced motion, RTL layout -->
 </html>`}</CodeBlock>
+
+      <h2 id="motion-modes">Motion Modes</h2>
+      <p>Disable motion with <code>data-motion="reduced"</code> (tokens also respect <code>prefers-reduced-motion</code> by default):</p>
+
+      <div className="space-y-4 my-6">
+        <div className="flex gap-2">
+          <Button
+            variant={motion === "normal" ? "solid" : "outline"}
+            onClick={() => {
+              setMotion("normal");
+              document.documentElement.setAttribute("data-motion", "normal");
+            }}
+          >
+            Normal Motion
+          </Button>
+          <Button
+            variant={motion === "reduced" ? "solid" : "outline"}
+            onClick={() => {
+              setMotion("reduced");
+              document.documentElement.setAttribute("data-motion", "reduced");
+            }}
+          >
+            Reduced Motion
+          </Button>
+        </div>
+      </div>
+
+      <CodeBlock language="html" highlightApiUrl="/api/highlight-code">{`<html data-motion="reduced">
+<html data-motion="normal">
+<!-- Default: follows prefers-reduced-motion unless overridden -->`}</CodeBlock>
 
       <h2 id="best-practices">Best Practices</h2>
       <ul>
@@ -207,8 +224,6 @@ margin-inline-end: var(--space-2);
         <li><strong>High Contrast</strong>: Automatically improves accessibility for users with vision impairments</li>
         <li><strong>Logical Properties</strong>: Always use logical properties (start/end) instead of left/right</li>
       </ul>
-
-      <EditOnGitHub filePath="apps/www/app/docs/foundations/theming/page.tsx" />
     </DocLayout>
   );
 }

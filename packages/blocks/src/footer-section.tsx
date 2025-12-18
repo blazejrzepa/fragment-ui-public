@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import clsx from "clsx";
 
 export interface FooterLink {
@@ -108,9 +109,12 @@ export function FooterSection({
                         {link.label}
                       </a>
                     ) : (
-                      <a href={link.href} className="text-sm text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-brand-primary)] transition-colors">
+                      <Link
+                        href={link.href}
+                        className="text-sm text-[color:var(--color-fg-muted)] hover:text-[color:var(--color-brand-primary)] transition-colors"
+                      >
                         {link.label}
-                      </a>
+                      </Link>
                     )}
                   </li>
                 ))}

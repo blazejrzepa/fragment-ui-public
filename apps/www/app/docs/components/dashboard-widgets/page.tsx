@@ -210,11 +210,7 @@ function Dashboard() {
         and follow accessibility best practices. Compliant with WCAG 2.1.
       </p>
 
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-        </li>
-      </ul>
+      
 
     </DocumentContent>
   );

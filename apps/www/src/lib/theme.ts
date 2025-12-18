@@ -16,7 +16,8 @@ const THEME_STORAGE_KEY = "fragment-ui-theme";
  */
 export function getInitialTheme(): Theme {
   if (typeof window === "undefined") {
-    return "dark";
+    // Prefer system by default; CSS handles prefers-color-scheme when data-theme is not set.
+    return "system";
   }
 
   const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
@@ -24,7 +25,8 @@ export function getInitialTheme(): Theme {
     return stored;
   }
 
-  return "dark";
+  // Default: follow system preference
+  return "system";
 }
 
 /**
@@ -36,7 +38,7 @@ export function getEffectiveTheme(theme: Theme): "light" | "dark" | "high-contra
       return "dark"; // Default for SSR
     }
     // Default to dark mode if system preference is not available
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
   return theme;
 }

@@ -1,8 +1,49 @@
 "use client";
 
-import { ActivityFeed, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { ActivityFeed, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const activityFeedCode = `import { ActivityFeed } from "@fragment_ui/ui";
+
+const activities = [
+  {
+    id: "1",
+    type: "action",
+    title: "John Doe created a new project",
+    description: "Project 'Marketing Campaign 2024' was created",
+    timestamp: new Date(),
+    user: {
+      name: "John Doe",
+      avatar: "https://example.com/avatar.jpg",
+    },
+  },
+  {
+    id: "2",
+    type: "update",
+    title: "Jane Smith updated settings",
+    description: "Changed notification preferences",
+    timestamp: new Date(),
+    user: {
+      name: "Jane Smith",
+      avatar: "https://example.com/avatar2.jpg",
+    },
+  },
+  {
+    id: "3",
+    type: "comment",
+    title: "Mike Johnson commented",
+    description: "Great work on the dashboard design!",
+    timestamp: new Date(),
+    user: {
+      name: "Mike Johnson",
+    },
+  },
+];
+
+export function ActivityFeedDemo() {
+  return <ActivityFeed items={activities} />;
+}`;
+
 export default function ActivityFeedPage() {
   const sampleActivities = [
     {
@@ -42,67 +83,26 @@ export default function ActivityFeedPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="activity-feed" className="text-3xl font-medium mb-4">Activity Feed</h1>
+        <h1 id="activity-feed">Activity Feed</h1>
       </div>
-      <p className="mb-6 intro-text">
-        A ready-made activity feed section.
-      </p>
+      <p className="mb-6 intro-text">Display recent user or system activity.</p>
       
-      {/* Default Activity Feed */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="w-full max-w-md">
-            <ActivityFeed items={sampleActivities} />
-          </div>
-        </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { ActivityFeed } from "@fragment_ui/ui";
-
-const activities = [
-  {
-    id: "1",
-    type: "action",
-    title: "John Doe created a new project",
-    description: "Project 'Marketing Campaign 2024' was created",
-    timestamp: new Date(),
-    user: {
-      name: "John Doe",
-      avatar: "https://example.com/avatar.jpg",
-    },
-  },
-  {
-    id: "2",
-    type: "update",
-    title: "Jane Smith updated settings",
-    description: "Changed notification preferences",
-    timestamp: new Date(),
-    user: {
-      name: "Jane Smith",
-      avatar: "https://example.com/avatar2.jpg",
-    },
-  },
-  {
-    id: "3",
-    type: "comment",
-    title: "Mike Johnson commented",
-    description: "Great work on the dashboard design!",
-    timestamp: new Date(),
-    user: {
-      name: "Mike Johnson",
-    },
-  },
-];
-
-<ActivityFeed items={activities} />`}</CodeBlock>
-        </div>
-      </div>
+      <ExampleSection
+        id="activity-feed-example"
+        title="Example"
+        code={activityFeedCode}
+      >
+        <ActivityFeed items={sampleActivities} />
+      </ExampleSection>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/activity-feed.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add activity-feed`}
+      </CodeBlock>
 
-      <Collapsible>
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
@@ -164,14 +164,6 @@ const activities = [
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-activity-feed--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
     </DocumentContent>
   );
 }

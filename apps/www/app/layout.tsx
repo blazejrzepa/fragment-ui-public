@@ -1,6 +1,6 @@
 import "../src/styles/globals.css";
 import "react-day-picker/dist/style.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "../src/components/theme-provider";
 import { ComponentDisplayProvider } from "../src/components/component-display-provider";
 import { ConditionalLayout } from "../src/components/conditional-layout";
@@ -10,11 +10,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Fragment UI",
   description: "AI-native design system",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-  },
   icons: {
     icon: [
       { url: "/assets/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -31,6 +26,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -39,9 +40,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Critical CSS to prevent FOUC - sidebar positioning */}
+        {/* Critical CSS to prevent FOUC - sidebar positioning and html/body transform override */}
         <style dangerouslySetInnerHTML={{
           __html: `
+            /* Override transform from ui/styles.css for html and body */
+            html, body {
+              transform: none !important;
+              -webkit-transform: none !important;
+            }
+            
+            /* Sidebar positioning */
             aside.fixed.left-0,
             aside[class*="fixed"][class*="left-0"],
             aside.fixed.left-0[class*="z-30"],

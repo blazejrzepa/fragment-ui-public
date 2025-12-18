@@ -1,76 +1,111 @@
 "use client";
 
-import { Spinner, DocumentContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Spinner, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const spinnerSizesCode = `import { Spinner } from "@fragment_ui/ui";
+
+export function SpinnerSizesDemo() {
+  return (
+    <div className="flex gap-[var(--space-4)] items-center">
+      <Spinner size="sm" />
+      <Spinner size="md" />
+      <Spinner size="lg" />
+    </div>
+  );
+}`;
 
 export default function SpinnerPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Spinner</h1>
+        <h1 id="spinner">Spinner</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Indicate loading in progress.
-      </p>
+      <p className="mb-6 intro-text">Indicate that something is loading.</p>
       
-      
-      {/* Sizes */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex gap-4 items-center">
+      <ExampleSection
+        id="spinner-sizes"
+        title="Sizes"
+        code={spinnerSizesCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex gap-[var(--space-4)] items-center justify-center w-full">
+            <Spinner size="sm" />
+            <Spinner size="md" />
+            <Spinner size="lg" />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Spinner } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="flex gap-4 items-center">
-</div>`}</CodeBlock>
-        </div>
-      </div>
-      
-      <h2 id="features">Features</h2>
-      <ul>
-        <li>Three sizes: sm, md, lg</li>
-        <li>Smooth animation</li>
-        <li>Accessible with role="status"</li>
-        <li>Customizable with className</li>
-      </ul>
-      
-      <h2 id="props">Props</h2>
-      <div className="overflow-x-auto my-4">
-        <table className="min-w-full border border-[color:var(--color-fg-muted)]">
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add spinner`}
+      </CodeBlock>
+
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
           <thead>
-            <tr>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Prop</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Type</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Default</th>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">size</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"sm" | "md" | "lg"</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"md"</td>
+              <td className="py-2 px-4"><code>Spinner</code></td>
+              <td className="py-2 px-4"><code>size?, className?, children?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Loading spinner component (accepts all standard HTML div props)</td>
             </tr>
           </tbody>
         </table>
       </div>
-      
-      
-      
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">npx shadcn@latest add /r/spinner.json</CodeBlock>
-      <h2 id="accessibility">Accessibility</h2>
-      <p>Spinner includes role="status" and aria-label="Loading" for screen readers.</p>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li><StorybookLink path="/docs/feedback-spinner--docs">View in Storybook</StorybookLink></li>
-      </ul>
 
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>Spinner</code> is a component for indicating loading in progress. Use it when you need to show that an operation is in progress or content is being loaded. The component provides visual feedback with a smooth animation and is accessible for screen readers.
+          </p>
 
+          <h3>When to use</h3>
+          <ul>
+            <li>Loading states for async operations</li>
+            <li>Content loading indicators</li>
+            <li>Form submission feedback</li>
+            <li>Data fetching states</li>
+            <li>Any scenario requiring loading indication</li>
+          </ul>
+
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "Spinner"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>size?</code> – "sm" | "md" | "lg" (default: "md"). Size of the spinner (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+            <li><code>children?</code> – ReactNode. Custom content to spin (optional)</li>
+          </ul>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Spinner",
+  "props": {
+    "size": "md"
+  }
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

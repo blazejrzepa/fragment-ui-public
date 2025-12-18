@@ -2,8 +2,50 @@
 
 import { useState } from "react";
 import { CodeBlock, DocumentContent, Input, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
 import { Search, Check } from "lucide-react";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+
+const inputCode = `import { Input } from "@fragment_ui/ui";
+import { Search, Check } from "lucide-react";
+
+export function InputDemo() {
+  return (
+    <div className="flex flex-col gap-[var(--space-8)] w-full">
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm text-[color:var(--color-fg-muted)]">Default</p>
+        <div className="space-y-[var(--space-2)]">
+          <Input placeholder="Enter your name" />
+          <Input placeholder="Disabled input" disabled />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm text-[color:var(--color-fg-muted)]">Sizes</p>
+        <div className="space-y-[var(--space-2)]">
+          <Input size="sm" placeholder="Small" />
+          <Input size="md" placeholder="Medium" />
+          <Input size="lg" placeholder="Large" />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm text-[color:var(--color-fg-muted)]">With Icons</p>
+        <div className="space-y-[var(--space-2)]">
+          <Input size="sm" leadingIcon={<Search className="h-4 w-4" />} placeholder="Search..." />
+          <Input size="sm" trailingIcon={<Check className="h-4 w-4" />} placeholder="With trailing icon" />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm text-[color:var(--color-fg-muted)]">States</p>
+        <div className="space-y-[var(--space-2)]">
+          <Input placeholder="Read only" value="Read only value" readOnly />
+          <Input placeholder="With error state" error />
+        </div>
+      </div>
+    </div>
+  );
+}`;
 
 export default function InputPage() {
   const [value, setValue] = useState("");
@@ -11,78 +53,157 @@ export default function InputPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="page" className="text-3xl font-medium mb-4">
-          Input
-        </h1>
+        <h1 id="input">Input</h1>
       </div>
-      <p className="mb-6 intro-text">Enter a single-line text value.</p>
+      <p className="mb-6 intro-text">Capture short, single-line text.</p>
       
-      {/* Preview */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex flex-col gap-8 w-full max-w-md">
-            <div className="flex flex-col gap-4">
-              <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Default</p>
-              <div className="space-y-2">
+      <ExampleSection
+        id="input-example"
+        title="Input Example"
+        code={inputCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex flex-col gap-[var(--space-8)] w-full max-w-md">
+            <div className="flex flex-col gap-[var(--space-4)]">
+              <p className="text-sm text-[color:var(--color-fg-muted)]">Default</p>
+              <div className="space-y-[var(--space-2)]">
                 <Input placeholder="Enter your name" value={value} onChange={(e) => setValue(e.target.value)} />
                 <Input placeholder="Disabled input" disabled />
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Sizes</p>
-              <div className="space-y-2">
+            <div className="flex flex-col gap-[var(--space-4)]">
+              <p className="text-sm text-[color:var(--color-fg-muted)]">Sizes</p>
+              <div className="space-y-[var(--space-2)]">
                 <Input size="sm" placeholder="Small" />
                 <Input size="md" placeholder="Medium" />
                 <Input size="lg" placeholder="Large" />
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>With Icons</p>
-              <div className="space-y-2">
+            <div className="flex flex-col gap-[var(--space-4)]">
+              <p className="text-sm text-[color:var(--color-fg-muted)]">With Icons</p>
+              <div className="space-y-[var(--space-2)]">
                 <Input size="sm" leadingIcon={<Search className="h-4 w-4" />} placeholder="Search..." />
                 <Input size="sm" trailingIcon={<Check className="h-4 w-4" />} placeholder="With trailing icon" />
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>States</p>
-              <div className="space-y-2">
+            <div className="flex flex-col gap-[var(--space-4)]">
+              <p className="text-sm text-[color:var(--color-fg-muted)]">States</p>
+              <div className="space-y-[var(--space-2)]">
                 <Input placeholder="Read only" value="Read only value" readOnly />
                 <Input placeholder="With error state" error />
               </div>
             </div>
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Input } from "@fragment_ui/ui";
-import { Search, Check } from "lucide-react";
-
-<Input placeholder="Enter your name" />
-<Input size="sm" leadingIcon={<Search className="h-4 w-4" />} placeholder="Search..." />
-<Input size="sm" trailingIcon={<Check className="h-4 w-4" />} placeholder="With trailing icon" />`}
-          </CodeBlock>
-        </div>
-      </div>
+      </ExampleSection>
       
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        {`npx shadcn@latest add https://fragmentui.com/r/input.json`}
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add input`}
       </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>type</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4"><code>"text"</code></td>
+              <td className="py-2 px-4 text-sm">Input type: <code>"text"</code>, <code>"email"</code>, <code>"password"</code>, <code>"number"</code>, etc.</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>placeholder</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Placeholder text displayed when input is empty</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>value</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Controlled input value</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>defaultValue</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Default input value (uncontrolled)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>onChange</code></td>
+              <td className="py-2 px-4"><code>(e: ChangeEvent) {'=>'} void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Callback when input value changes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>size</code></td>
+              <td className="py-2 px-4"><code>"sm" | "md" | "lg"</code></td>
+              <td className="py-2 px-4"><code>"md"</code></td>
+              <td className="py-2 px-4 text-sm">Size variant of the input</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>leadingIcon</code></td>
+              <td className="py-2 px-4"><code>ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Icon displayed before the input text</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>trailingIcon</code></td>
+              <td className="py-2 px-4"><code>ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Icon displayed after the input text</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>disabled</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Disable input interaction</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>readOnly</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Make input read-only (value cannot be changed)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>error</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Show error state styling</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
           <p><strong>Intent</strong></p>
           <p>
-            <code>Input</code> is a component for entering a single-line text value.<br />
-            Use it when you need to collect text input from users, such as names, emails, passwords, search queries, or any single-line text data. The component provides size variants, icon support, loading states, and error handling.
+            <code>Input</code> is a component for entering a single-line text value. Use it when you need to collect text input from users, such as names, emails, passwords, search queries, or any single-line text data. The component provides size variants, icon support, loading states, and error handling.
           </p>
 
           <p><strong>When to use</strong></p>
@@ -95,46 +216,54 @@ import { Search, Check } from "lucide-react";
             <li>Any scenario requiring single-line text input</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <p><strong>UI-DSL Usage</strong></p>
           <p>
             Use <code>type: "component"</code> with <code>component: "Input"</code>.
           </p>
-          <p>Props for <code>Input</code>:</p>
+          <p><strong>Props:</strong></p>
           <ul>
-            <li><code>size?</code> – Input size: "sm" | "md" | "lg" (optional, default: "md")</li>
-            <li><code>loading?</code> – Show loading spinner: <code>boolean</code> (optional)</li>
-            <li><code>error?</code> – Show error state: <code>boolean</code> (optional)</li>
-            <li><code>leadingIcon?</code> – Icon before input: <code>React.ReactNode</code> (optional)</li>
-            <li><code>trailingIcon?</code> – Icon after input: <code>React.ReactNode</code> (optional)</li>
-            <li><code>placeholder?</code> – Placeholder text: <code>string</code> (optional)</li>
-            <li><code>value?</code> – Controlled value: <code>string</code> (optional)</li>
-            <li><code>onChange?</code> – Change handler: <code>(e: ChangeEvent) =&gt; void</code> (optional)</li>
-            <li><code>disabled?</code> – Disable input: <code>boolean</code> (optional)</li>
-            <li><code>readOnly?</code> – Make input read-only: <code>boolean</code> (optional)</li>
-            <li><code>type?</code> – Input type: "text" | "email" | "password" | "number" | "search" | "tel" | "url" (optional, default: "text")</li>
-            <li><code>className?</code> – Additional CSS classes (optional)</li>
+            <li><code>type?</code> – Input type: <code>"text"</code>, <code>"email"</code>, <code>"password"</code>, <code>"number"</code>, etc. (optional, default: <code>"text"</code>)</li>
+            <li><code>placeholder?</code> – Placeholder text displayed when the input is empty (optional)</li>
+            <li><code>value?</code> – Controlled input value (use with <code>onChange</code> for controlled component) (optional)</li>
+            <li><code>defaultValue?</code> – Default input value for uncontrolled component (optional)</li>
+            <li><code>onChange?</code> – Callback function that receives the change event when the input value changes (optional)</li>
+            <li><code>size?</code> – Size variant: <code>"sm"</code> for small, <code>"md"</code> for medium, or <code>"lg"</code> for large (optional, default: <code>"md"</code>)</li>
+            <li><code>leadingIcon?</code> – React node (typically an icon) displayed before the input text (optional)</li>
+            <li><code>trailingIcon?</code> – React node (typically an icon) displayed after the input text (optional)</li>
+            <li><code>disabled?</code> – Boolean to disable input interaction and prevent user input (optional)</li>
+            <li><code>readOnly?</code> – Boolean to make input read-only (value cannot be changed by user) (optional)</li>
+            <li><code>error?</code> – Boolean to show error state styling (typically used with validation) (optional)</li>
+            <li><code>className?</code> – Additional CSS classes to apply to the input (optional)</li>
           </ul>
-          <p><strong>Note:</strong> All standard HTML input attributes are supported (id, name, required, aria-label, etc.)</p>
 
-          <p><strong>Example</strong></p>
+          <h3>Basic Input</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Input",
   "props": {
-    "size": "md",
-    "placeholder": "Enter your email",
-    "type": "email"
+    "type": "text",
+    "placeholder": "Enter your name",
+    "size": "md"
+  }
+}`}</CodeBlock>
+
+          <h3>Input with Icon</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Input",
+  "props": {
+    "type": "search",
+    "placeholder": "Search...",
+    "size": "sm",
+    "leadingIcon": {
+      "type": "icon",
+      "name": "Search",
+      "props": { "size": 16 }
+    }
   }
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-input--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
     </DocumentContent>
   );
 }

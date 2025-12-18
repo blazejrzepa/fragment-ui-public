@@ -7,6 +7,11 @@ export default {
     "../../apps/www/src/**/*.{ts,tsx}",
     "../../apps/demo/src/**/*.{ts,tsx}",
   ],
+  safelist: [
+    "rounded-[var(--radius-sm)]",
+    "rounded-[var(--radius-md)]",
+    "rounded-[var(--radius-lg)]",
+  ],
   theme: {
     extend: {
       colors: {
@@ -24,7 +29,9 @@ export default {
         },
       },
       borderRadius: {
+        sm: "var(--radius-sm)",
         md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
         xl: "var(--radius-xl)",
       },
       fontSize: {
@@ -45,6 +52,9 @@ export default {
       },
       fontFamily: {
         sans: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      boxShadow: {
+        xs: "0 1px 1px rgba(0,0,0,.05)",
       },
     },
   },

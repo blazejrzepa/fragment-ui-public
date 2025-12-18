@@ -1,6 +1,6 @@
 {
   "name": "@fragment_ui/tokens",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Design tokens for Fragment UI Design System",
   "type": "module",
   "main": "dist/tokens.css",
@@ -11,15 +11,14 @@
   "exports": {
     ".": "./dist/tokens.css",
     "./dist/tokens.css": "./dist/tokens.css",
-    "./dist/tokens.json": "./dist/tokens.json",
-    "./json": "./dist/tokens.json"
+    "./json": "./dist/tokens.ts"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/blazejrzepa/fragment-ui.git",
     "directory": "packages/tokens"
   },
-  "homepage": "https://fragmentui.com",
+  "homepage": "https://fragment-ui.dev",
   "bugs": "https://github.com/blazejrzepa/fragment-ui/issues",
   "license": "MIT",
   "keywords": [

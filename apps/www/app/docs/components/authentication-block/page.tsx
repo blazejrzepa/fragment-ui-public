@@ -122,11 +122,7 @@ export default function AuthenticationBlockPage() {
         announced to screen readers. Compliant with WCAG 2.1.
       </p>
 
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-        </li>
-      </ul>
+      
 
 
     </DocumentContent>

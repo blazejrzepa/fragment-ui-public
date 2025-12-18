@@ -1,105 +1,153 @@
 "use client";
 
-import { Separator, DocumentContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Separator, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const separatorHorizontalCode = `import { Separator } from "@fragment_ui/ui";
+
+export function SeparatorHorizontalDemo() {
+  return (
+    <div className="w-full">
+      <div className="py-[var(--space-2)]">Content above</div>
+      <Separator />
+      <div className="py-[var(--space-2)]">Content below</div>
+    </div>
+  );
+}`;
+
+const separatorVerticalCode = `import { Separator } from "@fragment_ui/ui";
+
+export function SeparatorVerticalDemo() {
+  return (
+    <div className="flex h-20 items-center">
+      <div className="px-[var(--space-4)]">Left</div>
+      <Separator orientation="vertical" />
+      <div className="px-[var(--space-4)]">Right</div>
+    </div>
+  );
+}`;
 
 export default function SeparatorPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Separator</h1>
+        <h1 id="separator">Separator</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Visually divide content into sections.
-      </p>
+      <p className="mb-6 intro-text">Visually divide groups of content or actions.</p>
       
-      
-      {/* Horizontal */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="separator-horizontal"
+        title="Horizontal"
+        code={separatorHorizontalCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <div className="w-full max-w-md">
-            <div className="py-2">Content above</div>
-            <div className="py-2">Content below</div>
+            <div className="py-[var(--space-2)]">Content above</div>
+            <Separator />
+            <div className="py-[var(--space-2)]">Content below</div>
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Separator } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="w-full">
-  <div className="py-2">Content above</div>
-  <div className="py-2">Content below</div>
-</div>`}</CodeBlock>
-        </div>
-      </div>
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add separator`}
+      </CodeBlock>
 
-      {/* Vertical */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex h-20 items-center">
-            <div className="px-4">Left</div>
-            <div className="px-4">Right</div>
+      <ExampleSection
+        id="separator-vertical"
+        title="Vertical"
+        code={separatorVerticalCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex h-20 items-center justify-center w-full">
+            <div className="px-[var(--space-4)]">Left</div>
+            <Separator orientation="vertical" />
+            <div className="px-[var(--space-4)]">Right</div>
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Separator } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="flex h-20 items-center">
-  <div className="px-4">Left</div>
-  <div className="px-4">Right</div>
-</div>`}</CodeBlock>
-        </div>
-      </div>
-      
-      <h2 id="features">Features</h2>
-      <ul>
-        <li>Horizontal and vertical orientations</li>
-        <li>Accessible via Radix UI</li>
-        <li>Customizable styling</li>
-      </ul>
-      
-      <h2 id="props">Props</h2>
-      <div className="overflow-x-auto my-4">
-        <table className="min-w-full border border-[color:var(--color-fg-muted)]">
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
           <thead>
-            <tr>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Prop</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Type</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Default</th>
-              <th className="border border-[color:var(--color-fg-muted)] px-4 py-2 text-left">Description</th>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">orientation</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"horizontal" | "vertical"</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">"horizontal"</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">Separator orientation</td>
-            </tr>
-            <tr>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">decorative</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">boolean</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">true</td>
-              <td className="border border-[color:var(--color-fg-muted)] px-4 py-2">Whether separator is decorative</td>
+              <td className="py-2 px-4"><code>Separator</code></td>
+              <td className="py-2 px-4"><code>orientation?, decorative?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Visual divider component for separating content</td>
             </tr>
           </tbody>
         </table>
       </div>
-      
-      
-      
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">npx shadcn@latest add /r/separator.json</CodeBlock>
-      <h2 id="accessibility">Accessibility</h2>
-      <p>Separator uses Radix UI's accessible separator component. When decorative is true (default), it's hidden from screen readers.</p>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li><StorybookLink path="/docs/layout-separator--docs">View in Storybook</StorybookLink></li>
-      </ul>
 
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>Separator</code> is a component for visually dividing content into sections. Use it when you need to create visual separation between content areas, menu items, or sections. The component supports both horizontal and vertical orientations and is accessible via Radix UI.
+          </p>
 
+          <h3>When to use</h3>
+          <ul>
+            <li>Dividing content sections</li>
+            <li>Separating menu items</li>
+            <li>Creating visual breaks in lists</li>
+            <li>Dividing sidebar sections</li>
+            <li>Any scenario requiring visual separation</li>
+          </ul>
+
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "Separator"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>orientation?</code> – "horizontal" | "vertical" (default: "horizontal"). Separator orientation (optional)</li>
+            <li><code>decorative?</code> – boolean (default: true). Whether separator is decorative (hidden from screen readers) (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+          </ul>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "div",
+  "children": [
+    {
+      "type": "element",
+      "tag": "div",
+      "children": "Content above"
+    },
+    {
+      "type": "component",
+      "component": "Separator"
+    },
+    {
+      "type": "element",
+      "tag": "div",
+      "children": "Content below"
+    }
+  ]
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

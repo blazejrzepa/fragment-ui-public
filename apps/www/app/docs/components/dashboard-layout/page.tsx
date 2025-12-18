@@ -299,12 +299,7 @@ import { MetricCard, ActivityFeed, Chart, QuickActions } from "@fragment_ui/ui";
         All dashboard components follow accessibility best practices.
       </p>
       
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink>Storybook</StorybookLink>
-        </li>
-      </ul>
+      
 
     </DocumentContent>
   );

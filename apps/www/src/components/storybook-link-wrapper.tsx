@@ -43,10 +43,7 @@ export function StorybookLinkWrapper({
     ? path.slice(1)
     : path;
 
-  return (
-    <DSStorybookLink path={storybookPath} baseUrl={baseUrl} className={className}>
-      {children}
-    </DSStorybookLink>
-  );
+  // Storybook links disabled
+  return null;
 }
 

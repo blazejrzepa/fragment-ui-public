@@ -1,8 +1,6 @@
 import { processMarkdownContent } from "../../../../src/lib/markdown-loader";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { DocLayout } from "../../../../src/components/doc-layout";
-import { EditOnGitHub, Button } from "@fragment_ui/ui";
+import { DocPager } from "../../../../src/components/doc-pager";
 // Import markdown as raw string - webpack will bundle it
 import markdownContent from "./content.md?raw";
 
@@ -16,28 +14,20 @@ export default async function IntroductionPage() {
 
     return (
       <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="introduction" className="text-3xl font-medium mb-4">
-          {frontmatter.title || "Introduction"}
-        </h1>
-        <div className="flex items-center gap-2">
-          <Link href={"/docs/get-started/setup"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
+        <div className="flex items-center justify-between mb-1">
+          <h1 id="introduction" className="text-3xl font-medium mb-4">
+            {frontmatter.title || "Introduction"}
+          </h1>
+          <DocPager placement="top" align="end" variant="icon" dense />
         </div>
-      </div>
-      <p className="mb-6 intro-text">
-        Build dashboards fast with a code-first design system.
-      </p>
+        <p className="mb-6 intro-text">
+          Build dashboards fast with a code-first design system.
+        </p>
 
         <div
-          className="max-w-none"
+          className="max-w-none mt-6"
           dangerouslySetInnerHTML={{ __html: content }}
         />
-
-        <EditOnGitHub filePath="apps/www/app/docs/get-started/introduction/content.md" />
       </DocLayout>
     );
   } catch (error) {
@@ -45,18 +35,11 @@ export default async function IntroductionPage() {
     return (
       <DocLayout>
         <div className="flex items-center justify-between mb-1">
-        <h1 id="introduction" className="text-3xl font-medium mb-4">
-          Introduction
-        </h1>
-        <div className="flex items-center gap-2">
-          
-          <Link href={"/docs/get-started/setup"}>
-              <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
+          <h1 id="introduction" className="text-3xl font-medium mb-4">
+            Introduction
+          </h1>
+          <DocPager placement="top" align="end" variant="icon" dense />
         </div>
-      </div>
         <div className="max-w-none">
           <p>Error loading content. Please try refreshing the page.</p>
         </div>

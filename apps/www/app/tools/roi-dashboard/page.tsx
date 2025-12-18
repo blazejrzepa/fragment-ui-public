@@ -51,14 +51,25 @@ export default function ROIDashboardPage() {
     },
   };
 
-  const getStatusColor = (status: "good" | "warning" | "error") => {
+  const getStatusTextClass = (status: "good" | "warning" | "error") => {
     switch (status) {
       case "good":
-        return "text-green-600";
+        return "text-[color:var(--color-status-success-fg)]";
       case "warning":
-        return "text-yellow-600";
+        return "text-[color:var(--color-status-warning-fg)]";
       case "error":
-        return "text-red-600";
+        return "text-[color:var(--color-status-error-fg)]";
+    }
+  };
+
+  const getStatusBarClass = (status: "good" | "warning" | "error") => {
+    switch (status) {
+      case "good":
+        return "bg-[color:var(--color-status-success-base)]";
+      case "warning":
+        return "bg-[color:var(--color-status-warning-base)]";
+      case "error":
+        return "bg-[color:var(--color-status-error-base)]";
     }
   };
 
@@ -99,7 +110,7 @@ export default function ROIDashboardPage() {
 
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">ROI Dashboard</h1>
-        <p className="text-muted-foreground">
+        <p className="text-[color:var(--color-fg-muted)]">
           Key performance indicators for Fragment UI design system
         </p>
       </div>
@@ -110,7 +121,7 @@ export default function ROIDashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               Lead Time
-              <span className={getStatusColor(metrics.leadTime.status)}>
+              <span className={getStatusTextClass(metrics.leadTime.status)}>
                 {getStatusIcon(metrics.leadTime.status)}
               </span>
             </CardTitle>
@@ -120,13 +131,13 @@ export default function ROIDashboardPage() {
             <div className="text-3xl font-bold mb-2">
               {metrics.leadTime.current.toFixed(1)} days
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-[color:var(--color-fg-muted)]">
               Target: ≤ {metrics.leadTime.target} day
             </div>
             <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-[color:var(--color-surface-2)] rounded-full h-2">
                 <div
-                  className="bg-green-600 h-2 rounded-full"
+                  className={`${getStatusBarClass(metrics.leadTime.status)} h-2 rounded-full`}
                   style={{
                     width: `${Math.min((metrics.leadTime.current / metrics.leadTime.target) * 100, 100)}%`,
                   }}
@@ -141,7 +152,7 @@ export default function ROIDashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               DS Adoption Rate
-              <span className={getStatusColor(metrics.adoptionRate.status)}>
+              <span className={getStatusTextClass(metrics.adoptionRate.status)}>
                 {getStatusIcon(metrics.adoptionRate.status)}
               </span>
             </CardTitle>
@@ -151,13 +162,13 @@ export default function ROIDashboardPage() {
             <div className="text-3xl font-bold mb-2">
               {metrics.adoptionRate.current}%
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-[color:var(--color-fg-muted)]">
               Target: ≥ {metrics.adoptionRate.target}%
             </div>
             <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-[color:var(--color-surface-2)] rounded-full h-2">
                 <div
-                  className="bg-yellow-600 h-2 rounded-full"
+                  className={`${getStatusBarClass(metrics.adoptionRate.status)} h-2 rounded-full`}
                   style={{
                     width: `${(metrics.adoptionRate.current / metrics.adoptionRate.target) * 100}%`,
                   }}
@@ -172,7 +183,7 @@ export default function ROIDashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               Component Reuse Rate
-              <span className={getStatusColor(metrics.reuseRate.status)}>
+              <span className={getStatusTextClass(metrics.reuseRate.status)}>
                 {getStatusIcon(metrics.reuseRate.status)}
               </span>
             </CardTitle>
@@ -182,13 +193,13 @@ export default function ROIDashboardPage() {
             <div className="text-3xl font-bold mb-2">
               {metrics.reuseRate.current}%
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-[color:var(--color-fg-muted)]">
               Target: ≥ {metrics.reuseRate.target}%
             </div>
             <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-[color:var(--color-surface-2)] rounded-full h-2">
                 <div
-                  className="bg-yellow-600 h-2 rounded-full"
+                  className={`${getStatusBarClass(metrics.reuseRate.status)} h-2 rounded-full`}
                   style={{
                     width: `${(metrics.reuseRate.current / metrics.reuseRate.target) * 100}%`,
                   }}
@@ -203,7 +214,7 @@ export default function ROIDashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               Time-to-Ship Reduction
-              <span className={getStatusColor(metrics.timeToShip.status)}>
+              <span className={getStatusTextClass(metrics.timeToShip.status)}>
                 {getStatusIcon(metrics.timeToShip.status)}
               </span>
             </CardTitle>
@@ -213,13 +224,13 @@ export default function ROIDashboardPage() {
             <div className="text-3xl font-bold mb-2">
               {metrics.timeToShip.reduction}%
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-[color:var(--color-fg-muted)]">
               Target: ≥ {metrics.timeToShip.target}%
             </div>
             <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-[color:var(--color-surface-2)] rounded-full h-2">
                 <div
-                  className="bg-green-600 h-2 rounded-full"
+                  className={`${getStatusBarClass(metrics.timeToShip.status)} h-2 rounded-full`}
                   style={{
                     width: `${Math.min((metrics.timeToShip.reduction / metrics.timeToShip.target) * 100, 100)}%`,
                   }}
@@ -234,7 +245,7 @@ export default function ROIDashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               Maintenance Cost Reduction
-              <span className={getStatusColor(metrics.maintenanceCost.status)}>
+              <span className={getStatusTextClass(metrics.maintenanceCost.status)}>
                 {getStatusIcon(metrics.maintenanceCost.status)}
               </span>
             </CardTitle>
@@ -244,13 +255,13 @@ export default function ROIDashboardPage() {
             <div className="text-3xl font-bold mb-2">
               {metrics.maintenanceCost.reduction}%
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-[color:var(--color-fg-muted)]">
               Target: ≥ {metrics.maintenanceCost.target}%
             </div>
             <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-[color:var(--color-surface-2)] rounded-full h-2">
                 <div
-                  className="bg-yellow-600 h-2 rounded-full"
+                  className={`${getStatusBarClass(metrics.maintenanceCost.status)} h-2 rounded-full`}
                   style={{
                     width: `${(metrics.maintenanceCost.reduction / metrics.maintenanceCost.target) * 100}%`,
                   }}
@@ -265,7 +276,7 @@ export default function ROIDashboardPage() {
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
               Onboarding Time
-              <span className={getStatusColor(metrics.onboardingTime.status)}>
+              <span className={getStatusTextClass(metrics.onboardingTime.status)}>
                 {getStatusIcon(metrics.onboardingTime.status)}
               </span>
             </CardTitle>
@@ -275,13 +286,13 @@ export default function ROIDashboardPage() {
             <div className="text-3xl font-bold mb-2">
               {metrics.onboardingTime.current} min
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-[color:var(--color-fg-muted)]">
               Target: &lt; {metrics.onboardingTime.target} min
             </div>
             <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-[color:var(--color-surface-2)] rounded-full h-2">
                 <div
-                  className="bg-green-600 h-2 rounded-full"
+                  className={`${getStatusBarClass(metrics.onboardingTime.status)} h-2 rounded-full`}
                   style={{
                     width: `${Math.min((metrics.onboardingTime.current / metrics.onboardingTime.target) * 100, 100)}%`,
                   }}
@@ -301,15 +312,15 @@ export default function ROIDashboardPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-[color:var(--color-fg-muted)]">
               This dashboard displays real-time KPIs for Fragment UI. Metrics are
               updated automatically based on component usage, PR creation, and
               adoption data.
             </p>
-            <p className="text-sm text-muted-foreground mt-2">
+            <p className="text-sm text-[color:var(--color-fg-muted)] mt-2">
               <strong>Status indicators:</strong>
             </p>
-            <ul className="text-sm text-muted-foreground list-disc list-inside mt-2">
+            <ul className="text-sm text-[color:var(--color-fg-muted)] list-disc list-inside mt-2">
               <li>✅ Good - Meeting or exceeding target</li>
               <li>⚠️ Warning - Below target but close</li>
               <li>❌ Error - Significantly below target</li>

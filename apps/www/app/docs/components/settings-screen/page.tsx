@@ -49,12 +49,6 @@ export default function SettingsScreenPage() {
       <h2>Accessibility</h2>
       <p>The screen uses accessible components from @fragment_ui/ui and is fully keyboard accessible.</p>
       
-      <h2>Links</h2>
-      <ul>
-        <li>
-          <StorybookLink>Storybook</StorybookLink>
-        </li>
-      </ul>
     </DocumentContent>
   );
 }

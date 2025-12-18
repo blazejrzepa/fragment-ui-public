@@ -30,11 +30,12 @@ function toCssVars(obj: any, prefix: string[] = []): string {
       // Determine if value needs unit or not
       let val: string;
       if (typeof v === "number") {
-        // Don't add px to multipliers, line-height, or duration values
+        // Don't add px to unitless values (multipliers, line-height, duration, weights)
         const fullKey = key.join("-");
         const needsUnit = !fullKey.includes("multiplier") && 
                           !fullKey.includes("line-height") && 
-                          !fullKey.includes("duration");
+                          !fullKey.includes("duration") &&
+                          !fullKey.includes("weight");
         
         // Duration should be in ms
         if (fullKey.includes("duration")) {

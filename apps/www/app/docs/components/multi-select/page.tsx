@@ -2,12 +2,30 @@
 
 import { useState } from "react";
 import { CodeBlock, DocumentContent, MultiSelect, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const multiSelectCode = `import { MultiSelect } from "@fragment_ui/ui";
+import { useState } from "react";
+
+const options = [
+  { value: "react", label: "React" },
+  { value: "vue", label: "Vue" },
+  { value: "angular", label: "Angular" },
+  { value: "svelte", label: "Svelte" },
+  { value: "nextjs", label: "Next.js" },
+  { value: "remix", label: "Remix" },
+];
+
+export function MultiSelectDemo() {
+  const [value, setValue] = useState<string[]>([]);
+  
+  return (
+    <MultiSelect options={options} value={value} onValueChange={setValue} />
+  );
+}`;
 
 export default function MultiSelectPage() {
   const [value1, setValue1] = useState<string[]>([]);
-  const [value2, setValue2] = useState<string[]>(["react", "vue"]);
-  const [value3, setValue3] = useState<string[]>([]);
 
   const options = [
     { value: "react", label: "React" },
@@ -21,68 +39,63 @@ export default function MultiSelectPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">
-          Multi-Select
-        </h1>
+        <h1 id="multi-select">Multi-Select</h1>
       </div>
       <p className="mb-6 intro-text">Choose multiple options from a list.</p>
       
-      {/* Default */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="multi-select-example"
+        title="Example"
+        code={multiSelectCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <div className="w-full max-w-md">
             <MultiSelect options={options} value={value1} onValueChange={setValue1} />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { MultiSelect } from "@fragment_ui/ui";
-import { useState } from "react";
+      </ExampleSection>
 
-const options = [
-  { value: "react", label: "React" },
-  { value: "vue", label: "Vue" },
-  { value: "angular", label: "Angular" },
-  { value: "svelte", label: "Svelte" },
-];
-
-const [value, setValue] = useState<string[]>([]);
-
-<MultiSelect options={options} value={value} onValueChange={setValue} />`}
-          </CodeBlock>
-        </div>
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MultiSelect</code></td>
+              <td className="py-2 px-4"><code>options?, value?, onValueChange?, placeholder?, searchPlaceholder?, emptyText?, maxCount?, className?, disabled?, clearable?, loading?, asyncOptions?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Multi-select component with search and tag display</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <h2 id="install">Install</h2>
       <p>The Multi-Select is built using a composition of the <code>Popover</code> and <code>Command</code> components.</p>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/multi-select.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add multi-select`}
+      </CodeBlock>
 
-      <h2 id="usage">Usage</h2>
-      <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { MultiSelect } from "@fragment_ui/ui"
-import { useState } from "react"
-
-const [value, setValue] = useState<string[]>([])
-
-<MultiSelect
-  options={options}
-  value={value}
-  onValueChange={setValue}
-/>`}</CodeBlock>
-
-      <Collapsible>
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
-          <p><strong>Intent</strong></p>
+          <h3>Intent</h3>
           <p>
-            <code>MultiSelect</code> is a component for selecting multiple options from a searchable list.<br />
-            Use it when you need to allow users to select multiple items from a list, with support for search/filter functionality, tag display, and clearable selections.
+            <code>MultiSelect</code> is a component for selecting multiple options from a searchable list. Use it when you need to allow users to select multiple items from a list, with support for search/filter functionality, tag display, and clearable selections.
           </p>
 
-          <p><strong>When to use</strong></p>
+          <h3>When to use</h3>
           <ul>
             <li>Multiple selection from a list of options</li>
             <li>Tag-based selection interfaces</li>
@@ -91,29 +104,27 @@ const [value, setValue] = useState<string[]>([])
             <li>Any scenario where users need to select multiple items from a searchable list</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <h3>UI-DSL Usage</h3>
           <p>
             Use <code>type: "component"</code> with <code>component: "MultiSelect"</code>.
           </p>
-          <p>Props:</p>
+          <p><strong>Props:</strong></p>
           <ul>
-            <li><code>options</code> – Array of option objects with <code>value</code> and <code>label</code> (required)</li>
-            <li><code>value?</code> – Selected values array (optional, for controlled component, default: [])</li>
-            <li><code>onValueChange?</code> – Callback when value changes (optional)</li>
-            <li><code>placeholder?</code> – Placeholder text for trigger button (optional, default: "Select options...")</li>
-            <li><code>maxCount?</code> – Maximum number of tags to display before showing overflow indicator (optional, default: 3)</li>
-            <li><code>clearable?</code> – Enable clear all functionality (optional, default: true)</li>
-            <li><code>disabled?</code> – Disable the multi-select (optional)</li>
-            <li><code>className?</code> – Additional CSS classes (optional)</li>
-          </ul>
-          <p>Each option in <code>options</code> should include:</p>
-          <ul>
-            <li><code>value</code> – unique identifier (string, required)</li>
-            <li><code>label</code> – display text (string, required)</li>
-            <li><code>disabled?</code> – disable this option (boolean, optional)</li>
+            <li><code>options?</code> – MultiSelectOption[]. Array of option objects with <code>value</code> and <code>label</code> (optional, default: [])</li>
+            <li><code>value?</code> – string[]. Selected values array (optional, default: [])</li>
+            <li><code>onValueChange?</code> – function. Callback when values change: <code>(value: string[]) {'=>'} void</code> (optional)</li>
+            <li><code>placeholder?</code> – string (default: "Select options..."). Placeholder text (optional)</li>
+            <li><code>searchPlaceholder?</code> – string (default: "Search..."). Search input placeholder (optional)</li>
+            <li><code>emptyText?</code> – string (default: "No results found."). Text when no results found (optional)</li>
+            <li><code>maxCount?</code> – number (default: 3). Maximum number of selections to show before "+X more" (optional)</li>
+            <li><code>disabled?</code> – boolean. Disable the component (optional)</li>
+            <li><code>clearable?</code> – boolean (default: true). Allow clearing individual selections (optional)</li>
+            <li><code>loading?</code> – boolean. Show loading state (optional)</li>
+            <li><code>asyncOptions?</code> – boolean. Enable async options loading (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
           </ul>
 
-          <p><strong>Example</strong></p>
+          <h3>Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "MultiSelect",
@@ -121,24 +132,14 @@ const [value, setValue] = useState<string[]>([])
     "options": [
       { "value": "react", "label": "React" },
       { "value": "vue", "label": "Vue" },
-      { "value": "angular", "label": "Angular" },
-      { "value": "svelte", "label": "Svelte" }
+      { "value": "angular", "label": "Angular" }
     ],
-    "placeholder": "Select frameworks...",
-    "maxCount": 3,
-    "clearable": true
+    "value": [],
+    "onValueChange": "handleValueChange"
   }
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-multiselect--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
     </DocumentContent>
   );
 }
-

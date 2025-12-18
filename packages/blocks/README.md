@@ -28,9 +28,9 @@ export default function Dashboard() {
 
 ## Documentation
 
-- **[Blocks Documentation](https://fragmentui.com/docs/blocks)** - Complete blocks reference
-- **[Examples](https://fragmentui.com/docs/examples)** - Real-world usage examples
-- **[Dashboard Example](https://fragmentui.com/docs/examples/layout/dashboard)** - Complete dashboard example
+- **[Blocks Documentation](https://fragment-ui.dev/docs/blocks)** - Complete blocks reference
+- **[Examples](https://fragment-ui.dev/docs/examples)** - Real-world usage examples
+- **[Dashboard Example](https://fragment-ui.dev/docs/examples/layout/dashboard)** - Complete dashboard example
 
 ## Available Blocks
 

@@ -88,12 +88,6 @@ export default function CardGridPage() {
       <h2>Accessibility</h2>
       <p>Cards use semantic HTML and proper heading hierarchy. Action links are keyboard accessible.</p>
       
-      <h2>Links</h2>
-      <ul>
-        <li>
-          <StorybookLink>Storybook</StorybookLink>
-        </li>
-      </ul>
 
 
     </DocumentContent>

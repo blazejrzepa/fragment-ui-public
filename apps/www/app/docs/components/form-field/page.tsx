@@ -213,10 +213,7 @@ const handleChange = (e) => {
       <h2 id="accessibility">Accessibility</h2>
       <p>FormField automatically associates labels with inputs and provides proper ARIA attributes for error states.</p>
       
-      <h2 id="links">Links</h2>
-      <ul>
-        <li><StorybookLink path="/docs/form-form-field--docs">View in Storybook</StorybookLink></li>
-      </ul>
+      
 
 
     </DocumentContent>

@@ -67,12 +67,6 @@ export default function FormContainerPage() {
       <h2>Accessibility</h2>
       <p>The form uses semantic HTML elements, proper labels, and is fully keyboard accessible.</p>
       
-      <h2>Links</h2>
-      <ul>
-        <li>
-          <StorybookLink>Storybook</StorybookLink>
-        </li>
-      </ul>
 
 
     </DocumentContent>

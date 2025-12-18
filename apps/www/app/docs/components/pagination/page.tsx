@@ -1,9 +1,22 @@
 "use client";
 
-import { Pagination, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Pagination, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock, Badge } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
 import { useState } from "react";
+
+const paginationCode = `import { Pagination } from "@fragment_ui/ui";
+import { useState } from "react";
+
+export function PaginationDemo() {
+  const [page, setPage] = useState(1);
+  
+  return (
+    <div className="flex flex-col gap-[var(--space-8)] items-center">
+      <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
+      <Pagination currentPage={5} totalPages={20} onPageChange={setPage} />
+    </div>
+  );
+}`;
 
 export default function PaginationPage() {
   const [page, setPage] = useState(1);
@@ -11,51 +24,64 @@ export default function PaginationPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">
-          Pagination
-        </h1>
+        <h1 id="pagination">Pagination</h1>
+        <Badge variant="subtle" size="md">Custom</Badge>
       </div>
-      <p className="mb-6 intro-text">Navigate through pages of results.</p>
+      <p className="mb-6 intro-text">Navigate between pages of long lists.</p>
       
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex flex-col gap-8 items-center">
+      <ExampleSection
+        id="pagination-example"
+        title="Example"
+        code={paginationCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex flex-col gap-[var(--space-8)] items-center w-full">
             <Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
             <Pagination currentPage={5} totalPages={20} onPageChange={setPage} />
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { Pagination } from "@fragment_ui/ui";
-import { useState } from "react";
+      </ExampleSection>
 
-const [page, setPage] = useState(1);
-
-<Pagination currentPage={page} totalPages={10} onPageChange={setPage} />
-<Pagination currentPage={5} totalPages={20} onPageChange={setPage} />`}
-          </CodeBlock>
-        </div>
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Pagination</code></td>
+              <td className="py-2 px-4"><code>currentPage, totalPages, onPageChange, showFirstLast?, maxVisible?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Pagination component for navigating through pages</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        {`npx shadcn@latest add https://fragmentui.com/r/pagination.json`}
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add pagination`}
       </CodeBlock>
 
-      <Collapsible>
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
-          <p><strong>Intent</strong></p>
+          <h3>Intent</h3>
           <p>
-            <code>Pagination</code> is a component for navigating through pages of results.<br />
-            Use it when you need to allow users to navigate through large datasets, search results, or any content that is divided into multiple pages. The component provides page numbers, previous/next buttons, and optional first/last buttons for efficient navigation.
+            <code>Pagination</code> is a component for navigating through pages of results. Use it when you need to allow users to navigate through large datasets, search results, or any content that is divided into multiple pages. The component provides page numbers, previous/next buttons, and optional first/last buttons for efficient navigation.
           </p>
 
-          <p><strong>When to use</strong></p>
+          <h3>When to use</h3>
           <ul>
             <li>Search results and filtered content</li>
             <li>Data tables with multiple pages</li>
@@ -64,21 +90,21 @@ const [page, setPage] = useState(1);
             <li>Navigation through sequential content</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <h3>UI-DSL Usage</h3>
           <p>
             Use <code>type: "component"</code> with <code>component: "Pagination"</code>.
           </p>
-          <p>Props:</p>
+          <p><strong>Props:</strong></p>
           <ul>
-            <li><code>currentPage</code> – current active page number (required)</li>
-            <li><code>totalPages</code> – total number of pages (required)</li>
-            <li><code>onPageChange</code> – callback function when page changes, receives new page number (required)</li>
-            <li><code>showFirstLast?</code> – show first/last page buttons (optional, default: <code>true</code>)</li>
-            <li><code>maxVisible?</code> – maximum number of visible page buttons (optional, default: <code>5</code>)</li>
-            <li><code>className?</code> – additional CSS classes (optional)</li>
+            <li><code>currentPage</code> – number. Current active page number (required)</li>
+            <li><code>totalPages</code> – number. Total number of pages (required)</li>
+            <li><code>onPageChange</code> – function. Callback when page changes: <code>(page: number) {'=>'} void</code> (required)</li>
+            <li><code>showFirstLast?</code> – boolean (default: true). Show first/last page buttons (optional)</li>
+            <li><code>maxVisible?</code> – number (default: 5). Maximum number of visible page buttons (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
           </ul>
 
-          <p><strong>Example</strong></p>
+          <h3>Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Pagination",
@@ -92,15 +118,6 @@ const [page, setPage] = useState(1);
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-pagination--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
     </DocumentContent>
   );
 }
-
-

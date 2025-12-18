@@ -66,7 +66,7 @@ export async function listComponents() {
     }
 
     console.log(`\n💡 Install a component:`);
-    console.log(`   npx shadcn@latest add https://fragmentui.com/r/<component>.json\n`);
+    console.log(`   npx shadcn@latest add https://fragment-ui.dev/r/<component>.json\n`);
   } catch (error) {
     console.error(`❌ Error reading registry: ${error}`);
     process.exit(1);

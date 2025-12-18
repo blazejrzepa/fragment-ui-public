@@ -1,34 +1,68 @@
 "use client";
 
-import { Label, Input, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Label, Input, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const labelCode = `import { Label, Input } from "@fragment_ui/ui";
+
+export function LabelDemo() {
+  return (
+    <div className="flex flex-col gap-[var(--space-6)] w-full">
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Default</p>
+        <div className="flex flex-col gap-[var(--space-2)]">
+          <Label htmlFor="firstName">First name</Label>
+          <Input id="firstName" type="text" defaultValue="Pedro Duarte" />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>With Required</p>
+        <div className="flex flex-col gap-[var(--space-2)]">
+          <Label htmlFor="email">
+            Email <span className="text-[color:var(--color-status-error-fg)]">*</span>
+          </Label>
+          <Input id="email" type="email" placeholder="you@example.com" />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-[var(--space-4)]">
+        <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Disabled</p>
+        <div className="flex flex-col gap-[var(--space-2)]">
+          <Label htmlFor="disabled">Disabled field</Label>
+          <Input id="disabled" type="text" defaultValue="Disabled input" disabled />
+        </div>
+      </div>
+    </div>
+  );
+}`;
 
 export default function LabelPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Label</h1>
+        <h1 id="label">Label</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Renders an accessible label associated with controls.
-      </p>
+      <p className="mb-6 intro-text">Describe or name a form field.</p>
       
-      {/* Preview */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex flex-col gap-6 w-full max-w-md">
-            <div className="flex flex-col gap-4">
+      <ExampleSection
+        id="label-example"
+        title="Example"
+        code={labelCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex flex-col gap-[var(--space-6)] w-full max-w-md">
+            <div className="flex flex-col gap-[var(--space-4)]">
               <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Default</p>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-[var(--space-2)]">
                 <Label htmlFor="firstName">First name</Label>
                 <Input id="firstName" type="text" defaultValue="Pedro Duarte" />
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-[var(--space-4)]">
               <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>With Required</p>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-[var(--space-2)]">
                 <Label htmlFor="email">
                   Email <span className="text-[color:var(--color-status-error-fg)]">*</span>
                 </Label>
@@ -36,42 +70,57 @@ export default function LabelPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-[var(--space-4)]">
               <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Disabled</p>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-[var(--space-2)]">
                 <Label htmlFor="disabled">Disabled field</Label>
                 <Input id="disabled" type="text" defaultValue="Disabled input" disabled />
               </div>
             </div>
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Label, Input } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<div className="flex flex-col gap-2">
-  <Label htmlFor="firstName">First name</Label>
-  <Input id="firstName" type="text" defaultValue="Pedro Duarte" />
-</div>`}</CodeBlock>
-        </div>
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Label</code></td>
+              <td className="py-2 px-4"><code>htmlFor?, asChild?, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Accessible label component for form controls</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/label.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add label`}
+      </CodeBlock>
 
-      <Collapsible>
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
-          <p><strong>Intent</strong></p>
+          <h3>Intent</h3>
           <p>
-            <code>Label</code> is a component for rendering an accessible label associated with controls.<br />
-            Use it when you need to provide accessible labels for form inputs, checkboxes, radio buttons, or any other form controls. Labels improve accessibility by associating text with controls, enabling screen readers to announce the purpose of each field.
+            <code>Label</code> is a component for rendering an accessible label associated with controls. Use it when you need to provide accessible labels for form inputs, checkboxes, radio buttons, or any other form controls. Labels improve accessibility by associating text with controls, enabling screen readers to announce the purpose of each field.
           </p>
 
-          <p><strong>When to use</strong></p>
+          <h3>When to use</h3>
           <ul>
             <li>Form input labels (text, email, password, etc.)</li>
             <li>Checkbox and radio button labels</li>
@@ -81,24 +130,24 @@ export default function LabelPage() {
             <li>Required field indicators</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <h3>UI-DSL Usage</h3>
           <p>
             Use <code>type: "component"</code> with <code>component: "Label"</code>.
           </p>
-          <p>Props for <code>Label</code>:</p>
+          <p><strong>Props:</strong></p>
           <ul>
-            <li><code>htmlFor?</code> – ID of the associated form control: <code>string</code> (optional, but recommended for accessibility)</li>
-            <li><code>asChild?</code> – Render as child element instead of label (optional)</li>
-            <li><code>className?</code> – Additional CSS classes (optional)</li>
-            <li><code>children</code> – Label text (required)</li>
+            <li><code>htmlFor?</code> – string. ID of the associated form control (optional, but recommended for accessibility)</li>
+            <li><code>asChild?</code> – boolean. Render as child element instead of label (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+            <li><code>children</code> – ReactNode. Label text (required)</li>
           </ul>
           <p><strong>Note:</strong> When using <code>htmlFor</code>, ensure the associated form control has a matching <code>id</code> attribute. Alternatively, you can wrap the control with the Label component.</p>
 
-          <p><strong>Example</strong></p>
+          <h3>Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "div",
-  "props": { "className": "flex flex-col gap-2" },
+  "props": { "className": "flex flex-col gap-[var(--space-2)]" },
   "children": [
     {
       "type": "component",
@@ -119,15 +168,6 @@ export default function LabelPage() {
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-label--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
     </DocumentContent>
   );
 }
-

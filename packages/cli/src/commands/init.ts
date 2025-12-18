@@ -56,7 +56,7 @@ export async function initProject(projectPath?: string) {
 
     console.log(`💡 Next steps:`);
     console.log(`   1. Install a component:`);
-    console.log(`      npx shadcn@latest add https://fragmentui.com/r/button.json`);
+    console.log(`      npx shadcn@latest add https://fragment-ui.dev/r/button.json`);
     console.log(`   2. List all available components:`);
     console.log(`      ds list`);
     console.log(`   3. Check your installation:`);

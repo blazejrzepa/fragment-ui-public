@@ -12,7 +12,6 @@ const tokens = JSON.parse(fs.readFileSync(tokensPath, "utf-8"));
 const distDir = path.join(__dirname, "../dist");
 const outCss = path.join(distDir, "tokens.css");
 const outTs = path.join(distDir, "tokens.ts");
-const outJson = path.join(distDir, "tokens.json");
 
 function toCssVars(obj, prefix = []) {
   return Object.entries(obj)
@@ -36,11 +35,12 @@ function toCssVars(obj, prefix = []) {
       // Determine if value needs unit or not
       let val;
       if (typeof v === "number") {
-        // Don't add px to multipliers, line-height, or duration values
+        // Don't add px to unitless values (multipliers, line-height, duration, weights)
         const fullKey = key.join("-");
         const needsUnit = !fullKey.includes("multiplier") && 
                           !fullKey.includes("line-height") && 
-                          !fullKey.includes("duration");
+                          !fullKey.includes("duration") &&
+                          !fullKey.includes("weight");
         
         // Duration should be in ms
         if (fullKey.includes("duration")) {
@@ -89,6 +89,14 @@ ${toCssVars(tokens)}
   --i18n-margin-end: margin-right;
   --i18n-padding-start: padding-left;
   --i18n-padding-end: padding-right;
+
+  /* Active density defaults (normal) */
+  --density-space-multiplier: ${tokens.density.normal.space.multiplier};
+  --density-space-base: ${tokens.density.normal.space.base}px;
+  --density-typography-line-height: ${tokens.density.normal.typography["line-height"]};
+  --density-typography-size-multiplier: ${tokens.density.normal.typography["size-multiplier"]};
+  --density-component-height-multiplier: ${tokens.density.normal.component["height-multiplier"]};
+  --density-component-padding-multiplier: ${tokens.density.normal.component["padding-multiplier"]};
 }
 
 /* Light theme (default) */
@@ -251,6 +259,23 @@ ${toThemeCssVars(lightColors, ["color", "light"])}
   --motion-animation-slide-out: ${tokens.motion.animation["slide-out"]};
 }
 
+/* Respect system reduce-motion by default (unless explicitly overridden) */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="normal"]):not([data-motion="reduced"]) {
+    --motion-duration-fast: 0ms;
+    --motion-duration-base: 0ms;
+    --motion-duration-slow: 0ms;
+    --motion-duration-slower: 0ms;
+    --motion-transition-base: none;
+    --motion-transition-fast: none;
+    --motion-transition-slow: none;
+    --motion-animation-fade-in: none;
+    --motion-animation-fade-out: none;
+    --motion-animation-slide-in: none;
+    --motion-animation-slide-out: none;
+  }
+}
+
 /* Motion keyframes */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -276,6 +301,5 @@ ${toThemeCssVars(lightColors, ["color", "light"])}
 fs.mkdirSync(distDir, { recursive: true });
 fs.writeFileSync(outCss, css);
 fs.writeFileSync(outTs, `export default ${JSON.stringify(tokens, null, 2)} as const;\n`);
-fs.writeFileSync(outJson, `${JSON.stringify(tokens, null, 2)}\n`);
 
 console.log("✔ tokens built");

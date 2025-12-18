@@ -168,12 +168,7 @@ const ClientSidebar = dynamic(() => import("@fragment_ui/ui").then(mod => mod.Si
         2.1 guidelines.
       </p>
 
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-sidebar--docs">View in Storybook</StorybookLink>
-        </li>
-      </ul>
+      
 
 
     </DocumentContent>

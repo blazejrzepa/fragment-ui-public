@@ -16,7 +16,7 @@ export function ContentContainer({
   maxWidthClass = "max-w-[720px]",
 }: ContentContainerProps) {
   return (
-    <div className={clsx("w-full px-2 sm:px-4 lg:px-6", className)}>
+    <div className={clsx("w-full px-1 sm:px-3 lg:px-5", className)}>
       <div className={clsx("mx-auto w-full", maxWidthClass)}>{children}</div>
     </div>
   );

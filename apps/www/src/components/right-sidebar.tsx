@@ -128,7 +128,7 @@ export function RightSidebar() {
 
   return (
     <div className="flex h-full flex-col gap-4 overflow-hidden overscroll-none pb-8 pt-4">
-      <div className="no-scrollbar overflow-y-auto px-4 flex-1 min-h-0 mt-3">
+      <div className="no-scrollbar overflow-y-auto px-4 flex-1 min-h-0 mt-6">
         {headings.length > 0 ? (
           <>
             <TableOfContents headings={headings} showActive={true} scrollOffset={100} />

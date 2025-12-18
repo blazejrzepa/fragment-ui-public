@@ -113,12 +113,6 @@ import { Button } from "@fragment_ui/ui";
         menu includes focus management.
       </p>
       
-      <h2>Links</h2>
-      <ul>
-        <li>
-          <StorybookLink>Storybook</StorybookLink>
-        </li>
-      </ul>
     </DocumentContent>
   );
 }

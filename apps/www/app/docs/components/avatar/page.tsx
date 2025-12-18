@@ -1,63 +1,107 @@
 "use client";
 
-import { Avatar, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { OptimizedImage } from "../../../../src/components/optimized-image";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock, DocumentContent } from "@fragment_ui/ui";
+import { Avatar, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock, DocumentContent, Badge } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const avatarWithImageCode = `import { Avatar } from "@fragment_ui/ui";
+
+export function AvatarWithImageDemo() {
+  return <Avatar src="https://blakerzepa.com/assets/blake.avif" alt="User" />;
+}`;
+
+const avatarWithFallbackCode = `import { Avatar } from "@fragment_ui/ui";
+
+export function AvatarWithFallbackDemo() {
+  return <Avatar alt="User">JD</Avatar>;
+}`;
 
 export default function AvatarPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="avatar" className="text-3xl font-medium mb-4">Avatar</h1>
+        <h1 id="avatar">Avatar</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Show a user's profile image or initials.
-      </p>
+      <p className="mb-6 intro-text">Display user profile image or initials.</p>
       
-      
-      {/* With Image */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex gap-4">
-            <Avatar src="https://blakerzepa.com/assets/blake.avif" alt="User" />
-          </div>
+      <ExampleSection
+        id="avatar-with-image"
+        title="Avatar with Image"
+        code={avatarWithImageCode}
+      >
+        <div className="flex gap-2 items-center justify-center">
+          <Avatar src="https://blakerzepa.com/assets/blake.avif" alt="User" />
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Avatar } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<Avatar src="https://blakerzepa.com/assets/blake.avif" alt="User" />`}</CodeBlock>
+      <ExampleSection
+        id="avatar-with-fallback"
+        title="Avatar with Fallback"
+        code={avatarWithFallbackCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center">
+          <Avatar alt="User">JD</Avatar>
         </div>
-      </div>
-
-      {/* With Fallback */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex gap-4">
-            <Avatar alt="User">JD</Avatar>
-          </div>
-        </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Avatar } from "@fragment_ui/ui";
-
-<Avatar alt="User">JD</Avatar>`}</CodeBlock>
-        </div>
-      </div>
+      </ExampleSection>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/avatar.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add avatar`}
+      </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>src</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Image URL to display</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>alt</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Alternative text for accessibility. Used for fallback if image fails to load</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>fallback</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Custom fallback content. Defaults to first letter of <code>alt</code> if not provided</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
           <p><strong>Intent</strong></p>
           <p>
-            <code>Avatar</code> is a component for displaying user profile images or initials.<br />
-            Use it when you need to show a user's identity, profile picture, or a visual representation of a person or entity in your interface.
+            <code>Avatar</code> is a component for displaying user profile images or initials. Use it when you need to show a user's identity, profile picture, or a visual representation of a person or entity in your interface.
           </p>
 
           <p><strong>When to use</strong></p>
@@ -69,20 +113,21 @@ export default function AvatarPage() {
             <li>Contact lists and directories</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <p><strong>UI-DSL Usage</strong></p>
           <p>
             Use <code>type: "component"</code> with <code>component: "Avatar"</code>.
           </p>
-          <p>Props:</p>
+          
+          <p><strong>Props</strong></p>
           <ul>
-            <li><code>src?</code> – image URL (optional)</li>
-            <li><code>alt</code> – alternative text for accessibility (required)</li>
-            <li><code>fallback?</code> – custom fallback content (optional, defaults to first letter of alt)</li>
-            <li><code>className?</code> – additional CSS classes (optional)</li>
+            <li><code>src?</code> – string. Image URL (optional). If provided, the image will be displayed.</li>
+            <li><code>alt?</code> – string. Alternative text for accessibility (optional). Used for fallback if image fails to load.</li>
+            <li><code>fallback?</code> – React.ReactNode. Custom fallback content (optional). Defaults to first letter of <code>alt</code> if not provided.</li>
+            <li><code>className?</code> – string. Additional CSS classes</li>
           </ul>
           <p>If <code>src</code> is provided, the image will be displayed. If the image fails to load or <code>src</code> is not provided, the fallback content (or first letter of <code>alt</code>) will be shown.</p>
 
-          <p><strong>Example</strong></p>
+          <h3 className="mt-6 mb-4">Basic Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Avatar",
@@ -91,7 +136,8 @@ export default function AvatarPage() {
     "alt": "John Doe"
   }
 }`}</CodeBlock>
-          <p className="mt-4"><strong>With fallback:</strong></p>
+
+          <h3 className="mt-6 mb-4">With Fallback</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Avatar",
@@ -100,17 +146,18 @@ export default function AvatarPage() {
     "fallback": "JD"
   }
 }`}</CodeBlock>
+
+          <h3 className="mt-6 mb-4">Fallback Only</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Avatar",
+  "props": {
+    "alt": "User"
+  },
+  "children": "U"
+}`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/display-avatar--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
     </DocumentContent>
   );
 }
-

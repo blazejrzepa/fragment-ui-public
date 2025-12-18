@@ -1,5 +1,5 @@
 import { DocLayout } from "../../../src/components/doc-layout";
-import { EditOnGitHub } from "@fragment_ui/ui";
+import { DocPager } from "../../../src/components/doc-pager";
 import { processMarkdownContent } from "../../../src/lib/markdown-loader";
 import markdownContent from "./content.md?raw";
 import { ComponentPreviews } from "./component-previews";
@@ -15,6 +15,7 @@ export default async function ChangelogPage() {
         <h1 id="changelog" className="text-3xl font-medium mb-4">
           {frontmatter.title || "Changelog"}
         </h1>
+        <DocPager placement="top" align="end" variant="icon" dense />
       </div>
       {frontmatter.description && (
         <p className="mb-6 intro-text">{frontmatter.description}</p>

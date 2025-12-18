@@ -1,22 +1,52 @@
 "use client";
 
-import { SplitButton, DocumentContent, CodeBlock } from "@fragment_ui/ui";
+import { SplitButton, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
 import { Download, Save, Share2 } from "lucide-react";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const splitButtonCode = `import { SplitButton } from "@fragment_ui/ui";
+
+export function SplitButtonDemo() {
+  return (
+    <SplitButton
+      primaryAction={{ label: "Save", onClick: () => console.log("Save clicked") }}
+      options={[
+        { label: "Save As", onClick: () => console.log("Save As clicked") },
+        { label: "Save All", onClick: () => console.log("Save All clicked") },
+      ]}
+    />
+  );
+}`;
+
+const splitButtonIconsCode = `import { SplitButton } from "@fragment_ui/ui";
+import { Download, Save, Share2 } from "lucide-react";
+
+export function SplitButtonIconsDemo() {
+  return (
+    <SplitButton
+      primaryAction={{ label: "Download", icon: <Download className="h-4 w-4" />, onClick: () => console.log("Download clicked") }}
+      options={[
+        { label: "Save", icon: <Save className="h-4 w-4" />, onClick: () => console.log("Save clicked") },
+        { label: "Share", icon: <Share2 className="h-4 w-4" />, onClick: () => console.log("Share clicked") },
+      ]}
+    />
+  );
+}`;
 
 export default function SplitButtonPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="split-button">
-          Split Button
-        </h1>
+        <h1 id="split-button">Split Button</h1>
       </div>
-      <p className="mb-6 intro-text">Main action plus a dropdown of alternatives.</p>
+      <p className="mb-6 intro-text">Primary action with a secondary menu.</p>
 
-      {/* Default */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
+      <ExampleSection
+        id="split-button-example"
+        title="Example"
+        code={splitButtonCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <SplitButton
             primaryAction={{
               label: "Save",
@@ -28,132 +58,117 @@ export default function SplitButtonPage() {
             ]}
           />
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { SplitButton } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<SplitButton
-  primaryAction={{ label: "Save", onClick: () => console.log("Save clicked") }}
-  options={[
-    { label: "Save As", onClick: () => console.log("Save As clicked") },
-    { label: "Save All", onClick: () => console.log("Save All clicked") },
-  ]} />`}
-          </CodeBlock>
-        </div>
-      </div>
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add split-button`}
+      </CodeBlock>
 
-      {/* With Icons */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
+      <ExampleSection
+        id="split-button-icons"
+        title="With Icons"
+        code={splitButtonIconsCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <SplitButton
             primaryAction={{
               label: "Download",
-              icon: <Download size={16} />,
+              icon: <Download className="h-4 w-4" />,
               onClick: () => console.log("Download clicked"),
             }}
             options={[
-              { label: "Save", icon: <Save size={16} />, onClick: () => console.log("Save clicked") },
-              { label: "Share", icon: <Share2 size={16} />, onClick: () => console.log("Share clicked") },
+              { label: "Save", icon: <Save className="h-4 w-4" />, onClick: () => console.log("Save clicked") },
+              { label: "Share", icon: <Share2 className="h-4 w-4" />, onClick: () => console.log("Share clicked") },
             ]}
           />
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { SplitButton } from "@fragment_ui/ui";
-import { Download, Save, Share2 } from "lucide-react";
+      </ExampleSection>
 
-<SplitButton
-  primaryAction={{ label: "Download", icon: <Download size={16} />, onClick: () => console.log("Download clicked") }}
-  options={[
-    { label: "Save", icon: <Save size={16} />, onClick: () => console.log("Save clicked") },
-    { label: "Share", icon: <Share2 size={16} />, onClick: () => console.log("Share clicked") },
-  ]}
-/>`}
-          </CodeBlock>
-        </div>
-      </div>
-
-      <h2 id="api">API</h2>
-      <div className="my-6">
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left p-2 font-semibold">Prop</th>
-              <th className="text-left p-2 font-semibold">Type</th>
-              <th className="text-left p-2 font-semibold">Default</th>
-              <th className="text-left p-2 font-semibold">Description</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">primaryAction</td>
-              <td className="p-2 text-sm">{"{ label: string; onClick: () => void; icon?: ReactNode }"}</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Primary action button configuration</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">options</td>
-              <td className="p-2 text-sm">SplitButtonOption[]</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Array of dropdown menu options</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">variant</td>
-              <td className="p-2 text-sm">"solid" | "outline" | "ghost"</td>
-              <td className="p-2 text-sm">"solid"</td>
-              <td className="p-2 text-sm">Button variant style</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">size</td>
-              <td className="p-2 text-sm">"sm" | "md" | "lg"</td>
-              <td className="p-2 text-sm">"md"</td>
-              <td className="p-2 text-sm">Button size</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">disabled</td>
-              <td className="p-2 text-sm">boolean</td>
-              <td className="p-2 text-sm">false</td>
-              <td className="p-2 text-sm">Disable interaction</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">align</td>
-              <td className="p-2 text-sm">"start" | "center" | "end"</td>
-              <td className="p-2 text-sm">"end"</td>
-              <td className="p-2 text-sm">Dropdown menu alignment</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">side</td>
-              <td className="p-2 text-sm">"top" | "right" | "bottom" | "left"</td>
-              <td className="p-2 text-sm">"bottom"</td>
-              <td className="p-2 text-sm">Dropdown menu side</td>
-            </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">className</td>
-              <td className="p-2 text-sm">string</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Additional CSS classes</td>
+            <tr>
+              <td className="py-2 px-4"><code>SplitButton</code></td>
+              <td className="py-2 px-4"><code>primaryAction, options, variant?, size?, disabled?, align?, side?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Button with primary action and dropdown menu for alternatives</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <h2 id="features">Features</h2>
-      <ul className="list-disc list-inside space-y-2 my-4">
-        <li>Primary action button</li>
-        <li>Dropdown menu for secondary actions</li>
-        <li>Icon support in primary action and options</li>
-        <li>Three variants: solid, outline, ghost</li>
-        <li>Three sizes: sm, md, lg</li>
-        <li>Disabled state support</li>
-        <li>Customizable dropdown alignment and side</li>
-        <li>Fully accessible with keyboard navigation</li>
-      </ul>
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>SplitButton</code> is a component for displaying a main action button plus a dropdown of alternative actions. Use it when you need to provide a primary action with secondary actions accessible via a dropdown. The component supports icons, different variants, and is fully accessible.
+          </p>
 
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        npx shadcn@latest add /r/split-button.json
-      </CodeBlock>
+          <h3>When to use</h3>
+          <ul>
+            <li>Save actions with multiple save options</li>
+            <li>Download buttons with different formats</li>
+            <li>Export buttons with multiple export types</li>
+            <li>Any scenario requiring a primary action with alternatives</li>
+          </ul>
+
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "SplitButton"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>primaryAction</code> – object. Primary action configuration with <code>label</code> (string), <code>onClick</code> (function), and optional <code>icon</code> (ReactNode) (required)</li>
+            <li><code>options</code> – SplitButtonOption[]. Array of dropdown menu options, each with <code>label</code> (string), <code>onClick</code> (function), and optional <code>icon</code> (ReactNode) and <code>disabled</code> (boolean) (required)</li>
+            <li><code>variant?</code> – "solid" | "outline" | "ghost" (default: "solid"). Button variant (optional)</li>
+            <li><code>size?</code> – "sm" | "md" | "lg" (default: "md"). Button size (optional)</li>
+            <li><code>disabled?</code> – boolean (default: false). Disable interaction (optional)</li>
+            <li><code>align?</code> – "start" | "center" | "end" (default: "end"). Dropdown menu alignment (optional)</li>
+            <li><code>side?</code> – "top" | "right" | "bottom" | "left" (default: "bottom"). Dropdown menu side (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+          </ul>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "SplitButton",
+  "props": {
+    "primaryAction": {
+      "label": "Save",
+      "onClick": "handleSave"
+    },
+    "options": [
+      {
+        "label": "Save As",
+        "onClick": "handleSaveAs"
+      },
+      {
+        "label": "Save All",
+        "onClick": "handleSaveAll"
+      }
+    ],
+    "variant": "solid",
+    "size": "md"
+  }
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

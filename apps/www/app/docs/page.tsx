@@ -8,6 +8,6 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default function DocsPage() {
-  redirect("/docs/get-started/introduction");
+  redirect("/docs/introduction");
 }
 

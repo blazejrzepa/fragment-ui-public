@@ -6,54 +6,75 @@ title: Setup
 
 Before you begin, make sure you have:
 
-- **Node.js** 18 or higher installed
+- **Node.js** 18.18+ (Node 20 recommended)
 - **React** 18 or higher
-- **Tailwind CSS** configured in your project
+- **Tailwind CSS** configured in your project (Fragment UI components use Tailwind classes + CSS variables)
 - A package manager (`npm`, `yarn`, `pnpm`, `bun`)
 
-## Installation
+## 1) Install design tokens (required)
 
-### Option 1: Using the CLI (Recommended)
-
-The easiest way to get started is using the Fragment UI CLI:
+Fragment UI relies on design tokens exposed as CSS variables. Install the tokens package and import it once in your global CSS:
 
 ```bash
-# Initialize your project
-npx @fragment_ui/cli init
-# Install a component
-npx @fragment_ui/cli add button
-# List all available components
-npx @fragment_ui/cli list
-# Check for updates
-npx @fragment_ui/cli check
-# Update a component
-npx @fragment_ui/cli update button
+pnpm add @fragment_ui/tokens
+# or: npm i @fragment_ui/tokens
+# or: yarn add @fragment_ui/tokens
 ```
 
-**Note:** The package name is `@fragment_ui/cli` (not `@fragment-ui/cli`).
+```css
+/* app/globals.css (Next.js) or src/index.css (Vite/CRA) */
+@import "@fragment_ui/tokens";
 
-### Option 2: Using shadcn CLI
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
-You can also install components using the shadcn CLI with our registry:
+## 2) Install components
+
+### Option A: Fragment UI CLI (recommended)
+
+The CLI installs components from the registry into your repo (code-first distribution, similar to shadcn).
 
 ```bash
-# Install a component from Fragment UI registry
+# Initialize (creates ./components/ui, ./components/blocks, and components.json)
+npx fragmentui@latest init
+
+# Install a component (downloads from https://fragmentui.com/r/<name>.json)
+npx fragmentui@latest add button
+
+# List all available components
+npx fragmentui@latest list
+
+# Check what's installed in the current directory
+npx fragmentui@latest check
+```
+
+Notes:
+- To reinstall over existing files, use `--overwrite` (example: `npx fragmentui@latest add button --overwrite`).
+- The CLI also ships an alias binary `ds` (useful if you install it globally).
+
+### Option B: shadcn CLI (direct registry install)
+
+You can install files directly from the registry using `shadcn`:
+
+```bash
 npx shadcn@latest add https://fragmentui.com/r/button.json
 ```
 
-**Registry URL:** `https://fragmentui.com/r/[component-name].json`
+Registry URL pattern: `https://fragmentui.com/r/[component-name].json`
 
-All registry files are hosted and automatically available. See [Registry Documentation](/docs/tools/registry/deployment) for more details.
+### Option C: Packages (use as a library)
 
-### Option 3: Manual Installation
+If you prefer using Fragment UI as a regular component library (instead of copying files into your repo), install the packages:
 
-Download component files directly from the registry at `https://fragmentui.com/r/[component-name].json` and copy the files to your project.
+```bash
+pnpm add @fragment_ui/ui @fragment_ui/blocks @fragment_ui/tokens
+```
 
-## Configuration
+## Tailwind configuration notes
 
-### Tailwind CSS Setup
-
-Make sure your `tailwind.config.js` includes the Fragment UI content paths:
+Make sure Tailwind scans the files where Fragment UI classes live:
 
 ```js
 module.exports = {
@@ -61,69 +82,42 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    // Add Fragment UI components path
+    // If you use Fragment UI as packages, also include:
     "./node_modules/@fragment_ui/ui/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@fragment_ui/blocks/**/*.{js,ts,jsx,tsx}",
   ],
-  theme: {
-    extend: {},
-  },
+  theme: { extend: {} },
   plugins: [],
-}
+};
 ```
 
-### CSS Variables
+## Using components
 
-Import the Fragment UI tokens in your global CSS file:
+### If you installed via CLI / registry
 
-```css
-@import "@fragment_ui/tokens/dist/tokens.css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+Components are written into your repo (by default: `components/ui` and `components/blocks`). Import them from your local path (adjust to your project aliases):
+
+```tsx
+import { Button } from "@/components/ui/Button";
 ```
 
-### Theme Provider
+### If you installed packages
 
-Wrap your application with the ThemeProvider to enable theme switching:
-
-```jsx
-import { ThemeProvider } from "@/components/theme-provider";
-
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <body>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  );
-}
-```
-
-## Verifying Installation
-
-Test your installation by creating a simple component:
-
-```jsx
+```tsx
 import { Button } from "@fragment_ui/ui";
-
-export default function TestPage() {
-  return (
-    <div className="p-8">
-      <Button>Click me</Button>
-      <Button variant="outline">Outline Button</Button>
-      <Button variant="ghost">Ghost Button</Button>
-    </div>
-  );
-}
 ```
+
+## Theme & modes
+
+Fragment UI theming is driven by CSS variables. You can switch modes via data attributes (see [Theming & Modes](/docs/foundations/theming)).
+
+## Dependency notes (important)
+
+When you install a component, make sure your project has the dependencies it imports (for example `clsx`, `lucide-react`, or Radix packages). If a component imports other local components (for example `./Spinner`), install those too.
 
 ## Next Steps
 
-- [Components](/docs/components) - Browse available components and their APIs
 - [Design Tokens](/docs/foundations/tokens) - Learn about the design token system
 - [Examples](/docs/examples) - See components in action
-- [MCP Server](/docs/get-started/mcp-server) - Set up AI integration
+- [MCP Server](/docs/mcp-server) - Set up AI integration
 

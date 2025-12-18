@@ -7,10 +7,11 @@
 import * as path from "node:path";
 import * as fs from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { getRepoRoot } from "./root.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.join(__dirname, "../../..");
+const ROOT = getRepoRoot();
 
 export interface ScaffoldInfo {
   name: string;

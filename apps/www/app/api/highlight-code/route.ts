@@ -70,12 +70,12 @@ export async function POST(request: NextRequest) {
           let style = styleMatch[1];
           style = style.replace(/padding-left[^;]*;?/gi, "").trim();
           style = style.replace(/line-height[^;]*;?/gi, "").trim();
-          const newStyles = "padding-left: 4em !important; line-height: 1.7 !important;";
+          const newStyles = "padding-left: 4em !important; line-height: 1.5 !important;";
           style = style ? `${style}; ${newStyles}` : newStyles;
           style = style.replace(/;\s*;/g, ";").replace(/^\s*;|;\s*$/g, "");
           newAttrs = newAttrs.replace(/style=["']([^"']*)["']/i, `style="${style}"`);
         } else {
-          newAttrs = `${newAttrs} style="padding-left: 4em !important; line-height: 1.7 !important;"`;
+          newAttrs = `${newAttrs} style="padding-left: 4em !important; line-height: 1.5 !important;"`;
         }
         return `<span class="line"${newAttrs} data-line="${lineNumber++}">`;
       });

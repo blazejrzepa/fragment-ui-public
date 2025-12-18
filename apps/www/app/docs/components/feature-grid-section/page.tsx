@@ -193,11 +193,7 @@ function ProductPage() {
         and screen reader friendly. Compliant with WCAG 2.1.
       </p>
 
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-        </li>
-      </ul>
+      
 
     </DocumentContent>
   );

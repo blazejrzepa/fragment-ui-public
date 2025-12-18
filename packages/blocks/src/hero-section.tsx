@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@fragment_ui/ui";
+import Link from "next/link";
 import clsx from "clsx";
 
 export interface HeroCTA {
@@ -68,14 +69,16 @@ export function HeroSection({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               {primaryCTA && (
                 primaryCTA.href ? (
-                  <Button asChild
+                  <Link href={primaryCTA.href}>
+                    <Button
                       variant={primaryCTA.variant || "solid"}
                       size="lg"
                       data-action-id={primaryCTA.action}
                       data-action-kind="primaryCTA"
-                    ><a href={primaryCTA.href}>
+                    >
                       {primaryCTA.label}
-                    </a></Button>
+                    </Button>
+                  </Link>
                 ) : (
                   <Button
                     variant={primaryCTA.variant || "solid"}
@@ -90,14 +93,16 @@ export function HeroSection({
               )}
               {secondaryCTA && (
                 secondaryCTA.href ? (
-                  <Button asChild
+                  <Link href={secondaryCTA.href}>
+                    <Button
                       variant={secondaryCTA.variant || "outline"}
                       size="lg"
                       data-action-id={secondaryCTA.action}
                       data-action-kind="secondaryCTA"
-                    ><a href={secondaryCTA.href}>
+                    >
                       {secondaryCTA.label}
-                    </a></Button>
+                    </Button>
+                  </Link>
                 ) : (
                   <Button
                     variant={secondaryCTA.variant || "outline"}

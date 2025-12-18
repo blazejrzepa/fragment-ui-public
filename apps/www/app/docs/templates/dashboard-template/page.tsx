@@ -3,7 +3,6 @@
 import { DashboardTemplate } from "@fragment_ui/blocks";
 import { DocLayout } from "../../../../src/components/doc-layout";
 import { CodeBlock } from "@fragment_ui/ui";
-import { EditOnGitHub } from "@fragment_ui/ui";
 import { StabilityBadge } from "@fragment_ui/ui";
 import {
   SidebarGroup,
@@ -234,7 +233,6 @@ import {
         All components follow ARIA best practices and are keyboard navigable.
       </p>
 
-      <EditOnGitHub filePath="apps/www/app/docs/templates/dashboard-template/page.tsx" />
     </DocLayout>
   );
 }

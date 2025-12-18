@@ -168,11 +168,7 @@ function Dashboard() {
         for visual indication while maintaining text-based information. Compliant with WCAG 2.1.
       </p>
 
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-        </li>
-      </ul>
+      
 
     </DocumentContent>
   );

@@ -24,6 +24,10 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   
+  // Prevent dev/build from clobbering each other's output (missing chunk errors).
+  // Next sets NODE_ENV=development for `next dev` and NODE_ENV=production for `next build`.
+  distDir: process.env.NODE_ENV === "development" ? ".next-dev" : ".next",
+  
   // Ensure markdown files are included in the build
   // This is critical for production builds on Vercel
   outputFileTracingIncludes: {
@@ -44,7 +48,6 @@ const nextConfig = {
   },
   
   // External packages for server components (prevents bundling)
-  serverExternalPackages: [],
   
   // Image optimization
   images: {
@@ -100,13 +103,32 @@ const nextConfig = {
     // Build alias object - always add all aliases, webpack will handle server/client separation
     const aliases = {
       ...config.resolve.alias,
-      // Map the JSON subpath to the built tokens object (avoids exports/subpath edge cases in webpack)
-      "@fragment_ui/tokens/json": path.resolve(__dirname, "../../packages/tokens/dist/tokens.ts"),
-      // IMPORTANT: use exact-match alias to avoid breaking subpath imports like `@fragment_ui/tokens/json`
+      // IMPORTANT: use "$" so this alias matches ONLY the bare specifier.
+      // Otherwise it also matches subpaths like "@fragment_ui/tokens/json" and breaks resolution.
       "@fragment_ui/tokens$": path.resolve(__dirname, "../../packages/tokens"),
+      // Support package export subpath used by docs/components.
+      // The @fragment_ui/tokens alias above bypasses package.json "exports",
+      // so we need to explicitly map the "/json" entry.
+      "@fragment_ui/tokens/json": path.resolve(__dirname, "../../packages/tokens/dist/tokens.ts"),
     };
     
     config.resolve.alias = aliases;
+    
+    // Exclude better-sqlite3 from client bundle (it's Node.js only)
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        crypto: false,
+      };
+      
+      // Ignore better-sqlite3 in client bundle
+      config.externals = config.externals || [];
+      config.externals.push({
+        "better-sqlite3": "commonjs better-sqlite3",
+      });
+    }
     
     // Ensure webpack can resolve package.json exports
     config.resolve.extensionAlias = {

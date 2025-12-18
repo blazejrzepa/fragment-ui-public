@@ -11,6 +11,9 @@ interface EditOnGitHubProps {
  * Component that displays a link to edit the page on GitHub
  */
 export function EditOnGitHub({ filePath, branch = "main" }: EditOnGitHubProps) {
+  // Disabled: docs site no longer shows "Edit this page on GitHub" footer.
+  return null;
+
   const editUrl = `https://github.com/blazejrzepa/fragment-ui/edit/${branch}/${filePath}`;
   const viewUrl = `https://github.com/blazejrzepa/fragment-ui/blob/${branch}/${filePath}`;
 

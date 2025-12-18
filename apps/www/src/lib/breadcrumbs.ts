@@ -8,7 +8,7 @@ export function generateBreadcrumbsFromPath(
   version?: string
 ): BreadcrumbItem[] {
   const items: BreadcrumbItem[] = [
-    { label: "Docs", href: "/docs/get-started/introduction" },
+    { label: "Docs", href: "/docs/introduction" },
   ];
 
   // Check if this is a versioned route

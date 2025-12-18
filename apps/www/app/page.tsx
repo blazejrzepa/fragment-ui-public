@@ -34,7 +34,7 @@ export default function HomePage() {
           AI-generated dashboards, screens, and interface variants.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
-          <Link href="/docs/get-started/introduction">
+          <Link href="/docs/introduction">
             <Button size="md" trailingIcon={<ArrowRight className="h-4 w-4" />}>
               Get Started
             </Button>

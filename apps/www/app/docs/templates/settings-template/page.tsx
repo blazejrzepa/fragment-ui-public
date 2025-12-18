@@ -3,7 +3,6 @@
 import { SettingsTemplate } from "@fragment_ui/blocks";
 import { DocLayout } from "../../../../src/components/doc-layout";
 import { CodeBlock } from "@fragment_ui/ui";
-import { EditOnGitHub } from "@fragment_ui/ui";
 import { StabilityBadge } from "@fragment_ui/ui";
 import {
   SidebarGroup,
@@ -214,7 +213,6 @@ function SettingsPage() {
         All sections are keyboard accessible and follow ARIA best practices.
       </p>
 
-      <EditOnGitHub filePath="apps/www/app/docs/templates/settings-template/page.tsx" />
     </DocLayout>
   );
 }

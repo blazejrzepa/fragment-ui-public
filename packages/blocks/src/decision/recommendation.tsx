@@ -11,6 +11,7 @@
  */
 
 import * as React from "react";
+import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@fragment_ui/ui";
 import { Button } from "@fragment_ui/ui";
 import { Badge } from "@fragment_ui/ui";
@@ -107,13 +108,15 @@ export function Recommendation({ title, description, options, className }: Recom
             )}
             <CardFooter>
               {option.ctaHref ? (
-                <Button asChild
+                <Link href={option.ctaHref}>
+                  <Button
                     variant={option.rank === 1 ? "solid" : "outline"}
                     data-action-id={option.actionContractId}
                     data-action-kind={option.actionContractId ? "soft" : undefined}
-                  ><a href={option.ctaHref}>
+                  >
                     {option.ctaText}
-                  </a></Button>
+                  </Button>
+                </Link>
               ) : (
                 <Button
                   variant={option.rank === 1 ? "solid" : "outline"}

@@ -1,22 +1,77 @@
 "use client";
 
-import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarLabel, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem, MenubarSub, MenubarSubTrigger, MenubarSubContent, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarLabel, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem, MenubarSub, MenubarSubTrigger, MenubarSubContent, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const menubarCode = `import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarLabel,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+} from "@fragment_ui/ui";
+
+export function MenubarDemo() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem shortcut="⌘N">New File</MenubarItem>
+          <MenubarItem shortcut="⌘O">Open</MenubarItem>
+          <MenubarItem shortcut="⌘S">Save</MenubarItem>
+          <MenubarItem shortcut="⌘⇧S">Save As...</MenubarItem>
+          <MenubarItem>Exit</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem shortcut="⌘Z">Undo</MenubarItem>
+          <MenubarItem shortcut="⌘⇧Z">Redo</MenubarItem>
+          <MenubarItem shortcut="⌘X">Cut</MenubarItem>
+          <MenubarItem shortcut="⌘C">Copy</MenubarItem>
+          <MenubarItem shortcut="⌘V">Paste</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarCheckboxItem checked>Show Sidebar</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>Show Status Bar</MenubarCheckboxItem>
+          <MenubarLabel>Theme</MenubarLabel>
+          <MenubarRadioGroup value="light">
+            <MenubarRadioItem value="light">Light</MenubarRadioItem>
+            <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
+            <MenubarRadioItem value="system">System</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}`;
 
 export default function MenubarPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Menubar</h1>
+        <h1 id="menubar">Menubar</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Access grouped commands from a top menu.
-      </p>
+      <p className="mb-6 intro-text">Top-level navigation with nested menus.</p>
       
-      {/* Preview */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="menubar-example"
+        title="Example"
+        code={menubarCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <Menubar>
             <MenubarMenu>
               <MenubarTrigger>File</MenubarTrigger>
@@ -53,61 +108,120 @@ export default function MenubarPage() {
             </MenubarMenu>
           </Menubar>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import {
-  Menubar,
-  MenubarMenu,
-  MenubarTrigger,
-  MenubarContent,
-  MenubarItem,
-  MenubarSeparator,
-  MenubarCheckboxItem,
-  MenubarLabel,
-  MenubarRadioGroup,
-  MenubarRadioItem,
-} from "@fragment_ui/ui";
+      </ExampleSection>
 
-<Menubar>
-  <MenubarMenu>
-    <MenubarTrigger>File</MenubarTrigger>
-    <MenubarContent>
-      <MenubarItem shortcut="⌘N">New File</MenubarItem>
-      <MenubarItem shortcut="⌘O">Open</MenubarItem>
-      <MenubarItem shortcut="⌘S">Save</MenubarItem>
-    </MenubarContent>
-  </MenubarMenu>
-  <MenubarMenu>
-    <MenubarTrigger>View</MenubarTrigger>
-    <MenubarContent>
-      <MenubarCheckboxItem checked>Show Sidebar</MenubarCheckboxItem>
-      <MenubarLabel>Theme</MenubarLabel>
-      <MenubarRadioGroup value="light">
-        <MenubarRadioItem value="light">Light</MenubarRadioItem>
-        <MenubarRadioItem value="dark">Dark</MenubarRadioItem>
-      </MenubarRadioGroup>
-    </MenubarContent>
-  </MenubarMenu>
-</Menubar>`}</CodeBlock>
-        </div>
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Menubar</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Root container for the menu bar</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarMenu</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Individual menu group container</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarTrigger</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Menu button that opens the dropdown</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarContent</code></td>
+              <td className="py-2 px-4"><code>align?, alignOffset?, sideOffset?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Dropdown menu content container</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarItem</code></td>
+              <td className="py-2 px-4"><code>inset?, shortcut?, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Standard menu item with optional keyboard shortcut</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarCheckboxItem</code></td>
+              <td className="py-2 px-4"><code>checked, onCheckedChange?, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Menu item with checkbox state</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarRadioGroup</code></td>
+              <td className="py-2 px-4"><code>value, onValueChange?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Container for radio menu items</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarRadioItem</code></td>
+              <td className="py-2 px-4"><code>value, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Radio menu item (use within MenubarRadioGroup)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarLabel</code></td>
+              <td className="py-2 px-4"><code>inset?, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Section label for grouping menu items</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarSeparator</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Visual separator between menu sections</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarSub</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Container for submenu (use with MenubarSubTrigger and MenubarSubContent)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>MenubarSubTrigger</code></td>
+              <td className="py-2 px-4"><code>inset?, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Trigger for submenu</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>MenubarSubContent</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Content container for submenu</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/menubar.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add menubar`}
+      </CodeBlock>
 
-      <Collapsible>
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
-          <p><strong>Intent</strong></p>
+          <h3>Intent</h3>
           <p>
-            <code>Menubar</code> is a component for accessing grouped commands from a top menu bar.<br />
-            Use it when you need to provide a traditional menu bar interface (similar to desktop applications) with multiple menus, submenus, keyboard shortcuts, checkboxes, and radio groups. The component is ideal for applications that require a comprehensive command structure.
+            <code>Menubar</code> is a component for accessing grouped commands from a top menu bar. Use it when you need to provide a traditional menu bar interface (similar to desktop applications) with multiple menus, submenus, keyboard shortcuts, checkboxes, and radio groups. The component is ideal for applications that require a comprehensive command structure.
           </p>
 
-          <p><strong>When to use</strong></p>
+          <h3>When to use</h3>
           <ul>
             <li>Desktop-style applications with menu bars</li>
             <li>Applications requiring multiple command groups</li>
@@ -118,41 +232,26 @@ export default function MenubarPage() {
             <li>Any interface requiring a traditional menu bar pattern</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <h3>UI-DSL Usage</h3>
           <p>
             Use <code>type: "component"</code> with <code>component: "Menubar"</code> and nested <code>MenubarMenu</code> components.
           </p>
+          <p><strong>Props:</strong></p>
           <p>Main components:</p>
           <ul>
             <li><code>Menubar</code> – Root container (required)</li>
             <li><code>MenubarMenu</code> – Individual menu group (required)</li>
             <li><code>MenubarTrigger</code> – Menu button/trigger (required)</li>
             <li><code>MenubarContent</code> – Menu dropdown content (required)</li>
-            <li><code>MenubarItem</code> – Menu item with optional shortcut</li>
-            <li><code>MenubarCheckboxItem</code> – Checkbox menu item</li>
+            <li><code>MenubarItem</code> – Menu item with optional shortcut prop</li>
+            <li><code>MenubarCheckboxItem</code> – Checkbox menu item with checked prop</li>
             <li><code>MenubarRadioGroup</code> + <code>MenubarRadioItem</code> – Radio group menu items</li>
             <li><code>MenubarLabel</code> – Section label</li>
             <li><code>MenubarSeparator</code> – Visual separator</li>
             <li><code>MenubarSub</code> + <code>MenubarSubTrigger</code> + <code>MenubarSubContent</code> – Submenu support</li>
           </ul>
-          <p>Props for <code>MenubarItem</code>:</p>
-          <ul>
-            <li><code>shortcut?</code> – Keyboard shortcut display: <code>string</code> (optional, e.g., "⌘N", "Ctrl+B")</li>
-            <li><code>inset?</code> – Add left padding: <code>boolean</code> (optional)</li>
-            <li><code>disabled?</code> – Disable item: <code>boolean</code> (optional)</li>
-          </ul>
-          <p>Props for <code>MenubarCheckboxItem</code>:</p>
-          <ul>
-            <li><code>checked?</code> – Checked state: <code>boolean</code> (optional)</li>
-            <li><code>disabled?</code> – Disable item: <code>boolean</code> (optional)</li>
-          </ul>
-          <p>Props for <code>MenubarRadioGroup</code>:</p>
-          <ul>
-            <li><code>value</code> – Selected value: <code>string</code> (required)</li>
-            <li><code>onValueChange?</code> – Change handler: <code>(value: string) =&gt; void</code> (optional)</li>
-          </ul>
 
-          <p><strong>Example</strong></p>
+          <h3>Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Menubar",
@@ -194,14 +293,6 @@ export default function MenubarPage() {
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-menubar--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
     </DocumentContent>
   );
 }

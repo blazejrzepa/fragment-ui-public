@@ -1,22 +1,55 @@
 "use client";
 
-import { SegmentedControl, DocumentContent, CodeBlock } from "@fragment_ui/ui";
+import { useState } from "react";
+import { SegmentedControl, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
 import { List, Grid, Calendar } from "lucide-react";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+
+const segmentedControlCode = `import { SegmentedControl } from "@fragment_ui/ui";
+
+export function SegmentedControlDemo() {
+  return (
+    <SegmentedControl
+      options={[
+        { value: "list", label: "List" },
+        { value: "grid", label: "Grid" },
+        { value: "calendar", label: "Calendar" },
+      ]}
+      defaultValue="list"
+    />
+  );
+}`;
+
+const segmentedControlIconsCode = `import { SegmentedControl } from "@fragment_ui/ui";
+import { List, Grid, Calendar } from "lucide-react";
+
+export function SegmentedControlIconsDemo() {
+  return (
+    <SegmentedControl
+      options={[
+        { value: "list", label: "List", icon: <List className="h-4 w-4" /> },
+        { value: "grid", label: "Grid", icon: <Grid className="h-4 w-4" /> },
+        { value: "calendar", label: "Calendar", icon: <Calendar className="h-4 w-4" /> },
+      ]}
+      defaultValue="list"
+    />
+  );
+}`;
 
 export default function SegmentedControlPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">
-          Segmented Control
-        </h1>
+        <h1 id="segmented-control">Segmented Control</h1>
       </div>
       <p className="mb-6 intro-text">Switch between a few related views.</p>
 
-      {/* Default Variant */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
+      <ExampleSection
+        id="segmented-control-example"
+        title="Example"
+        code={segmentedControlCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <SegmentedControl
             options={[
               { value: "list", label: "List" },
@@ -26,154 +59,241 @@ export default function SegmentedControlPage() {
             defaultValue="list"
           />
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { SegmentedControl } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<SegmentedControl
-  options={[
-    { value: "list", label: "List" },
-    { value: "grid", label: "Grid" },
-    { value: "calendar", label: "Calendar" },
-  ]}
-  defaultValue="list"
-/>`}
-          </CodeBlock>
-        </div>
-      </div>
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add segmented-control`}
+      </CodeBlock>
 
-      {/* With Icons */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[200px] p-10">
+      <ExampleSection
+        id="segmented-control-icons"
+        title="With Icons"
+        code={segmentedControlIconsCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <SegmentedControl
             options={[
-              { value: "list", label: "List", icon: <List size={16} /> },
-              { value: "grid", label: "Grid", icon: <Grid size={16} /> },
-              { value: "calendar", label: "Calendar", icon: <Calendar size={16} /> },
+              { value: "list", label: "List", icon: <List className="h-4 w-4" /> },
+              { value: "grid", label: "Grid", icon: <Grid className="h-4 w-4" /> },
+              { value: "calendar", label: "Calendar", icon: <Calendar className="h-4 w-4" /> },
             ]}
-            defaultValue="grid"
-            variant="outline"
+            defaultValue="list"
           />
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">
-            {`import { SegmentedControl } from "@fragment_ui/ui";
-import { List, Grid, Calendar } from "lucide-react";
+      </ExampleSection>
 
-<SegmentedControl
-  options={[
-    { value: "list", label: "List", icon: <List size={16} /> },
-    { value: "grid", label: "Grid", icon: <Grid size={16} /> },
-    { value: "calendar", label: "Calendar", icon: <Calendar size={16} /> },
-  ]}
-  defaultValue="grid"
-  variant="outline"
-/>`}
-          </CodeBlock>
+      <ExampleSection
+        id="segmented-control-sizes"
+        title="Sizes"
+        code={`import { SegmentedControl } from "@fragment_ui/ui";
+
+export function SegmentedControlSizesDemo() {
+  return (
+    <div className="flex flex-col gap-[var(--space-4)] items-center">
+      <SegmentedControl
+        size="sm"
+        options={[
+          { value: "list", label: "List" },
+          { value: "grid", label: "Grid" },
+          { value: "calendar", label: "Calendar" },
+        ]}
+        defaultValue="list"
+      />
+      <SegmentedControl
+        size="md"
+        options={[
+          { value: "list", label: "List" },
+          { value: "grid", label: "Grid" },
+          { value: "calendar", label: "Calendar" },
+        ]}
+        defaultValue="list"
+      />
+      <SegmentedControl
+        size="lg"
+        options={[
+          { value: "list", label: "List" },
+          { value: "grid", label: "Grid" },
+          { value: "calendar", label: "Calendar" },
+        ]}
+        defaultValue="list"
+      />
+    </div>
+  );
+}`}
+        marginTop="mt-8"
+      >
+        <div className="flex flex-col gap-[var(--space-4)] items-center justify-center w-full">
+          <SegmentedControl
+            size="sm"
+            options={[
+              { value: "list", label: "List" },
+              { value: "grid", label: "Grid" },
+              { value: "calendar", label: "Calendar" },
+            ]}
+            defaultValue="list"
+          />
+          <SegmentedControl
+            size="md"
+            options={[
+              { value: "list", label: "List" },
+              { value: "grid", label: "Grid" },
+              { value: "calendar", label: "Calendar" },
+            ]}
+            defaultValue="list"
+          />
+          <SegmentedControl
+            size="lg"
+            options={[
+              { value: "list", label: "List" },
+              { value: "grid", label: "Grid" },
+              { value: "calendar", label: "Calendar" },
+            ]}
+            defaultValue="list"
+          />
         </div>
-      </div>
+      </ExampleSection>
 
-      <h2 id="api">API</h2>
-      <div className="overflow-x-auto my-4">
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left p-2 font-semibold">Prop</th>
-              <th className="text-left p-2 font-semibold">Type</th>
-              <th className="text-left p-2 font-semibold">Default</th>
-              <th className="text-left p-2 font-semibold">Description</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">options</td>
-              <td className="p-2 text-sm">SegmentedControlOption[]</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Array of options to display</td>
+            <tr>
+              <td className="py-2 px-4"><code>options?</code></td>
+              <td className="py-2 px-4"><code>SegmentedControlOption[]</code></td>
+              <td className="py-2 px-4">[]</td>
+              <td className="py-2 px-4 text-sm">Array of option objects (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">value</td>
-              <td className="p-2 text-sm">string | string[]</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Controlled value</td>
+            <tr>
+              <td className="py-2 px-4"><code>value?</code></td>
+              <td className="py-2 px-4"><code>string | string[]</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Selected value(s) for controlled component (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">defaultValue</td>
-              <td className="p-2 text-sm">string | string[]</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Uncontrolled default value</td>
+            <tr>
+              <td className="py-2 px-4"><code>defaultValue?</code></td>
+              <td className="py-2 px-4"><code>string | string[]</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Initial value(s) for uncontrolled component (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">onChange</td>
-              <td className="p-2 text-sm">(value: string | string[]) =&gt; void</td>
-              <td className="p-2 text-sm">-</td>
-              <td className="p-2 text-sm">Callback when value changes</td>
+            <tr>
+              <td className="py-2 px-4"><code>onChange?</code></td>
+              <td className="py-2 px-4"><code>(value: string | string[]) {'=>'} void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Callback when value changes (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">multiple</td>
-              <td className="p-2 text-sm">boolean</td>
-              <td className="p-2 text-sm">false</td>
-              <td className="p-2 text-sm">Allow multiple selection</td>
+            <tr>
+              <td className="py-2 px-4"><code>multiple?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4">false</td>
+              <td className="py-2 px-4 text-sm">Allow multiple selection (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">variant</td>
-              <td className="p-2 text-sm">"default" | "outline" | "filled"</td>
-              <td className="p-2 text-sm">"default"</td>
-              <td className="p-2 text-sm">Visual variant</td>
+            <tr>
+              <td className="py-2 px-4"><code>variant?</code></td>
+              <td className="py-2 px-4"><code>"default" | "outline" | "filled"</code></td>
+              <td className="py-2 px-4">"default"</td>
+              <td className="py-2 px-4 text-sm">Visual variant (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">size</td>
-              <td className="p-2 text-sm">"sm" | "md" | "lg"</td>
-              <td className="p-2 text-sm">"md"</td>
-              <td className="p-2 text-sm">Size of the control</td>
+            <tr>
+              <td className="py-2 px-4"><code>size?</code></td>
+              <td className="py-2 px-4"><code>"sm" | "md" | "lg"</code></td>
+              <td className="py-2 px-4">"md"</td>
+              <td className="py-2 px-4 text-sm">Size variant (optional)</td>
             </tr>
-            <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="p-2 font-mono text-sm">disabled</td>
-              <td className="p-2 text-sm">boolean</td>
-              <td className="p-2 text-sm">false</td>
-              <td className="p-2 text-sm">Disable the entire control</td>
+            <tr>
+              <td className="py-2 px-4"><code>disabled?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4">false</td>
+              <td className="py-2 px-4 text-sm">Disable the control (optional)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes (optional)</td>
             </tr>
           </tbody>
         </table>
+        <div className="p-4 border-t border-[color:var(--color-border-base)]">
+          <p className="text-sm font-semibold mb-2">SegmentedControlOption interface:</p>
+          <ul className="text-sm space-y-1">
+            <li><code>value</code> – string. Option value (required)</li>
+            <li><code>label</code> – string. Option label (required)</li>
+            <li><code>icon?</code> – ReactNode. Icon element (optional)</li>
+            <li><code>disabled?</code> – boolean. Disable this option (optional)</li>
+          </ul>
+        </div>
       </div>
 
-      <h2 id="features">Features</h2>
-      <ul className="list-disc list-inside space-y-1 my-4">
-        <li>iOS-style segmented control interface</li>
-        <li>Single or multiple selection modes</li>
-        <li>Three visual variants: default, outline, filled</li>
-        <li>Three sizes: sm, md, lg</li>
-        <li>Icon support for better visual recognition</li>
-        <li>Keyboard navigation support</li>
-        <li>Fully accessible (ARIA compliant)</li>
-        <li>Disabled states for options or entire control</li>
-        <li>Controlled and uncontrolled modes</li>
-      </ul>
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>SegmentedControl</code> is a component for switching between a few related views. Use it when you need to provide users with a way to toggle between different views, modes, or options. The component displays multiple options as segments, with one active segment at a time (or multiple in multiple mode).
+          </p>
 
-      <h2 id="when-to-use">When to Use</h2>
-      <ul className="list-disc list-inside space-y-1 my-4">
-        <li>
-          <strong>View Selection:</strong> Switching between different views (list, grid, calendar)
-        </li>
-        <li>
-          <strong>Filters:</strong> Applying multiple filters simultaneously
-        </li>
-        <li>
-          <strong>Sorting:</strong> Choosing sort order or criteria
-        </li>
-        <li>
-          <strong>Options:</strong> Selecting from a small set of mutually exclusive options
-        </li>
-        <li>
-          <strong>Settings:</strong> Toggling between different settings or modes
-        </li>
-      </ul>
+          <h3>When to use</h3>
+          <ul>
+            <li>View mode toggles (list, grid, calendar)</li>
+            <li>Filter or sort options</li>
+            <li>Display format selection</li>
+            <li>Settings or preference toggles</li>
+            <li>Any scenario requiring segmented selection</li>
+          </ul>
 
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        npx shadcn@latest add /r/segmented-control.json
-      </CodeBlock>
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "SegmentedControl"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>options?</code> – array. Array of option objects (optional, default: []). Each option should include:
+              <ul>
+                <li><code>value</code> – string. Option value (required)</li>
+                <li><code>label</code> – string. Option label (required)</li>
+                <li><code>icon?</code> – ReactNode. Icon element (optional)</li>
+                <li><code>disabled?</code> – boolean. Disable this option (optional)</li>
+              </ul>
+            </li>
+            <li><code>value?</code> – string | string[]. Selected value(s) for controlled component (optional)</li>
+            <li><code>defaultValue?</code> – string | string[]. Initial value(s) for uncontrolled component (optional)</li>
+            <li><code>onChange?</code> – function. Callback when value changes: <code>(value: string | string[]) {'=>'} void</code> (optional)</li>
+            <li><code>multiple?</code> – boolean. Allow multiple selection (optional, default: false)</li>
+            <li><code>variant?</code> – string. Visual variant: "default" | "outline" | "filled" (optional, default: "default")</li>
+            <li><code>size?</code> – string. Size variant: "sm" | "md" | "lg" (optional, default: "md")</li>
+            <li><code>disabled?</code> – boolean. Disable the control (optional, default: false)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+          </ul>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "SegmentedControl",
+  "props": {
+    "options": [
+      { "value": "list", "label": "List" },
+      { "value": "grid", "label": "Grid" },
+      { "value": "calendar", "label": "Calendar" }
+    ],
+    "defaultValue": "list"
+  }
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

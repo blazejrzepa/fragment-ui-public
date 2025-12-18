@@ -1,30 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { DocLayout } from "../../../../src/components/doc-layout";
-import { EditOnGitHub, Button, CodeBlock } from "@fragment_ui/ui";
+import { DocPager } from "../../../../src/components/doc-pager";
+import { CodeBlock } from "@fragment_ui/ui";
+import { Alert, AlertTitle, AlertDescription } from "@fragment_ui/ui";
 
 export default function SemanticColorsPage() {
   return (
     <DocLayout>
       <div className="flex items-center justify-between mb-1">
-        <h1 id="semantic-color-tokens" className="text-3xl font-medium mb-4">Semantic Color Tokens</h1>
-        <div className="flex items-center gap-2">
-          <Link href={"/docs/foundations/theming"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link href={"/docs/foundations/spacing"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
+        <h1 id="semantic-colors" className="text-3xl font-medium mb-4">Semantic Colors</h1>
+        <DocPager placement="top" align="end" variant="icon" dense />
       </div>
       <p className="mb-6 intro-text">
-        Semantic color tokens for status indicators (success, error, warning, info) that work across all themes.
+        Semantic colors for consistent status and feedback across themes.
       </p>
 
       <h2 id="overview">Overview</h2>
@@ -130,7 +119,8 @@ export default function SemanticColorsPage() {
 
       <h3>React Components</h3>
       <p>Use semantic colors in your components:</p>
-      <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`
+      <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`import { Alert, AlertTitle, AlertDescription } from "@fragment_ui/ui";
+
 <Alert variant="success">
   <AlertTitle>Success</AlertTitle>
   <AlertDescription>Operation completed successfully.</AlertDescription>
@@ -166,13 +156,15 @@ export default function SemanticColorsPage() {
         In Tailwind, use arbitrary values:
       </p>
       <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`<div
-  className="    border
+  className="
+    border
     bg-[color:var(--color-status-success-bg)]
     text-[color:var(--color-status-success-fg)]
     border-[color:var(--color-status-success-border)]
     p-[var(--space-4)]
     rounded-[var(--radius-md)]
-  \">
+  "
+>
   Success
 </div>`}</CodeBlock>
 
@@ -225,7 +217,6 @@ export default function SemanticColorsPage() {
         </li>
       </ul>
 
-      <EditOnGitHub filePath="apps/www/app/docs/foundations/semantic-colors/page.tsx" />
     </DocLayout>
   );
 }

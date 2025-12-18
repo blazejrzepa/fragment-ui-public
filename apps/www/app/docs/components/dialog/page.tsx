@@ -1,26 +1,111 @@
 "use client";
 
 import * as React from "react";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogHeader, DialogFooter, DocumentContent, Input, Label, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription, DialogClose, DialogHeader, DialogFooter, DocumentContent, Input, Label, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock, Badge, Button } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const dialogCode = `import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+  DialogHeader,
+  DialogFooter,
+} from "@fragment_ui/ui";
+import { Button, Input, Label } from "@fragment_ui/ui";
+
+export function DialogDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent className="max-w-md">
+        <DialogHeader>
+          <DialogTitle>Edit Profile</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-[var(--space-4)] py-[var(--space-4)]">
+          <div className="grid gap-[var(--space-2)]">
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" placeholder="John Doe" defaultValue="John Doe" />
+          </div>
+          <div className="grid gap-[var(--space-2)]">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="john@example.com" defaultValue="john@example.com" />
+          </div>
+          <div className="grid gap-[var(--space-2)]">
+            <Label htmlFor="username">Username</Label>
+            <Input id="username" placeholder="@johndoe" defaultValue="@johndoe" />
+          </div>
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`;
+
+const dialogSimpleCode = `import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+  DialogHeader,
+  DialogFooter,
+} from "@fragment_ui/ui";
 import { Button } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+
+export function DialogSimpleDemo() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Open Simple Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete your account and remove your data from our servers.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Continue</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`;
 
 export default function DialogPage() {
-  const [outerOpen, setOuterOpen] = React.useState(false);
-  const [innerOpen, setInnerOpen] = React.useState(false);
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Dialog</h1>
+        <h1 id="dialog">Dialog</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Show a modal window for focused tasks.
-      </p>
+      <p className="mb-6 intro-text">Show modal content that requires user focus.</p>
       
-      {/* Default Dialog */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="dialog-example"
+        title="Dialog Example"
+        code={dialogCode}
+      >
+        <div className="flex justify-center items-center w-full">
           <Dialog>
             <DialogTrigger asChild>
               <Button>Open Dialog</Button>
@@ -32,16 +117,16 @@ export default function DialogPage() {
                   Make changes to your profile here. Click save when you're done.
                 </DialogDescription>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
+              <div className="grid gap-[var(--space-4)] py-[var(--space-4)]">
+                <div className="grid gap-[var(--space-2)]">
                   <Label htmlFor="name">Name</Label>
                   <Input id="name" placeholder="John Doe" defaultValue="John Doe" />
                 </div>
-                <div className="grid gap-2">
+                <div className="grid gap-[var(--space-2)]">
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" type="email" placeholder="john@example.com" defaultValue="john@example.com" />
                 </div>
-                <div className="grid gap-2">
+                <div className="grid gap-[var(--space-2)]">
                   <Label htmlFor="username">Username</Label>
                   <Input id="username" placeholder="@johndoe" defaultValue="@johndoe" />
                 </div>
@@ -55,58 +140,15 @@ export default function DialogPage() {
             </DialogContent>
           </Dialog>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-  DialogHeader,
-  DialogFooter,
-} from "@fragment_ui/ui";
-import { Button, Input, Label } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<Dialog>
-  <DialogTrigger asChild>
-    <Button>Open Dialog</Button>
-  </DialogTrigger>
-  <DialogContent className="max-w-md">
-    <DialogHeader>
-      <DialogTitle>Edit Profile</DialogTitle>
-      <DialogDescription>
-        Make changes to your profile here. Click save when you're done.
-      </DialogDescription>
-    </DialogHeader>
-    <div className="grid gap-4 py-4">
-      <div className="grid gap-2">
-        <Label htmlFor="name">Name</Label>
-        <Input id="name" placeholder="John Doe" defaultValue="John Doe" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input id="email" type="email" placeholder="john@example.com" defaultValue="john@example.com" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" placeholder="@johndoe" defaultValue="@johndoe" />
-      </div>
-    </div>
-    <DialogFooter>
-      <DialogClose asChild>
-        <Button variant="outline">Cancel</Button>
-      </DialogClose>
-      <Button>Save changes</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`}</CodeBlock>
-        </div>
-      </div>
-
-      {/* Simple Dialog */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="dialog-simple"
+        title="Simple Dialog"
+        code={dialogSimpleCode}
+        marginTop="mt-8"
+      >
+        <div className="flex justify-center items-center w-full">
           <Dialog>
             <DialogTrigger asChild>
               <Button>Open Simple Dialog</Button>
@@ -127,55 +169,97 @@ import { Button, Input, Label } from "@fragment_ui/ui";
             </DialogContent>
           </Dialog>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-  DialogClose,
-  DialogHeader,
-  DialogFooter,
-} from "@fragment_ui/ui";
-import { Button } from "@fragment_ui/ui";
-
-<Dialog>
-  <DialogTrigger asChild>
-    <Button>Open Simple Dialog</Button>
-  </DialogTrigger>
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>Are you sure?</DialogTitle>
-      <DialogDescription>
-        This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-      </DialogDescription>
-    </DialogHeader>
-    <DialogFooter>
-      <DialogClose asChild>
-        <Button variant="outline">Cancel</Button>
-      </DialogClose>
-      <Button>Continue</Button>
-    </DialogFooter>
-  </DialogContent>
-</Dialog>`}</CodeBlock>
-        </div>
-      </div>
+      </ExampleSection>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/dialog.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add dialog`}
+      </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Dialog</code></td>
+              <td className="py-2 px-4"><code>open?, onOpenChange?, modal?</code></td>
+              <td className="py-2 px-4"><code>boolean, function, boolean</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Root component. Must contain <code>DialogTrigger</code> and <code>DialogContent</code></td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>DialogTrigger</code></td>
+              <td className="py-2 px-4"><code>asChild?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Trigger element that opens the dialog</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>DialogContent</code></td>
+              <td className="py-2 px-4"><code>variant?, className?</code></td>
+              <td className="py-2 px-4"><code>"default" | "fullscreen", string</code></td>
+              <td className="py-2 px-4"><code>"default"</code></td>
+              <td className="py-2 px-4 text-sm">Container for dialog content</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>DialogHeader</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Container for title and description</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>DialogTitle</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Dialog title (required for accessibility)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>DialogDescription</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Dialog description text</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>DialogFooter</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Container for action buttons</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>DialogClose</code></td>
+              <td className="py-2 px-4"><code>asChild?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Button that closes the dialog</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
           <p><strong>Intent</strong></p>
           <p>
-            <code>Dialog</code> is a component for displaying a modal window for focused tasks.<br />
-            Use it when you need to show important information, collect user input, or require user confirmation before proceeding with an action. Dialogs interrupt the user's workflow to focus attention on a specific task or decision.
+            <code>Dialog</code> is a component for displaying a modal window for focused tasks. Use it when you need to show important information, collect user input, or require user confirmation before proceeding with an action. Dialogs interrupt the user's workflow to focus attention on a specific task or decision.
           </p>
 
           <p><strong>When to use</strong></p>
@@ -188,16 +272,16 @@ import { Button } from "@fragment_ui/ui";
             <li>Any task that requires focused user attention</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <p><strong>UI-DSL Usage</strong></p>
           <p>
             Use <code>type: "component"</code> with <code>component: "Dialog"</code>.
           </p>
-          <p>Props for <code>Dialog</code>:</p>
+          <p><strong>Props:</strong></p>
           <ul>
             <li><code>children</code> – Must include <code>DialogTrigger</code> and <code>DialogContent</code> (required)</li>
-            <li><code>open?</code> – Controlled open state (optional, for controlled component)</li>
-            <li><code>onOpenChange?</code> – Callback when open state changes (optional)</li>
-            <li><code>modal?</code> – Whether the dialog is modal (optional, default: true)</li>
+            <li><code>open?</code> – Controlled open state for programmatic control (optional)</li>
+            <li><code>onOpenChange?</code> – Callback function that receives the open state when it changes (optional)</li>
+            <li><code>modal?</code> – Whether the dialog is modal (blocks interaction with other elements) (optional, default: <code>true</code>)</li>
           </ul>
           <p>Within <code>DialogContent</code>, you can use:</p>
           <ul>
@@ -209,15 +293,15 @@ import { Button } from "@fragment_ui/ui";
           </ul>
           <p>Props for <code>DialogContent</code>:</p>
           <ul>
-            <li><code>variant?</code> – Dialog variant: "default" or "fullscreen" (optional, default: "default")</li>
-            <li><code>className?</code> – Additional CSS classes (optional)</li>
+            <li><code>variant?</code> – Dialog variant: <code>"default"</code> for standard dialog or <code>"fullscreen"</code> for full-screen modal (optional, default: <code>"default"</code>)</li>
+            <li><code>className?</code> – Additional CSS classes to apply to the dialog content</li>
           </ul>
           <p>Props for <code>DialogTrigger</code>:</p>
           <ul>
-            <li><code>asChild?</code> – Render as child element instead of button (optional)</li>
+            <li><code>asChild?</code> – Render as child element instead of default button (optional)</li>
           </ul>
 
-          <p><strong>Example</strong></p>
+          <h3>Simple Dialog</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Dialog",
@@ -280,16 +364,6 @@ import { Button } from "@fragment_ui/ui";
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-      
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-dialog--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
-
     </DocumentContent>
   );
 }
-

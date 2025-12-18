@@ -82,10 +82,10 @@ export function MobileDocumentationSidebar() {
     {
       title: "Get Started",
       items: [
-        { title: "Introduction", href: "/docs/get-started/introduction" },
-        { title: "Setup", href: "/docs/get-started/setup" },
+        { title: "Introduction", href: "/docs/introduction" },
+        { title: "Setup", href: "/docs/setup" },
         { title: "Examples", href: "/docs/examples" },
-        { title: "MCP Server", href: "/docs/get-started/mcp-server" },
+        { title: "MCP Server", href: "/docs/mcp-server" },
         { title: "llms.txt", href: "/llms.txt" },
         { title: "Changelog", href: "/docs/changelog" },
       ],

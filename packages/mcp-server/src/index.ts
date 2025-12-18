@@ -21,6 +21,7 @@ import {
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
+import { getRepoRoot } from "./root.js";
 import { validateCode } from "./validators.js";
 import { getComponentInfo, suggestComponent } from "./components.js";
 import { generateComponentCode } from "./generators.js";
@@ -33,7 +34,7 @@ import { setSelection, clearSelection, getCurrentSelection, getSelectionHistory,
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT = path.join(__dirname, "../../..");
+const ROOT = getRepoRoot();
 
 class FragmentMCPServer {
   private server: Server;
@@ -135,8 +136,8 @@ class FragmentMCPServer {
             properties: {
               category: {
                 type: "string",
-                description: "Token category: 'color', 'space' (or 'spacing'), 'typography', 'radius', 'shadow', 'motion', 'density', 'i18n', 'modes'",
-                enum: ["color", "space", "spacing", "typography", "radius", "shadow", "motion", "density", "i18n", "modes"],
+                description: "Token category: 'color', 'spacing', 'typography', 'shadow', 'border'",
+                enum: ["color", "spacing", "typography", "shadow", "border"],
               },
             },
           },

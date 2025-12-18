@@ -1,190 +1,11 @@
 "use client";
 
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
-export default function NavigationMenuPage() {
-  return (
-    <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Navigation Menu</h1>
-      </div>
-      <p className="mb-6 intro-text">
-        A collection of links for navigating websites with support for dropdown menus.
-      </p>
-      
-      {/* Preview */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-start min-h-[400px] pt-8 px-10 pb-10">
-          <div className="w-full max-w-4xl flex justify-center">
-            <NavigationMenu viewport={false} className="!justify-center !ml-0">
-              <NavigationMenuList className="!ml-0">
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <a href="#">Components</a>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <a href="#">Blocks</a>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    Docs
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-[500px] px-2 py-1.5">
-                      <div className="grid grid-cols-2 gap-6">
-                        <div className="min-w-0">
-                          <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0" style={{ paddingLeft: 0 }}>
-                            <li>
-                              <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                                <a href="#">
-                                  <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                    Design Tokens
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                    Learn about design tokens and how to use them in your projects.
-                                  </p>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <li>
-                              <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                                <a href="#">
-                                  <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                    Theming &amp; Modes
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                    Configure themes and support for light and dark modes.
-                                  </p>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <li>
-                              <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                                <a href="#">
-                                  <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                    Semantic Colors
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                    Understand semantic color system and usage patterns.
-                                  </p>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="min-w-0">
-                          <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0" style={{ paddingLeft: 0 }}>
-                            <li>
-                              <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                                <a href="#">
-                                  <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                    Examples
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                    Browse code examples and implementation patterns.
-                                  </p>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <li>
-                              <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                                <a href="#">
-                                  <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                    Changelog
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                    View version history and recent updates.
-                                  </p>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                            <li>
-                              <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                                <a href="#">
-                                  <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                    API Reference
-                                  </div>
-                                  <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                    Complete API documentation and type definitions.
-                                  </p>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger>
-                    Resources
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-[300px] px-2 py-1.5">
-                      <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0" style={{ paddingLeft: 0 }}>
-                        <li>
-                          <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                            <a href="#">
-                              <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                Documentation
-                              </div>
-                              <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                Complete guides and API reference for all components.
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        </li>
-                        <li>
-                          <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                            <a href="#">
-                              <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                Blog
-                              </div>
-                              <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                Latest articles, tutorials, and updates from our team.
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        </li>
-                        <li>
-                          <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                            <a href="#">
-                              <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                Support
-                              </div>
-                              <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                Get help from our community and support team.
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        </li>
-                        <li>
-                          <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                            <a href="#">
-                              <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                                GitHub
-                              </div>
-                              <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                                Contribute to the project on GitHub.
-                              </p>
-                            </a>
-                          </NavigationMenuLink>
-                        </li>
-                      </ul>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-        </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import {
+const navigationMenuCode = `import {
   NavigationMenu,
   NavigationMenuList,
   NavigationMenuItem,
@@ -193,107 +14,186 @@ export default function NavigationMenuPage() {
   NavigationMenuContent,
 } from "@fragment_ui/ui";
 
-<NavigationMenu viewport={false}>
-  <NavigationMenuList>
-    <NavigationMenuItem>
-      <NavigationMenuLink asChild>
-        <a href="#">Components</a>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuLink asChild>
-        <a href="#">Blocks</a>
-      </NavigationMenuLink>
-    </NavigationMenuItem>
-    <NavigationMenuItem>
-      <NavigationMenuTrigger>Docs</NavigationMenuTrigger>
-      <NavigationMenuContent>
-        <div className="w-[500px] px-2 py-1.5">
-          <div className="grid grid-cols-2 gap-6">
-            <div className="min-w-0">
-              <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0">
-                <li>
-                  <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                    <a href="#">
-                      <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                        Design Tokens
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                        Learn about design tokens and how to use them in your projects.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                    <a href="#">
-                      <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                        Theming & Modes
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                        Configure themes and support for light and dark modes.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
+export function NavigationMenuDemo() {
+  return (
+    <NavigationMenu viewport={false} className="!justify-center !ml-0">
+      <NavigationMenuList className="!ml-0">
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <a href="#">Components</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild>
+            <a href="#">Blocks</a>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Docs</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="w-[500px] px-[var(--space-2)] py-[var(--space-1-5)]">
+              <div className="grid grid-cols-2 gap-[var(--space-6)]">
+                <div className="min-w-0">
+                  <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0">
+                    <li>
+                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-[var(--space-1)] !rounded-[var(--radius-md)] !p-[var(--space-2-5)] !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
+                        <a href="#">
+                          <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
+                            Design Tokens
+                          </div>
+                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                            Learn about design tokens and how to use them in your projects.
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div className="min-w-0">
-              <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0">
-                <li>
-                  <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                    <a href="#">
-                      <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                        Examples
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
+}`;
+
+export default function NavigationMenuPage() {
+  return (
+    <DocumentContent as="article">
+      <div className="flex items-center gap-4 mb-1">
+        <h1 id="navigation-menu">Navigation Menu</h1>
+      </div>
+      <p className="mb-6 intro-text">Build primary navigation with nested links.</p>
+      
+      <ExampleSection
+        id="navigation-menu-example"
+        title="Example"
+        code={navigationMenuCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="w-full max-w-4xl flex justify-center">
+          <NavigationMenu viewport={false} className="!justify-center !ml-0">
+            <NavigationMenuList className="!ml-0">
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <a href="#">Components</a>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <a href="#">Blocks</a>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>
+                  Docs
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="w-[500px] px-[var(--space-2)] py-[var(--space-1-5)]">
+                    <div className="grid grid-cols-2 gap-[var(--space-6)]">
+                      <div className="min-w-0">
+                        <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0" style={{ paddingLeft: 0 }}>
+                          <li>
+                            <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-[var(--space-1)] !rounded-[var(--radius-md)] !p-[var(--space-2-5)] !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
+                              <a href="#">
+                                <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
+                                  Design Tokens
+                                </div>
+                                <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                                  Learn about design tokens and how to use them in your projects.
+                                </p>
+                              </a>
+                            </NavigationMenuLink>
+                          </li>
+                        </ul>
                       </div>
-                      <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                        Browse code examples and implementation patterns.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                    <a href="#">
-                      <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
-                        API Reference
-                      </div>
-                      <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
-                        Complete API documentation and type definitions.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </div>
+                    </div>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           </div>
         </div>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-  </NavigationMenuList>
-</NavigationMenu>`}</CodeBlock>
-        </div>
+      </ExampleSection>
+
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>NavigationMenu</code></td>
+              <td className="py-2 px-4"><code>variant?, blur?, height?, maxWidth?, viewport?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Root navigation menu component</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>NavigationMenuList</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Container for navigation menu items</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>NavigationMenuItem</code></td>
+              <td className="py-2 px-4"><code>value?, className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Individual navigation menu item</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>NavigationMenuTrigger</code></td>
+              <td className="py-2 px-4"><code>className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Trigger button for dropdown menus</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>NavigationMenuContent</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Content container for dropdown menus</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>NavigationMenuLink</code></td>
+              <td className="py-2 px-4"><code>asChild?, href?, className?, children</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Navigation link component</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>NavigationMenuViewport</code></td>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Viewport for positioning dropdown content (required when using dropdowns)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        {`npx shadcn@latest add https://fragmentui.com/r/navigation-menu.json`}
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add navigation-menu`}
       </CodeBlock>
 
-      <Collapsible>
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
-          <p><strong>Intent</strong></p>
+          <h3>Intent</h3>
           <p>
-            <code>NavigationMenu</code> is a navigation component for building website navigation menus with dropdown support.<br />
-            Use it when you need to create top-level navigation with dropdown menus, mega menus, or complex navigation structures. The component provides keyboard navigation, accessibility features, and flexible styling options.
+            <code>NavigationMenu</code> is a navigation component for building website navigation menus with dropdown support. Use it when you need to create top-level navigation with dropdown menus, mega menus, or complex navigation structures. The component provides keyboard navigation, accessibility features, and flexible styling options.
           </p>
 
-          <p><strong>When to use</strong></p>
+          <h3>When to use</h3>
           <ul>
             <li>Website header navigation</li>
             <li>Top-level site navigation with dropdowns</li>
@@ -304,27 +204,26 @@ export default function NavigationMenuPage() {
             <li>Any scenario requiring accessible navigation menus</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <h3>UI-DSL Usage</h3>
           <p>
             Use <code>type: "component"</code> with <code>component: "NavigationMenu"</code>.
           </p>
+          <p><strong>Props:</strong></p>
           <p>Props for <code>NavigationMenu</code>:</p>
           <ul>
-            <li><code>variant?</code> – Menu variant: "default" | "header" (optional, default: "default")</li>
-            <li><code>blur?</code> – Enable backdrop blur: <code>boolean</code> (optional, only applies when variant="header")</li>
-            <li><code>height?</code> – Header height: <code>string</code> (optional, default: "60px", only applies when variant="header")</li>
-            <li><code>maxWidth?</code> – Maximum container width: <code>string</code> (optional, default: "1536px", only applies when variant="header")</li>
-            <li><code>className?</code> – Additional CSS classes (optional)</li>
+            <li><code>variant?</code> – "default" | "header" (default: "default"). Navigation menu variant (optional)</li>
+            <li><code>blur?</code> – boolean (default: false). Enable backdrop blur effect (only applies when variant="header") (optional)</li>
+            <li><code>height?</code> – string (default: "60px"). Height of the header (only applies when variant="header") (optional)</li>
+            <li><code>maxWidth?</code> – string (default: "1536px"). Maximum width of the container (only applies when variant="header") (optional)</li>
+            <li><code>viewport?</code> – boolean (default: true). Whether to render the Radix viewport (optional)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
           </ul>
           <p><strong>Note:</strong> NavigationMenu consists of multiple sub-components: <code>NavigationMenuList</code>, <code>NavigationMenuItem</code>, <code>NavigationMenuTrigger</code>, <code>NavigationMenuContent</code>, <code>NavigationMenuLink</code>, and <code>NavigationMenuViewport</code>. Always include <code>NavigationMenuViewport</code> when using dropdown menus.</p>
 
-          <p><strong>Example</strong></p>
+          <h3>Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "NavigationMenu",
-  "props": {
-    "variant": "default"
-  },
   "children": [
     {
       "type": "component",
@@ -354,15 +253,6 @@ export default function NavigationMenuPage() {
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-navigation-menu--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
-
     </DocumentContent>
   );
 }

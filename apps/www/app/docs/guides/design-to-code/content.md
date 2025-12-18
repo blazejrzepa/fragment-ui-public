@@ -31,7 +31,7 @@ Fragment UI components are mapped to Figma components using Code Connect files. 
 
 ## Documentation
 
-For detailed setup instructions, best practices, and troubleshooting, see the [Figma Code Connect Guide](/docs/guides/figma-code-connect).
+For detailed setup instructions, best practices, and troubleshooting, see the [Figma Code Connect Guide](/docs/figma-code-connect).
 
 ## Example Workflow
 

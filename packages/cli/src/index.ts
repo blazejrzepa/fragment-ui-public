@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { ensureDocPage } from "./generateDocPage.js";
+import { addComponent } from "./commands/add-component.js";
 import { listComponents } from "./commands/list.js";
 import { checkComponents } from "./commands/check.js";
 import { initProject } from "./commands/init.js";
@@ -22,10 +23,10 @@ if (!cmd || cmd === "help" || cmd === "--help" || cmd === "-h") {
   console.log(`
 📦 Fragment UI CLI
 
-Usage: ds <command> [options]
+Usage: fragmentui <command> [options]
 
 Commands:
-  add <name>        Create/verify documentation page for a component
+  add <name>        Install a component to your project
   list              List all available components
   check [path]      Check installed components in project
   init [path]       Initialize Fragment UI in a project
@@ -39,14 +40,15 @@ Commands:
   help              Show this help message
 
 Examples:
-  ds add button              Create docs page for button component
+  fragmentui add button      Install button component
+  fragmentui add accordion  Install accordion component
   ds list                    List all available components
   ds check                   Check components in current directory
   ds init                    Initialize Fragment UI in current project
   ds update button           Update button component
   ds remove button           Remove button component
 
-For more information, visit: https://fragmentui.com
+For more information, visit: https://fragment-ui.dev
 `);
   process.exit(0);
 }
@@ -57,13 +59,22 @@ try {
     case "add": {
       if (!args[0]) {
         console.error("❌ Error: Component name is required");
-        console.log("Usage: ds add <name>");
+        console.log("Usage: fragmentui add <component-name> [--overwrite]");
+        console.log("   or: fragmentui add <component-name> --doc (internal use)");
         process.exit(1);
       }
-      // Change to root directory for add command (internal use)
-      process.chdir(root);
-      await ensureDocPage(args[0]);
-      console.log(`✔ Documentation page for ${args[0]} created/verified`);
+      
+      // Check if --doc flag is used (internal use for generating doc pages)
+      if (args.includes("--doc")) {
+        process.chdir(root);
+        await ensureDocPage(args[0]);
+        console.log(`✔ Documentation page for ${args[0]} created/verified`);
+      } else {
+        // Install component using our own implementation
+        const overwrite = args.includes("--overwrite");
+        const projectPath = args.find((arg, i) => i > 0 && !arg.startsWith("--") && arg !== args[0]) || undefined;
+        await addComponent(args[0], projectPath, { overwrite });
+      }
       break;
     }
 
@@ -153,7 +164,7 @@ try {
 
     default: {
       console.error(`❌ Unknown command: ${cmd}`);
-      console.log("Run 'ds help' to see available commands.");
+      console.log("Run 'fragmentui help' to see available commands.");
       process.exit(1);
     }
   }

@@ -2,9 +2,6 @@
 title: Performance Tests
 ---
 
-This document describes the performance testing setup for Fragment UI, including bundle size
-limits, Lighthouse CI integration, and Core Web Vitals tracking.
-
 ## Overview
 
 Performance tests ensure that Fragment UI components maintain good performance
@@ -23,7 +20,7 @@ characteristics and don't introduce bundle size regressions. The tests include:
 pnpm bundle:analyze
 ```
 
-This command:
+Bundle analysis:
 
 - Analyzes all component files
 - Calculates gzipped and uncompressed sizes

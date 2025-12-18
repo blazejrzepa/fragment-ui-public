@@ -109,12 +109,12 @@ Returns design tokens (colors, spacing, typography, etc.).
 
 The MCP server enforces the following rules:
 
-- **No Raw Colors** - Use design tokens instead of hex colors
-- **No Raw Spacing** - Use spacing tokens instead of px values
-- **Use Fragment Components** - Prefer Fragment UI components
-- **TypeScript Types** - Avoid `any` types
-- **Accessibility** - Ensure ARIA attributes
-- **Prop Casing** - Use camelCase for props
+1. **No Raw Colors** - Use design tokens instead of hex colors
+2. **No Raw Spacing** - Use spacing tokens instead of px values
+3. **Use Fragment Components** - Prefer Fragment UI components
+4. **TypeScript Types** - Avoid `any` types
+5. **Accessibility** - Ensure ARIA attributes
+6. **Prop Casing** - Use camelCase for props
 
 ## Resources
 

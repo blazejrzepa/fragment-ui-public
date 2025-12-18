@@ -1,24 +1,60 @@
 "use client";
 
-import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock, Button, Badge } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+
+const alertCode = `import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@fragment_ui/ui";
 import { Button } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+
+export function AlertDialogDemo() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button>Open Alert</Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete
+            your account and remove your data from our servers.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}`;
 
 export default function AlertPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="alert" className="text-3xl font-medium mb-4">Alert Dialog</h1>
+        <h1 id="alert">Alert Dialog</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Highlight important messages or warnings.
-      </p>
+      <p className="mb-6 intro-text">Show important messages that need attention.</p>
       
-      
-      {/* Default Alert */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="alert-example"
+        title="Alert Dialog Example"
+        code={alertCode}
+      >
+        <div className="flex justify-center items-center w-full">
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button>Open Alert</Button>
@@ -38,47 +74,125 @@ export default function AlertPage() {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import {
-  AlertDialog,
-  AlertDialogTrigger,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogAction,
-  AlertDialogCancel,
-} from "@fragment_ui/ui";
-import { Button } from "@fragment_ui/ui";
-
-<AlertDialog>
-  <AlertDialogTrigger asChild>
-    <Button>Open Alert</Button>
-  </AlertDialogTrigger>
-  <AlertDialogContent>
-    <AlertDialogHeader>
-      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-      <AlertDialogDescription>
-        This action cannot be undone. This will permanently delete
-        your account and remove your data from our servers.
-      </AlertDialogDescription>
-    </AlertDialogHeader>
-    <AlertDialogFooter>
-      <AlertDialogCancel>Cancel</AlertDialogCancel>
-      <AlertDialogAction>Continue</AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>`}</CodeBlock>
-        </div>
-      </div>
+      </ExampleSection>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/alert.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add alert`}
+      </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialog</code></td>
+              <td className="py-2 px-4"><code>open</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Controlled open state</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialog</code></td>
+              <td className="py-2 px-4"><code>defaultOpen</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Default open state</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialog</code></td>
+              <td className="py-2 px-4"><code>onOpenChange</code></td>
+              <td className="py-2 px-4"><code>(open: boolean) =&gt; void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Callback when open state changes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogTrigger</code></td>
+              <td className="py-2 px-4"><code>asChild</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Merge props with child element</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogContent</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogHeader</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogTitle</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Dialog title (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogDescription</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Dialog description text</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogFooter</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogAction</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Action button content (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogAction</code></td>
+              <td className="py-2 px-4"><code>onClick</code></td>
+              <td className="py-2 px-4"><code>(event: MouseEvent) =&gt; void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Click handler</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>AlertDialogCancel</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Cancel button content (required)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>AlertDialogCancel</code></td>
+              <td className="py-2 px-4"><code>onClick</code></td>
+              <td className="py-2 px-4"><code>(event: MouseEvent) =&gt; void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Click handler</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
@@ -174,17 +288,6 @@ import { Button } from "@fragment_ui/ui";
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-alert-dialog--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
-
     </DocumentContent>
   );
 }
-
-

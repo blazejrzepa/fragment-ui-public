@@ -3,7 +3,6 @@
 import { UsersListTemplate } from "@fragment_ui/blocks";
 import { DocLayout } from "../../../../src/components/doc-layout";
 import { CodeBlock } from "@fragment_ui/ui";
-import { EditOnGitHub } from "@fragment_ui/ui";
 import { StabilityBadge } from "@fragment_ui/ui";
 import { useState } from "react";
 import {
@@ -250,7 +249,6 @@ function UsersPage() {
         All controls are keyboard accessible and follow ARIA best practices.
       </p>
 
-      <EditOnGitHub filePath="apps/www/app/docs/templates/users-list-template/page.tsx" />
     </DocLayout>
   );
 }

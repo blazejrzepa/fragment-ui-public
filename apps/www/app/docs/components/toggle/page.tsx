@@ -1,37 +1,67 @@
 "use client";
 
-import { Toggle, DocumentContent } from "@fragment_ui/ui";
+import { Toggle, DocumentContent, CodeBlock, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
 import { Bold, Italic, Underline } from "lucide-react";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const toggleCode = `import { Toggle } from "@fragment_ui/ui";
+
+export function ToggleDemo() {
+  return (
+    <Toggle aria-label="Toggle bold">Bold</Toggle>
+  );
+}`;
+
+const toggleIconsCode = `import { Toggle } from "@fragment_ui/ui";
+import { Bold, Italic, Underline } from "lucide-react";
+
+export function ToggleIconsDemo() {
+  return (
+    <div className="flex gap-[var(--space-2)]">
+      <Toggle aria-label="Toggle bold">
+        <Bold className="h-4 w-4" />
+      </Toggle>
+      <Toggle aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </Toggle>
+      <Toggle aria-label="Toggle underline">
+        <Underline className="h-4 w-4" />
+      </Toggle>
+    </div>
+  );
+}`;
 
 export default function TogglePage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Toggle</h1>
+        <h1 id="toggle">Toggle</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Turn a single feature on or off.
-      </p>
+      <p className="mb-6 intro-text">Small on/off or pressed/unpressed control.</p>
       
-      
-      {/* Basic */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
+      <ExampleSection
+        id="toggle-example"
+        title="Example"
+        code={toggleCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
           <Toggle aria-label="Toggle bold">Bold</Toggle>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Toggle } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<Toggle aria-label="Toggle bold">Bold</Toggle>`}</CodeBlock>
-        </div>
-      </div>
+      <h2 id="install">Install</h2>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add toggle`}
+      </CodeBlock>
 
-      {/* With Icons */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="flex gap-2">
+      <ExampleSection
+        id="toggle-icons"
+        title="With Icons"
+        code={toggleIconsCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <div className="flex gap-[var(--space-2)]">
             <Toggle aria-label="Toggle bold">
               <Bold className="h-4 w-4" />
             </Toggle>
@@ -43,36 +73,105 @@ export default function TogglePage() {
             </Toggle>
           </div>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Toggle } from "@fragment_ui/ui";
-import { Bold, Italic, Underline } from "lucide-react";
+      </ExampleSection>
 
-<div className="flex gap-2">
-  <Toggle aria-label="Toggle bold">
-    <Bold className="h-4 w-4" />
-  </Toggle>
-  <Toggle aria-label="Toggle italic">
-    <Italic className="h-4 w-4" />
-  </Toggle>
-  <Toggle aria-label="Toggle underline">
-    <Underline className="h-4 w-4" />
-  </Toggle>
-</div>`}</CodeBlock>
-        </div>
+      <h2 id="api-reference">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="py-2 px-4"><code>pressed?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Controlled pressed state (optional)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>defaultPressed?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4">false</td>
+              <td className="py-2 px-4 text-sm">Default pressed state (optional)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>onPressedChange?</code></td>
+              <td className="py-2 px-4"><code>(pressed: boolean) {'=>'} void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Callback when pressed state changes (optional)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>disabled?</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4">false</td>
+              <td className="py-2 px-4 text-sm">Disable the toggle (optional)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>aria-label?</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Accessibility label (required for icon-only toggles)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>className?</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes (optional)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
-      <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">
-        {`npx shadcn@latest add https://fragmentui.com/r/toggle.json`}
-      </CodeBlock>
-      
-      <h2 id="storybook">Storybook</h2>
-      <ul>
-        <li><StorybookLink path="/docs/core-toggle--docs">Storybook</StorybookLink></li>
-      </ul>
+      <Collapsible className="mt-8">
+        <CollapsibleTrigger className="w-full text-left">
+          <h2 id="for-ai-automation" className="m-0">
+            Agents & Copilots
+          </h2>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="mt-4">
+          <h3>Intent</h3>
+          <p>
+            <code>Toggle</code> is a component for turning a single feature on or off. Use it when you need to provide a toggle button that can be pressed to activate or deactivate a feature. The component supports both text and icon content and provides visual feedback for the pressed state.
+          </p>
 
+          <h3>When to use</h3>
+          <ul>
+            <li>Text formatting controls (bold, italic, underline)</li>
+            <li>Feature toggles</li>
+            <li>Toolbar buttons</li>
+            <li>Any scenario requiring a toggle button</li>
+          </ul>
 
+          <h3>UI-DSL Usage</h3>
+          <p>
+            Use <code>type: "component"</code> with <code>component: "Toggle"</code>.
+          </p>
+          <p><strong>Props:</strong></p>
+          <ul>
+            <li><code>pressed?</code> – boolean. Controlled pressed state (optional)</li>
+            <li><code>defaultPressed?</code> – boolean. Default pressed state (optional, default: false)</li>
+            <li><code>onPressedChange?</code> – function. Callback when pressed state changes: <code>(pressed: boolean) {'=>'} void</code> (optional)</li>
+            <li><code>disabled?</code> – boolean. Disable the toggle (optional, default: false)</li>
+            <li><code>aria-label?</code> – string. Accessibility label (required for icon-only toggles)</li>
+            <li><code>className?</code> – string. Additional CSS classes (optional)</li>
+          </ul>
+
+          <h3>Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Toggle",
+  "props": {
+    "aria-label": "Toggle bold"
+  },
+  "children": "Bold"
+}`}</CodeBlock>
+        </CollapsibleContent>
+      </Collapsible>
     </DocumentContent>
   );
 }
-

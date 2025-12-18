@@ -1,14 +1,66 @@
 "use client";
 
-import { Carousel, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
-import { Card, CardContent } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
-import { CodeBlock } from "@fragment_ui/ui";
+import { Carousel, DocumentContent, Collapsible, CollapsibleTrigger, CollapsibleContent, CodeBlock, Badge } from "@fragment_ui/ui";
+import { ExampleSection } from "../../../../src/components/example-section";
+
+const basicCode = `import { Carousel } from "@fragment_ui/ui";
+
+export function CarouselBasicDemo() {
+  return (
+    <Carousel>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 1
+      </div>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 2
+      </div>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 3
+      </div>
+    </Carousel>
+  );
+}`;
+
+const withDotsCode = `import { Carousel } from "@fragment_ui/ui";
+
+export function CarouselWithDotsDemo() {
+  return (
+    <Carousel showDots={true}>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 1
+      </div>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 2
+      </div>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 3
+      </div>
+    </Carousel>
+  );
+}`;
+
+const autoPlayCode = `import { Carousel } from "@fragment_ui/ui";
+
+export function CarouselAutoPlayDemo() {
+  return (
+    <Carousel autoPlay={true} autoPlayInterval={3000} showDots={true}>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 1
+      </div>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 2
+      </div>
+      <div className="h-64 flex items-center justify-center bg-[color:var(--color-surface-2)] text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg">
+        Slide 3
+      </div>
+    </Carousel>
+  );
+}`;
 
 export default function CarouselPage() {
   const Slide = ({ children, color }: { children: React.ReactNode; color: string }) => (
     <div
-      className={`h-64 flex items-center justify-center text-white text-2xl font-normal rounded-lg`}
+      className="h-64 flex items-center justify-center text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg"
       style={{ backgroundColor: color }}
     >
       {children}
@@ -18,54 +70,134 @@ export default function CarouselPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 className="text-3xl font-medium mb-4" id="page">Carousel</h1>
+        <h1 id="carousel">Carousel</h1>
       </div>
-      <p className="mb-6 intro-text">
-        Browse items one at a time by sliding.
-      </p>
+      <p className="mb-6 intro-text">Cycle through multiple items in a single area.</p>
       
-      {/* Default Carousel */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <div className="w-full max-w-2xl">
-            <Carousel>
-              <Slide color="#71717a">Slide 1</Slide>
-              <Slide color="#52525b">Slide 2</Slide>
-              <Slide color="#3f3f46">Slide 3</Slide>
-            </Carousel>
-          </div>
+      {/* Basic Carousel */}
+      <ExampleSection
+        id="carousel-basic"
+        title="Example"
+        code={basicCode}
+        maxWidth="max-w-2xl"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Carousel>
+            <Slide color="var(--color-surface-2)">Slide 1</Slide>
+            <Slide color="var(--color-surface-2)">Slide 2</Slide>
+            <Slide color="var(--color-surface-2)">Slide 3</Slide>
+          </Carousel>
         </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Carousel } from "@fragment_ui/ui";
+      </ExampleSection>
 
-<Carousel>
-  <div className="h-64 flex items-center justify-center bg-zinc-500 text-white text-2xl font-normal rounded-lg">
-    Slide 1
-  </div>
-  <div className="h-64 flex items-center justify-center bg-zinc-600 text-white text-2xl font-normal rounded-lg">
-    Slide 2
-  </div>
-  <div className="h-64 flex items-center justify-center bg-zinc-700 text-white text-2xl font-normal rounded-lg">
-    Slide 3
-  </div>
-</Carousel>`}</CodeBlock>
+      {/* With Dots */}
+      <ExampleSection
+        id="carousel-with-dots"
+        title="With Dots"
+        code={withDotsCode}
+        marginTop="mt-8"
+        maxWidth="max-w-2xl"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Carousel showDots={true}>
+            <Slide color="var(--color-surface-2)">Slide 1</Slide>
+            <Slide color="var(--color-surface-2)">Slide 2</Slide>
+            <Slide color="var(--color-surface-2)">Slide 3</Slide>
+          </Carousel>
         </div>
-      </div>
+      </ExampleSection>
+
+      {/* Auto Play */}
+      <ExampleSection
+        id="carousel-auto-play"
+        title="Auto Play"
+        code={autoPlayCode}
+        marginTop="mt-8"
+        maxWidth="max-w-2xl"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Carousel autoPlay={true} autoPlayInterval={3000} showDots={true}>
+            <Slide color="var(--color-surface-2)">Slide 1</Slide>
+            <Slide color="var(--color-surface-2)">Slide 2</Slide>
+            <Slide color="var(--color-surface-2)">Slide 3</Slide>
+          </Carousel>
+        </div>
+      </ExampleSection>
 
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/carousel.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add carousel`}
+      </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Slides to display (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>autoPlay</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Enable automatic slide progression</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>autoPlayInterval</code></td>
+              <td className="py-2 px-4"><code>number</code></td>
+              <td className="py-2 px-4"><code>3000</code></td>
+              <td className="py-2 px-4 text-sm">Auto-play interval in milliseconds</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>showArrows</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>true</code></td>
+              <td className="py-2 px-4 text-sm">Show navigation arrows</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>showDots</code></td>
+              <td className="py-2 px-4"><code>boolean</code></td>
+              <td className="py-2 px-4"><code>false</code></td>
+              <td className="py-2 px-4 text-sm">Show dots pagination indicators</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>onSlideChange</code></td>
+              <td className="py-2 px-4"><code>(index: number) =&gt; void</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Callback when slide changes</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
           <p><strong>Intent</strong></p>
           <p>
-            <code>Carousel</code> is a component for displaying multiple items in a sliding container.<br />
-            Use it when you need to showcase a series of images, cards, or content items that users can navigate through one at a time, such as product galleries, testimonials, feature highlights, or image sliders.
+            <code>Carousel</code> is a component for displaying multiple items in a sliding container. Use it when you need to showcase a series of images, cards, or content items that users can navigate through one at a time, such as product galleries, testimonials, feature highlights, or image sliders.
           </p>
 
           <p><strong>When to use</strong></p>
@@ -77,71 +209,92 @@ export default function CarouselPage() {
             <li>Any sequential content that benefits from one-at-a-time viewing</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <p><strong>UI-DSL Usage</strong></p>
           <p>
-            Use <code>type: "component"</code> with <code>component: "Carousel"</code>. Carousel accepts children as slides:
+            Use <code>type: "component"</code> with <code>component: "Carousel"</code>. Carousel accepts children as slides.
           </p>
+          
+          <p><strong>Props</strong></p>
           <ul>
-            <li><code>children</code> – React nodes to display as slides (required)</li>
-            <li><code>autoPlay?</code> – Enable auto-play (optional, default: false)</li>
-            <li><code>autoPlayInterval?</code> – Auto-play interval in milliseconds (optional, default: 3000)</li>
-            <li><code>showArrows?</code> – Show navigation arrows (optional, default: true)</li>
-            <li><code>showDots?</code> – Show dots pagination (optional, default: false)</li>
-            <li><code>className?</code> – Additional CSS classes (optional)</li>
-            <li><code>onSlideChange?</code> – Callback when slide changes (optional)</li>
+            <li><code>children</code> – React.ReactNode. Slides to display (required). Each child becomes a slide.</li>
+            <li><code>autoPlay?</code> – boolean (default: <code>false</code>). Enable automatic slide progression</li>
+            <li><code>autoPlayInterval?</code> – number (default: <code>3000</code>). Auto-play interval in milliseconds</li>
+            <li><code>showArrows?</code> – boolean (default: <code>true</code>). Show navigation arrows</li>
+            <li><code>showDots?</code> – boolean (default: <code>false</code>). Show dots pagination indicators</li>
+            <li><code>onSlideChange?</code> – function. Callback when slide changes: <code>(index: number) =&gt; void</code></li>
+            <li><code>className?</code> – string. Additional CSS classes</li>
           </ul>
+          <p>The carousel supports keyboard navigation (Arrow keys), touch/swipe gestures, and automatically pauses auto-play on hover.</p>
 
-          <p><strong>Example</strong></p>
+          <h3 className="mt-6 mb-4">Basic Example</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Carousel",
+  "children": [
+    {
+      "type": "element",
+      "tag": "div",
+      "props": {
+        "className": "h-64 flex items-center justify-center bg-[color:var(--color-surface-2)]"
+      },
+      "children": "Slide 1"
+    },
+    {
+      "type": "element",
+      "tag": "div",
+      "props": {
+        "className": "h-64 flex items-center justify-center bg-[color:var(--color-surface-2)]"
+      },
+      "children": "Slide 2"
+    }
+  ]
+}`}</CodeBlock>
+
+          <h3 className="mt-6 mb-4">With Dots</h3>
+          <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
+  "type": "component",
+  "component": "Carousel",
+  "props": {
+    "showDots": true
+  },
+  "children": [
+    {
+      "type": "element",
+      "tag": "div",
+      "children": "Slide 1"
+    },
+    {
+      "type": "element",
+      "tag": "div",
+      "children": "Slide 2"
+    }
+  ]
+}`}</CodeBlock>
+
+          <h3 className="mt-6 mb-4">Auto Play</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Carousel",
   "props": {
     "autoPlay": true,
     "autoPlayInterval": 3000,
-    "showArrows": true
+    "showDots": true
   },
   "children": [
     {
-      "type": "component",
-      "component": "Card",
-      "children": {
-        "type": "component",
-        "component": "CardContent",
-        "children": "Slide 1 content"
-      }
+      "type": "element",
+      "tag": "div",
+      "children": "Slide 1"
     },
     {
-      "type": "component",
-      "component": "Card",
-      "children": {
-        "type": "component",
-        "component": "CardContent",
-        "children": "Slide 2 content"
-      }
-    },
-    {
-      "type": "component",
-      "component": "Card",
-      "children": {
-        "type": "component",
-        "component": "CardContent",
-        "children": "Slide 3 content"
-      }
+      "type": "element",
+      "tag": "div",
+      "children": "Slide 2"
     }
   ]
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/core-carousel--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
-
     </DocumentContent>
   );
 }
-

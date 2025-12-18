@@ -17,7 +17,7 @@ import {
   Label,
   CodeBlock
 } from "@fragment_ui/ui";
-import { StorybookLinkWrapper as StorybookLink } from "../../../../src/components/storybook-link-wrapper";
+import { ExampleSection } from "../../../../src/components/example-section";
 
 const LoginCardExample = () => {
   const [email, setEmail] = useState("");
@@ -74,31 +74,7 @@ const LoginCardExample = () => {
   );
 };
 
-export default function CardPage() {
-  return (
-    <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
-        <h1 id="card" className="text-3xl font-medium mb-4">Card</h1>
-      </div>
-      <p className="mb-6 intro-text">
-        Group related content in a container.
-      </p>
-      
-      {/* Card without Footer */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <Card className="w-96">
-            <CardHeader>
-              <CardTitle id="simple-card">Card Title</CardTitle>
-              <CardDescription>Card description goes here</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>This is the card content area where you can place any content.</p>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import {
+const simpleCardCode = `import {
   Card,
   CardHeader,
   CardTitle,
@@ -106,37 +82,21 @@ export default function CardPage() {
   CardContent,
 } from "@fragment_ui/ui";
 
-<Card className="w-96">
-  <CardHeader>
-    <CardTitle className="font-medium">Card Title</CardTitle>
-    <CardDescription>Card description goes here</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p>This is the card content area where you can place any content.</p>
-  </CardContent>
-</Card>`}</CodeBlock>
-        </div>
-      </div>
+export function SimpleCardDemo() {
+  return (
+    <Card className="w-96">
+      <CardHeader>
+        <CardTitle className="font-medium">Card Title</CardTitle>
+        <CardDescription>Card description goes here</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This is the card content area where you can place any content.</p>
+      </CardContent>
+    </Card>
+  );
+}`;
 
-      {/* Standard Card with Actions */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[400px] p-10">
-          <Card className="w-96">
-            <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card description goes here</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>This is the card content area where you can place any content.</p>
-            </CardContent>
-            <CardFooter className="justify-end gap-3 border-t-0">
-              <Button variant="outline">Cancel</Button>
-              <Button>Submit</Button>
-            </CardFooter>
-          </Card>
-        </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`import { Button } from "@fragment_ui/ui";
+const cardWithFooterCode = `import { Button } from "@fragment_ui/ui";
 import {
   Card,
   CardHeader,
@@ -146,29 +106,25 @@ import {
   CardFooter,
 } from "@fragment_ui/ui";
 
-<Card className="w-96">
-  <CardHeader>
-    <CardTitle className="font-medium">Card Title</CardTitle>
-    <CardDescription>Card description goes here</CardDescription>
-  </CardHeader>
-  <CardContent>
-    <p>This is the card content area where you can place any content.</p>
-  </CardContent>
-  <CardFooter className="justify-end gap-3 border-t-0">
-    <Button variant="outline">Cancel</Button>
-    <Button>Submit</Button>
-  </CardFooter>
-</Card>`}</CodeBlock>
-        </div>
-      </div>
+export function CardWithFooterDemo() {
+  return (
+    <Card className="w-96">
+      <CardHeader>
+        <CardTitle className="font-medium">Card Title</CardTitle>
+        <CardDescription>Card description goes here</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>This is the card content area where you can place any content.</p>
+      </CardContent>
+      <CardFooter className="justify-end gap-3 border-t-0">
+        <Button variant="outline">Cancel</Button>
+        <Button>Submit</Button>
+      </CardFooter>
+    </Card>
+  );
+}`;
 
-      {/* Login Card */}
-      <div className="group relative mt-4 mb-0 flex flex-col gap-0 rounded-lg border border-[color:var(--color-surface-2)]">
-        <div className="preview flex w-full justify-center items-center min-h-[500px] p-10">
-          <LoginCardExample />
-        </div>
-        <div className="overflow-hidden">
-          <CodeBlock language="typescript" highlightApiUrl="/api/highlight-code">{`"use client";
+const loginCardCode = `"use client";
 
 import { useState } from "react";
 import {
@@ -201,6 +157,7 @@ function LoginCardExample() {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             value={email}
+            size="md"
           />
         </div>
         <div className="space-y-2 w-full">
@@ -215,9 +172,10 @@ function LoginCardExample() {
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             value={password}
+            size="md"
           />
         </div>
-        <Button className="w-full">Login</Button>
+        <Button className="w-full" style={{ marginTop: "1.5rem" }}>Login</Button>
         <Button className="w-full" variant="outline">
           Login with Google
         </Button>
@@ -232,24 +190,185 @@ function LoginCardExample() {
       </CardFooter>
     </Card>
   );
-}`}</CodeBlock>
-        </div>
+}`;
+
+export default function CardPage() {
+  return (
+    <DocumentContent as="article">
+      <div className="flex items-center gap-4 mb-1">
+        <h1 id="card">Card</h1>
       </div>
+      <p className="mb-6 intro-text">Group related content in a container.</p>
+      
+      <ExampleSection
+        id="simple-card"
+        title="Example"
+        code={simpleCardCode}
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Card className="w-96">
+            <CardHeader>
+              <CardTitle className="font-medium">Card Title</CardTitle>
+              <CardDescription>Card description goes here</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>This is the card content area where you can place any content.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </ExampleSection>
+
+      <ExampleSection
+        id="card-with-footer"
+        title="Card with Footer"
+        code={cardWithFooterCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <Card className="w-96">
+            <CardHeader>
+              <CardTitle className="font-medium">Card Title</CardTitle>
+              <CardDescription>Card description goes here</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>This is the card content area where you can place any content.</p>
+            </CardContent>
+            <CardFooter className="justify-end gap-3 border-t-0">
+              <Button variant="outline">Cancel</Button>
+              <Button>Submit</Button>
+            </CardFooter>
+          </Card>
+        </div>
+      </ExampleSection>
+
+      <ExampleSection
+        id="login-card"
+        title="Login Card"
+        code={loginCardCode}
+        marginTop="mt-8"
+      >
+        <div className="flex gap-2 items-center justify-center w-full">
+          <LoginCardExample />
+        </div>
+      </ExampleSection>
       
       <h2 id="install">Install</h2>
-      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">{`npx shadcn@latest add https://fragmentui.com/r/card.json`}</CodeBlock>
+      <CodeBlock language="bash" highlightApiUrl="/api/highlight-code" showLineNumbers={false} showCopyButton={false}>
+        {`npx fragmentui@latest add card`}
+      </CodeBlock>
 
-      <Collapsible>
+      {/* API Reference */}
+      <h2 id="api" className="mt-8">API Reference</h2>
+      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
+              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Card</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Card content (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>Card</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardHeader</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Header content (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardHeader</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardTitle</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Title text (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardTitle</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardDescription</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Description text (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardDescription</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardContent</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Main content (required)</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardContent</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+            <tr className="border-b border-[color:var(--color-border-base)]">
+              <td className="py-2 px-4"><code>CardFooter</code></td>
+              <td className="py-2 px-4"><code>children</code></td>
+              <td className="py-2 px-4"><code>React.ReactNode</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Footer content (required)</td>
+            </tr>
+            <tr>
+              <td className="py-2 px-4"><code>CardFooter</code></td>
+              <td className="py-2 px-4"><code>className</code></td>
+              <td className="py-2 px-4"><code>string</code></td>
+              <td className="py-2 px-4">—</td>
+              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <Collapsible className="mt-8">
         <CollapsibleTrigger className="w-full text-left">
-          <h2 id="for-ai-automation">
+          <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
         <CollapsibleContent className="mt-4">
           <p><strong>Intent</strong></p>
           <p>
-            <code>Card</code> is a container component for grouping related content together.<br />
-            Use it when you need to visually separate and organize content into distinct sections, such as product cards, feature highlights, dashboard widgets, or content blocks.
+            <code>Card</code> is a container component for grouping related content together. Use it when you need to visually separate and organize content into distinct sections, such as product cards, feature highlights, dashboard widgets, or content blocks.
           </p>
 
           <p><strong>When to use</strong></p>
@@ -261,21 +380,27 @@ function LoginCardExample() {
             <li>Any grouped, related information that needs visual separation</li>
           </ul>
 
-          <p><strong>UI-DSL usage</strong></p>
+          <p><strong>UI-DSL Usage</strong></p>
           <p>
-            Use <code>type: "component"</code> with <code>component: "Card"</code>. Card is a composable component with sub-components:
+            Use <code>type: "component"</code> with <code>component: "Card"</code>. Card is a composable component with sub-components.
           </p>
+          
+          <p><strong>Props</strong></p>
           <ul>
-            <li><code>Card</code> – main container (required)</li>
-            <li><code>CardHeader?</code> – header section (optional)</li>
-            <li><code>CardTitle?</code> – title within header (optional)</li>
-            <li><code>CardDescription?</code> – description within header (optional)</li>
-            <li><code>CardContent?</code> – main content area (optional)</li>
-            <li><code>CardFooter?</code> – footer section with border (optional)</li>
+            <li><code>children</code> – React.ReactNode. Card content (required)</li>
+            <li><code>className?</code> – string. Additional CSS classes</li>
           </ul>
-          <p>All sub-components accept <code>className?</code> for custom styling.</p>
+          <p>Card sub-components:</p>
+          <ul>
+            <li><code>CardHeader</code> – header section container</li>
+            <li><code>CardTitle</code> – title within header</li>
+            <li><code>CardDescription</code> – description within header</li>
+            <li><code>CardContent</code> – main content area</li>
+            <li><code>CardFooter</code> – footer section</li>
+          </ul>
+          <p>All sub-components accept <code>children</code> (required) and <code>className?</code> (optional) for custom styling.</p>
 
-          <p><strong>Example</strong></p>
+          <h3 className="mt-6 mb-4">Basic Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Card",
@@ -303,22 +428,17 @@ function LoginCardExample() {
       "type": "component",
       "component": "CardContent",
       "children": "Product details and information"
-    },
-    {
-      "type": "component",
-      "component": "CardFooter",
-      "children": {
-        "type": "component",
-        "component": "Button",
-        "children": "Add to Cart"
-      }
     }
   ]
 }`}</CodeBlock>
-          <p className="mt-6"><strong>Simple card without footer:</strong></p>
+
+          <h3 className="mt-6 mb-4">With Footer</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Card",
+  "props": {
+    "className": "w-96"
+  },
   "children": [
     {
       "type": "component",
@@ -333,19 +453,20 @@ function LoginCardExample() {
       "type": "component",
       "component": "CardContent",
       "children": "Content text"
+    },
+    {
+      "type": "component",
+      "component": "CardFooter",
+      "children": {
+        "type": "component",
+        "component": "Button",
+        "children": "Action"
+      }
     }
   ]
 }`}</CodeBlock>
         </CollapsibleContent>
       </Collapsible>
-
-      <h2 id="links">Links</h2>
-      <ul>
-        <li>
-          <StorybookLink path="/docs/display-card--docs">Storybook</StorybookLink>
-        </li>
-      </ul>
-
     </DocumentContent>
   );
 }

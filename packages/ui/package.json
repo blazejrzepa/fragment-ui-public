@@ -1,6 +1,6 @@
 {
   "name": "@fragment_ui/ui",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "AI-native design system components based on shadcn/ui",
   "type": "module",
   "sideEffects": [
@@ -31,7 +31,7 @@
     "url": "https://github.com/blazejrzepa/fragment-ui.git",
     "directory": "packages/ui"
   },
-  "homepage": "https://fragmentui.com",
+  "homepage": "https://fragment-ui.dev",
   "bugs": "https://github.com/blazejrzepa/fragment-ui/issues",
   "license": "MIT",
   "keywords": [
@@ -104,7 +104,6 @@
   },
   "devDependencies": {
     "@axe-core/react": "^4.11.0",
-    "@types/node": "^20.0.0",
     "@storybook/addon-a11y": "^8.6.14",
     "@storybook/addon-actions": "^8.6.14",
     "@storybook/addon-backgrounds": "^8.6.14",
