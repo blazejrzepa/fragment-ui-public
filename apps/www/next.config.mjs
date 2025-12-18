@@ -100,7 +100,10 @@ const nextConfig = {
     // Build alias object - always add all aliases, webpack will handle server/client separation
     const aliases = {
       ...config.resolve.alias,
-      "@fragment_ui/tokens": path.resolve(__dirname, "../../packages/tokens"),
+      // Map the JSON subpath to the built tokens object (avoids exports/subpath edge cases in webpack)
+      "@fragment_ui/tokens/json": path.resolve(__dirname, "../../packages/tokens/dist/tokens.ts"),
+      // IMPORTANT: use exact-match alias to avoid breaking subpath imports like `@fragment_ui/tokens/json`
+      "@fragment_ui/tokens$": path.resolve(__dirname, "../../packages/tokens"),
     };
     
     config.resolve.alias = aliases;

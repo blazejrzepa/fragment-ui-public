@@ -11,7 +11,8 @@
   "exports": {
     ".": "./dist/tokens.css",
     "./dist/tokens.css": "./dist/tokens.css",
-    "./json": "./dist/tokens.ts"
+    "./dist/tokens.json": "./dist/tokens.json",
+    "./json": "./dist/tokens.json"
   },
   "repository": {
     "type": "git",

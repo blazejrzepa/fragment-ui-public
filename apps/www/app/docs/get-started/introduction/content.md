@@ -30,7 +30,7 @@ If you’ve ever tried to change the behavior of a library component and ended u
 
 ## AI-readable by design
 
-Today, a lot of teams want AI tools (Cursor, Copilot, custom agents, Studio-like apps) to help them build UI. The problem is that most codebases are not designed to be _readable_ for models. Names are inconsistent, tokens are primitive-only, and patterns vary from file to file.
+Today, a lot of teams want AI tools (Cursor, Copilot, custom agents, internal generators) to help them build UI. The problem is that most codebases are not designed to be _readable_ for models. Names are inconsistent, tokens are primitive-only, and patterns vary from file to file.
 
 Fragment UI is structured so that AI doesn’t have to guess.
 

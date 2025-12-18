@@ -66,7 +66,7 @@ const CardTitle = React.memo(
           ref={ref}
           className={clsx(
             "text-[color:var(--color-fg-base)] font-medium",
-            "text-[var(--typography-size-lg)] leading-tight",
+            "text-[length:var(--typography-size-lg)] leading-tight",
             "mb-[calc(var(--space-1)+2px)]",
             className
           )}
@@ -88,7 +88,7 @@ const CardDescription = React.memo(
         <p
           ref={ref}
           className={clsx(
-            "text-[var(--typography-size-sm)] text-[color:var(--color-fg-muted)] leading-relaxed",
+            "text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] leading-relaxed",
             "mt-[var(--space-0)]",
             className
           )}
@@ -110,7 +110,7 @@ const CardContent = React.memo(
         <div
           ref={ref}
           className={clsx(
-            "text-[color:var(--color-fg-base)] text-[var(--typography-size-sm)] leading-relaxed",
+            "text-[color:var(--color-fg-base)] text-[length:var(--typography-size-sm)] leading-relaxed",
             // Default vertical spacing between card header and content
             "mt-[var(--space-4)]",
             // Reset margin-bottom for CardContent and p elements inside

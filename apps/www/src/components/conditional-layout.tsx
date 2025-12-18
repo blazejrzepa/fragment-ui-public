@@ -13,12 +13,6 @@ import { usePathname } from "next/navigation";
 
 export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-
-  // Ensure docs navigations always start at the top of the page
-  React.useEffect(() => {
-    if (!pathname) return;
-    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname]);
   const isAdminPage = pathname?.startsWith("/admin");
   const isHomePage = pathname === "/" || pathname === "";
 
@@ -30,7 +24,7 @@ export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   // If we're on the homepage, render a full-width, chrome-free layout (no doc sidebars)
   if (isHomePage) {
     return (
-      <div className="min-h-screen w-full px-4 sm:px-6 lg:px-8 py-10">
+      <div className="min-h-screen w-full px-4 sm:px-6 lg:px-8 pt-[60px] pb-10">
         <div className="w-full">{children}</div>
       </div>
     );
@@ -74,22 +68,20 @@ function LayoutAwareDocumentationLayout({ children }: { children: React.ReactNod
           </div>
         }
       >
-        <div className="relative w-full px-1 sm:px-5 lg:px-8">
+        <div className="relative w-full px-1 sm:px-4 lg:px-6">
           <div className="mx-auto w-full pt-10 relative">
             {showTopPager && (
-              <div className="absolute inset-x-0 top-2 flex justify-center px-1 sm:px-3 lg:px-6 z-10">
+              <div 
+                className="absolute inset-x-0 flex justify-center px-1 sm:px-3 lg:px-4 z-10"
+                style={{ top: '14px' }}
+              >
                 <div className="w-full max-w-[720px] flex justify-end">
                   <DocPager placement="top" align="end" variant="icon" dense />
                 </div>
               </div>
             )}
-            <div className={showTopPager ? "pt-2" : undefined}>
+            <div className={showTopPager ? "pt-0" : undefined}>
               {children}
-            </div>
-            <div className="mt-8 flex justify-center px-1 sm:px-3 lg:px-6">
-              <div className="w-full max-w-[720px]">
-                <DocPager placement="bottom" align="spread" />
-              </div>
             </div>
           </div>
         </div>

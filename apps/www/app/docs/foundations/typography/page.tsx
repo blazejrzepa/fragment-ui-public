@@ -1,52 +1,49 @@
 "use client";
 
-import Link from "next/link";
 import { DocLayout } from "../../../../src/components/doc-layout";
+import { DocPager } from "../../../../src/components/doc-pager";
 import { useState } from "react";
-import { EditOnGitHub, Button } from "@fragment_ui/ui";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import tokens from "@fragment_ui/tokens/json";
 
-// Typography tokens from tokens.json
-const TYPOGRAPHY_TOKENS = {
-  font: {
-    sans: "ui-sans-serif, system-ui",
-    mono: "ui-monospace, SFMono-Regular",
-  },
-  size: {
-    sm: 14,
-    md: 16,
-    lg: 18,
-  },
-} as const;
+const TYPOGRAPHY_TOKENS = tokens.typography as any;
 
-// Display styles
-const DISPLAY_STYLES = [
-  { name: "Display 2xl", size: "72px", lineHeight: "110%", letterSpacing: "-1.44px", className: "text-display-2xl" },
-  { name: "Display xl", size: "60px", lineHeight: "110%", letterSpacing: "-1.2px", className: "text-display-xl" },
-  { name: "Display lg", size: "48px", lineHeight: "110%", letterSpacing: "-0.96px", className: "text-display-lg" },
-  { name: "Display md", size: "36px", lineHeight: "110%", letterSpacing: "-0.72px", className: "text-display-md" },
-  { name: "Display sm", size: "24px", lineHeight: "110%", className: "text-display-sm" }, // zaktualizowane z 30px
-  { name: "Display xs", size: "20px", lineHeight: "110%", className: "text-display-xs" }, // zaktualizowane z 24px
-] as const;
+const DISPLAY_ORDER = ["2xl", "xl", "lg", "md", "sm", "xs"] as const;
+const TEXT_ORDER = ["2xl", "xl", "lg", "md", "intro", "sm", "xs"] as const;
+const WEIGHT_ORDER = ["light", "regular", "medium", "semibold", "bold"] as const;
 
-// Text styles
-const TEXT_STYLES = [
-  { name: "Text 2xl", size: "22px", lineHeight: "150%", className: "text-2xl" },
-  { name: "Text xl", size: "20px", lineHeight: "150%", className: "text-xl" },
-  { name: "Text lg", size: "18px", lineHeight: "150%", className: "text-lg" },
-  { name: "Text md", size: "16px", lineHeight: "160%", className: "text-md" },
-  { name: "Text sm", size: "14px", lineHeight: "160%", className: "text-sm" },
-  { name: "Text xs", size: "12px", lineHeight: "160%", className: "text-xs" },
-] as const;
+const formatPercent = (value: number) => `${Math.round(value * 100)}%`;
+const formatPx = (value: number) => `${value}px`;
 
-// Font weights
-const FONT_WEIGHTS = [
-  { name: "Light", value: 300 },
-  { name: "Regular", value: 400 },
-  { name: "Medium", value: 500 },
-  { name: "Semibold", value: 600 },
-  { name: "Bold", value: 700 },
-] as const;
+const DISPLAY_STYLES = DISPLAY_ORDER.map((key) => {
+  const t = TYPOGRAPHY_TOKENS.display?.[key];
+  return {
+    key,
+    name: `Display ${key}`,
+    size: t?.size,
+    lineHeight: t?.["line-height"] ?? TYPOGRAPHY_TOKENS["line-height"]?.display,
+    letterSpacing: t?.["letter-spacing"],
+    className: `text-display-${key}`,
+  };
+});
+
+const TEXT_STYLES = TEXT_ORDER.map((key) => {
+  const size = TYPOGRAPHY_TOKENS.size?.[key];
+  return {
+    key,
+    name: `Text ${key}`,
+    size,
+    lineHeight: key === "2xl" || key === "xl" || key === "lg"
+      ? (TYPOGRAPHY_TOKENS["line-height"]?.text ?? 1.5)
+      : (TYPOGRAPHY_TOKENS["line-height"]?.body ?? 1.6),
+    className: `text-${key}`,
+  };
+});
+
+const FONT_WEIGHTS = WEIGHT_ORDER.map((key) => {
+  const value = TYPOGRAPHY_TOKENS.weight?.[key];
+  const name = key === "semibold" ? "Semibold" : key.charAt(0).toUpperCase() + key.slice(1);
+  return { key, name, value };
+});
 
 export default function TypographyPage() {
   const [selectedWeight, setSelectedWeight] = useState<number>(400);
@@ -55,23 +52,12 @@ export default function TypographyPage() {
     <DocLayout>
       <div className="flex items-center justify-between mb-1">
         <h1 id="typography" className="text-3xl font-medium mb-4">
-        Typography
-      </h1>
-        <div className="flex items-center gap-2">
-          <Link href={"/docs/foundations/spacing"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowLeft className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link href={"/docs/guides/cli-usage"}>
-            <Button variant="outline" size="sm" className="h-8 w-8 p-0">
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-        </div>
+          Typography
+        </h1>
+        <DocPager placement="top" align="end" variant="icon" dense />
       </div>
       <p className="mb-6 intro-text">
-        Comprehensive typography system with font families, sizes, weights, and text styles for consistent text rendering across all components.
+        Typography tokens for consistent text across the design system.
       </p>
 
       <h2 id="font-families">Font Families</h2>
@@ -90,13 +76,13 @@ export default function TypographyPage() {
             </span>
           </div>
           <div 
-            style={{ fontFamily: "Geist, " + TYPOGRAPHY_TOKENS.font.sans }}
+            style={{ fontFamily: TYPOGRAPHY_TOKENS.font.sans }}
             className="text-lg"
           >
             The quick brown fox jumps over the lazy dog
           </div>
           <div 
-            style={{ fontFamily: "Geist, " + TYPOGRAPHY_TOKENS.font.sans }}
+            style={{ fontFamily: TYPOGRAPHY_TOKENS.font.sans }}
             className="text-sm text-[color:var(--color-fg-muted)] mt-2"
           >
             ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
@@ -133,28 +119,43 @@ export default function TypographyPage() {
 
       <h2 id="font-sizes">Font Sizes</h2>
       <p>
-        The typography system provides three base font sizes that can be used with density multipliers:
+        The typography system provides a font-size scale driven by tokens:
       </p>
 
       <div className="my-8 space-y-4">
-        {Object.entries(TYPOGRAPHY_TOKENS.size).map(([key, value]) => (
-          <div
-            key={key}
-            className="border border-[color:var(--color-border-base)] rounded-lg p-4"
-          >
-            <div className="flex items-center gap-4 mb-3">
-              <code className="text-sm font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
-                --typography-size-{key}
-              </code>
-              <span className="text-sm text-[color:var(--color-fg-muted)]">
-                {value}px
-              </span>
+        {Object.entries(TYPOGRAPHY_TOKENS.size ?? {}).map(([key, rawValue]) => {
+          const px =
+            typeof rawValue === "number"
+              ? rawValue
+              : typeof rawValue === "string"
+                ? Number.parseFloat(rawValue)
+                : Number(rawValue);
+
+          const hasValidPx = Number.isFinite(px);
+          const label = hasValidPx ? `${px}px` : String(rawValue);
+
+          return (
+            <div
+              key={key}
+              className="border border-[color:var(--color-border-base)] rounded-lg p-4"
+            >
+              <div className="flex items-center gap-4 mb-3">
+                <code className="text-sm font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
+                  --typography-size-{key}
+                </code>
+                <span className="text-sm text-[color:var(--color-fg-muted)]">
+                  {label}
+                </span>
+              </div>
+              <div
+                style={hasValidPx ? { fontSize: `${px}px` } : undefined}
+                className="font-sans"
+              >
+                The quick brown fox jumps over the lazy dog ({label})
+              </div>
             </div>
-            <div style={{ fontSize: `${value}px` }} className="font-sans">
-              The quick brown fox jumps over the lazy dog ({value}px)
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <h2 id="font-weights">Font Weights</h2>
@@ -165,17 +166,17 @@ export default function TypographyPage() {
       <div className="my-8 space-y-4">
         {FONT_WEIGHTS.map((weight) => (
           <div
-            key={weight.value}
+            key={weight.key}
             className={`border rounded-lg p-4 transition-all ${
               selectedWeight === weight.value
                 ? "border-[color:var(--color-brand-primary)] bg-[color:var(--color-surface-2)]"
                 : "border-[color:var(--color-border-base)]"
             }`}
-            onClick={() => setSelectedWeight(weight.value)}
+            onClick={() => typeof weight.value === "number" && setSelectedWeight(weight.value)}
           >
             <div className="flex items-center gap-4 mb-3">
               <code className="text-sm font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
-                font-weight: {weight.value}
+                --typography-weight-{weight.key}
               </code>
               <span className="text-sm font-semibold">{weight.name}</span>
             </div>
@@ -194,7 +195,7 @@ export default function TypographyPage() {
       <div className="my-8 space-y-6">
         {DISPLAY_STYLES.map((style) => (
           <div
-            key={style.name}
+            key={style.key}
             className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]"
           >
             <div className="mb-4">
@@ -205,21 +206,12 @@ export default function TypographyPage() {
                 </code>
               </div>
               <div className="text-xs text-[color:var(--color-fg-muted)] space-y-1">
-                <div>Size: {style.size}</div>
-                <div>Line height: {style.lineHeight}</div>
-                {'letterSpacing' in style && style.letterSpacing && <div>Letter spacing: {style.letterSpacing}</div>}
+                {typeof style.size === "number" && <div>Size: {formatPx(style.size)}</div>}
+                {typeof style.lineHeight === "number" && <div>Line height: {formatPercent(style.lineHeight)}</div>}
+                {typeof style.letterSpacing === "number" && <div>Letter spacing: {formatPx(style.letterSpacing)}</div>}
               </div>
             </div>
-            <div
-              style={{
-                fontSize: style.size,
-                lineHeight: style.lineHeight,
-                ...('letterSpacing' in style && style.letterSpacing ? { letterSpacing: style.letterSpacing } : {}),
-                fontFamily: "Geist, sans-serif",
-                fontWeight: 500,
-              }}
-              className="text-[color:var(--foreground-primary)]"
-            >
+            <div className={`${style.className} font-sans font-medium text-[color:var(--color-fg-base)]`}>
               {style.name}
             </div>
           </div>
@@ -234,7 +226,7 @@ export default function TypographyPage() {
       <div className="my-8 space-y-4">
         {TEXT_STYLES.map((style) => (
           <div
-            key={style.name}
+            key={style.key}
             className="border border-[color:var(--color-border-base)] rounded-lg p-4"
           >
             <div className="mb-3">
@@ -245,127 +237,22 @@ export default function TypographyPage() {
                 </code>
               </div>
               <div className="text-xs text-[color:var(--color-fg-muted)]">
-                Size: {style.size} • Line height: {style.lineHeight}
+                {typeof style.size === "number" ? `Size: ${formatPx(style.size)}` : "Size: —"}
+                {" • "}
+                {typeof style.lineHeight === "number" ? `Line height: ${formatPercent(style.lineHeight)}` : "Line height: —"}
               </div>
             </div>
-            <div
-              style={{
-                fontSize: style.size,
-                lineHeight: style.lineHeight,
-                fontFamily: "Geist, sans-serif",
-                fontWeight: 400,
-              }}
-              className="text-[color:var(--foreground-primary)]"
-            >
+            <div className={`${style.className} font-sans font-normal text-[color:var(--color-fg-base)]`}>
               The quick brown fox jumps over the lazy dog. This is sample text to demonstrate the {style.name.toLowerCase()} style.
             </div>
           </div>
         ))}
       </div>
 
-      <h2 id="headings">Headings</h2>
+      <h2 id="semantic-elements">Semantic elements</h2>
       <p>
-        Semantic heading styles for document structure. Headings use Geist font with medium weight (500) for clear hierarchy.
+        In Fragment UI docs, semantic HTML elements (headings, paragraphs, lists, inline code, strong/emphasis) are styled by <code>DocumentContent</code> using DS typography tokens. This avoids duplicating (and potentially drifting) hardcoded values in the documentation.
       </p>
-
-      <div className="my-8 space-y-4">
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h1 id="heading-1-h1" style={{ fontFamily: "Geist, sans-serif", fontSize: "36px", fontWeight: 500, lineHeight: "110%", letterSpacing: "-0.72px", margin: 0 }}>
-            Heading 1 (h1)
-          </h1>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            36px • font-weight: 500 • line-height: 110% • letter-spacing: -0.72px
-          </p>
-        </div>
-
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h2 id="heading-2-h2" style={{ fontFamily: "Geist, sans-serif", fontSize: "24px", fontWeight: 500, lineHeight: "110%", margin: 0 }}>
-            Heading 2 (h2)
-          </h2>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            24px • font-weight: 500 • line-height: 110%
-          </p>
-        </div>
-
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h3 id="heading-3-h3" style={{ fontFamily: "Geist, sans-serif", fontSize: "20px", fontWeight: 500, lineHeight: "110%", margin: 0 }}>
-            Heading 3 (h3)
-          </h3>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            20px • font-weight: 500 • line-height: 110%
-          </p>
-        </div>
-
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h4 id="heading-4-h4" style={{ fontFamily: "Geist, sans-serif", fontSize: "22px", fontWeight: 500, lineHeight: "150%", margin: 0 }}>
-            Heading 4 (h4)
-          </h4>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            22px • font-weight: 500 • line-height: 150%
-          </p>
-        </div>
-
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h5 id="heading-5-h5" style={{ fontFamily: "Geist, sans-serif", fontSize: "20px", fontWeight: 500, lineHeight: "150%", margin: 0 }}>
-            Heading 5 (h5)
-          </h5>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            20px • font-weight: 500 • line-height: 150%
-          </p>
-        </div>
-
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h6 id="heading-6-h6" style={{ fontFamily: "Geist, sans-serif", fontSize: "18px", fontWeight: 500, lineHeight: "150%", margin: 0 }}>
-            Heading 6 (h6)
-          </h6>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            18px • font-weight: 500 • line-height: 150%
-          </p>
-        </div>
-      </div>
-
-      <h2 id="body-text">Body Text</h2>
-      <p>
-        Standard body text styles for paragraphs and content. Body text uses light weight (300) for comfortable reading.
-      </p>
-
-      <div className="my-8 space-y-4">
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <p
-            style={{
-              fontFamily: "Geist, sans-serif",
-              fontSize: "var(--typography-size-md)",
-              fontWeight: 300,
-              lineHeight: "160%",
-              margin: 0,
-              color: "var(--color-fg-muted)",
-            }}
-          >
-            This is body text using the standard paragraph style. It uses Geist font with light weight (300) and 160% line height for optimal readability. The quick brown fox jumps over the lazy dog.
-          </p>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            16px • font-weight: 300 • line-height: 160%
-          </p>
-        </div>
-
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <p
-            style={{
-              fontFamily: "Geist, sans-serif",
-              fontSize: "var(--typography-size-lg)",
-              fontWeight: 300,
-              lineHeight: "160%",
-              margin: 0,
-              color: "var(--color-fg-muted)",
-            }}
-          >
-            This is an intro paragraph style, typically used for the first paragraph on a page. It uses a slightly larger font size (18px) to draw attention and establish context.
-          </p>
-          <p className="text-xs text-[color:var(--color-fg-muted)] mt-2">
-            18px • font-weight: 300 • line-height: 160%
-          </p>
-        </div>
-      </div>
 
       <h2 id="lists">Lists</h2>
       <p>
@@ -431,24 +318,34 @@ font-family: var(--typography-font-sans);
 font-family: var(--typography-font-mono);
 
 /* Font sizes */
+font-size: var(--typography-size-xs); /* 12px */
+font-size: var(--typography-size-intro); /* 15px */
 font-size: var(--typography-size-sm); /* 14px */
 font-size: var(--typography-size-md); /* 16px */
 font-size: var(--typography-size-lg); /* 18px */
+font-size: var(--typography-size-xl); /* 20px */
+font-size: var(--typography-size-2xl); /* 22px */
 
 /* Using with density multipliers */
-font-size: calc(var(--typography-size-md) * var(--density-normal-typography-size-multiplier));`}</code>
+font-size: calc(var(--typography-size-md) * var(--density-typography-size-multiplier));`}</code>
       </pre>
 
       <h3 id="tailwind-classes">Tailwind Classes</h3>
+      <p className="text-sm text-[color:var(--color-fg-muted)]">
+        Note: Tailwind utilities like <code>text-xs</code> are fixed rem-based sizes. If you want typography to be driven by
+        design tokens (and respond to Theme Builder / density), prefer <code>text-[length:var(--typography-size-*)]</code> (or inline
+        styles with <code>var(--typography-size-*)</code>).
+      </p>
       <pre className="bg-[color:var(--color-surface-1)] p-4 rounded-lg overflow-x-auto my-4">
         <code>{`/* Display styles */
 <h1 className="text-display-2xl">Display Heading</h1>
 <h2 className="text-display-xl">Large Display</h2>
 
 /* Text styles */
-<p className="text-lg">Large text</p>
-<p className="text-md">Medium text</p>
-<p className="text-sm">Small text</p>
+<p className="text-[length:var(--typography-size-lg)]">Large text</p>
+<p className="text-[length:var(--typography-size-md)]">Medium text</p>
+<p className="text-[length:var(--typography-size-sm)]">Small text</p>
+<p className="text-[length:var(--typography-size-xs)]">Extra small text</p>
 
 /* Font weights */
 <p className="font-light">Light (300)</p>
@@ -538,7 +435,6 @@ font-size: calc(var(--typography-size-md) * var(--density-normal-typography-size
         </ul>
       </div>
 
-      <EditOnGitHub filePath="apps/www/app/docs/foundations/typography/page.tsx" />
     </DocLayout>
   );
 }

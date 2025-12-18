@@ -55,11 +55,10 @@ const TEMPLATES = [
 
 // Get Started pages
 const GET_STARTED_PAGES = [
-  "/docs/get-started/introduction",
-  "/docs/get-started/setup",
+  "/docs/introduction",
+  "/docs/setup",
   "/docs/examples",
-  "/docs/get-started/studio",
-  "/docs/get-started/mcp-server",
+  "/docs/mcp-server",
   "/docs/changelog",
 ];
 

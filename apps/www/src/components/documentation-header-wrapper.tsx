@@ -17,7 +17,7 @@ import { useLayoutMode } from "./layout-mode-context";
 export function DocumentationHeaderWrapper() {
   const { toggle, isNarrow } = useLayoutMode();
   const links: NavigationLink[] = [
-    { label: "Docs", href: "/docs/get-started/introduction" },
+    { label: "Docs", href: "/docs/introduction" },
     { label: "Components", href: "/components" },
     { label: "Blocks", href: "/blocks" },
     { label: "Examples", href: "/docs/examples" },
@@ -30,7 +30,7 @@ export function DocumentationHeaderWrapper() {
   const logo = (
     <Link 
       href="/"
-      className="ml-0 lg:ml-[1px] inline-flex items-center justify-center select-none rounded-[var(--radius-sm,8px)] font-medium transition-all duration-[var(--motion-duration-base,200ms)] ease-[var(--motion-easing-ease-in-out,cubic-bezier(0.4,0,0.2,1))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-surface-1)] h-8 w-8 p-0 bg-transparent text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-2)] active:bg-[color:var(--color-surface-2)]"
+      className="ml-0 lg:ml-[1px] inline-flex items-center justify-center select-none rounded-[var(--radius-sm)] font-medium transition-all duration-[var(--motion-duration-base,200ms)] ease-[var(--motion-easing-ease-in-out,cubic-bezier(0.4,0,0.2,1))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-surface-1)] h-8 w-8 p-0 bg-transparent text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-1)] active:bg-[color:var(--color-surface-1)]"
     >
       <Component className="h-5 w-5 flex-shrink-0" strokeWidth={1.4} />
     </Link>
@@ -78,6 +78,12 @@ export function DocumentationHeaderWrapper() {
   const maxWidth = isNarrow ? "1200px" : "1536px";
 
   // Custom navigation with Tools dropdown
+  const TOOL_TILE_LINK_CLASSNAME =
+    "flex flex-col select-none space-y-1 rounded-md px-[var(--space-3)] py-[var(--space-2)] leading-none no-underline outline-none transition-colors hover:bg-[color:var(--color-surface-2)] focus:bg-[color:var(--color-surface-2)] h-auto w-full items-start justify-start";
+
+  const TOOL_TILE_LIST_CLASSNAME =
+    "space-y-0 list-none [&>li]:list-none pl-0 m-0 p-0";
+
   const customNavigation = (
     <NavigationMenu className="ml-1 lg:ml-2" viewport={false}>
       <NavigationMenuList>
@@ -97,38 +103,38 @@ export function DocumentationHeaderWrapper() {
             <div className="w-[500px] px-2 py-1.5">
               <div className="grid grid-cols-2 gap-6">
                 <div className="min-w-0">
-                  <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0">
+                  <ul className={TOOL_TILE_LIST_CLASSNAME}>
                     <li>
-                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
+                      <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
                         <Link href="/docs/tools/theme-builder">
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Theme Builder
                           </div>
-                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Customize and export design tokens for your theme.
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
+                      <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
                         <Link href="/docs/tools/bundle-tracking">
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Bundle Tracking
                           </div>
-                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Monitor and analyze your bundle size over time.
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                        <Link href="/docs/guides/vscode-extension-usage">
+                      <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
+                        <Link href="/docs/vscode-extension-usage">
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             VS Code Extension
                           </div>
-                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Enhanced development experience in VS Code.
                           </p>
                         </Link>
@@ -137,38 +143,38 @@ export function DocumentationHeaderWrapper() {
                   </ul>
                 </div>
                 <div className="min-w-0">
-                  <ul className="space-y-0 list-none [&>li]:list-none !pl-0 !mt-0 !mb-0 !pt-0 !pb-0">
+                  <ul className={TOOL_TILE_LIST_CLASSNAME}>
                     <li>
-                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                        <Link href="/docs/guides/cli-usage">
+                      <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
+                        <Link href="/docs/cli-usage">
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             CLI
                           </div>
-                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Command-line tools for component management.
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                        <Link href="/docs/guides/figma-code-connect">
+                      <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
+                        <Link href="/docs/figma-code-connect">
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Figma Code
                           </div>
-                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Connect Figma designs to your code components.
                           </p>
                         </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <NavigationMenuLink asChild className="!flex !flex-col !select-none !space-y-1 !rounded-md !p-2.5 !leading-none !no-underline !outline-none !transition-colors !hover:bg-[color:var(--color-surface-2)] !focus:bg-[color:var(--color-surface-2)] !h-auto !w-full !items-start !justify-start">
-                        <Link href="/docs/get-started/mcp-server">
+                      <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
+                        <Link href="/docs/mcp-server">
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             MCP Server
                           </div>
-                          <p className="line-clamp-2 text-sm leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
+                          <p className="line-clamp-2 text-[length:var(--typography-size-sm)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Model Context Protocol server for AI integration.
                           </p>
                         </Link>
@@ -185,7 +191,7 @@ export function DocumentationHeaderWrapper() {
           <div
             className="h-4 mx-1 border-l"
             style={{
-              borderColor: "color-mix(in srgb, var(--foreground-primary) 10%, transparent)",
+              borderColor: "color-mix(in oklab, var(--foreground-primary) 10%, transparent)",
             }}
             aria-hidden="true"
           />

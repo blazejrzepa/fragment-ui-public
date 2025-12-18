@@ -12,6 +12,7 @@ const tokens = JSON.parse(fs.readFileSync(tokensPath, "utf-8"));
 const distDir = path.join(__dirname, "../dist");
 const outCss = path.join(distDir, "tokens.css");
 const outTs = path.join(distDir, "tokens.ts");
+const outJson = path.join(distDir, "tokens.json");
 
 function toCssVars(obj, prefix = []) {
   return Object.entries(obj)
@@ -275,5 +276,6 @@ ${toThemeCssVars(lightColors, ["color", "light"])}
 fs.mkdirSync(distDir, { recursive: true });
 fs.writeFileSync(outCss, css);
 fs.writeFileSync(outTs, `export default ${JSON.stringify(tokens, null, 2)} as const;\n`);
+fs.writeFileSync(outJson, `${JSON.stringify(tokens, null, 2)}\n`);
 
 console.log("✔ tokens built");

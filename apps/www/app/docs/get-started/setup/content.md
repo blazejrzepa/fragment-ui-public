@@ -120,24 +120,9 @@ export default function TestPage() {
 }
 ```
 
-Or use the [Component Playground](/docs/tools/playground) to test components interactively without installation.
-
-## Using Studio (No Installation Required)
-
-If you want to try Fragment UI without installing anything locally, you can use Studio - our AI-powered web-based screen generator:
-
-1. Navigate to [Studio](http://localhost:3002/studio)
-2. Describe what you want to build in natural language
-3. Preview and export the generated code
-4. Copy the code to your project
-
-Studio generates production-ready React/TSX code using Fragment UI components, which you can then install and customize in your project.
-
-**Note:** Studio is perfect for rapid prototyping and learning Fragment UI patterns. For production projects, we recommend installing components locally using the methods above.
-
 ## Next Steps
 
-- [Studio](http://localhost:3002/studio) - Try AI-powered screen generation without installation
+- [Components](/docs/components) - Browse available components and their APIs
 - [Design Tokens](/docs/foundations/tokens) - Learn about the design token system
 - [Examples](/docs/examples) - See components in action
 - [MCP Server](/docs/get-started/mcp-server) - Set up AI integration

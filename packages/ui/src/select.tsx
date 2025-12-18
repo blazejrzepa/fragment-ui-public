@@ -22,7 +22,7 @@ const SelectTrigger = React.forwardRef<
       ref={ref}
       suppressHydrationWarning
       className={clsx(
-        "flex h-[calc(var(--space-8)+var(--space-2))] items-center justify-between rounded-[var(--radius-sm)] border bg-[color:var(--color-surface-1)] px-[var(--space-3)] text-[var(--typography-size-sm)] focus:outline-none disabled:opacity-60",
+        "flex h-[calc(var(--space-8)+var(--space-2))] items-center justify-between rounded-[var(--radius-sm)] border bg-[color:var(--color-surface-1)] px-[var(--space-3)] text-[length:var(--typography-size-sm)] focus:outline-none disabled:opacity-60",
         error
           ? "border-[color:var(--color-status-error-border)]"
           : "border-[color:var(--color-border-base)]",
@@ -78,7 +78,7 @@ const SelectItem = React.forwardRef<
     <SelectPrimitive.Item
       ref={ref}
       className={clsx(
-        "relative flex w-full cursor-pointer select-none items-center rounded-[var(--radius-sm)] py-[var(--space-1-5)] pl-[var(--space-2)] pr-[var(--space-2)] text-[var(--typography-size-sm)] outline-none focus:bg-[color:var(--color-surface-2)] data-[disabled]:pointer-events-none data-[disabled]:opacity-60",
+        "relative flex w-full cursor-pointer select-none items-center rounded-[var(--radius-sm)] py-[var(--space-1-5)] pl-[var(--space-2)] pr-[var(--space-2)] text-[length:var(--typography-size-sm)] outline-none focus:bg-[color:var(--color-surface-2)] data-[disabled]:pointer-events-none data-[disabled]:opacity-60",
         className
       )}
       {...props}

@@ -9,9 +9,12 @@ The library is designed to be composable, accessible, and AI-native.
 Fragment UI is an AI-native design system based on shadcn/ui with code-first distribution (registry).
 It provides 63+ production-ready components, pre-built blocks, comprehensive documentation, and enterprise-ready tooling.
 
-- [Introduction](https://fragmentui.com/docs/get-started/introduction): What Fragment UI is and how it works.
-- [Setup](https://fragmentui.com/docs/get-started/setup): Installation and setup instructions.
-- [MCP Server](https://fragmentui.com/docs/get-started/mcp-server): Configure the MCP server for AI-native workflows.
+- [Get Started: Introduction](https://fragmentui.com/docs/get-started/introduction): Quick orientation and core ideas.
+- [Get Started: Setup](https://fragmentui.com/docs/get-started/setup): Install and configure Fragment UI in your React project.
+- [Introduction](https://fragmentui.com/docs/introduction): What Fragment UI is and the core ideas behind the system.
+- [Setup](https://fragmentui.com/docs/setup): Install and configure Fragment UI in your project.
+- [Design Tokens](https://fragmentui.com/docs/foundations/tokens): Color, spacing, and typography tokens used across the system.
+- [MCP Server](https://fragmentui.com/docs/mcp-server): Integrate Fragment UI with MCP Server for AI-native workflows.
 
 ## Packages
 
@@ -19,8 +22,8 @@ It provides 63+ production-ready components, pre-built blocks, comprehensive doc
 - `@fragment_ui/blocks` - Pre-built screen compositions and blocks
 - `@fragment_ui/tokens` - Design tokens system
 - `@fragment_ui/registry` - Component registry for code-first distribution
-- `@fragment_ui/mcp-server` - MCP server (stdio) for AI tooling
-- `@fragment_ui/cli` - CLI utilities for registry-driven workflows
+- `@fragment_ui/mcp-server` - MCP server for AI agents (Cursor/Copilot)
+- `fragmentui` - CLI for installing components from the registry (bin: `fragmentui`, alias: `ds`)
 
 ## Components
 
@@ -131,10 +134,7 @@ Blocks are pre-built screen compositions exported from `@fragment_ui/blocks`:
 - [WidgetContainer](https://fragmentui.com/docs/components/widget-container): Widget container
 
 ### Decision Blocks
-- [Compare3](https://fragmentui.com/docs/components/compare-3): Three-way comparison
-- [Recommendation](https://fragmentui.com/docs/components/recommendation): Recommendation display
-- [ReviewConfirm](https://fragmentui.com/docs/components/review-confirm): Review and confirm flow
-- [Tradeoffs](https://fragmentui.com/docs/components/tradeoffs): Tradeoffs display
+Decision blocks are part of the internal blocks package but may not have dedicated portal pages yet.
 
 ### Templates
 - [DashboardTemplate](https://fragmentui.com/docs/templates/dashboard-template): Complete dashboard template
@@ -147,6 +147,13 @@ Components can be installed via the registry system:
 
 ```bash
 npx shadcn@latest add https://fragmentui.com/r/[component-name].json
+```
+
+Alternatively, you can use the Fragment UI CLI (installs from the same registry):
+
+```bash
+npx fragmentui@latest init
+npx fragmentui@latest add button
 ```
 
 For example:
@@ -217,9 +224,14 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 ## Documentation
 
 - Component Documentation: https://fragmentui.com/docs/components
-- Getting Started: https://fragmentui.com/docs/get-started
-- Architecture: https://fragmentui.com/docs/architecture
-- Guides: https://fragmentui.com/docs/guides
+- Introduction: https://fragmentui.com/docs/introduction
+- Setup: https://fragmentui.com/docs/setup
+- CLI: https://fragmentui.com/docs/cli-usage
+- VS Code Extension: https://fragmentui.com/docs/vscode-extension-usage
+- Figma Code Connect: https://fragmentui.com/docs/figma-code-connect
+- MCP Server: https://fragmentui.com/docs/mcp-server
+- Design Tokens: https://fragmentui.com/docs/foundations/tokens
+- Typography: https://fragmentui.com/docs/foundations/typography
 
 ## Component Registry
 

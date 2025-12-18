@@ -2,6 +2,14 @@
 title: Design Tokens
 ---
 
+## Install & Import
+
+Tokens are shipped as CSS variables. Install `@fragment_ui/tokens` and import it once in your global CSS:
+
+```css
+@import "@fragment_ui/tokens";
+```
+
 ## Colors
 
 All colors are available as CSS variables with semantic naming. Colors automatically adapt to light/dark/high-contrast themes.
@@ -9,54 +17,55 @@ All colors are available as CSS variables with semantic naming. Colors automatic
 ### Background Colors
 
 ```css
-/* Base backgrounds */
---color-bg-base: #FAFAFA; /* Light: #FAFAFA, Dark: #09090B */
---color-bg-inverse: #F4F4F5; /* Light: #F4F4F5, Dark: #18181B */
+/* Semantic tokens (change with theme) */
+background: var(--color-bg-base);
+background: var(--color-bg-inverse);
+
+/* Raw palette (fixed values) */
+background: var(--palette-zinc-50);
 ```
 
 ### Foreground Colors
 
 ```css
-/* Text colors */
---color-fg-base: #27272A; /* Light: #27272A (Zinc-800), Dark: #E4E4E7 (Zinc-200) */
---color-fg-muted: #71717A; /* Light: #71717A (Zinc-500), Dark: #71717A (Zinc-500) */
+color: var(--color-fg-base);
+color: var(--color-fg-muted);
 ```
 
 ### Brand Colors
 
 ```css
---color-brand-primary: #BE123C; /* Rose 700 */
---color-brand-primary-600: #FFE4E6; /* Rose 100 */
+color: var(--color-brand-primary);
+background: var(--color-brand-primary-600);
 ```
 
 ### Button Colors
 
 ```css
 /* Solid button colors */
---color-button-solid-bg: #000000; /* Light: #000000, Dark: #ffffff */
---color-button-solid-hover: #171717; /* Light: #171717, Dark: #f5f5f5 */
---color-button-solid-text: #ffffff; /* Light: #ffffff, Dark: #000000 */
+background: var(--color-button-solid-bg);
+color: var(--color-button-solid-text);
 ```
 
 ### Surface Colors
 
 ```css
---color-surface-1: #F4F4F5; /* Light: #F4F4F5, Dark: #121214 */
---color-surface-2: #E4E4E7; /* Light: #E4E4E7, Dark: #19191B */
+background: var(--color-surface-1);
+background: var(--color-surface-2);
 ```
 
 ### Accent Colors
 
 ```css
---color-accent-green: #22C55E;
---color-accent-red: #EF4444;
+--color-accent-green: green 500;
+--color-accent-red: red 500;
 ```
 
 ### Border Colors
 
 ```css
---color-border-base: #E4E4E7; /* Light: #E4E4E7, Dark: #27272A */
---color-border-muted: #F3F4F6; /* Light: #F3F4F6, Dark: #19191B */
+border-color: var(--color-border-base);
+border-color: var(--color-border-muted);
 ```
 
 ### Semantic Status Colors
@@ -213,9 +222,20 @@ Density tokens control the spacing and sizing of components for different use ca
 
 Apply density by adding `data-density="compact"` or `data-density="comfortable"` to your root element. The default is `data-density="normal"`.
 
+Note: the effective (active) density variables used by components are:
+
+```css
+--density-space-multiplier: 1;
+--density-space-base: 4px;
+--density-typography-line-height: 1.5;
+--density-typography-size-multiplier: 1;
+--density-component-height-multiplier: 1;
+--density-component-padding-multiplier: 1;
+```
+
 ## Motion & Animations
 
-Motion tokens provide consistent animation timing and easing functions. All motion respects `prefers-reduced-motion` and can be disabled with `data-motion="reduced"`.
+Motion tokens provide consistent animation timing and easing functions. Motion can be disabled with `data-motion="reduced"`. By default, tokens also follow `prefers-reduced-motion` unless you explicitly set `data-motion="normal"`.
 
 ### Duration
 
@@ -294,130 +314,25 @@ Elevation shadows for depth and layering:
 
 ```css
 /* Sans-serif font (default) */
---typography-font-sans: ui-sans-serif, system-ui;
+--typography-font-sans: Geist, ui-sans-serif, system-ui, sans-serif;
 
 /* Monospace font */
---typography-font-mono: ui-monospace, SFMono-Regular;
+--typography-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 ```
 
 ### Font Sizes
 
 ```css
+--typography-size-xs: 12px;
+--typography-size-intro: 15px;
 --typography-size-sm: 14px;
 --typography-size-md: 16px;
 --typography-size-lg: 18px;
+--typography-size-xl: 20px;
+--typography-size-2xl: 22px;
 ```
 
-### Display Styles
-
-Large display text styles for headings and hero sections:
-
-```css
-/* Display 2xl - 72px */
-.text-display-2xl {
-  font-size: 72px;
-  line-height: 110%;
-  letter-spacing: -1.44px;
-  font-family: Geist, sans-serif;
-}
-
-/* Display xl - 60px */
-.text-display-xl {
-  font-size: 60px;
-  line-height: 110%;
-  letter-spacing: -1.2px;
-  font-family: Geist, sans-serif;
-}
-
-/* Display lg - 48px */
-.text-display-lg {
-  font-size: 48px;
-  line-height: 110%;
-  letter-spacing: -0.96px;
-  font-family: Geist, sans-serif;
-}
-
-/* Display md - 36px */
-.text-display-md {
-  font-size: 36px;
-  line-height: 110%;
-  letter-spacing: -0.72px;
-  font-family: Geist, sans-serif;
-}
-
-/* Display sm - 24px */
-.text-display-sm {
-  font-size: 24px;
-  line-height: 110%;
-  font-family: Geist, sans-serif;
-}
-
-/* Display xs - 20px */
-.text-display-xs {
-  font-size: 20px;
-  line-height: 110%;
-  font-family: Geist, sans-serif;
-}
-```
-
-### Text Styles
-
-Body text styles for paragraphs and content:
-
-```css
-/* Text 2xl - 22px */
-.text-2xl {
-  font-size: 22px;
-  line-height: 150%;
-  font-family: Geist, sans-serif;
-}
-
-/* Text xl - 20px */
-.text-xl {
-  font-size: 20px;
-  line-height: 150%;
-  font-family: Geist, sans-serif;
-}
-
-/* Text lg - 18px */
-.text-lg {
-  font-size: 18px;
-  line-height: 150%;
-  font-family: Geist, sans-serif;
-}
-
-/* Text md - 16px */
-.text-md {
-  font-size: 16px;
-  line-height: 160%;
-  font-family: Geist, sans-serif;
-}
-
-/* Text sm - 14px */
-.text-sm {
-  font-size: 14px;
-  line-height: 160%;
-  font-family: Geist, sans-serif;
-}
-
-/* Text xs - 12px */
-.text-xs {
-  font-size: 12px;
-  line-height: 160%;
-  font-family: Geist, sans-serif;
-}
-```
-
-### Font Weights
-
-Available font weights for all text styles:
-
-```css
-font-weight: 400; /* Regular */
-font-weight: 500; /* Medium */
-font-weight: 600; /* Semibold */
-font-weight: 700; /* Bold */
-```
+For the complete typography scale (display/text styles), weights, and usage examples, see [Typography documentation](/docs/foundations/typography).
 
 ## Internationalization & RTL
 
@@ -501,8 +416,8 @@ Add `dir="rtl"` to your root element or HTML tag:
 ```typescript
 import tokens from "@fragment_ui/tokens/json";
 
-const spacing = tokens.space[4]; // 16
-const primaryColor = tokens.color.brand.primary; // "#6B8CFF"
+const spacing = tokens.space["4"]; // 16 (px)
+const primaryColor = tokens.color.light.brand.primary; // "#6366F1"
 const compactMultiplier = tokens.density.compact.space.multiplier; // 0.75
 const radiusMd = tokens.radius.md; // 12
 const shadowSm = tokens.shadow.sm; // "0 1px 2px rgba(0,0,0,.1)"
@@ -516,7 +431,7 @@ Switch between themes using data attributes:
 /* Light theme */
 <html data-theme="light">
 
-/* Dark theme (default) */
+/* Dark theme */
 <html data-theme="dark">
 
 /* High contrast mode */

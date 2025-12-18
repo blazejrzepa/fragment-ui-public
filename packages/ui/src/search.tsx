@@ -214,7 +214,7 @@ export function Search({
           readOnly
         />
         {showShortcut && (
-          <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none flex items-center gap-1">
+          <div className="absolute right-2 inset-y-0 pointer-events-none flex items-center gap-1">
             <Kbd>{isMac ? "⌘" : "Ctrl"}</Kbd>
             <Kbd>K</Kbd>
           </div>

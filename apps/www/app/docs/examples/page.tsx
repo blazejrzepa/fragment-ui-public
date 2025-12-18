@@ -90,12 +90,12 @@ export default function ExamplesPage() {
       <div className="flex items-center justify-between mb-1">
         <h1 id="component-examples-library" className="text-3xl font-medium mb-4">Component Examples Library</h1>
         <div className="flex items-center gap-2">
-          <Link href={"/docs/get-started/setup"}>
+          <Link href={"/docs/setup"}>
             <Button variant="outline" size="sm" className="h-8 w-8 p-0">
               <ArrowLeft className="h-4 w-4" />
             </Button>
           </Link>
-          <Link href={"/docs/get-started/studio"}>
+          <Link href={"/docs/mcp-server"}>
             <Button variant="outline" size="sm" className="h-8 w-8 p-0">
               <ArrowRight className="h-4 w-4" />
             </Button>

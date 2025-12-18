@@ -20,7 +20,7 @@ export default async function MCPServerPage() {
         {frontmatter.title || "MCP Server"}
       </h1>
         <div className="flex items-center gap-2">
-          <Link href={"/docs/get-started/studio"}>
+          <Link href={"/docs/get-started/setup"}>
             <Button variant="outline" size="sm" className="h-8 w-8 p-0">
               <ArrowLeft className="h-4 w-4" />
             </Button>

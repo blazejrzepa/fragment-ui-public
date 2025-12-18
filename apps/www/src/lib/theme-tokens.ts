@@ -5,13 +5,13 @@ const DEFAULT_TOKENS = {
   color: {
     bg: { base: "#0B0B0C", inverse: "#FFFFFF" },
     fg: { base: "#EDEDF0", muted: "#B5B8BE" },
-    brand: { primary: "#6B8CFF", "primary-600": "#5B7AF0" },
+    brand: { primary: "#6366F1", "primary-600": "#EEF2FF" },
     surface: { "1": "#121214", "2": "#19191B" },
     accent: { green: "#22C55E", red: "#EF4444" },
   },
   space: { "1": 4, "2": 8, "4": 16 },
   radius: { sm: 8, md: 12, lg: 16 },
-  typography: { size: { sm: 14, md: 16, lg: 18 } },
+  typography: { size: { xs: 12, intro: 15, sm: 14, md: 16, lg: 18, xl: 20, "2xl": 22 } },
 } as const;
 
 /**
@@ -127,6 +127,18 @@ export const THEME_TOKENS: TokenDefinition[] = [
   },
   // Typography
   {
+    path: "typography.size.xs",
+    label: "Font Size XS",
+    type: "number",
+    unit: "px",
+  },
+  {
+    path: "typography.size.intro",
+    label: "Font Size Intro",
+    type: "number",
+    unit: "px",
+  },
+  {
     path: "typography.size.sm",
     label: "Font Size Small",
     type: "number",
@@ -141,6 +153,18 @@ export const THEME_TOKENS: TokenDefinition[] = [
   {
     path: "typography.size.lg",
     label: "Font Size Large",
+    type: "number",
+    unit: "px",
+  },
+  {
+    path: "typography.size.xl",
+    label: "Font Size XL",
+    type: "number",
+    unit: "px",
+  },
+  {
+    path: "typography.size.2xl",
+    label: "Font Size 2XL",
     type: "number",
     unit: "px",
   },

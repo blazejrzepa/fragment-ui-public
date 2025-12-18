@@ -13,9 +13,7 @@ description: Documentation of available policy bundles, their rules, and test ex
 
 ## 📋 Overview
 
-Policy bundles group related governance rules together and can be applied at different enforcement points (Studio, Submissions, Releases). Each bundle contains a set of rules that enforce specific quality standards.
-
-**Location:** `apps/demo/src/lib/governance/policy-registry.ts`
+Policy bundles group related governance rules together and can be applied at different enforcement points (Development, Submissions, Releases). Each bundle contains a set of rules that enforce specific quality standards.
 
 ---
 
@@ -26,7 +24,7 @@ Policy bundles group related governance rules together and can be applied at dif
 **Purpose:** Fundamental design system rules for all components
 
 **When to use:**
-- Applied by default in Studio (soft warnings)
+- Applied by default during development (soft warnings)
 - Always included in Submissions and Releases
 - Minimum quality standards for all components
 
@@ -283,7 +281,7 @@ The `core-ds` policy bundle maps to these test categories:
 
 Different policy bundles are applied at different enforcement points:
 
-### Studio (Development)
+### Development (Local)
 - **Bundles:** `["core-ds"]`
 - **Mode:** Soft warnings (non-blocking)
 - **Purpose:** Real-time feedback during development
@@ -305,23 +303,20 @@ Different policy bundles are applied at different enforcement points:
 ### Default Enforcement
 
 ```typescript
-import { enforceStudio, enforceSubmissions } from "@/lib/governance";
-
-// Studio uses core-ds by default (soft warnings)
-const studioResult = await enforceStudio({
+// Example structure (API may change)
+// Development uses core-ds by default (soft warnings)
+const devResult = await enforceDevelopment({
   dsl: myDsl,
   tsx: myCode,
   componentName: "MyComponent",
 });
 
 // Submissions use core-ds + enterprise by default (hard gates)
-const submissionResult = await enforceSubmissions(
-  {
-    dsl: myDsl,
-    tsx: myCode,
-    componentName: "MyComponent",
-  }
-);
+const submissionResult = await enforceSubmissions({
+  dsl: myDsl,
+  tsx: myCode,
+  componentName: "MyComponent",
+});
 ```
 
 ### Custom Policy Bundles
@@ -379,54 +374,8 @@ const allRules = getRulesFromBundles(["core-ds", "enterprise"]);
 
 ## 🔧 Configuration
 
-Policy bundles are configured in `apps/demo/src/lib/governance/policy-registry.ts`:
-
-```typescript
-export const CORE_DS_POLICY: Policy = {
-  id: "core-ds",
-  bundle: "core-ds",
-  name: "Core Design System",
-  description: "Fundamental design system rules for all components",
-  enabled: true,
-  rules: [
-    // ... rule definitions
-  ],
-};
-```
-
-### Adding a New Policy Bundle
-
-1. Define the policy in `policy-registry.ts`:
-
-```typescript
-export const MY_NEW_POLICY: Policy = {
-  id: "my-new-policy",
-  bundle: "my-new-policy",
-  name: "My New Policy",
-  description: "Description of the policy",
-  enabled: true,
-  rules: [
-    // ... rule definitions
-  ],
-};
-```
-
-2. Add to PolicyBundle type:
-
-```typescript
-export type PolicyBundle = "core-ds" | "enterprise" | "marketing" | "my-new-policy";
-```
-
-3. Register in PolicyRegistry constructor:
-
-```typescript
-constructor() {
-  this.register(CORE_DS_POLICY);
-  this.register(ENTERPRISE_POLICY);
-  this.register(MARKETING_POLICY);
-  this.register(MY_NEW_POLICY); // Add here
-}
-```
+This page documents the available bundles and rule types at a conceptual level.
+Implementation details and configuration APIs may evolve.
 
 ---
 
@@ -450,20 +399,4 @@ Each rule in a policy bundle can be one of the following types:
 3. **Use `marketing` sparingly** - Only for true marketing/landing pages
 4. **Test locally first** - Run governance checks before submitting
 5. **Fix errors, not warnings** - Errors block approval, warnings are recommendations
-
----
-
-## 🔗 Related Documentation
-
-- [Governance Usage Guide](./USAGE.md) - How to use Governance module
-- [Governance Testing Guide](./TESTING.md) - Testing Governance features
-- [Governance Summary](./SUMMARY.md) - Overview of Governance module
-
----
-
-## 📚 References
-
-- **Policy Registry:** `apps/demo/src/lib/governance/policy-registry.ts`
-- **Enforcement Points:** `apps/demo/src/lib/governance/enforcement.ts`
-- **Rule Engine:** `apps/demo/src/lib/governance/rule-engine.ts`
 
