@@ -64,7 +64,7 @@ export async function validateCode(
     const line = code.substring(0, match.index).split("\n").length;
     warnings.push({
       line,
-      message: `Raw spacing value found: ${match[0]}. Consider using design tokens (e.g., var(--spacing-md))`,
+      message: `Raw spacing value found: ${match[0]}. Consider using design tokens (e.g., var(--space-4))`,
       rule: "prefer-token-spacing",
       suggestion: `Replace ${match[0]} with spacing token`,
     });

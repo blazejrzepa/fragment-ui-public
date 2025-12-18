@@ -27,7 +27,8 @@
     "test": "turbo run test --parallel",
     "test:ui": "pnpm --filter @fragment_ui/ui test",
     "tokens:build": "pnpm -F @fragment_ui/tokens run build",
-    "registry:generate": "node scripts/generate-registry-json.mjs",
+    "registry:generate": "node scripts/build/generate-registry-json.mjs",
+    "registry:v0": "node scripts/generate-registry-v0.mjs",
     "storybook": "pnpm -C packages/ui storybook"
   },
   "workspaces": [

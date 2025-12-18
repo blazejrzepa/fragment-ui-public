@@ -7,6 +7,31 @@
   color-scheme: light dark;
 }
 
+/* Global font rendering optimization - Chrome specific */
+/* Apply to text elements only, not layout elements */
+p, span, a, h1, h2, h3, h4, h5, h6, li, td, th, label, button, input, textarea, select, code, pre {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Chrome: use auto instead of optimizeLegibility to prevent blur */
+  text-rendering: auto;
+  /* Chrome: prevent subpixel rendering blur */
+  -webkit-text-stroke: 0.35px transparent;
+  /* Chrome: force hardware acceleration for text only */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Exclude layout elements from transform to prevent positioning issues */
+header, nav, aside, main, section, article, div, body, html {
+  /* Only font smoothing, no transform */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  -webkit-text-stroke: 0.35px transparent;
+}
+
 @layer base {
   /* Apply motion tokens to components */
   button, a {

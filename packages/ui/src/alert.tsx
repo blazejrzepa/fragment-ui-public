@@ -143,10 +143,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   ({ className, variant = "default", ...props }, ref) => {
     const variantStyles = {
       default: "bg-[color:var(--color-surface-1)] border-[color:var(--color-border-base)] text-[color:var(--color-fg-base)]",
-      destructive: "bg-[color:var(--color-status-error-surface)] border-[color:var(--color-status-error-border)] text-[color:var(--color-status-error-fg)]",
-      success: "bg-[color:var(--color-status-success-surface)] border-[color:var(--color-status-success-border)] text-[color:var(--color-status-success-fg)]",
-      warning: "bg-[color:var(--color-status-warning-surface)] border-[color:var(--color-status-warning-border)] text-[color:var(--color-status-warning-fg)]",
-      info: "bg-[color:var(--color-status-info-surface)] border-[color:var(--color-status-info-border)] text-[color:var(--color-status-info-fg)]",
+      destructive: "bg-[color:var(--color-status-error-bg)] border-[color:var(--color-status-error-border)] text-[color:var(--color-status-error-fg)]",
+      success: "bg-[color:var(--color-status-success-bg)] border-[color:var(--color-status-success-border)] text-[color:var(--color-status-success-fg)]",
+      warning: "bg-[color:var(--color-status-warning-bg)] border-[color:var(--color-status-warning-border)] text-[color:var(--color-status-warning-fg)]",
+      info: "bg-[color:var(--color-status-info-bg)] border-[color:var(--color-status-info-border)] text-[color:var(--color-status-info-fg)]",
     };
 
     return (

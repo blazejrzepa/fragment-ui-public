@@ -9,9 +9,9 @@ The library is designed to be composable, accessible, and AI-native.
 Fragment UI is an AI-native design system based on shadcn/ui with code-first distribution (registry).
 It provides 63+ production-ready components, pre-built blocks, comprehensive documentation, and enterprise-ready tooling.
 
-- [Quick Start](https://fragmentui.com/docs/get-started/quick-start): A quick guide to getting started with Fragment UI.
-- [Installation](https://fragmentui.com/docs/get-started/installation): Installation and setup instructions.
-- [Architecture Overview](https://fragmentui.com/docs/get-started/architecture-overview): System architecture and design decisions.
+- [Introduction](https://fragmentui.com/docs/get-started/introduction): What Fragment UI is and how it works.
+- [Setup](https://fragmentui.com/docs/get-started/setup): Installation and setup instructions.
+- [MCP Server](https://fragmentui.com/docs/get-started/mcp-server): Configure the MCP server for AI-native workflows.
 
 ## Packages
 
@@ -19,6 +19,8 @@ It provides 63+ production-ready components, pre-built blocks, comprehensive doc
 - `@fragment_ui/blocks` - Pre-built screen compositions and blocks
 - `@fragment_ui/tokens` - Design tokens system
 - `@fragment_ui/registry` - Component registry for code-first distribution
+- `@fragment_ui/mcp-server` - MCP server (stdio) for AI tooling
+- `@fragment_ui/cli` - CLI utilities for registry-driven workflows
 
 ## Components
 
@@ -37,7 +39,6 @@ Components are exported from `@fragment_ui/ui`:
 - [FileUpload](https://fragmentui.com/docs/components/file-upload): File upload component
 - [TagInput](https://fragmentui.com/docs/components/tag-input): Tag input component
 - [FormField](https://fragmentui.com/docs/components/form-field): Form field with label, error, and helper text
-- [FormEnhanced](https://fragmentui.com/docs/components/form-enhanced): Enhanced form with validation
 
 ### Layout Components
 - [Card](https://fragmentui.com/docs/components/card): Container component with CardHeader, CardTitle, CardDescription, CardContent, CardFooter
@@ -92,7 +93,6 @@ Components are exported from `@fragment_ui/ui`:
 - [Calendar](https://fragmentui.com/docs/components/calendar): Calendar picker
 - [DatePicker](https://fragmentui.com/docs/components/date-picker): Date picker
 - [ColorPicker](https://fragmentui.com/docs/components/color-picker): Color picker
-- [Command](https://fragmentui.com/docs/components/command): Command palette
 - [CommandPalette](https://fragmentui.com/docs/components/command-palette): Command palette
 - [Carousel](https://fragmentui.com/docs/components/carousel): Carousel component
 - [Stepper](https://fragmentui.com/docs/components/stepper): Stepper component

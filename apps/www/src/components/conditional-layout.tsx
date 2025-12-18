@@ -13,6 +13,12 @@ import { usePathname } from "next/navigation";
 
 export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+
+  // Ensure docs navigations always start at the top of the page
+  React.useEffect(() => {
+    if (!pathname) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [pathname]);
   const isAdminPage = pathname?.startsWith("/admin");
   const isHomePage = pathname === "/" || pathname === "";
 

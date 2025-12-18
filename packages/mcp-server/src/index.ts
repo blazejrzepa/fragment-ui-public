@@ -135,8 +135,8 @@ class FragmentMCPServer {
             properties: {
               category: {
                 type: "string",
-                description: "Token category: 'color', 'spacing', 'typography', 'shadow', 'border'",
-                enum: ["color", "spacing", "typography", "shadow", "border"],
+                description: "Token category: 'color', 'space' (or 'spacing'), 'typography', 'radius', 'shadow', 'motion', 'density', 'i18n', 'modes'",
+                enum: ["color", "space", "spacing", "typography", "radius", "shadow", "motion", "density", "i18n", "modes"],
               },
             },
           },

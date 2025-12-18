@@ -36,6 +36,36 @@ body aside.fixed[class*="w-64"] {
 :root {
   color-scheme: light dark;
 }
+
+/* Global font rendering optimization - Chrome specific */
+/* Apply to text elements only, not layout elements */
+p, span, a, h1, h2, h3, h4, h5, h6, li, td, th, label, button, input, textarea, select, code, pre {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Chrome: use auto instead of optimizeLegibility to prevent blur */
+  text-rendering: auto;
+  /* Chrome: prevent subpixel rendering blur */
+  -webkit-text-stroke: 0.35px transparent;
+  /* Chrome: force hardware acceleration for text only */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Exclude layout elements from transform to prevent positioning issues */
+header, nav, aside, main, section, article, div, body, html {
+  /* Only font smoothing, no transform */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  -webkit-text-stroke: 0.35px transparent;
+}
+
+html {
+  /* No transform on html to prevent layout issues */
+}
+
 html,
 body {
   margin: 0;
@@ -43,6 +73,15 @@ body {
   height: 100%;
   background: var(--background-primary, var(--color-bg-base));
   color: var(--color-fg-base);
+  /* Chrome: Font rendering optimization for crisp text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Chrome: use auto to prevent blur from optimizeLegibility */
+  text-rendering: auto;
+  /* Chrome: Prevent subpixel rendering blur - thinner stroke for better clarity */
+  -webkit-text-stroke: 0.35px transparent;
+  /* Chrome: Force GPU acceleration */
+  will-change: auto;
   /* Hide scrollbars globally */
   scrollbar-width: none !important; /* Firefox */
   -ms-overflow-style: none !important; /* IE and Edge */
@@ -647,16 +686,17 @@ main {
   min-height: calc(100vh - 60px);
   transition: opacity 0.3s ease-in-out;
   animation: pageFadeIn 0.4s ease-out;
+  animation-fill-mode: forwards;
+  /* Ensure crisp rendering - no transform after animation */
+  will-change: auto;
 }
 
 @keyframes pageFadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -664,6 +704,8 @@ main {
 main > div {
   min-height: 400px; /* Minimum height to prevent jump */
   animation: contentFadeIn 0.5s ease-out;
+  animation-fill-mode: forwards;
+  will-change: auto;
 }
 
 @keyframes contentFadeIn {
@@ -678,71 +720,79 @@ main > div {
 /* Smooth transitions for content area */
 article {
   animation: fadeIn 0.4s ease-out;
+  animation-fill-mode: forwards;
+  will-change: auto;
 }
 
 /* Generic fade-in utility */
 .fade-in {
   animation: fadeIn 0.4s ease-out;
+  animation-fill-mode: forwards;
+  will-change: auto;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 /* Delicate fade-in for breadcrumbs */
 nav[aria-label="Breadcrumb"] {
   animation: breadcrumbFadeIn 0.3s ease-out;
+  animation-fill-mode: forwards;
+  will-change: auto;
 }
 
 @keyframes breadcrumbFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 /* Delicate fade-in for headings */
 h1 {
   animation: headingFadeIn 0.4s ease-out;
+  animation-fill-mode: forwards;
+  will-change: auto;
 }
 
 h2, h3, h4, h5, h6 {
   animation: headingFadeIn 0.35s ease-out;
+  animation-fill-mode: forwards;
+  will-change: auto;
 }
 
 @keyframes headingFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-2px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 /* Prevent flash of unstyled content */
 aside[class*="sticky"],
 nav[class*="sticky"] {
-  will-change: contents;
   contain: layout style paint;
+  /* Ensure crisp rendering without transform blur */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 /* Smooth transitions for breadcrumbs */
 nav[aria-label="Breadcrumb"] {
   min-height: 24px; /* Prevent height jump */
   transition: opacity 0.15s ease-in-out;
+  /* Chrome: prevent blur - no transform on nav to preserve positioning */
+  will-change: auto;
 }
 
 /* Intro text utility (outside document-content) */
@@ -752,11 +802,51 @@ nav[aria-label="Breadcrumb"] {
   font-size: 15px;
   font-weight: 400;
   line-height: 160%;
+  /* Chrome: prevent blur */
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+/* Chrome-specific optimizations */
+@supports (-webkit-appearance: none) {
+  /* Chrome/WebKit browsers - text elements only */
+  p,
+  h1, h2, h3, h4, h5, h6,
+  span,
+  a,
+  li,
+  td, th,
+  label,
+  button,
+  code {
+    /* Force crisp rendering in Chrome */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: auto;
+    -webkit-text-stroke: 0.35px transparent;
+    /* Prevent blur from subpixel rendering - only on text */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Exclude layout elements */
+  header, nav, aside, main, section, article, div, body {
+    /* Only font smoothing, no transform */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: auto;
+    -webkit-text-stroke: 0.35px transparent;
+  }
+  
+  /* Chrome: Disable will-change after animations to prevent blur */
+  * {
+    will-change: auto;
+  }
 }
 
 /* Smooth transitions for headings */
 h1, h2, h3, h4, h5, h6 {
   transition: opacity 0.15s ease-in-out;
+  /* Chrome: prevent blur - transform already applied via text element selector */
+  will-change: auto;
 }
 
 

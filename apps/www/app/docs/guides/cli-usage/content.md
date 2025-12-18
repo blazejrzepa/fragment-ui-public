@@ -1,107 +1,112 @@
 ---
-title: CLI Usage Guide
+title: CLI
+description: The CLI is available as a package in the Fragment UI monorepo.
 ---
 
-The Fragment UI CLI (`ds`) is a command-line tool that helps you manage components 
-in your project. It provides commands for adding, updating, removing, and checking 
-components, making it easy to maintain your design system integration.
+The Fragment UI CLI provides utilities around the registry-driven install flow (shadcn-style) and a few maintainer helpers.
 
-## Key Features
+## What it's for
 
-- Add components to your project with a single command
-- Update components to latest versions
-- Check component installation status
-- List all available components
-- Remove components when no longer needed
+- **For app projects**: initialize a local structure, list available components, check what you have installed, and get the correct install/update commands.
+- **For maintainers of this repo**: generate or verify documentation pages for components.
 
-## Installation
+## Run it locally (from this repo)
 
-The CLI is available as a package in the Fragment UI monorepo. To use it locally:
+This repo contains the CLI package at `packages/cli`.
 
 ```bash
 # Build the CLI
-cd packages/cli
-pnpm build
+pnpm --filter @fragment_ui/cli build
 
-# Use directly
-node dist/index.js <command>
+# Run via node
+node packages/cli/dist/index.js help
 
-# Or install globally (when published)
-npm install -g @fragment_ui/cli
-ds <command>
+# If you have it on PATH as a bin, you can also run:
+# ds help
+```
+
+## Install components into your app
+
+The CLI does **not** directly install components. Use the registry URL with shadcn:
+
+```bash
+npx shadcn@latest add https://fragmentui.com/r/button.json
 ```
 
 ## Commands
 
-### ds add &lt;component&gt;
+### ds init [path]
 
-Add a component to your project.
+Initializes a project for Fragment UI by creating `components/ui` and `components/blocks` (plus a basic `components.json` if missing).
 
 ```bash
-ds add button
-ds add input
-ds add dialog
+ds init
+# or
+
+ds init /absolute/path/to/your-app
 ```
 
 ### ds list
 
-List all available components.
+Lists all available components from the registry.
 
 ```bash
 ds list
 ```
 
-### ds check
+### ds check [path]
 
-Check which components are installed in your project.
+Checks which components are installed in a project.
 
 ```bash
 ds check
+# or
+
+ds check /absolute/path/to/your-app
 ```
 
-### ds update &lt;component&gt;
+### ds update <name> [path]
 
-Update a component to the latest version.
+At the moment, update is implemented as a **reinstall hint** (it prints the correct command to rerun with `--overwrite`).
 
 ```bash
 ds update button
-ds update --all
 ```
 
-### ds remove &lt;component&gt;
+### ds remove <name> [path]
 
-Remove a component from your project.
+Removes a component from a project.
 
 ```bash
 ds remove button
 ```
 
-### ds init
+### ds add <name>
 
-Initialize Fragment UI in your project.
-
-```bash
-ds init
-```
-
-## Examples
+**Maintainer command**: generates or verifies a documentation page for a component in this repository.
 
 ```bash
-# Add multiple components
-ds add button input dialog
-
-# Check what's installed
-ds check
-
-# Update all components
-ds update --all
-
-# Remove unused components
-ds remove old-component
+ds add button
 ```
 
-## Learn More
+### ds plugin list / ds plugin run <id> [action]
 
-- [CLI Documentation](/docs/guides/cli-usage)
-- [Available Components](/components)
+Lists installed plugins, or runs a plugin action.
 
+```bash
+ds plugin list
+
+ds plugin run your-plugin-id
+```
+
+### ds patch list / ds patch apply <id> / ds patch check <id>
+
+Work with overlay patches.
+
+```bash
+ds patch list
+
+ds patch check example-patch
+
+ds patch apply example-patch
+```

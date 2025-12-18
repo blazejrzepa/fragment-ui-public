@@ -57,11 +57,15 @@ export function DocPager({
     ? "m-0"
     : placement === "top"
     ? "mb-4 mt-2"
-    : "mt-12";
+    : "mt-16";
 
   const alignment =
     align === "spread"
+      ? prev && next
       ? "justify-between w-full"
+        : next
+          ? "justify-end w-full"
+          : "justify-start w-full"
       : align === "center"
       ? "justify-center"
       : align === "end"

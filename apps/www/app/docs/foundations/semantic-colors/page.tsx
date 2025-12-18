@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { DocLayout } from "../../../../src/components/doc-layout";
 import { EditOnGitHub, Button, CodeBlock } from "@fragment_ui/ui";
-import { Badge } from "@fragment_ui/ui";
 
 export default function SemanticColorsPage() {
   return (
@@ -117,10 +116,11 @@ export default function SemanticColorsPage() {
   color: var(--color-status-error-fg);
 }
 
-/* Warning button */
-.warning-button {
-  background-color: var(--color-status-warning-base);
-  color: white;
+/* Use "base" for accents (e.g., left border or icon), and bg/fg for containers */
+.warning-accent {
+  border-left: 3px solid var(--color-status-warning-base);
+  background: var(--color-status-warning-bg);
+  color: var(--color-status-warning-fg);
 }
 
 /* Info text */
@@ -130,19 +130,26 @@ export default function SemanticColorsPage() {
 
       <h3>React Components</h3>
       <p>Use semantic colors in your components:</p>
-      <CodeBlock language="css" highlightApiUrl="/api/highlight-code">{`import { Badge } from "@fragment_ui/ui";
+      <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`
+<Alert variant="success">
+  <AlertTitle>Success</AlertTitle>
+  <AlertDescription>Operation completed successfully.</AlertDescription>
+</Alert>
 
-// Success badge
-<Badge variant="success">Success</Badge>
+<Alert variant="destructive">
+  <AlertTitle>Error</AlertTitle>
+  <AlertDescription>Something went wrong.</AlertDescription>
+</Alert>
 
-// Error badge
-<Badge variant="error">Error</Badge>
+<Alert variant="warning">
+  <AlertTitle>Warning</AlertTitle>
+  <AlertDescription>Please review this action.</AlertDescription>
+</Alert>
 
-// Warning badge
-<Badge variant="warning">Warning</Badge>
-
-// Info badge
-<Badge variant="info">Info</Badge>
+<Alert variant="info">
+  <AlertTitle>Info</AlertTitle>
+  <AlertDescription>Here's some helpful information.</AlertDescription>
+</Alert>
 
 // Custom alert using semantic colors
 <div style={{
@@ -151,6 +158,22 @@ export default function SemanticColorsPage() {
   borderColor: "var(--color-status-success-border)"
 }}>
   Success message
+</div>`}</CodeBlock>
+
+      <h3 id="tailwind-usage">Using semantic colors with Tailwind</h3>
+      <p>
+        Semantic colors should be consumed via CSS variables (so they can adapt to light/dark/high-contrast).
+        In Tailwind, use arbitrary values:
+      </p>
+      <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`<div
+  className="    border
+    bg-[color:var(--color-status-success-bg)]
+    text-[color:var(--color-status-success-fg)]
+    border-[color:var(--color-status-success-border)]
+    p-[var(--space-4)]
+    rounded-[var(--radius-md)]
+  \">
+  Success
 </div>`}</CodeBlock>
 
       <h2 id="theme-support">Theme Support</h2>

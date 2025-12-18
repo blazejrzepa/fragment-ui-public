@@ -30,7 +30,7 @@ Tokens are available as CSS variables:
 .my-component {
   color: var(--color-fg-base);
   background: var(--color-surface-1);
-  padding: var(--spacing-4);
+  padding: var(--space-4);
   border-radius: var(--radius-md);
 }
 ```

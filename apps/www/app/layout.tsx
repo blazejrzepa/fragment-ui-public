@@ -10,6 +10,11 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Fragment UI",
   description: "AI-native design system",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
   icons: {
     icon: [
       { url: "/assets/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
