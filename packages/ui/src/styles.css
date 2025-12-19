@@ -744,7 +744,7 @@
   /* Paragraphs in DocumentContent */
   .document-content p {
     /* Light mode: slightly higher alpha for readability */
-    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent);
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
     font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
     font-size: var(--typography-size-md, 16px);
     font-style: normal;
@@ -756,7 +756,7 @@
 
   /* Dark mode: keep paragraphs a bit softer */
   [data-theme="dark"] .document-content p {
-    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
+    color: color-mix(in oklab, var(--color-fg-base) 60%, transparent);
   }
 
   /* Emphasis in DocumentContent */
