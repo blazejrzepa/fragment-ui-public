@@ -36,10 +36,18 @@
   ],
   "peerDependencies": {
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "next": ">=13.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "@fragment_ui/ui": "workspace:*"
+    "@fragment_ui/ui": "workspace:*",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.552.0"
   },
   "publishConfig": {
     "access": "public",
