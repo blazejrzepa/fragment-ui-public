@@ -53,11 +53,11 @@ export function searchComponents(query: string) {
   
   Object.entries(registry.components).forEach(([key, value]) => {
     if (key.toLowerCase().includes(lowerQuery)) {
-      if (typeof value === 'object' && value !== null) {
+      if (typeof value === 'object' && value !== null && 'import' in value) {
         results.push({
           name: key,
-          import: value.import,
-          props: value.props,
+          import: (value as { import?: string; props?: any }).import,
+          props: (value as { import?: string; props?: any }).props,
         });
       }
     }
