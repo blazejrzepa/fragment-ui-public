@@ -32,6 +32,10 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
+    "@babel/generator": "^7.26.0",
+    "@babel/parser": "^7.26.0",
+    "@babel/traverse": "^7.26.0",
+    "@babel/types": "^7.26.0",
     "tsx": "^4.16.0",
     "@fragment_ui/plugin-system": "workspace:*",
     "@fragment_ui/registry": "workspace:*",
