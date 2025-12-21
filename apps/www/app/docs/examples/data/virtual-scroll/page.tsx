@@ -13,10 +13,7 @@ export default function VirtualScrollExample() {
   return (
     <DocLayout>
       <h1 id="virtual-scroll" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Virtual Scroll</h1>
-      <p 
-        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
-        className="mb-[var(--space-6)] intro-text"
-      >
+      <p className="mb-[var(--space-6)] intro-text text-[color:var(--foreground-secondary)] font-normal">
         Virtual Scroll example demonstrating Fragment UI components and patterns.
       </p>
 

@@ -19,10 +19,7 @@ export default function ProfileSettingsExample() {
   return (
     <DocLayout>
       <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Profile</h1>
-      <p 
-        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
-        className="mb-[var(--space-6)] intro-text"
-      >
+      <p className="mb-[var(--space-6)] intro-text text-[color:var(--foreground-secondary)] font-normal">
         Profile example demonstrating Fragment UI components and patterns.
       </p>
 
