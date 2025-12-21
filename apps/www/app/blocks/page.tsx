@@ -1,113 +1,89 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import registry from "@fragment_ui/registry/registry.json";
 import Link from "next/link";
-import { Card, CardContent, CardHeader, CardTitle, CardFooter, DocumentContent } from "@fragment_ui/ui";
-import { getStorybookUrl } from "../../src/lib/storybook";
-import { getStorybookPath } from "../../src/lib/storybook-mapping";
+import { DocumentContent } from "@fragment_ui/ui";
 
-// Client-side wrapper for Storybook links to avoid SSR issues
-function StorybookLinkWrapper({ componentName }: { componentName: string }) {
-  const [url, setUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    const storybookPath = getStorybookPath(componentName);
-    const storybookUrl = storybookPath ? getStorybookUrl(storybookPath) : null;
-    setUrl(storybookUrl);
-  }, [componentName]);
-
-  if (!url) return null;
-
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="underline text-[color:var(--color-brand-primary)] hover:text-[color:var(--color-brand-primary-600)] transition-colors"
-    >
-      Storybook
-    </a>
-  );
+// Helper function to capitalize first letter of each word
+function formatTitle(name: string): string {
+  return name
+    .split(/[-_]/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
 }
 
-// List of known blocks from /r/ directory
-const KNOWN_BLOCKS = [
+// List of all available blocks (from docs/components/[block]/page.tsx)
+// This is the source of truth for all blocks with documentation pages
+const ALL_BLOCKS = [
+  "app-shell",
   "authentication-block",
+  "benefits-section",
   "card-grid",
+  "comparison-section",
+  "cta-section",
   "dashboard-layout",
+  "dashboard-widgets",
+  "data-table-toolbar",
+  "documentation-header",
+  "documentation-layout",
+  "documentation-sidebar",
+  "empty-state",
+  "faq-section",
+  "feature-grid-section",
+  "footer-section",
   "form-container",
+  "hero-section",
+  "kpi-dashboard",
+  "kpi-strip",
+  "link-card",
   "navigation-header",
+  "pagination-footer",
   "pricing-table",
   "settings-screen",
-  "hero-section",
-  "feature-grid-section",
   "stats-section",
   "testimonials-section",
-  "faq-section",
-  "cta-section",
   "widget-container",
-  "dashboard-widgets",
-  "benefits-section",
-  "comparison-section",
-  "footer-section",
-  "kpi-dashboard",
+];
+
+// Components/blocks hidden during development
+const HIDDEN_COMPONENTS = [
   "analytics-dashboard",
+  "card-grid",
+  "dashboard-layout",
+  "dashboard-widgets",
+  "data-table-toolbar",
+  "filter-bar",
+  "form-container",
+  "comparison-section",
+  "stats-section",
+  "testimonials-section",
+  "widget-container",
 ];
 
 export default function Blocks() {
-  // Components with hyphens that should NOT be shown on Blocks page (they're UI components)
-  // Must match the list from components/page.tsx
-  const componentExceptions = [
-    "multi-select",
-    "command-palette",
-    "date-picker",
-    "toggle-group",
-    "tree-view",
-    "color-picker",
-    "segmented-control",
-    "rating",
-    "file-upload",
-    "split-button",
-    "tag-input",
-    "activity-feed",
-    "quick-actions",
-    "filter-bar",
-    "metric-card",
-    "chart",
-    "data-table", // data-table is a component, not a block
-  ];
-  
-  // Get blocks from registry.components (if any) and combine with known blocks
-  const registryBlocks = Object.keys(registry.components || {}).filter((k) => k.includes("-") && !componentExceptions.includes(k));
-  const allBlocks = [...new Set([...KNOWN_BLOCKS, ...registryBlocks])]
-    .filter((k) => !componentExceptions.includes(k)) // Filter out components that shouldn't be in blocks
-    .sort();
+  // Filter out hidden blocks
+  const items = ALL_BLOCKS.filter((k) => !HIDDEN_COMPONENTS.includes(k.toLowerCase())).sort();
 
   return (
-    <main>
+    <main className="components-page">
       <DocumentContent as="article" className="w-full max-w-none">
         <h1>Blocks</h1>
         <p className="intro-text">
           Explore all the blocks available in the library.
         </p>
-        <div className="grid md:grid-cols-2 gap-3">
-          {allBlocks.map((k) => (
-            <Card key={k}>
-              <CardHeader>
-                <CardTitle className="text-base font-medium">{k}</CardTitle>
-              </CardHeader>
-              <CardFooter className="flex gap-3 px-0">
-                <Link
-                  className="underline text-[color:var(--color-brand-primary)] hover:text-[color:var(--color-brand-primary-600)] transition-colors"
-                  href={`/docs/components/${k}`}
-                  prefetch={false}
-                >
-                  Docs
-                </Link>
-                <StorybookLinkWrapper componentName={k} />
-              </CardFooter>
-            </Card>
+        <div className="grid grid-cols-3 gap-3 mt-[var(--space-6)]">
+          {items.map((k) => (
+            <Link
+              key={k}
+              href={`/docs/components/${k}`}
+              className="text-[color:var(--foreground-primary)] hover:underline transition-all py-1"
+              style={{
+                textUnderlineOffset: "3px",
+              }}
+              prefetch={false}
+            >
+              {formatTitle(k)}
+            </Link>
           ))}
         </div>
       </DocumentContent>

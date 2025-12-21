@@ -1,4 +1,13 @@
-import { TokenDefinition } from "../components/theme-builder/token-editor";
+// Token definition type (moved from theme-builder/token-editor)
+export type TokenValue = string | number;
+
+export interface TokenDefinition {
+  path: string;
+  label: string;
+  type: "color" | "number" | "string";
+  unit?: string;
+  description?: string;
+}
 
 // Default token values - matching tokens.json structure
 const DEFAULT_TOKENS = {
@@ -10,78 +19,21 @@ const DEFAULT_TOKENS = {
     accent: { green: "#22C55E", red: "#EF4444" },
   },
   space: { "1": 4, "2": 8, "4": 16 },
-  radius: { sm: 8, md: 12, lg: 16 },
-  typography: { size: { xs: 12, intro: 15, sm: 14, md: 16, lg: 18, xl: 20, "2xl": 22 } },
+  radius: { base: "medium" }, // none: 0, small: 4, medium: 8, large: 16, full: 9999
+  typography: { fontFamily: "Geist" },
+  iconLibrary: "lucide", // lucide | tabler | hugeicons | phosphor
 } as const;
 
 /**
  * Define editable tokens for the theme builder
  */
 export const THEME_TOKENS: TokenDefinition[] = [
-  // Colors - Background
-  {
-    path: "color.bg.base",
-    label: "Background Base",
-    type: "color",
-    description: "Main background color",
-  },
-  {
-    path: "color.bg.inverse",
-    label: "Background Inverse",
-    type: "color",
-    description: "Inverse background color",
-  },
-  // Colors - Foreground
-  {
-    path: "color.fg.base",
-    label: "Foreground Base",
-    type: "color",
-    description: "Main text color",
-  },
-  {
-    path: "color.fg.muted",
-    label: "Foreground Muted",
-    type: "color",
-    description: "Muted/secondary text color",
-  },
   // Colors - Brand
   {
     path: "color.brand.primary",
     label: "Brand Primary",
     type: "color",
     description: "Primary brand color",
-  },
-  {
-    path: "color.brand.primary-600",
-    label: "Brand Primary 600",
-    type: "color",
-    description: "Darker brand primary variant",
-  },
-  // Colors - Surface
-  {
-    path: "color.surface.1",
-    label: "Surface 1",
-    type: "color",
-    description: "First surface level",
-  },
-  {
-    path: "color.surface.2",
-    label: "Surface 2",
-    type: "color",
-    description: "Second surface level",
-  },
-  // Colors - Accent
-  {
-    path: "color.accent.green",
-    label: "Accent Green",
-    type: "color",
-    description: "Success/green accent color",
-  },
-  {
-    path: "color.accent.red",
-    label: "Accent Red",
-    type: "color",
-    description: "Error/red accent color",
   },
   // Spacing
   {
@@ -105,68 +57,24 @@ export const THEME_TOKENS: TokenDefinition[] = [
   },
   // Radius
   {
-    path: "radius.sm",
-    label: "Radius Small",
-    type: "number",
-    unit: "px",
-    description: "Small border radius",
-  },
-  {
-    path: "radius.md",
-    label: "Radius Medium",
-    type: "number",
-    unit: "px",
-    description: "Medium border radius",
-  },
-  {
-    path: "radius.lg",
-    label: "Radius Large",
-    type: "number",
-    unit: "px",
-    description: "Large border radius",
+    path: "radius.base",
+    label: "Border Radius",
+    type: "string",
+    description: "Select border radius size",
   },
   // Typography
   {
-    path: "typography.size.xs",
-    label: "Font Size XS",
-    type: "number",
-    unit: "px",
+    path: "typography.fontFamily",
+    label: "Font Family",
+    type: "string",
+    description: "Select a font from Google Fonts",
   },
+  // Icon Library
   {
-    path: "typography.size.intro",
-    label: "Font Size Intro",
-    type: "number",
-    unit: "px",
-  },
-  {
-    path: "typography.size.sm",
-    label: "Font Size Small",
-    type: "number",
-    unit: "px",
-  },
-  {
-    path: "typography.size.md",
-    label: "Font Size Medium",
-    type: "number",
-    unit: "px",
-  },
-  {
-    path: "typography.size.lg",
-    label: "Font Size Large",
-    type: "number",
-    unit: "px",
-  },
-  {
-    path: "typography.size.xl",
-    label: "Font Size XL",
-    type: "number",
-    unit: "px",
-  },
-  {
-    path: "typography.size.2xl",
-    label: "Font Size 2XL",
-    type: "number",
-    unit: "px",
+    path: "iconLibrary",
+    label: "Icon Library",
+    type: "string",
+    description: "Select icon library",
   },
 ];
 
@@ -190,12 +98,78 @@ export function getDefaultTokenValues(): Record<string, string | number> {
 
 /**
  * Convert token values to CSS custom properties
+ * Maps token paths to actual CSS variable names used in the design system
  */
 export function tokensToCSS(tokens: Record<string, string | number>): Record<string, string> {
   const css: Record<string, string> = {};
   Object.entries(tokens).forEach(([path, value]) => {
-    const varName = `--${path.replace(/\./g, "-")}`;
-    css[varName] = String(value);
+    // Special handling for radius.base - map to all radius tokens
+    if (path === "radius.base") {
+      const radiusValue = String(value || "medium");
+      let radiusPx: string;
+      switch (radiusValue) {
+        case "none":
+          radiusPx = "0px";
+          break;
+        case "small":
+          radiusPx = "4px";
+          break;
+        case "medium":
+          radiusPx = "8px";
+          break;
+        case "large":
+          radiusPx = "16px";
+          break;
+        case "full":
+          radiusPx = "9999px";
+          break;
+        default:
+          radiusPx = "8px"; // default to medium
+      }
+      // Apply to all radius tokens (sm, md, lg) for backward compatibility
+      css["--radius-sm"] = radiusPx;
+      css["--radius-md"] = radiusPx;
+      css["--radius-lg"] = radiusPx;
+      return; // Skip default processing for radius
+    }
+    
+    // Map token paths to CSS variable names
+    let varName: string;
+    
+    if (path.startsWith("color.")) {
+      // color.bg.base -> --color-bg-base
+      // color.brand.primary -> --color-brand-primary
+      // color.brand.primary-600 -> --color-brand-primary-600
+      varName = `--color-${path.replace(/^color\./, "").replace(/\./g, "-")}`;
+    } else if (path.startsWith("space.")) {
+      // space.1 -> --space-1
+      varName = `--space-${path.replace(/^space\./, "")}`;
+    } else if (path.startsWith("radius.")) {
+      // radius.sm -> --radius-sm (for backward compatibility, but should use radius.base now)
+      varName = `--radius-${path.replace(/^radius\./, "")}`;
+    } else if (path.startsWith("typography.")) {
+      // typography.fontFamily -> --typography-font-sans
+      if (path === "typography.fontFamily") {
+        varName = "--typography-font-sans";
+      } else {
+        // typography.size.xs -> --typography-size-xs (for backward compatibility)
+        varName = `--typography-${path.replace(/^typography\./, "").replace(/\./g, "-")}`;
+      }
+    } else if (path === "iconLibrary") {
+      // iconLibrary -> --icon-library
+      varName = "--icon-library";
+    } else {
+      // Fallback: convert dots to dashes
+      varName = `--${path.replace(/\./g, "-")}`;
+    }
+    
+    // Add unit for numeric values
+    const stringValue = String(value);
+    if (typeof value === "number" && !stringValue.includes("px") && !stringValue.includes("%")) {
+      css[varName] = `${value}px`;
+    } else {
+      css[varName] = stringValue;
+    }
   });
   return css;
 }

@@ -15,6 +15,7 @@ export interface NavigationItem {
 export interface NavigationSection {
   title: string;
   items: NavigationItem[];
+  icon?: React.ReactNode;
 }
 
 export interface DocumentationSidebarProps {
@@ -227,11 +228,11 @@ export function DocumentationSidebar({
         className
       )}
       style={{
-        "--header-height": "58px",
+        "--header-height": "60px",
         "--footer-height": "0px",
       } as React.CSSProperties & { "--header-height": string; "--footer-height": string }}
     >
-      <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden no-scrollbar overflow-x-hidden px-1 max-h-[calc(100vh-96px)]">
+      <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden no-scrollbar overflow-x-hidden px-1 max-h-[calc(100vh-60px)]">
         <div className="sticky -top-1 z-10 h-8 shrink-0 bg-gradient-to-b from-[color:var(--background-primary)] via-[color:var(--background-primary)]/80 to-transparent"></div>
         {header && (
           <div className="p-2">
@@ -242,6 +243,7 @@ export function DocumentationSidebar({
           {sections.map((section) => (
             <div key={section.title} className="relative flex w-full min-w-0 flex-col p-2">
               <div className="flex h-8 shrink-0 items-center rounded-md px-2 text-xs outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 focus-visible:ring-[color:var(--color-border-base)] [&>svg]:size-4 [&>svg]:shrink-0 group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0 text-[color:var(--foreground-secondary)] font-medium">
+                {section.icon && <span className="h-3.5 w-3.5 shrink-0">{section.icon}</span>}
                 {section.title}
               </div>
               <div className="w-full text-sm">

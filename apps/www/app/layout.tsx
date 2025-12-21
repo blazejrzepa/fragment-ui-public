@@ -40,25 +40,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Critical CSS to prevent FOUC - sidebar positioning and html/body transform override */}
+        {/* Critical CSS variables - prevent FOUC */}
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Override transform from ui/styles.css for html and body */
-            html, body {
-              transform: none !important;
-              -webkit-transform: none !important;
-            }
-            
-            /* Sidebar positioning */
-            aside.fixed.left-0,
-            aside[class*="fixed"][class*="left-0"],
-            aside.fixed.left-0[class*="z-30"],
-            aside.fixed[class*="w-64"] {
-              left: 0 !important;
-              margin-left: 0 !important;
-              padding-left: 0 !important;
-              transform: translateX(0) !important;
-              inset: 0px auto auto 0px !important;
+            :root {
+              --header-height: 60px;
+              --max-width-container: 1536px;
+              --sidebar-width: 240px;
             }
           `
         }} />

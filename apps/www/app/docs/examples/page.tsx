@@ -79,17 +79,17 @@ export default function ExamplesPage() {
       title: "Full Applications",
       description: "Complete example applications ready to use",
       examples: [
-        { name: "Next.js Dashboard", href: "https://github.com/blazejrzepa/fragment-ui/tree/main/examples/nextjs-dashboard", external: true },
-        { name: "SaaS Settings", href: "https://github.com/blazejrzepa/fragment-ui/tree/main/examples/saas-settings", external: true },
+        { name: "Next.js Dashboard", href: "https://github.com/blazejrzepa/fragment-ui-public/tree/main/examples/nextjs-dashboard", external: true },
+        { name: "SaaS Settings", href: "https://github.com/blazejrzepa/fragment-ui-public/tree/main/examples/saas-settings", external: true },
       ],
     },
   ];
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="component-examples-library" className="text-3xl font-medium mb-4">Component Examples Library</h1>
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="component-examples-library" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Component Examples Library</h1>
+        <div className="flex items-center gap-[var(--space-2)]">
           <Link href={"/docs/setup"}>
             <Button variant="outline" size="sm" className="h-8 w-8 p-0">
               <ArrowLeft className="h-4 w-4" />
@@ -102,11 +102,11 @@ export default function ExamplesPage() {
           </Link>
         </div>
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Real-world examples and patterns showing how to use Fragment UI components together to build complete features.
       </p>
 
-      <div className="grid gap-6 mt-8 md:grid-cols-2">
+      <div className="grid gap-[var(--space-6)] mt-[var(--space-8)] md:grid-cols-2">
         {examples.map((category) => {
           const id = slugify(category.title);
           return (
@@ -116,7 +116,7 @@ export default function ExamplesPage() {
               <CardDescription>{category.description}</CardDescription>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2">
+              <ul className="space-y-[var(--space-2)]">
                 {category.examples.map((example) => (
                   <li key={example.name}>
                     {example.external ? (
@@ -144,9 +144,9 @@ export default function ExamplesPage() {
         )})}
       </div>
 
-      <div className="mt-8 p-4 rounded-lg bg-[color:var(--color-surface-2)]">
-        <h2 id="best-practices" className="text-lg font-semibold mb-2">Best Practices</h2>
-        <ul className="list-disc list-inside space-y-1 text-sm text-[color:var(--color-fg-muted)]">
+      <div className="mt-[var(--space-8)] p-[var(--space-4)] rounded-[var(--radius-md)] bg-[color:var(--color-surface-2)] border border-[color:var(--color-border-base)]">
+        <h2 id="best-practices" className="text-[length:var(--typography-size-lg)] font-semibold mb-[var(--space-2)]">Best Practices</h2>
+        <ul className="list-disc list-inside space-y-[var(--space-1)] text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
           <li>All examples follow accessibility best practices</li>
           <li>Examples are production-ready and can be copied directly</li>
           <li>Each example includes code snippets and explanations</li>

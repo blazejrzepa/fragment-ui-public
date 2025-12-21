@@ -37,43 +37,38 @@ export interface ExampleSectionProps {
   previewHeight?: string;
   marginTop?: string;
   maxWidth?: string;
+  previewPadding?: string;
 }
 
-export function ExampleSection({ id, title, code, children, previewHeight, marginTop = "mt-4", maxWidth = "max-w-md" }: ExampleSectionProps) {
+export function ExampleSection({ id, title, code, children, previewHeight, marginTop = "mt-4", maxWidth = "max-w-md", previewPadding }: ExampleSectionProps) {
   const [view, setView] = useState<"preview" | "code">("preview");
-  const [dynamicHeight, setDynamicHeight] = useState<number | null>(null);
+  const [contentHeight, setContentHeight] = useState<number | null>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const { copied, handleCopy } = useCopy(code);
 
-  // Measure content height and adjust preview height if needed
+  // Measure actual visible content height
   useEffect(() => {
-    if (view !== "preview" || !contentRef.current) return;
+    if (view !== "preview" || !contentRef.current) {
+      setContentHeight(null);
+      return;
+    }
 
     const measureHeight = () => {
-      const contentElement = contentRef.current;
-      if (!contentElement) return;
-
-      // Get the actual content height
-      const contentHeight = contentElement.scrollHeight;
-      // Add padding (p-8 = 32px top + 32px bottom = 64px)
-      const totalHeight = contentHeight + 64;
-
-      // If content is taller than default, use measured height with some buffer
-      if (totalHeight > DEFAULT_PREVIEW_HEIGHT) {
-        setDynamicHeight(Math.max(totalHeight, DEFAULT_PREVIEW_HEIGHT));
-      } else {
-        setDynamicHeight(null);
-      }
+      if (!contentRef.current) return;
+      
+      // Get the actual rendered height of the content
+      const rect = contentRef.current.getBoundingClientRect();
+      const height = rect.height;
+      
+      // Use the measured height, but ensure minimum
+      setContentHeight(Math.max(height, DEFAULT_PREVIEW_HEIGHT));
     };
 
-    // Measure after initial render
+    // Measure after render
     measureHeight();
 
-    // Use ResizeObserver to handle dynamic content changes
-    const resizeObserver = new ResizeObserver(() => {
-      measureHeight();
-    });
-
+    // Use ResizeObserver to update when content changes (e.g., accordion expanding)
+    const resizeObserver = new ResizeObserver(measureHeight);
     resizeObserver.observe(contentRef.current);
 
     return () => {
@@ -81,14 +76,14 @@ export function ExampleSection({ id, title, code, children, previewHeight, margi
     };
   }, [view, children]);
 
-  // Use provided previewHeight or dynamic height, fallback to default
+  const previewContainerClasses = `${PREVIEW_CONTAINER_BASE_CLASSES} ${view === "preview" ? "" : "hidden"}`;
+  
+  // Calculate final height: use provided previewHeight, or measured contentHeight, or default
   const finalHeight = previewHeight 
     ? previewHeight 
-    : dynamicHeight 
-      ? `${dynamicHeight}px` 
+    : contentHeight !== null 
+      ? `${contentHeight}px`
       : `${DEFAULT_PREVIEW_HEIGHT}px`;
-
-  const previewContainerClasses = `${PREVIEW_CONTAINER_BASE_CLASSES} ${view === "preview" ? "" : "hidden"}`;
 
   return (
     <div className={`group relative ${marginTop} mb-0 flex flex-col gap-0 rounded-lg`}>
@@ -120,11 +115,14 @@ export function ExampleSection({ id, title, code, children, previewHeight, margi
       <div className="relative mt-3">
         <div 
           className={previewContainerClasses}
-          style={{ height: view === "preview" ? finalHeight : undefined }}
+          style={{ 
+            minHeight: view === "preview" ? `${DEFAULT_PREVIEW_HEIGHT}px` : undefined,
+            height: view === "preview" ? finalHeight : undefined
+          }}
         >
           <div 
             ref={contentRef}
-            className={`w-full ${maxWidth}`} 
+            className={`w-full ${maxWidth} ${previewPadding || ""}`}
             suppressHydrationWarning
           >
             {children}

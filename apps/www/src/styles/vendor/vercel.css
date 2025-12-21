@@ -1,0 +1,26 @@
+/* ============================================
+   Vercel Tools Positioning
+   ============================================
+   Repositions Vercel Speed Insights and other Vercel tools.
+   Must use !important to override third-party inline styles.
+   
+   NOTE: @layer utilities is applied in globals.css after @tailwind utilities
+*/
+
+/* Hide or reposition Vercel Speed Insights badge */
+[data-vercel-speed-insights],
+iframe[src*="vercel"],
+div[data-vercel-speed-insights],
+script[src*="vercel"],
+a[href*="vercel"][target="_blank"],
+div[class*="vercel"],
+div[id*="vercel"] {
+  position: fixed !important;
+  top: auto !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}

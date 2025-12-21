@@ -12,7 +12,7 @@ Tokens are shipped as CSS variables. Install `@fragment_ui/tokens` and import it
 
 ## Colors
 
-All colors are available as CSS variables with semantic naming. Colors automatically adapt to light/dark/high-contrast themes.
+All colors are available as CSS variables with semantic naming. Colors automatically adapt to light/dark themes.
 
 ### Background Colors
 
@@ -113,55 +113,6 @@ Status colors for success, error, warning, and info indicators. Each status has 
 ```
 
 See [Semantic Colors documentation](/docs/foundations/semantic-colors) for detailed usage examples.
-
-### High Contrast Mode
-
-For better accessibility, high contrast colors are available:
-
-```css
-/* High contrast background */
---color-high-contrast-bg-base: #000000;
---color-high-contrast-bg-inverse: #FFFFFF;
-
-/* High contrast foreground */
---color-high-contrast-fg-base: #FFFFFF;
---color-high-contrast-fg-muted: #CCCCCC;
-
-/* High contrast button */
---color-high-contrast-button-solid-bg: #FFFFFF;
---color-high-contrast-button-solid-hover: #CCCCCC;
---color-high-contrast-button-solid-text: #000000;
-
-/* High contrast border */
---color-high-contrast-border: #FFFFFF;
-
-/* High contrast status colors */
---color-high-contrast-status-success-base: #00FF00;
---color-high-contrast-status-success-bg: #000000;
---color-high-contrast-status-success-fg: #00FF00;
---color-high-contrast-status-success-border: #00FF00;
---color-high-contrast-status-success-muted: #00FF00;
-
---color-high-contrast-status-error-base: #FF0000;
---color-high-contrast-status-error-bg: #000000;
---color-high-contrast-status-error-fg: #FF0000;
---color-high-contrast-status-error-border: #FF0000;
---color-high-contrast-status-error-muted: #FF0000;
-
---color-high-contrast-status-warning-base: #FFFF00;
---color-high-contrast-status-warning-bg: #000000;
---color-high-contrast-status-warning-fg: #FFFF00;
---color-high-contrast-status-warning-border: #FFFF00;
---color-high-contrast-status-warning-muted: #FFFF00;
-
---color-high-contrast-status-info-base: #00FFFF;
---color-high-contrast-status-info-bg: #000000;
---color-high-contrast-status-info-fg: #00FFFF;
---color-high-contrast-status-info-border: #00FFFF;
---color-high-contrast-status-info-muted: #00FFFF;
-```
-
-Enable high contrast mode by adding `data-theme="high-contrast"` to your root element.
 
 ## Spacing
 
@@ -433,9 +384,6 @@ Switch between themes using data attributes:
 
 /* Dark theme */
 <html data-theme="dark">
-
-/* High contrast mode */
-<html data-theme="high-contrast">
 
 /* Combined with density */
 <html data-theme="dark" data-density="comfortable">

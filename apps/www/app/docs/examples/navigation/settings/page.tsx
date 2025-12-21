@@ -6,22 +6,16 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@fragment_ui/ui";
 export default function SettingsMenuExample() {
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Settings</h1>
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Settings</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Settings example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6">
+      <div className="my-[var(--space-6)]">
         <Tabs defaultValue="general" className="flex gap-4">
           <TabsList orientation="vertical" className="w-48">
             <TabsTrigger value="general">General</TabsTrigger>

@@ -13,13 +13,13 @@ export default async function PerformanceTestsPage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="performance-tests" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="performance-tests" className="text-[length:var(--typography-display-md-size)] font-medium">
           {frontmatter.title || "Performance Tests"}
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Performance testing and budgets for Fragment UI.
       </p>
 

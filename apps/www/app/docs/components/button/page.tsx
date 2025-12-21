@@ -134,10 +134,10 @@ export function ButtonGroupDemo() {
 export default function ButtonPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="button">Button</h1>
       </div>
-      <p className="mb-6 intro-text">Trigger actions or submit forms.</p>
+      <p className="mb-[var(--space-6)] intro-text">Trigger actions or submit forms.</p>
       
       {/* Example 1: outline with text + icon button */}
       <ExampleSection
@@ -145,7 +145,7 @@ export default function ButtonPage() {
         title="Example"
         code={example1Code}
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button variant="outline">Button</Button>
           <Button variant="outline" aria-label="Settings">
             <Settings className="h-4 w-4" />
@@ -163,10 +163,10 @@ export default function ButtonPage() {
         id="button-size"
         title="Size"
         code={sizeCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-2 items-center justify-center">
+        <div className="flex flex-col gap-[var(--space-4)]">
+          <div className="flex gap-[var(--space-2)] items-center justify-center">
             <Button variant="outline" size="sm">Small</Button>
             <Button variant="outline" size="md">Medium</Button>
             <Button variant="outline" size="lg">Large</Button>
@@ -179,9 +179,9 @@ export default function ButtonPage() {
         id="button-variants"
         title="Variants"
         code={variantsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button variant="solid">Solid</Button>
           <Button variant="outline">Outline</Button>
           <Button variant="ghost">Ghost</Button>
@@ -194,9 +194,9 @@ export default function ButtonPage() {
         id="button-icon"
         title="Icon"
         code={iconCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button variant="outline" size="sm" aria-label="Settings">
             <Settings className="h-4 w-4" />
           </Button>
@@ -208,9 +208,9 @@ export default function ButtonPage() {
         id="button-with-icon"
         title="With Icon"
         code={withIconCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button variant="outline" leadingIcon={<Download className="h-4 w-4" />}>
             Download
           </Button>
@@ -225,9 +225,9 @@ export default function ButtonPage() {
         id="button-radius"
         title="Radius"
         code={radiusCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button variant="outline" radius="none">None</Button>
           <Button variant="outline" radius="sm">Small</Button>
           <Button variant="outline" radius="md">Medium</Button>
@@ -241,9 +241,9 @@ export default function ButtonPage() {
         id="button-rounded"
         title="Rounded"
         code={roundedCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button 
             variant="outline" 
             size="sm" 
@@ -260,9 +260,9 @@ export default function ButtonPage() {
         id="button-spinner"
         title="Spinner"
         code={spinnerCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
           <Button variant="outline" loading>Loading</Button>
           <Button variant="outline" loading loadingText="Processing...">
             Submit
@@ -275,9 +275,9 @@ export default function ButtonPage() {
         id="button-group"
         title="Button Group"
         code={buttonGroupCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-0 justify-center">
+        <div className="flex gap-[var(--space-0)] justify-center">
           <Button variant="outline" className="rounded-r-none border-r-0">
             First
           </Button>
@@ -306,10 +306,10 @@ export function ButtonDisabledDemo() {
     </>
   );
 }`}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center">
-          <Button variant="solid" disabled>Disabled</Button>
+        <div className="flex gap-[var(--space-2)] items-center justify-center">
+          <Button variant="solid" disabled style={{ backgroundColor: "var(--color-brand-primary)", color: "var(--color-brand-primary-600)" }}>Disabled</Button>
           <Button variant="outline" disabled>Disabled</Button>
           <Button variant="ghost" disabled>Disabled</Button>
           <Button variant="secondary" disabled>Disabled</Button>
@@ -317,47 +317,47 @@ export function ButtonDisabledDemo() {
       </ExampleSection>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>variant</code></td>
-              <td className="py-2 px-4">
-                <div className="flex gap-1 flex-wrap">
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>variant</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">
+                <div className="flex gap-[var(--space-1)] flex-wrap">
                   <code>"solid"</code>
                   <code>"outline"</code>
                   <code>"ghost"</code>
                   <code>"secondary"</code>
                 </div>
               </td>
-              <td className="py-2 px-4"><code>"solid"</code></td>
-              <td className="py-2 px-4 text-sm">Visual style variant of the button</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"solid"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Visual style variant of the button</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>size</code></td>
-              <td className="py-2 px-4">
-                <div className="flex gap-1 flex-wrap">
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>size</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">
+                <div className="flex gap-[var(--space-1)] flex-wrap">
                   <code>"sm"</code>
                   <code>"md"</code>
                   <code>"lg"</code>
                 </div>
               </td>
-              <td className="py-2 px-4"><code>"md"</code></td>
-              <td className="py-2 px-4 text-sm">Size of the button</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"md"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Size of the button</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>radius</code></td>
-              <td className="py-2 px-4">
-                <div className="flex gap-1 flex-wrap">
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>radius</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">
+                <div className="flex gap-[var(--space-1)] flex-wrap">
                   <code>"none"</code>
                   <code>"sm"</code>
                   <code>"md"</code>
@@ -365,62 +365,62 @@ export function ButtonDisabledDemo() {
                   <code>"full"</code>
                 </div>
               </td>
-              <td className="py-2 px-4"><code>"sm"</code></td>
-              <td className="py-2 px-4 text-sm">Border radius of the button</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"sm"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Border radius of the button</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>leadingIcon</code></td>
-              <td className="py-2 px-4"><code>React.ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Icon displayed before the button text</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>leadingIcon</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>React.ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Icon displayed before the button text</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>trailingIcon</code></td>
-              <td className="py-2 px-4"><code>React.ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Icon displayed after the button text</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>trailingIcon</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>React.ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Icon displayed after the button text</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>loading</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Shows loading spinner and disables the button</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>loading</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Shows loading spinner and disables the button</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>loadingText</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Custom text to display when loading (overrides children)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>loadingText</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Custom text to display when loading (overrides children)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>disabled</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Disables the button</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>disabled</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Disables the button</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>children</code></td>
-              <td className="py-2 px-4"><code>React.ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Button text content (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>React.ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Button text content (required)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>Button</code> is a primary interactive component for triggering user actions. Use it to provide clear, actionable controls for form submissions, navigation, confirmations, or any user-initiated process.
@@ -456,7 +456,7 @@ export function ButtonDisabledDemo() {
             <li><code>className?</code> – string. Additional CSS classes</li>
           </ul>
 
-          <h3 className="mt-6 mb-4">Basic Example</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Basic Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -467,7 +467,7 @@ export function ButtonDisabledDemo() {
   "children": "Submit"
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Variants</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Variants</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`[
   {
     "type": "component",
@@ -495,7 +495,7 @@ export function ButtonDisabledDemo() {
   }
 ]`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">With Leading Icon</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">With Leading Icon</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -510,7 +510,7 @@ export function ButtonDisabledDemo() {
   "children": "Download"
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">With Trailing Icon</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">With Trailing Icon</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -525,7 +525,7 @@ export function ButtonDisabledDemo() {
   "children": "Next"
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Icon-Only Button</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Icon-Only Button</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -541,7 +541,7 @@ export function ButtonDisabledDemo() {
   }
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Loading State</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Loading State</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -553,7 +553,7 @@ export function ButtonDisabledDemo() {
   }
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Loading with Custom Text</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Loading with Custom Text</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -566,7 +566,7 @@ export function ButtonDisabledDemo() {
   }
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Disabled State</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Disabled State</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -577,7 +577,7 @@ export function ButtonDisabledDemo() {
   "children": "Disabled"
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Custom Radius</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Custom Radius</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Button",
@@ -594,7 +594,7 @@ export function ButtonDisabledDemo() {
   }
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Accessibility Notes</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Accessibility Notes</h3>
           <ul>
             <li>Icon-only buttons must include <code>aria-label</code> for screen readers</li>
             <li>Buttons are keyboard accessible (Enter/Space keys)</li>

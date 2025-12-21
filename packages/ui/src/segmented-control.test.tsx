@@ -96,7 +96,7 @@ describe("SegmentedControl", () => {
     expect(container.firstChild).toHaveClass("bg-[color:var(--color-surface-2)]");
 
     rerender(<SegmentedControl options={defaultOptions} variant="outline" />);
-    expect(container.firstChild).toHaveClass("ring-1", "ring-inset", "ring-[color:var(--color-border-base)]");
+    expect(container.firstChild).toHaveClass("border");
 
     rerender(<SegmentedControl options={defaultOptions} variant="filled" />);
     expect(container.firstChild).toHaveClass("bg-[color:var(--color-surface-1)]");
@@ -107,16 +107,13 @@ describe("SegmentedControl", () => {
       <SegmentedControl options={defaultOptions} size="sm" />
     );
     const item = container.querySelector("button");
-    expect(item).toHaveClass("h-[var(--space-8)]");
-    expect(item).toHaveStyle({ fontSize: "12px" });
+    expect(item).toHaveClass("h-8", "text-xs");
 
     rerender(<SegmentedControl options={defaultOptions} size="md" />);
-    expect(item).toHaveClass("h-[calc(var(--space-8)+var(--space-2))]");
-    expect(item).toHaveStyle({ fontSize: "var(--typography-size-sm)" });
+    expect(item).toHaveClass("h-10", "text-sm");
 
     rerender(<SegmentedControl options={defaultOptions} size="lg" />);
-    expect(item).toHaveClass("h-[calc(var(--space-8)+var(--space-4))]");
-    expect(item).toHaveStyle({ fontSize: "var(--typography-size-md)" });
+    expect(item).toHaveClass("h-12", "text-base");
   });
 });
 

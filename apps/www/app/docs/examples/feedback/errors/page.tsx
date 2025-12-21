@@ -6,22 +6,16 @@ import { Card, CardContent } from "@fragment_ui/ui";
 export default function ErrorHandlingExample() {
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Errors</h1>
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Errors</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Errors example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Examples</h2>
-      <div className="space-y-4 my-6">
+      <div className="space-y-4 my-[var(--space-6)]">
         <div>
           <h3 className="text-lg font-semibold mb-2">Error Alert</h3>
           <Card className="border-[color:var(--color-accent-red)]/20 bg-[color:var(--color-accent-red)]/10">

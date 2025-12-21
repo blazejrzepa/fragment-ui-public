@@ -17,8 +17,8 @@ export default async function TestGuidePage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="test-guide" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="test-guide" className="text-[length:var(--typography-display-md-size)] font-medium">
           {frontmatter.title || "Testing Guide"}
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />

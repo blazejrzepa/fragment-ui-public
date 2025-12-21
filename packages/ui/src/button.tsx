@@ -43,8 +43,8 @@ const classesBy = {
   focus: "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand-primary)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--color-surface-1)]",
   size: {
     sm: "h-[var(--space-8)] px-[var(--space-3)] gap-[var(--space-2)] leading-[1.5]",
-    md: "h-[calc(var(--space-8)+var(--space-2))] px-[var(--space-4)] gap-[var(--space-2)] leading-[1.5]",
-    lg: "h-[calc(var(--space-8)+var(--space-4))] px-[var(--space-6)] gap-[var(--space-2)] leading-[1.5]",
+    md: "h-[calc(var(--space-8)+var(--space-1))] px-[var(--space-4)] gap-[var(--space-2)] leading-[1.5]",
+    lg: "h-[calc(var(--space-8)+var(--space-3))] px-[calc(var(--space-6)-var(--space-1))] gap-[var(--space-2)] leading-[1.5]",
   },
   variant: {
     solid:

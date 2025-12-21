@@ -37,13 +37,14 @@ const CollapsibleTrigger = React.forwardRef<
       className={clsx(
         "flex items-center justify-between w-full gap-2",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand rounded-[var(--radius-sm)]",
+        "[&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}
     >
       {children}
       {showIcon && (
-        <ChevronDown className="h-4 w-4 transition-transform duration-[var(--motion-duration-base)] data-[state=open]:rotate-180" />
+        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-[var(--motion-duration-base)]" aria-hidden="true" />
       )}
     </CollapsiblePrimitive.Trigger>
   );

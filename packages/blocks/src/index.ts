@@ -37,4 +37,5 @@ export * from "./templates/settings-template";
 export * from "./documentation-layout";
 export * from "./documentation-header";
 export * from "./documentation-sidebar";
+export * from "./link-card";
 

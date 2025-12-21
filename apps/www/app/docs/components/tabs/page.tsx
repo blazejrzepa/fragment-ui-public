@@ -57,17 +57,17 @@ export function TabsIconsDemo() {
 export default function TabsPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="tabs">Tabs</h1>
       </div>
-      <p className="mb-6 intro-text">Switch between related content views.</p>
+      <p className="mb-[var(--space-6)] intro-text">Switch between related content views.</p>
       
       <ExampleSection
         id="tabs-example"
         title="Example"
         code={tabsCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md">
             <Tabs defaultValue="tab1" className="w-full">
               <TabsList>
@@ -92,9 +92,9 @@ export default function TabsPage() {
         id="tabs-pills"
         title="Pills Variant"
         code={tabsPillsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md">
             <Tabs defaultValue="tab1" className="w-full">
               <TabsList variant="pills">
@@ -114,9 +114,9 @@ export default function TabsPage() {
         id="tabs-icons"
         title="With Icons"
         code={tabsIconsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md">
             <Tabs defaultValue="tab1" className="w-full">
               <TabsList>
@@ -172,13 +172,13 @@ export default function TabsPage() {
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Tabs</code> is a component for switching between related panels of content. Use it when you need to organize content into multiple sections that users can switch between. The component supports different visual variants (default, pills, underline, boxed) and is fully accessible.

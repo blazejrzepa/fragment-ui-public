@@ -1,0 +1,28 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@fragment_ui/mcp-server",
+    "@fragment_ui/patches",
+    "@fragment_ui/plugin-system",
+    "@fragment_ui/scaffolds",
+    "@fragment_ui/studio-core",
+    "@fragment_ui/telemetry",
+    "@fragment_ui/ui-dsl",
+    "@fragment_ui/blocks-recipes",
+    "@fragment_ui/registry",
+    "@fragment_ui/utils",
+    "@fragment_ui/cli",
+    "fragment-ui",
+    "@fragment_ui/ui-native",
+    "fragment-www",
+    "fragment-demo"
+  ]
+}
+

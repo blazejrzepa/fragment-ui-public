@@ -1,0 +1,55 @@
+/* ============================================
+ CSS Variables Mapping
+ ============================================
+ Maps Fragment UI design tokens to Tailwind-compatible CSS variables.
+ Preparation for Tailwind v4 migration (@theme inline).
+*/
+
+:root {
+  color-scheme: light dark;
+  
+  /* Tailwind config values as CSS variables - preparation for v4 migration */
+  /* These can be moved to @theme inline in Tailwind v4 */
+  
+  /* Colors */
+  --tw-color-background: var(--color-bg-base);
+  --tw-color-foreground: var(--color-fg-base);
+  --tw-color-brand: var(--color-brand-primary);
+  --tw-color-border: var(--color-border-base);
+  --tw-color-border-muted: var(--color-border-muted);
+  --tw-color-muted-foreground: var(--color-fg-muted);
+  
+  /* Status colors */
+  --tw-color-status-success-fg: var(--color-status-success-fg);
+  --tw-color-status-success-bg: var(--color-status-success-bg);
+  --tw-color-status-success-border: var(--color-status-success-border);
+  --tw-color-status-error-fg: var(--color-status-error-fg);
+  --tw-color-status-error-bg: var(--color-status-error-bg);
+  --tw-color-status-error-border: var(--color-status-error-border);
+  --tw-color-status-warning-fg: var(--color-status-warning-fg);
+  --tw-color-status-warning-bg: var(--color-status-warning-bg);
+  --tw-color-status-warning-border: var(--color-status-warning-border);
+  --tw-color-status-info-fg: var(--color-status-info-fg);
+  --tw-color-status-info-bg: var(--color-status-info-bg);
+  --tw-color-status-info-border: var(--color-status-info-border);
+}
+
+/* Layout variables */
+:root {
+  --header-height: 60px;
+  --max-width-container: 1536px;
+  --sidebar-width: 240px;
+}
+
+/* Sidebar width variables - matching shadcn/ui */
+/* NOTE: @layer base is applied in globals.css after @tailwind base */
+.group\/sidebar-wrapper {
+  --sidebar-width: 220px;
+}
+
+@media (min-width: 1024px) {
+  .group\/sidebar-wrapper {
+    --sidebar-width: 240px;
+  }
+}
+

@@ -127,7 +127,7 @@ Chromatic config: `packages/ui/.storybook/preview.ts` and `.github/workflows/chr
 ### Features
 
 - Multiple viewports (mobile, tablet, desktop)
-- Multiple themes (light, dark, high-contrast)
+- Multiple themes (light, dark)
 - Automatic visual diffing
 - Review changes before merge
 
@@ -199,5 +199,5 @@ All tests run automatically in GitHub Actions.
 
 - [Visual Regression Testing](/docs/testing/visual-regression)
 - [Performance Tests](/docs/testing/performance-tests)
-- [GitHub Actions](https://github.com/blazejrzepa/fragment-ui/actions)
+- [GitHub Actions](https://github.com/blazejrzepa/fragment-ui-public/actions)
 

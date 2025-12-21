@@ -1,0 +1,37 @@
+/* ============================================
+   Miscellaneous Utilities
+   ============================================
+   Various utility styles that don't fit into other categories.
+   
+   NOTE: @layer utilities is applied in globals.css after @tailwind utilities
+*/
+
+/* ExampleSection - Ensure CodeBlock fills full height */
+.overflow-auto.h-\[360px\] {
+  height: 360px;
+}
+
+.overflow-auto.h-\[360px\] .not-prose,
+.overflow-auto.h-\[360px\] .not-prose.h-full,
+.overflow-auto.h-\[360px\] .not-prose > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.overflow-auto.h-\[360px\] .not-prose pre,
+.overflow-auto.h-\[360px\] .not-prose.h-full pre,
+.overflow-auto.h-\[360px\] .not-prose > div > pre {
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.overflow-auto.h-\[360px\] .not-prose pre code,
+.overflow-auto.h-\[360px\] .not-prose.h-full pre code,
+.overflow-auto.h-\[360px\] .not-prose > div > pre code {
+  flex: 1;
+  overflow: auto;
+}

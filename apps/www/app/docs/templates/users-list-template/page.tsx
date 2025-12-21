@@ -37,20 +37,11 @@ export default function UsersListTemplatePage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center gap-4 mb-4">
-        <h1 id="users-list-template" className="text-3xl font-medium">UsersListTemplate</h1>
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
+        <h1 id="users-list-template" className="text-[length:var(--typography-display-md-size)] font-medium">UsersListTemplate</h1>
         <StabilityBadge stability="stable" />
       </div>
-      <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
-      >
+      <p className="mb-[var(--space-6)] intro-text">
         Complete users list page template with table, search, filters, pagination, and actions.
         A full-screen template for displaying and managing lists of data with comprehensive controls.
       </p>
@@ -66,7 +57,7 @@ export default function UsersListTemplatePage() {
       <CodeBlock language="bash" highlightApiUrl="/api/highlight-code">npx shadcn@latest add /r/users-list-template.json</CodeBlock>
       
       <h2 id="examples">Examples</h2>
-      <div className="space-y-6 my-6">
+      <div className="space-y-[var(--space-6)] my-[var(--space-6)]">
         <div>
           <h3 className="text-lg font-semibold mb-2">Complete Users List Template</h3>
           <div className="border rounded-lg overflow-hidden">

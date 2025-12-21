@@ -97,17 +97,17 @@ export function SelectWithIcons() {
 export default function SelectPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="select">Select</h1>
       </div>
-      <p className="mb-6 intro-text">Choose a single option from a dropdown.</p>
+      <p className="mb-[var(--space-6)] intro-text">Choose a single option from a dropdown.</p>
       
       <ExampleSection
         id="select-example"
         title="Example"
         code={selectCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Select>
             <SelectTrigger className="w-[200px]">
               <SelectValue placeholder="Choose" />
@@ -138,9 +138,9 @@ export default function SelectPage() {
         id="select-icons"
         title="With Icons"
         code={selectIconsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Select>
             <SelectTrigger className="w-[200px]">
               <SelectValue placeholder="Choose" />
@@ -182,70 +182,70 @@ export default function SelectPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Select</code></td>
-              <td className="py-2 px-4"><code>value?, defaultValue?, onValueChange?, disabled?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Root container for select component</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Select</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value?, defaultValue?, onValueChange?, disabled?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Root container for select component</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SelectTrigger</code></td>
-              <td className="py-2 px-4"><code>error?, loading?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Button that opens the dropdown</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SelectTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>error?, loading?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Button that opens the dropdown</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SelectValue</code></td>
-              <td className="py-2 px-4"><code>placeholder?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Displays selected value or placeholder</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SelectValue</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>placeholder?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Displays selected value or placeholder</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SelectContent</code></td>
-              <td className="py-2 px-4"><code>position?, sideOffset?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Dropdown content container</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SelectContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>position?, sideOffset?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Dropdown content container</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SelectItem</code></td>
-              <td className="py-2 px-4"><code>value, disabled?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Individual option item</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SelectItem</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value, disabled?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Individual option item</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SelectGroup</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Group container for organizing items</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SelectGroup</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Group container for organizing items</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>SelectLabel</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Group label</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SelectLabel</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Group label</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Select</code> is a component for choosing one option from a dropdown list. Use it when you need to provide users with a dropdown selection interface. The component supports grouped options, icons, search functionality, and is fully accessible with keyboard navigation.

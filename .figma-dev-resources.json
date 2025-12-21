@@ -1,0 +1,61 @@
+{
+  "components": [
+    {
+      "figmaNodeId": "1304-13481",
+      "name": "Button",
+      "figmaUrl": "https://www.figma.com/design/dccfbPgHqbWW7K687i9Fv3/Fragment-UI-Design-System?node-id=1304-13481",
+      "resources": [
+        {
+          "type": "code",
+          "url": "https://github.com/blazejrzepa/fragment-ui/blob/main/packages/ui/src/button.tsx",
+          "label": "Button Component Code"
+        },
+        {
+          "type": "docs",
+          "url": "https://fragment-ui-www.vercel.app/docs/components/button",
+          "label": "Button Documentation"
+        },
+        {
+          "type": "storybook",
+          "url": "https://6908c46a37e9c1c1fe40b48d-wvgljbvydh.chromatic.com?path=%2Fdocs%2Fcore-button--docs",
+          "label": "Button Storybook"
+        }
+      ],
+      "variants": {
+        "variant": [
+          "solid",
+          "outline",
+          "ghost"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ]
+      }
+    }
+  ],
+  "pending": [
+    {
+      "componentName": "Card",
+      "codePath": "packages/ui/src/card.tsx",
+      "docsPath": "apps/www/app/docs/components/card/page.tsx",
+      "storybookPath": "/docs/display-card--docs",
+      "note": "Node ID required - update script with Figma node ID"
+    },
+    {
+      "componentName": "Dialog",
+      "codePath": "packages/ui/src/dialog.tsx",
+      "docsPath": "apps/www/app/docs/components/dialog/page.tsx",
+      "storybookPath": "/docs/core-dialog--docs",
+      "note": "Node ID required - update script with Figma node ID"
+    },
+    {
+      "componentName": "Select",
+      "codePath": "packages/ui/src/select.tsx",
+      "docsPath": "apps/www/app/docs/components/select/page.tsx",
+      "storybookPath": "/docs/core-select--docs",
+      "note": "Node ID required - update script with Figma node ID"
+    }
+  ]
+}

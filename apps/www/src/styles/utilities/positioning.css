@@ -1,0 +1,503 @@
+/* ============================================
+   Positioning Utilities
+   ============================================
+   Critical fixes for fixed/sticky positioning.
+   Ensures header and sidebars work correctly.
+   
+   NOTE: This file is imported in globals.css after @tailwind utilities
+   Using !important ensures proper specificity since @layer cannot be used with @import
+*/
+
+/* ============================================
+   CRITICAL: Popper.js Positioning Protection
+   ============================================
+   This MUST be the FIRST rule in this file to ensure highest priority.
+   Popper.js uses inline styles for left, top, and transform.
+   
+   PROBLEM: CSS !important rules can override Popper.js inline styles.
+   SOLUTION: Only set position: fixed, let Popper.js handle everything else via inline styles.
+   Inline styles have higher specificity than CSS, so they should work unless we interfere.
+   ============================================ */
+[data-radix-popper-content-wrapper] {
+  /* CRITICAL: Position fixed is required for Popper.js to work */
+  position: fixed !important;
+  
+  /* CRITICAL: Do NOT set transform, left, top here - let Popper.js manage them via inline styles */
+  /* Popper.js will set left, top, transform via inline style after mount */
+  /* Inline styles have higher specificity than CSS !important for the same property */
+  /* Only optimize for transform animations */
+  will-change: transform !important;
+}
+
+/* Fixed header positioning */
+header.fixed.top-0,
+header[class*="fixed"][class*="top-0"],
+header[class*="fixed"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  isolation: isolate;
+}
+
+/* Ensure parent containers don't create stacking context */
+div:has(> header.fixed.top-0),
+div:has(> header[class*="fixed"][class*="top-0"]),
+div:has(> header[class*="fixed"]),
+body > div:has(> header),
+html > body > div:has(> header),
+#__next {
+  transform: none;
+  perspective: none;
+  filter: none;
+  overflow-x: visible;
+  overflow-y: visible; /* Don't create scroll container - html scrolls */
+  position: static;
+  isolation: auto;
+}
+  
+#__next > div {
+  transform: none;
+  perspective: none;
+  filter: none;
+  overflow-x: visible;
+  overflow-y: visible;
+  position: static;
+  isolation: auto;
+}
+
+/* CRITICAL: Body direct children that contain DocumentationLayout */
+/* From HTML: body > div.mx-auto (DocumentationLayout root) */
+body > div.mx-auto:has(div.w-full:has(div.grid:has(aside[class*="sticky"]))),
+body > div[class*="mx-auto"]:has(div[class*="w-full"]:has(div[class*="grid"]:has(aside[class*="sticky"]))),
+/* Direct selectors without :has() for better browser support */
+body > div.mx-auto.px-1,
+body > div.mx-auto[class*="px-"],
+body > div[class*="mx-auto"][class*="w-full"],
+/* Also target mx-auto with inline style maxWidth */
+body > div.mx-auto[style*="max-width"],
+body > div.mx-auto[style*="maxWidth"] {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  position: static !important;
+}
+
+/* CRITICAL: Sticky sidebar positioning fixes */
+/* Parent containers must NOT have overflow or transform */
+
+/* Complete DOM structure for DocumentationLayout:
+   div.mx-auto (DocumentationLayout root)
+     div.w-full (with marginTop)
+       div.grid (grid-cols-[240px_minmax(0,1fr)_240px])
+         aside.sticky (left sidebar)
+         main.min-w-0
+         aside.sticky (right sidebar)
+*/
+
+/* Root container - mx-auto from DocumentationLayout */
+/* CRITICAL: Exclude Popper.js wrappers - they need transform for positioning */
+div.mx-auto:has(div.w-full:has(div.grid:has(aside[class*="sticky"]))):not([data-radix-popper-content-wrapper]),
+div.mx-auto:has(div.w-full:has(div.grid:has(aside.sticky))):not([data-radix-popper-content-wrapper]),
+div[class*="mx-auto"]:has(div[class*="w-full"]:has(div[class*="grid"]:has(aside[class*="sticky"]))):not([data-radix-popper-content-wrapper]) {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  height: auto !important;
+  max-height: none !important;
+  position: static !important;
+  /* Ensure it doesn't create scrolling context */
+  min-height: 0 !important;
+}
+
+/* Parent of grid - w-full */
+div.w-full:has(> div.grid:has(> aside[class*="sticky"])),
+div.w-full:has(> div.grid:has(> aside.sticky)),
+div[class*="w-full"]:has(> div[class*="grid"]:has(> aside[class*="sticky"])),
+div[class*="w-full"]:has(> div[class*="grid"]:has(> aside.sticky)),
+/* Also target w-full with inline style marginTop */
+div.w-full[style*="marginTop"]:has(> div.grid:has(> aside[class*="sticky"])),
+div.w-full[style*="marginTop"]:has(> div.grid:has(> aside.sticky)) {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  height: auto !important;
+  max-height: none !important;
+  position: static !important;
+  /* Ensure it doesn't create scrolling context */
+  min-height: 0 !important;
+}
+
+/* Direct parent - grid container */
+/* Use more specific selectors to ensure they match */
+div.grid:has(> aside[class*="sticky"]),
+div.grid:has(> aside.sticky),
+div[class*="grid"]:has(> aside[class*="sticky"]),
+div[class*="grid"]:has(> aside.sticky),
+div.grid[class*="grid-cols"]:has(> aside[class*="sticky"]),
+div.grid[class*="grid-cols"]:has(> aside.sticky),
+div.w-full.grid:has(> aside[class*="sticky"]),
+div.w-full.grid:has(> aside.sticky),
+div[class*="w-full"][class*="grid"]:has(> aside[class*="sticky"]),
+div[class*="w-full"][class*="grid"]:has(> aside.sticky),
+/* Direct selectors without :has() for better browser support */
+div.w-full.grid.grid-cols-1,
+div.w-full.grid[class*="grid-cols"],
+div.w-full.grid[class*="lg:grid-cols"] {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  /* CRITICAL: Grid container must have min-height for sticky to work */
+  min-height: 100vh !important;
+  height: auto !important;
+  max-height: none !important;
+  position: static !important;
+  /* Ensure grid items can stick */
+  align-items: start !important;
+}
+  
+/* Parent of grid - w-full */
+div.w-full:has(> div.grid:has(> aside[class*="sticky"])),
+div.w-full:has(> div.grid:has(> aside.sticky)),
+div.w-full:has(> div[class*="grid"]:has(> aside[class*="sticky"])),
+div.w-full:has(> div[class*="grid"]:has(> aside.sticky)),
+div[class*="w-full"]:has(> div.grid:has(> aside[class*="sticky"])),
+div[class*="w-full"]:has(> div.grid:has(> aside.sticky)) {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+  
+/* Additional mx-auto selectors for DocumentationLayout structure */
+div.mx-auto[style*="maxWidth"]:has(div.w-full:has(div.grid:has(aside[class*="sticky"]))),
+div.mx-auto[style*="maxWidth"]:has(div.w-full:has(div.grid:has(aside.sticky))),
+div[class*="mx-auto"][style*="maxWidth"]:has(div[class*="w-full"]:has(div[class*="grid"]:has(aside[class*="sticky"]))),
+div.mx-auto[style*="max-width"]:has(div.w-full:has(div.grid:has(aside[class*="sticky"]))),
+div.mx-auto[style*="max-width"]:has(div.w-full:has(div.grid:has(aside.sticky))),
+div[class*="mx-auto"][style*="max-width"]:has(div[class*="w-full"]:has(div[class*="grid"]:has(aside[class*="sticky"]))) {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  height: auto !important;
+  max-height: none !important;
+  position: static !important;
+  /* Ensure it doesn't create scrolling context */
+  min-height: 0 !important;
+}
+  
+/* Grid containers themselves */
+div.grid[class*="grid-cols"]:has(> aside[class*="sticky"]),
+div.grid[class*="grid-cols"]:has(> aside.sticky),
+div[class*="grid"][class*="grid-cols"]:has(> aside[class*="sticky"]),
+div[class*="grid"][class*="grid-cols"]:has(> aside.sticky) {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+}
+  
+/* #__next and its children - ensure they don't block sticky */
+#__next:has(> div:has(> div:has(> aside[class*="sticky"]))),
+#__next > div:has(> div:has(> aside[class*="sticky"])),
+#__next:has(div:has(div:has(aside[class*="sticky"]))),
+#__next > div:has(div:has(aside[class*="sticky"])),
+/* Direct children of #__next that contain DocumentationLayout */
+#__next > div.mx-auto:has(div.w-full:has(div.grid:has(aside[class*="sticky"]))),
+#__next > div[class*="mx-auto"]:has(div[class*="w-full"]:has(div[class*="grid"]:has(aside[class*="sticky"]))) {
+  transform: none !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  position: static !important;
+}
+  
+/* Fallback: all divs containing sticky aside */
+div:has(aside[class*="sticky"]),
+div:has(aside.sticky),
+div:has(> aside[class*="sticky"]),
+div:has(> aside.sticky) {
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  contain: none !important;
+}
+  
+/* Sticky element itself - ensure it works */
+/* Target all possible sticky aside selectors */
+aside[class*="sticky"],
+aside.sticky,
+aside.sticky.top-16,
+aside.hidden.lg\:block.sticky.top-16,
+aside[class*="hidden"][class*="lg:block"][class*="sticky"][class*="top-16"],
+/* Direct selector for documentation layout sidebars */
+aside.hidden.lg\:block.sticky.top-16.h-\[calc\(100vh-96px\)\],
+aside[class*="hidden"][class*="lg:block"][class*="sticky"][class*="top-16"][class*="h-["],
+/* Most specific selector for documentation layout - highest priority */
+div.w-full.grid > aside.hidden.lg\:block.sticky.top-16,
+div.w-full.grid > aside[class*="hidden"][class*="lg:block"].sticky.top-16,
+div.w-full.grid > aside.hidden.lg\:block.sticky.top-\[60px\],
+div.w-full.grid > aside[class*="hidden"][class*="lg:block"].sticky[class*="top-["] {
+  position: sticky !important;
+  top: 60px !important; /* Header height is 60px */
+  align-self: start !important;
+  overflow-y: auto !important;
+  /* Allow height from component (h-[calc(100vh-60px)]) but ensure it doesn't exceed viewport */
+  max-height: calc(100vh - 60px) !important;
+  /* Ensure sticky works by removing any conflicting properties */
+  contain: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  /* Ensure it's not affected by parent transforms */
+  isolation: auto !important;
+}
+
+/* Media query to ensure sticky works on large screens */
+@media (min-width: 1024px) {
+  /* CRITICAL: Direct selectors for documentation layout sidebars - highest priority */
+  /* These selectors match the exact HTML structure from DocumentationLayout */
+  div.w-full.grid.grid-cols-1.lg\:grid-cols-\[240px_minmax\(0\:1fr\)_240px\] > aside.hidden.lg\:block.sticky.top-\[60px\],
+  div.w-full.grid.grid-cols-1.lg\:grid-cols-\[240px_minmax\(0\:1fr\)_240px\] > aside.hidden.lg\:block.sticky.top-16,
+  div.w-full.grid[class*="grid-cols"] > aside.hidden.lg\:block.sticky.top-\[60px\],
+  div.w-full.grid[class*="grid-cols"] > aside.hidden.lg\:block.sticky.top-16,
+  div.w-full.grid[class*="grid-cols"] > aside[class*="hidden"][class*="lg:block"].sticky[class*="top-["],
+  div.w-full.grid[class*="grid-cols"] > aside[class*="hidden"][class*="lg:block"].sticky.top-16,
+  /* Fallback selectors */
+  aside.hidden.lg\:block[class*="sticky"],
+  aside[class*="hidden"][class*="lg:block"][class*="sticky"],
+  /* More specific selectors for documentation layout */
+  div.grid[class*="grid-cols"] > aside.hidden.lg\:block[class*="sticky"],
+  div.grid[class*="grid-cols"] > aside[class*="hidden"][class*="lg:block"][class*="sticky"],
+  div.w-full.grid[class*="grid-cols"] > aside.hidden.lg\:block[class*="sticky"],
+  div.w-full.grid[class*="grid-cols"] > aside[class*="hidden"][class*="lg:block"][class*="sticky"] {
+    display: block !important;
+    position: sticky !important;
+    top: 60px !important;
+    align-self: start !important;
+    overflow-y: auto !important;
+    max-height: calc(100vh - 60px) !important;
+    contain: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    isolation: auto !important;
+  }
+  
+  /* CRITICAL: Ensure grid container has min-height for sticky to work */
+  /* Grid must be taller than viewport for sticky to work */
+  div.w-full.grid.grid-cols-1.lg\:grid-cols-\[240px_minmax\(0\:1fr\)_240px\],
+  div.w-full.grid[class*="grid-cols"],
+  div.w-full.grid[class*="lg:grid-cols"] {
+    min-height: 100vh !important;
+    height: auto !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    transform: none !important;
+    perspective: none !important;
+    filter: none !important;
+    will-change: auto !important;
+    contain: none !important;
+    position: static !important;
+    align-items: start !important;
+  }
+  
+  /* CRITICAL: Ensure parent w-full doesn't block sticky */
+  div.w-full[style*="marginTop"],
+  div.w-full[style*="margin-top"] {
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    transform: none !important;
+    perspective: none !important;
+    filter: none !important;
+    will-change: auto !important;
+    contain: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: static !important;
+  }
+}
+
+/* Ensure main element doesn't interfere with sticky */
+main.min-w-0 {
+  overflow: visible !important;
+  transform: none !important;
+  contain: none !important;
+}
+
+/* Force admin sidebar to be at left edge */
+aside.fixed.left-0,
+aside[class*="fixed"][class*="left-0"],
+aside.fixed.left-0[class*="z-30"],
+aside.fixed[class*="w-64"],
+body aside.fixed.left-0,
+body aside[class*="fixed"][class*="left-0"],
+body aside.fixed[class*="w-64"] {
+  left: 0;
+  margin-left: 0;
+  padding-left: 0;
+  transform: translateX(0);
+  inset: 0px auto auto 0px;
+}
+
+/* Admin layout root containers */
+body > div:first-child:not([class*="pl-"]),
+body [class*="admin"] > div:first-child:not([class*="pl-"]) {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* ============================================
+   CRITICAL: Final fallback rules for sticky positioning
+   ============================================
+   These rules are at the end of the file to ensure highest priority.
+   They target the exact HTML structure from DocumentationLayout.
+*/
+
+/* Ensure all parent containers don't block sticky */
+body > div.mx-auto > div.w-full > div.w-full.grid,
+body > div[class*="mx-auto"] > div[class*="w-full"] > div[class*="w-full"][class*="grid"],
+div.w-full.grid.grid-cols-1.lg\:grid-cols-\[240px_minmax\(0\:1fr\)_240px\],
+div.w-full.grid[class*="grid-cols"] {
+  min-height: 100vh !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+  position: static !important;
+  align-items: start !important;
+}
+
+/* Ensure sticky aside works - final fallback */
+@media (min-width: 1024px) {
+  body > div.mx-auto > div.w-full > div.w-full.grid > aside.hidden.lg\:block.sticky.top-\[60px\],
+  body > div[class*="mx-auto"] > div[class*="w-full"] > div[class*="w-full"][class*="grid"] > aside[class*="hidden"][class*="lg:block"][class*="sticky"][class*="top-["],
+  body > div.mx-auto > div.w-full > div.w-full.grid > aside.hidden.lg\:block.sticky.top-16,
+  body > div[class*="mx-auto"] > div[class*="w-full"] > div[class*="w-full"][class*="grid"] > aside[class*="hidden"][class*="lg:block"][class*="sticky"][class*="top-16"] {
+    display: block !important;
+    position: sticky !important;
+    top: 60px !important;
+    align-self: start !important;
+    overflow-y: auto !important;
+    max-height: calc(100vh - 60px) !important;
+    contain: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    isolation: auto !important;
+  }
+}
+
+/* Fixed sidebar positioning */
+@media (min-width: 1024px) {
+  body > div.mx-auto > div.w-full > div.w-full.grid > aside.hidden.lg\:block.fixed.top-\[60px\],
+  body > div[class*="mx-auto"] > div[class*="w-full"] > div[class*="w-full"][class*="grid"] > aside[class*="hidden"][class*="lg:block"].fixed[class*="top-["],
+  div.w-full.grid > aside.hidden.lg\:block.fixed.top-\[60px\] {
+    display: block !important;
+    position: fixed !important;
+    top: 60px !important;
+    overflow-y: auto !important;
+    height: calc(100vh - 60px) !important;
+    max-height: calc(100vh - 60px) !important;
+    z-index: 40 !important;
+    contain: none !important;
+    transform: none !important;
+    will-change: auto !important;
+    isolation: auto !important;
+  }
+}
+
+/* Dialog/Modal centering - ensure dialog content is centered */
+[data-radix-dialog-content]:not(.theme-editor-panel),
+[data-radix-dialog-content][class*="fixed"]:not(.theme-editor-panel) {
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  position: fixed !important;
+}
+
+/* NOTE: Popper.js positioning rules are defined at the TOP of this file (line 22) */
+/* This section is for other Radix UI components that don't use Popper.js */
+
+/* Ensure all Popper-based content components are positioned correctly */
+/* NOTE: [data-radix-popover-content] and [data-radix-select-content] use Popper.js 
+   and should NOT have position: relative - Popper.js handles positioning via inline styles */
+[data-radix-dropdown-menu-content],
+[data-radix-hover-card-content],
+[data-radix-tooltip-content] {
+  position: relative !important;
+}
+
+/* Ensure containers with Combobox/Popover/Select don't interfere with positioning */
+/* Preview containers in ExampleSection shouldn't affect Popper positioning */
+.preview:has([data-radix-popover-trigger]),
+.preview:has(button[role="combobox"]),
+.preview:has([data-radix-select-trigger]),
+.preview:has(button[data-radix-select-trigger]),
+.preview:has([role="combobox"][data-radix-select-trigger]) {
+  overflow: visible !important;
+  transform: none !important;
+  isolation: auto !important;
+  contain: none !important;
+}
+
+/* AlertDialog centering - ensure alert dialog content is centered */
+[role="alertdialog"],
+[role="alertdialog"][class*="fixed"] {
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  position: fixed !important;
+}

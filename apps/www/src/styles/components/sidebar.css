@@ -1,0 +1,41 @@
+/* ============================================
+   Sidebar Component Styles
+   ============================================
+   Styles for sidebar positioning and desktop offsets.
+   
+   NOTE: @layer utilities is applied in globals.css after @tailwind utilities
+*/
+
+/* Sidebar positioning - desktop offsets */
+@media (min-width: 1024px) {
+  /* Only apply to documentation sidebars, not AppShell sidebars */
+  aside.fixed.left-0:not([data-cursor-element-id]) {
+    left: 8px;
+  }
+  
+  aside.fixed.right-0:not([data-cursor-element-id]) {
+    right: 8px;
+  }
+  
+  /* Override for AppShell sidebars - ensure they stick to edge */
+  aside.fixed.left-0[data-cursor-element-id] {
+    left: 0;
+  }
+}
+
+/* Table of Contents - remove all background effects */
+/* Only apply to right sidebar TOC, not left navigation sidebar */
+aside:last-child nav[class*="sticky"] a,
+aside:last-child nav[class*="sticky"] a:focus,
+aside:last-child nav[class*="sticky"] a:active,
+aside:last-child nav[class*="sticky"] a:visited,
+aside:last-child nav[class*="sticky"] a:hover {
+  background-color: transparent;
+  outline: none;
+}
+
+/* Table of Contents - remove focus ring */
+aside:last-child nav[class*="sticky"] a:focus-visible {
+  outline: none;
+  box-shadow: none;
+}

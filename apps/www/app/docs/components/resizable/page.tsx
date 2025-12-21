@@ -43,12 +43,12 @@ export default function ResizablePage() {
             <Resizable direction="horizontal" className="min-h-[200px] w-full rounded-[var(--radius-md)] border border-[color:var(--color-border-base)]">
               <ResizablePanel defaultSize={50}>
                 <div className="flex h-full items-center justify-center p-[var(--space-6)]">
-                  <span className="font-semibold">Panel 1</span>
+                  <span font-semibold>Panel 1</span>
                 </div>
               </ResizablePanel>
               <ResizablePanel defaultSize={50}>
                 <div className="flex h-full items-center justify-center p-[var(--space-6)]">
-                  <span className="font-semibold">Panel 2</span>
+                  <span font-semibold>Panel 2</span>
                 </div>
               </ResizablePanel>
             </Resizable>
@@ -62,46 +62,46 @@ export default function ResizablePage() {
       </CodeBlock>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Resizable</code></td>
-              <td className="py-2 px-4"><code>direction?, defaultSize?, minSize?, maxSize?, onResize?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for resizable panels</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Resizable</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>direction?, defaultSize?, minSize?, maxSize?, onResize?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for resizable panels</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>ResizablePanel</code></td>
-              <td className="py-2 px-4"><code>defaultSize?, defaultSizePx?, minSize?, minSizePx?, maxSize?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Resizable panel component (use within Resizable)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>ResizablePanel</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>defaultSize?, defaultSizePx?, minSize?, minSizePx?, maxSize?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Resizable panel component (use within Resizable)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>ResizableHandle</code></td>
-              <td className="py-2 px-4"><code>disabled?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Custom handle for resizing (optional, default handle is provided automatically)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>ResizableHandle</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>disabled?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Custom handle for resizing (optional, default handle is provided automatically)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Resizable</code> is a component for resizing panels by dragging a handle. Use it when you need to provide users with the ability to adjust the size of panels, split views, or resizable containers. The component supports both horizontal and vertical resizing with multiple panels.

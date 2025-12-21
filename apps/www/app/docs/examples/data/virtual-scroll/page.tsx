@@ -12,27 +12,21 @@ export default function VirtualScrollExample() {
 
   return (
     <DocLayout>
-      <h1 id="virtual-scroll" className="text-3xl font-medium mb-4">Virtual Scroll</h1>
+      <h1 id="virtual-scroll" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Virtual Scroll</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Virtual Scroll example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6 h-[400px] border rounded-lg">
+      <div className="my-[var(--space-6)] h-[400px] border rounded-[var(--radius-md)]">
         <VirtualList
           items={items}
           itemHeight={50}
           renderItem={(item) => (
-            <div className="p-4 border-b flex items-center justify-between">
+            <div className="p-[var(--space-4)] border-b flex items-center justify-between">
               <div>
                 <div className="font-medium">{item.name}</div>
                 <div className="text-sm text-[color:var(--color-fg-muted)]">{item.description}</div>
@@ -43,7 +37,7 @@ export default function VirtualScrollExample() {
       </div>
 
       <h2>Code</h2>
-      <pre className="bg-[color:var(--color-surface-1)] p-4 rounded-lg overflow-x-auto"><code>{`import { VirtualList } from "@fragment_ui/ui";
+      <pre className="bg-[color:var(--color-surface-1)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto"><code>{`import { VirtualList } from "@fragment_ui/ui";
 
 const items = Array.from({ length: 10000 }, (_, i) => ({
   id: i + 1,

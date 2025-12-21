@@ -59,7 +59,7 @@ export const Input = React.memo(
               className
             )}
             style={{
-              fontFamily: "Geist, sans-serif",
+              fontFamily: "var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif)",
               fontStyle: "normal",
               lineHeight: "160%",
               ...style,

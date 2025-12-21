@@ -1,8 +1,6 @@
 {
-  "name": "fragment-ui",
-  "version": "0.1.0",
-  "private": false,
-  "description": "AI-native design system components based on shadcn/ui",
+  "name": "fragment-ui-monorepo",
+  "private": true,
   "packageManager": "pnpm@9.0.0",
   "pnpm": {
     "publicHoistPattern": [
@@ -15,6 +13,8 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "dev:www": "pnpm --filter fragment-www dev",
+    "dev:www:clean": "pnpm --filter fragment-www dev:clean",
+    "dev:demo": "pnpm --filter fragment-demo dev",
     "build": "turbo run build",
     "type-check": "turbo run type-check",
     "type-check:ui": "pnpm --filter @fragment_ui/ui type-check",
@@ -24,12 +24,31 @@
     "watch:ui": "pnpm --filter @fragment_ui/ui watch",
     "watch:blocks": "pnpm --filter @fragment_ui/blocks watch",
     "lint": "turbo run lint",
+    "lint:ds": "turbo run lint:ds",
     "test": "turbo run test --parallel",
     "test:ui": "pnpm --filter @fragment_ui/ui test",
     "tokens:build": "pnpm -F @fragment_ui/tokens run build",
     "registry:generate": "node scripts/build/generate-registry-json.mjs",
-    "registry:v0": "node scripts/generate-registry-v0.mjs",
-    "storybook": "pnpm -C packages/ui storybook"
+    "storybook": "pnpm -C packages/ui storybook",
+    "test:storybook": "node scripts/test/test-storybook.js",
+    "versions:generate": "pnpm exec tsx scripts/build/generate-versions-from-git.ts",
+    "check:docs": "node scripts/utils/check-docs.js",
+    "check:no-css-imports": "node scripts/utils/check-no-css-imports.mjs",
+    "check:public-ds-boundaries": "node scripts/utils/check-public-ds-boundaries.mjs",
+    "check:public-ds-contract": "node scripts/utils/check-public-ds-contract.mjs",
+    "runtime:manifest": "node scripts/build/generate-runtime-manifest.mjs",
+    "bundle:analyze": "node scripts/build/analyze-bundle-size.mjs",
+    "api:generate": "node scripts/build/generate-api-docs.mjs",
+    "lighthouse": "lhci autorun",
+    "lighthouse:ci": "lhci autorun",
+    "figma:parse": "npx @figma/code-connect connect parse --dir figma-code-connect",
+    "figma:publish": "npx @figma/code-connect connect publish --dir figma-code-connect --token ${FIGMA_TOKEN:-${FIGMA_ACCESS_TOKEN}}",
+    "figma:publish:script": "node scripts/figma/publish-figma-code-connect.mjs",
+    "figma:dev-resources": "tsx scripts/figma/generate-figma-dev-resources.ts",
+    "figma:dev-resources:add": "tsx scripts/figma/add-figma-dev-resources-api.ts",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "pnpm build && changeset publish"
   },
   "workspaces": [
     "packages/*",
@@ -39,11 +58,14 @@
     "@axe-core/react": "^4.11.0",
     "@changesets/cli": "^2.29.8",
     "@figma/code-connect": "^1.3.8",
+    "@lhci/cli": "^0.15.1",
     "@typescript-eslint/parser": "^8.46.3",
     "@typescript-eslint/typescript-estree": "^8.46.3",
     "autoprefixer": "^10.4.18",
     "esbuild": "0.21.5",
     "eslint": "^9.0.0",
+    "husky": "^9.0.0",
+    "lighthouse": "^13.0.1",
     "prettier": "^3.2.0",
     "storybook": "^8.6.14",
     "tsx": "^4.16.0",
@@ -56,26 +78,5 @@
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-toggle": "^1.1.10",
     "@radix-ui/react-toggle-group": "^1.1.11"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/blazejrzepa/fragment-ui.git"
-  },
-  "homepage": "https://fragmentui.com",
-  "bugs": "https://github.com/blazejrzepa/fragment-ui/issues",
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "design-system",
-    "shadcn",
-    "tailwind",
-    "radix-ui",
-    "accessible",
-    "typescript",
-    "ai",
-    "mcp"
-  ]
+  }
 }
-

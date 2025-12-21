@@ -51,7 +51,7 @@ export default function StepperPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="stepper">Stepper</h1>
+        <h1 id="stepper" className="text-[length:var(--typography-display-md-size)] font-medium">Stepper</h1>
       </div>
       <p className="mb-6 intro-text">Guide users through multi-step flows.</p>
 
@@ -88,7 +88,7 @@ export default function StepperPage() {
         id="stepper-icons"
         title="With Icons"
         code={stepperIconsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
         <div className="flex gap-2 items-center justify-center w-full">
           <div className="w-full max-w-2xl">
@@ -98,34 +98,34 @@ export default function StepperPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>Stepper</code></td>
-              <td className="py-2 px-4"><code>steps, currentStep, orientation?, clickable?, onStepClick?, showLabels?, showDescriptions?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Multi-step progress indicator component</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Stepper</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>steps, currentStep, orientation?, clickable?, onStepClick?, showLabels?, showDescriptions?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Multi-step progress indicator component</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Stepper</code> is a component for guiding users through multi-step flows. Use it when you need to show progress through a sequence of steps, such as forms, wizards, or processes. The component supports horizontal and vertical orientations, custom icons, and clickable steps.

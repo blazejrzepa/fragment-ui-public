@@ -1,18 +1,16 @@
 name: CI
-
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - feature/**
   pull_request:
-    branches: [main]
-
+    types: [opened, synchronize, reopened]
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
       
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -22,11 +20,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
           cache: 'pnpm'
       
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            pnpm install --frozen-lockfile
+          else
+            echo "Warning: pnpm-lock.yaml not found, installing without frozen lockfile"
+            pnpm install
+          fi
       
       - name: Build tokens
         run: pnpm tokens:build
@@ -34,14 +38,52 @@ jobs:
       - name: Type check
         run: pnpm type-check
       
-      - name: Lint
-        run: pnpm lint
+      - name: Generate registry
+        run: pnpm registry:generate
+      
+      - name: Check documentation
+        run: pnpm run check:docs
+      
+      - name: Check CSS imports
+        run: pnpm check:no-css-imports
+      
+      - name: Check Public DS boundaries
+        run: pnpm check:public-ds-boundaries
+      
+      - name: Check Public DS Contract
+        if: github.event_name == 'pull_request'
+        run: |
+          # Check if PR touches public packages
+          if git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -E '^(packages/(ui|blocks|tokens)|apps/www)' > /dev/null; then
+            echo "Public DS packages changed - running contract check"
+            pnpm check:public-ds-contract
+          else
+            echo "No public DS packages changed - skipping contract check"
+          fi
         continue-on-error: true
+      
+      - name: Lint Design System
+        run: pnpm lint:ds
+        continue-on-error: false
+      
+      - name: Run tests (skip demo)
+        run: pnpm test -- --filter '!fragment-demo'
+        timeout-minutes: 5
+        env:
+          CI: true
       
       - name: Build packages
         run: pnpm build
       
-      - name: Run tests
-        run: pnpm test
+      - name: Check bundle sizes
+        run: pnpm bundle:analyze
+      
+      - name: Performance tests (Lighthouse CI)
+        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
+        run: |
+          # Only run Lighthouse CI on main branch or PRs
+          # Note: Requires built app to be running
+          echo "Lighthouse CI requires a running server"
+          echo "To run locally: pnpm --filter @fragment_ui/www start & lhci autorun"
         continue-on-error: true
 

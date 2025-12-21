@@ -34,17 +34,17 @@ const sampleRows = [
 export default function TablePage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="table">Table</h1>
       </div>
-      <p className="mb-6 intro-text">Display structured data in rows and columns.</p>
+      <p className="mb-[var(--space-6)] intro-text">Display structured data in rows and columns.</p>
       
       <ExampleSection
         id="table-example"
         title="Example"
         code={tableCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-4xl">
             <DataTable columns={sampleColumns} data={sampleRows} />
           </div>
@@ -57,46 +57,46 @@ export default function TablePage() {
       </CodeBlock>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>DataTable</code></td>
-              <td className="py-2 px-4"><code>columns, data, sortable?, onSortChange?, selectable?, selectedRows?, onSelectionChange?, filterable?, filters?, onFilterChange?, resizable?, rowActions?, onRowClick?, emptyMessage?, className?, headerClassName?, rowClassName?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Data table component with sorting, filtering, selection, and row actions</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DataTable</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>columns, data, sortable?, onSortChange?, selectable?, selectedRows?, onSelectionChange?, filterable?, filters?, onFilterChange?, resizable?, rowActions?, onRowClick?, emptyMessage?, className?, headerClassName?, rowClassName?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Data table component with sorting, filtering, selection, and row actions</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>DataTableColumn</code></td>
-              <td className="py-2 px-4"><code>id, header, accessor, sortable?, filterable?, resizable?, width?, minWidth?, maxWidth?, className?, headerClassName?, cellClassName?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Column definition interface</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DataTableColumn</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>id, header, accessor, sortable?, filterable?, resizable?, width?, minWidth?, maxWidth?, className?, headerClassName?, cellClassName?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Column definition interface</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>RowAction</code></td>
-              <td className="py-2 px-4"><code>label, onClick, disabled?, icon?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Row action definition interface</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>RowAction</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>label, onClick, disabled?, icon?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Row action definition interface</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>DataTable</code> is a component for displaying tabular data with sorting and actions. Use it when you need to present structured data in rows and columns, with support for sorting, filtering, and row actions. The component provides a clean, accessible interface for data presentation.

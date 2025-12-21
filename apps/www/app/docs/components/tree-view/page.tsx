@@ -35,7 +35,7 @@ export default function TreeViewPage() {
   return (
     <DocumentContent as="article">
       <div className="flex items-center gap-4 mb-1">
-        <h1 id="tree-view">Tree View</h1>
+        <h1 id="tree-view" className="text-[length:var(--typography-display-md-size)] font-medium">Tree View</h1>
       </div>
       <p className="mb-6 intro-text">Explore hierarchical data with expandable nodes.</p>
 
@@ -63,94 +63,94 @@ export default function TreeViewPage() {
       </CodeBlock>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>nodes?</code></td>
-              <td className="py-2 px-4"><code>TreeNode[]</code></td>
-              <td className="py-2 px-4">[]</td>
-              <td className="py-2 px-4 text-sm">Array of TreeNode objects representing the tree structure (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>nodes?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>TreeNode[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">[]</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Array of TreeNode objects representing the tree structure (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>selectedIds?</code></td>
-              <td className="py-2 px-4"><code>string[]</code></td>
-              <td className="py-2 px-4">[]</td>
-              <td className="py-2 px-4 text-sm">Array of selected node IDs (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>selectedIds?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">[]</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Array of selected node IDs (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>expandedIds?</code></td>
-              <td className="py-2 px-4"><code>string[]</code></td>
-              <td className="py-2 px-4">[]</td>
-              <td className="py-2 px-4 text-sm">Array of expanded node IDs (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>expandedIds?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">[]</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Array of expanded node IDs (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>onSelectionChange?</code></td>
-              <td className="py-2 px-4"><code>(selectedIds: string[]) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when selection changes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onSelectionChange?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(selectedIds: string[]) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when selection changes (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>onExpansionChange?</code></td>
-              <td className="py-2 px-4"><code>(expandedIds: string[]) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when expansion changes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onExpansionChange?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(expandedIds: string[]) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when expansion changes (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>showCheckboxes?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">false</td>
-              <td className="py-2 px-4 text-sm">Show checkboxes for selection (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>showCheckboxes?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">false</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Show checkboxes for selection (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>showIcons?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">true</td>
-              <td className="py-2 px-4 text-sm">Show default folder/file icons (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>showIcons?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">true</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Show default folder/file icons (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>defaultExpanded?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">false</td>
-              <td className="py-2 px-4 text-sm">Expand all nodes by default (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>defaultExpanded?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">false</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Expand all nodes by default (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>onNodeClick?</code></td>
-              <td className="py-2 px-4"><code>(node: TreeNode) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when a node is clicked (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onNodeClick?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(node: TreeNode) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when a node is clicked (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>onNodeDoubleClick?</code></td>
-              <td className="py-2 px-4"><code>(node: TreeNode) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when a node is double-clicked (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onNodeDoubleClick?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(node: TreeNode) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when a node is double-clicked (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>renderNodeActions?</code></td>
-              <td className="py-2 px-4"><code>(node: TreeNode) {'=>'} ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Function to render custom actions for each node (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>renderNodeActions?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(node: TreeNode) {'=>'} ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Function to render custom actions for each node (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>indentSize?</code></td>
-              <td className="py-2 px-4"><code>number</code></td>
-              <td className="py-2 px-4">20</td>
-              <td className="py-2 px-4 text-sm">Pixel indentation per level (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>indentSize?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>number</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">20</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Pixel indentation per level (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes (optional)</td>
             </tr>
           </tbody>
         </table>
@@ -170,13 +170,13 @@ export default function TreeViewPage() {
         </div>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>TreeView</code> is a component for displaying hierarchical data structures with expand/collapse functionality. Use it when you need to show nested data like file systems, navigation menus, category trees, or any hierarchical information. The component supports selection, checkboxes, icons, and custom node actions.

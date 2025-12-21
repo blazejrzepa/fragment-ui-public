@@ -11,14 +11,15 @@ This directory contains Code Connect mappings for Fragment UI components.
 
 2. Update the `figmaNode` URLs in each file with your actual Figma file URLs.
 
-3. Generate the code-connect.json:
+3. Parse mappings (repo script):
    ```bash
-   npx @figma/code-connect generate
+   pnpm figma:parse
    ```
 
-4. Push to Figma:
+4. Publish (repo script; requires token):
    ```bash
-   npx @figma/code-connect push
+   export FIGMA_TOKEN="your-token"
+   pnpm figma:publish
    ```
 
 ## Files

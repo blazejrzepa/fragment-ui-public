@@ -8,11 +8,11 @@ import { Alert, AlertTitle, AlertDescription } from "@fragment_ui/ui";
 export default function SemanticColorsPage() {
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="semantic-colors" className="text-3xl font-medium mb-4">Semantic Colors</h1>
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="semantic-colors" className="text-[length:var(--typography-display-md-size)] font-medium">Semantic Colors</h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Semantic colors for consistent status and feedback across themes.
       </p>
 
@@ -42,8 +42,8 @@ export default function SemanticColorsPage() {
       <h2 id="available-colors">Available Status Colors</h2>
 
       <h3>Success</h3>
-      <div className="space-y-4 my-4">
-        <div className="p-4 rounded-lg border" style={{ backgroundColor: "var(--color-status-success-bg)", borderColor: "var(--color-status-success-border)", color: "var(--color-status-success-fg)" }}>
+      <div className="space-y-[var(--space-4)] my-[var(--space-4)]">
+        <div className="p-[var(--space-4)] rounded-[var(--radius-md)] border bg-[color:var(--color-status-success-bg)] border-[color:var(--color-status-success-border)] text-[color:var(--color-status-success-fg)]">
           <strong>Success:</strong> Operation completed successfully
         </div>
       </div>
@@ -54,8 +54,8 @@ export default function SemanticColorsPage() {
 --color-status-success-muted: #86EFAC (light) / #15803D (dark)`}</CodeBlock>
 
       <h3>Error</h3>
-      <div className="space-y-4 my-4">
-        <div className="p-4 rounded-lg border" style={{ backgroundColor: "var(--color-status-error-bg)", borderColor: "var(--color-status-error-border)", color: "var(--color-status-error-fg)" }}>
+      <div className="space-y-[var(--space-4)] my-[var(--space-4)]">
+        <div className="p-[var(--space-4)] rounded-[var(--radius-md)] border bg-[color:var(--color-status-error-bg)] border-[color:var(--color-status-error-border)] text-[color:var(--color-status-error-fg)]">
           <strong>Error:</strong> Something went wrong. Please try again.
         </div>
       </div>
@@ -66,8 +66,8 @@ export default function SemanticColorsPage() {
 --color-status-error-muted: #FCA5A5 (light) / #DC2626 (dark)`}</CodeBlock>
 
       <h3>Warning</h3>
-      <div className="space-y-4 my-4">
-        <div className="p-4 rounded-lg border" style={{ backgroundColor: "var(--color-status-warning-bg)", borderColor: "var(--color-status-warning-border)", color: "var(--color-status-warning-fg)" }}>
+      <div className="space-y-[var(--space-4)] my-[var(--space-4)]">
+        <div className="p-[var(--space-4)] rounded-[var(--radius-md)] border bg-[color:var(--color-status-warning-bg)] border-[color:var(--color-status-warning-border)] text-[color:var(--color-status-warning-fg)]">
           <strong>Warning:</strong> Please review this action before proceeding.
         </div>
       </div>
@@ -78,8 +78,8 @@ export default function SemanticColorsPage() {
 --color-status-warning-muted: #FCD34D (light) / #D97706 (dark)`}</CodeBlock>
 
       <h3>Info</h3>
-      <div className="space-y-4 my-4">
-        <div className="p-4 rounded-lg border" style={{ backgroundColor: "var(--color-status-info-bg)", borderColor: "var(--color-status-info-border)", color: "var(--color-status-info-fg)" }}>
+      <div className="space-y-[var(--space-4)] my-[var(--space-4)]">
+        <div className="p-[var(--space-4)] rounded-[var(--radius-md)] border bg-[color:var(--color-status-info-bg)] border-[color:var(--color-status-info-border)] text-[color:var(--color-status-info-fg)]">
           <strong>Info:</strong> Here's some helpful information for you.
         </div>
       </div>
@@ -142,17 +142,13 @@ export default function SemanticColorsPage() {
 </Alert>
 
 // Custom alert using semantic colors
-<div style={{
-  backgroundColor: "var(--color-status-success-bg)",
-  color: "var(--color-status-success-fg)",
-  borderColor: "var(--color-status-success-border)"
-}}>
+<div className="bg-[color:var(--color-status-success-bg)] text-[color:var(--color-status-success-fg)] border-[color:var(--color-status-success-border)]">
   Success message
 </div>`}</CodeBlock>
 
       <h3 id="tailwind-usage">Using semantic colors with Tailwind</h3>
       <p>
-        Semantic colors should be consumed via CSS variables (so they can adapt to light/dark/high-contrast).
+        Semantic colors should be consumed via CSS variables (so they can adapt to light/dark themes).
         In Tailwind, use arbitrary values:
       </p>
       <CodeBlock language="tsx" highlightApiUrl="/api/highlight-code">{`<div
@@ -170,20 +166,9 @@ export default function SemanticColorsPage() {
 
       <h2 id="theme-support">Theme Support</h2>
       <p>
-        Semantic colors automatically adapt to the current theme (light, dark, high-contrast). The
+        Semantic colors automatically adapt to the current theme (light, dark). The
         colors are optimized for each theme to ensure proper contrast and readability.
       </p>
-
-      <h3>High Contrast Mode</h3>
-      <p>
-        In high contrast mode, semantic colors use maximum contrast values for better accessibility:
-      </p>
-      <ul>
-        <li>Success: Bright green (#00FF00)</li>
-        <li>Error: Bright red (#FF0000)</li>
-        <li>Warning: Bright yellow (#FFFF00)</li>
-        <li>Info: Bright cyan (#00FFFF)</li>
-      </ul>
 
       <h2 id="best-practices">Best Practices</h2>
       <ul>

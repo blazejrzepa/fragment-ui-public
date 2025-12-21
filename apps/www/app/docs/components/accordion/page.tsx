@@ -37,68 +37,13 @@ export function AccordionDemo() {
   )
 }`;
 
-const accordionSixItemsCode = `import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@fragment_ui/ui"
-
-export function AccordionSixItemsDemo() {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-5xl">
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="overview">
-          <AccordionTrigger>Overview</AccordionTrigger>
-          <AccordionContent>
-            Get a comprehensive overview of the platform. Understand the core concepts, architecture, and how different components work together to deliver a seamless experience.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="installation">
-          <AccordionTrigger>Installation</AccordionTrigger>
-          <AccordionContent>
-            Step-by-step installation instructions for various environments. Includes system requirements, dependencies, and troubleshooting tips for common setup issues.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="configuration">
-          <AccordionTrigger>Configuration</AccordionTrigger>
-          <AccordionContent>
-            Learn how to configure settings, customize preferences, and optimize performance. Detailed guides for advanced configuration options and best practices.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="usage">
-          <AccordionTrigger>Usage Examples</AccordionTrigger>
-          <AccordionContent>
-            Practical examples and code snippets demonstrating common use cases. Real-world scenarios with detailed explanations to help you implement features effectively.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="api">
-          <AccordionTrigger>API Reference</AccordionTrigger>
-          <AccordionContent>
-            Complete API documentation with endpoints, parameters, and response formats. Includes authentication methods, rate limits, and example requests for each endpoint.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="troubleshooting">
-          <AccordionTrigger>Troubleshooting</AccordionTrigger>
-          <AccordionContent>
-            Common issues and their solutions. Debugging tips, error code references, and step-by-step guides to resolve problems quickly and efficiently.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
-  )
-}`;
-
-
 export default function AccordionPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="accordion">Accordion</h1>
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Show and hide sections of content.
       </p>
       
@@ -138,172 +83,120 @@ export default function AccordionPage() {
         {`npx fragmentui@latest add accordion`}
       </CodeBlock>
 
-      {/* Accordion with 6 items */}
-      <ExampleSection
-        id="accordion-6-items"
-        title="Accordion with 6 Items"
-        code={accordionSixItemsCode}
-        marginTop="mt-8"
-        maxWidth="max-w-5xl"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-5xl">
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="overview">
-              <AccordionTrigger>Overview</AccordionTrigger>
-              <AccordionContent>
-                Get a comprehensive overview of the platform. Understand the core concepts, architecture, and how different components work together to deliver a seamless experience.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="installation">
-              <AccordionTrigger>Installation</AccordionTrigger>
-              <AccordionContent>
-                Step-by-step installation instructions for various environments. Includes system requirements, dependencies, and troubleshooting tips for common setup issues.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="configuration">
-              <AccordionTrigger>Configuration</AccordionTrigger>
-              <AccordionContent>
-                Learn how to configure settings, customize preferences, and optimize performance. Detailed guides for advanced configuration options and best practices.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="usage">
-              <AccordionTrigger>Usage Examples</AccordionTrigger>
-              <AccordionContent>
-                Practical examples and code snippets demonstrating common use cases. Real-world scenarios with detailed explanations to help you implement features effectively.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="api">
-              <AccordionTrigger>API Reference</AccordionTrigger>
-              <AccordionContent>
-                Complete API documentation with endpoints, parameters, and response formats. Includes authentication methods, rate limits, and example requests for each endpoint.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="troubleshooting">
-              <AccordionTrigger>Troubleshooting</AccordionTrigger>
-              <AccordionContent>
-                Common issues and their solutions. Debugging tips, error code references, and step-by-step guides to resolve problems quickly and efficiently.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-      </ExampleSection>
-
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Accordion</code></td>
-              <td className="py-2 px-4"><code>type</code></td>
-              <td className="py-2 px-4">
-                <div className="flex gap-1 flex-wrap">
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Accordion</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>type</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">
+                <div className="flex gap-[var(--space-1)] flex-wrap">
                   <code>"single"</code>
                   <code>"multiple"</code>
                 </div>
               </td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Type of accordion behavior</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Type of accordion behavior</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Accordion</code></td>
-              <td className="py-2 px-4"><code>collapsible</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Allow all items to be closed (only for type="single")</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Accordion</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>collapsible</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Allow all items to be closed (only for type="single")</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Accordion</code></td>
-              <td className="py-2 px-4"><code>defaultValue</code></td>
-              <td className="py-2 px-4"><code>string | string[]</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Default open item value(s)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Accordion</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>defaultValue</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string | string[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Default open item value(s)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Accordion</code></td>
-              <td className="py-2 px-4"><code>value</code></td>
-              <td className="py-2 px-4"><code>string | string[]</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Controlled open item value(s)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Accordion</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string | string[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Controlled open item value(s)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Accordion</code></td>
-              <td className="py-2 px-4"><code>onValueChange</code></td>
-              <td className="py-2 px-4"><code>(value: string | string[]) =&gt; void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when value changes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Accordion</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onValueChange</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(value: string | string[]) =&gt; void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when value changes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Accordion</code></td>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Accordion</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>AccordionItem</code></td>
-              <td className="py-2 px-4"><code>value</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Unique identifier for the item (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>AccordionItem</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Unique identifier for the item (required)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>AccordionItem</code></td>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>AccordionItem</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>AccordionTrigger</code></td>
-              <td className="py-2 px-4"><code>children</code></td>
-              <td className="py-2 px-4"><code>React.ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Trigger content (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>AccordionTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>React.ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Trigger content (required)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>AccordionTrigger</code></td>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>AccordionTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>AccordionContent</code></td>
-              <td className="py-2 px-4"><code>children</code></td>
-              <td className="py-2 px-4"><code>React.ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Content to display when expanded (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>AccordionContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>React.ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Content to display when expanded (required)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>AccordionContent</code></td>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>AccordionContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
           </tbody>
         </table>
       </div>
       
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>Accordion</code> is a collapsible content component that allows users to expand and collapse sections.<br />

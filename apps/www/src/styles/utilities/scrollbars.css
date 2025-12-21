@@ -1,0 +1,83 @@
+/* ============================================
+   Scrollbar Utilities
+   ============================================
+   Hides scrollbars globally and in specific contexts.
+   Maintains scroll functionality while hiding visual scrollbars.
+   
+   NOTE: @layer utilities is applied in globals.css after @tailwind utilities
+*/
+
+/* Hide scrollbars globally */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Hide scrollbars in sidebar */
+aside,
+aside *,
+aside div[style*="scrollbarWidth"],
+aside div.overflow-y-auto,
+aside > div {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+aside::-webkit-scrollbar,
+aside *::-webkit-scrollbar,
+aside div[style*="scrollbarWidth"]::-webkit-scrollbar,
+aside div.overflow-y-auto::-webkit-scrollbar,
+aside > div::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+aside::-webkit-scrollbar-track,
+aside *::-webkit-scrollbar-track,
+aside div[style*="scrollbarWidth"]::-webkit-scrollbar-track,
+aside div.overflow-y-auto::-webkit-scrollbar-track,
+aside > div::-webkit-scrollbar-track {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+aside::-webkit-scrollbar-thumb,
+aside *::-webkit-scrollbar-thumb,
+aside div[style*="scrollbarWidth"]::-webkit-scrollbar-thumb,
+aside div.overflow-y-auto::-webkit-scrollbar-thumb,
+aside > div::-webkit-scrollbar-thumb {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+aside::-webkit-scrollbar-corner,
+aside *::-webkit-scrollbar-corner,
+aside div[style*="scrollbarWidth"]::-webkit-scrollbar-corner,
+aside div.overflow-y-auto::-webkit-scrollbar-corner,
+aside > div::-webkit-scrollbar-corner {
+  display: none;
+  background: transparent;
+}

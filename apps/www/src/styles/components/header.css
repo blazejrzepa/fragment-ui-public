@@ -1,0 +1,184 @@
+/* ============================================
+   Header Component Styles
+   ============================================
+   Styles for fixed header, blur overlay, and navigation.
+   
+   NOTE: @layer utilities/components is applied in globals.css after @tailwind
+*/
+
+/* Blur overlay using ::after pseudo-element */
+/* Must use !important to override inline styles from documentation-header component */
+header.fixed.top-0.has-blur::after,
+header[class*="fixed"].has-blur::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  background: transparent !important;
+  mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 30%,
+    rgba(0, 0, 0, 0.95) 40%,
+    rgba(0, 0, 0, 0.85) 50%,
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(0, 0, 0, 0.5) 70%,
+    rgba(0, 0, 0, 0.3) 80%,
+    rgba(0, 0, 0, 0.15) 88%,
+    rgba(0, 0, 0, 0.05) 95%,
+    transparent 100%
+  ) !important;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0%,
+    black 30%,
+    rgba(0, 0, 0, 0.95) 40%,
+    rgba(0, 0, 0, 0.85) 50%,
+    rgba(0, 0, 0, 0.7) 60%,
+    rgba(0, 0, 0, 0.5) 70%,
+    rgba(0, 0, 0, 0.3) 80%,
+    rgba(0, 0, 0, 0.15) 88%,
+    rgba(0, 0, 0, 0.05) 95%,
+    transparent 100%
+  ) !important;
+  z-index: 1 !important;
+}
+
+/* Ensure navigation content is above gradient/mask */
+header.fixed.top-0 > div,
+header[class*="fixed"] > div,
+header.fixed.top-0 > div > div {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+}
+
+/* Ensure all navigation content is above blur overlay */
+header.fixed.top-0 nav,
+header.fixed.top-0 a,
+header.fixed.top-0 button,
+header.fixed.top-0 input,
+header[class*="fixed"] nav,
+header[class*="fixed"] a,
+header[class*="fixed"] button,
+header[class*="fixed"] input {
+  position: relative;
+  z-index: 20;
+}
+
+/* Ensure dropdown menus are above everything */
+[data-radix-navigation-menu-content],
+[data-radix-navigation-menu-viewport],
+[data-radix-navigation-menu-viewport] > div {
+  z-index: 100;
+  position: relative;
+}
+
+/* Ensure navigation menu trigger and content are above blur */
+[data-radix-navigation-menu-trigger],
+[data-radix-navigation-menu-content] {
+  position: relative;
+  z-index: 30;
+}
+
+/* Top navigation spacing tweak */
+nav[aria-label="Main"] {
+  margin-left: 0;
+}
+
+/* Logo positioning in top navigation - desktop offset */
+@media (min-width: 1024px) {
+  header nav a[href="/"],
+  header nav a[href="/docs/introduction"],
+  header > div > div > a[href="/"],
+  header > div > div > a[href="/docs/introduction"] {
+    margin-left: 4px;
+  }
+}
+
+/* Ensure logo is visible in mobile */
+header > div > div > a[href="/"],
+header > div > div > a[href="/docs/introduction"] {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Ensure logo image has dimensions in mobile */
+header > div > div > a[href="/"] img,
+header > div > div > a[href="/docs/introduction"] img {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  display: block;
+}
+
+/* Dark mode: lighter mask for smoother fade-out */
+@media (prefers-color-scheme: dark) {
+  header.fixed.top-0.has-blur::after,
+  header[class*="fixed"].has-blur::after {
+    mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black 25%,
+      rgba(0, 0, 0, 0.9) 35%,
+      rgba(0, 0, 0, 0.75) 45%,
+      rgba(0, 0, 0, 0.6) 55%,
+      rgba(0, 0, 0, 0.4) 65%,
+      rgba(0, 0, 0, 0.25) 75%,
+      rgba(0, 0, 0, 0.12) 85%,
+      rgba(0, 0, 0, 0.05) 93%,
+      transparent 100%
+    ) !important;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      black 25%,
+      rgba(0, 0, 0, 0.9) 35%,
+      rgba(0, 0, 0, 0.75) 45%,
+      rgba(0, 0, 0, 0.6) 55%,
+      rgba(0, 0, 0, 0.4) 65%,
+      rgba(0, 0, 0, 0.25) 75%,
+      rgba(0, 0, 0, 0.12) 85%,
+      rgba(0, 0, 0, 0.05) 93%,
+      transparent 100%
+    ) !important;
+  }
+}
+
+/* Logo theme colors - adapts to theme */
+.logo-theme {
+  filter: brightness(0) invert(0);
+}
+
+[data-theme="dark"] .logo-theme {
+  filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .logo-theme {
+  filter: brightness(0) invert(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) .logo-theme {
+    filter: brightness(0) invert(1);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) .logo-theme {
+    filter: brightness(0) invert(0);
+  }
+}
+
+/* GitHub icon theme colors */
+.github-icon {
+  color: var(--foreground-primary);
+}
+
+.github-icon svg {
+  fill: currentColor;
+}

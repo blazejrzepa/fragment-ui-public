@@ -12,18 +12,18 @@ export const metadata: Metadata = {
 export default function APIPage() {
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="api" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="api" className="text-[length:var(--typography-display-md-size)] font-medium">
           API
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
 
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         API reference for endpoints exposed by the documentation site.
       </p>
 
-      <div className="max-w-none mt-6 space-y-10">
+      <div className="max-w-none mt-[var(--space-6)] space-y-[var(--space-10)]">
         <section>
           <h2 id="quick-links">Quick links</h2>
           <ul>

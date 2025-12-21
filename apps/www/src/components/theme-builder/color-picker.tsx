@@ -1,48 +1,67 @@
 "use client";
 
 import * as React from "react";
-import { Input } from "@fragment_ui/ui";
-import clsx from "clsx";
 
 export interface ColorPickerProps {
-  label: string;
+  label?: string;
   value: string;
   onChange: (value: string) => void;
   description?: string;
 }
+
+// Predefined color shades for brand primary
+const PREDEFINED_COLORS = [
+  "#6366F1", // Indigo (default)
+  "#8B5CF6", // Purple
+  "#EC4899", // Pink
+  "#EF4444", // Red
+  "#F59E0B", // Amber
+  "#10B981", // Emerald
+  "#3B82F6", // Blue
+  "#06B6D4", // Cyan
+];
 
 export function ColorPicker({ label, value, onChange, description }: ColorPickerProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
 
+  const handlePredefinedClick = (color: string) => {
+    onChange(color);
+  };
+
   return (
-    <div className="space-y-2">
-      <label className="text-sm font-medium flex items-center gap-2">
-        {label}
-        <div
-          className="w-8 h-8 rounded border border-[color:var(--color-border-base)]"
-          style={{ backgroundColor: value }}
-        />
-      </label>
-      <div className="flex gap-2">
-        <Input
+    <div className="flex items-center gap-[var(--space-3)]">
+      <div className="relative w-8 h-8 flex-shrink-0">
+        <input
           type="color"
           value={value}
           onChange={handleChange}
-          className="w-16 h-10 p-1 cursor-pointer"
-        />
-        <Input
-          type="text"
-          value={value}
-          onChange={handleChange}
-          placeholder="#000000"
-          className="flex-1 font-mono text-sm"
+          className="w-full h-full p-0 cursor-pointer rounded-full border-2 border-[color:var(--color-border-base)] overflow-hidden"
+          style={{
+            WebkitAppearance: "none",
+            MozAppearance: "none",
+            appearance: "none",
+            backgroundColor: value,
+            background: value,
+          }}
         />
       </div>
-      {description && (
-        <p className="text-xs text-[color:var(--color-fg-muted)]">{description}</p>
-      )}
+      <div className="flex items-center gap-[var(--space-2)] flex-wrap">
+        {PREDEFINED_COLORS.map((color) => (
+          <button
+            key={color}
+            type="button"
+            onClick={() => handlePredefinedClick(color)}
+            className="w-6 h-6 rounded-full border-2 border-[color:var(--color-border-base)] cursor-pointer hover:scale-110 transition-transform"
+            style={{
+              backgroundColor: color,
+              background: color,
+            }}
+            aria-label={`Select color ${color}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -70,6 +70,8 @@ Additional tools:
 - `list_registry`, `search_components`
 - `list_scaffolds`, `get_scaffold_info`, `create_scaffold`
 - `edit_apply`, `edit_find`
+- `history_list`, `history_checkout`, `history_get`, `history_branches` (git history)
+- `selection_set`, `selection_clear`, `selection_get`, `selection_history`, `selection_previous` (selection management)
 
 ## Features
 

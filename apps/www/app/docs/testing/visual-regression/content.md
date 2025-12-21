@@ -48,7 +48,6 @@ Visual tests run across different themes:
 
 - **Light** theme (default)
 - **Dark** theme
-- **High Contrast** theme
 
 ## Viewing Results
 
@@ -127,7 +126,7 @@ mean more strict comparison:
 - **Review all changes:** Always review visual diffs before approving
 - **Use appropriate thresholds:** Adjust thresholds per story if needed
 - **Ignore dynamic content:** Use ignore regions for timestamps, IDs, etc.
-- **Test all themes:** Ensure components work in light, dark, and high-contrast
+- **Test all themes:** Ensure components work in both light and dark modes
 - **Test all viewports:** Verify responsive behavior across screen sizes
 
 ## Troubleshooting

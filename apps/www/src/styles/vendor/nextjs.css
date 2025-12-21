@@ -1,0 +1,33 @@
+/* ============================================
+   Next.js Vendor Fixes
+   ============================================
+   Critical fixes for Next.js-specific elements.
+   Must use !important to override Next.js inline styles.
+   
+   NOTE: @layer utilities is applied in globals.css after @tailwind utilities
+*/
+
+/* Next.js portal positioning - fixed to prevent layout shift */
+nextjs-portal {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+  overflow: hidden !important;
+}
+
+/* Reposition Next.js Dev Tools widget to bottom-left */
+#devtools-indicator,
+.nextjs-toast {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  right: auto !important;
+  z-index: 9999 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  pointer-events: auto !important;
+}

@@ -13,20 +13,11 @@ export default async function PolicyBundlesPage() {
 
     return (
       <DocLayout>
-        <h1 id="policy-bundles" className="text-3xl font-medium mb-6">
+        <h1 id="policy-bundles" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-6)]">
           {frontmatter.title || "Policy Bundles"}
         </h1>
         {frontmatter.description && (
-          <p 
-            className="mb-6 text-[color:var(--color-fg-muted)]"
-            style={{
-              fontFamily: "Geist, sans-serif",
-              fontSize: "var(--typography-size-md)",
-              fontStyle: "normal",
-              fontWeight: 300,
-              lineHeight: "160%",
-            }}
-          >
+          <p className="mb-[var(--space-6)] intro-text">
             {frontmatter.description}
           </p>
         )}
@@ -41,7 +32,7 @@ export default async function PolicyBundlesPage() {
     console.error("Error rendering policy bundles page:", error);
     return (
       <DocLayout>
-          <h1 id="policy-bundles" className="text-3xl font-medium mb-4">
+          <h1 id="policy-bundles" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-4)]">
             Policy Bundles
           </h1>
         <div className="max-w-none">

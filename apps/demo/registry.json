@@ -1,0 +1,1979 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.1.0",
+  "components": {
+    "Form": {
+      "import": "@fragment_ui/ui/form-enhanced",
+      "props": {
+        "onSubmit": "function",
+        "onError": "function",
+        "validationMode": [
+          "onChange",
+          "onBlur",
+          "onSubmit"
+        ],
+        "validateOnMount": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "form",
+        "notes": "Form should have accessible labels for all inputs"
+      },
+      "examples": {
+        "tsx": "export default function Preview() {\n  return (\n    <FormEnhanced onSubmit={(data) => console.log(data)}>\n      <FormFieldEnhanced name=\"email\" label=\"Email\">\n        <Input type=\"email\" />\n      </FormFieldEnhanced>\n      <Button type=\"submit\">Submit</Button>\n    </FormEnhanced>\n  );\n}",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Form\",\n  \"props\": {\n    \"onSubmit\": \"handleSubmit\"\n  },\n  \"children\": [\n    {\"type\": \"component\", \"component\": \"FormFieldEnhanced\", \"props\": {\"name\": \"email\", \"label\": \"Email\"}},\n    {\"type\": \"component\", \"component\": \"Button\", \"props\": {\"type\": \"submit\"}}\n  ]\n}"
+      }
+    },
+    "FormField": {
+      "import": "@fragment_ui/ui/form-field",
+      "props": {
+        "name": "string",
+        "label": "string",
+        "error": "string | boolean",
+        "helperText": "string",
+        "required": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "group",
+        "notes": "Label must be associated with input via htmlFor/id"
+      },
+      "examples": {
+        "tsx": "<FormField name=\"email\" label=\"Email\" required>\n  <Input type=\"email\" />\n</FormField>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"FormField\",\n  \"props\": {\"name\": \"email\", \"label\": \"Email\", \"required\": true},\n  \"children\": [{\"type\": \"component\", \"component\": \"Input\", \"props\": {\"type\": \"email\"}}]\n}"
+      }
+    },
+    "FormFieldEnhanced": {
+      "import": "@fragment_ui/ui/form-enhanced",
+      "props": {
+        "name": "string",
+        "label": "string",
+        "error": "string",
+        "helperText": "string",
+        "required": "boolean"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "group",
+        "notes": "Label must be associated with input via htmlFor/id"
+      }
+    },
+    "Input": {
+      "import": "@fragment_ui/ui/input",
+      "description": "A versatile input component supporting multiple types (text, email, password, etc.) with validation states and accessibility features.",
+      "props": {
+        "type": [
+          "text",
+          "email",
+          "password",
+          "number",
+          "tel",
+          "url"
+        ],
+        "invalid": "boolean",
+        "placeholder": "string",
+        "disabled": "boolean",
+        "readOnly": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "invalid",
+          "props": {
+            "invalid": true
+          }
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          }
+        }
+      ],
+      "slots": [],
+      "features": [
+        "Multiple input types (text, email, password, number, tel, url)",
+        "Validation states (invalid, disabled, readOnly)",
+        "Full keyboard navigation",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "textbox",
+        "notes": "Must have associated label. Use aria-invalid for error states. Use aria-describedby for helper text.",
+        "wcag": [
+          "2.1.1",
+          "4.1.2"
+        ]
+      },
+      "examples": {
+        "tsx": "<Input type=\"email\" placeholder=\"Enter email\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Input\",\n  \"props\": {\"type\": \"email\", \"placeholder\": \"Enter email\"}\n}"
+      },
+      "related": [
+        "form-field",
+        "textarea",
+        "password-input"
+      ]
+    },
+    "PasswordInput": {
+      "import": "@fragment_ui/ui/input",
+      "props": {
+        "type": "password",
+        "invalid": "boolean",
+        "placeholder": "string",
+        "showToggle": "boolean"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "textbox",
+        "notes": "Use Input with type='password' or dedicated PasswordInput component if available"
+      },
+      "note": "Use Input with type='password' or dedicated PasswordInput component if available"
+    },
+    "Checkbox": {
+      "import": "@fragment_ui/ui/checkbox",
+      "props": {
+        "required": "boolean",
+        "disabled": "boolean",
+        "checked": "boolean"
+      },
+      "variants": [
+        {
+          "name": "checked",
+          "props": {
+            "checked": true
+          }
+        },
+        {
+          "name": "unchecked",
+          "props": {
+            "checked": false
+          }
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "checkbox",
+        "notes": "Must have associated label. Use aria-checked for state."
+      },
+      "examples": {
+        "tsx": "<Checkbox checked={true} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Checkbox\",\n  \"props\": {\"checked\": true}\n}"
+      }
+    },
+    "Select": {
+      "import": "@fragment_ui/ui/select",
+      "props": {
+        "options": "string[]",
+        "placeholder": "string",
+        "disabled": "boolean",
+        "value": "string"
+      },
+      "variants": [],
+      "slots": [
+        "trigger",
+        "value",
+        "content",
+        "item"
+      ],
+      "a11y": {
+        "role": "combobox",
+        "notes": "Requires SelectTrigger, SelectValue, SelectContent, SelectItem. Must have accessible label."
+      },
+      "note": "Requires SelectTrigger, SelectValue, SelectContent, SelectItem",
+      "examples": {
+        "tsx": "<Select>\n  <SelectTrigger>\n    <SelectValue placeholder=\"Choose...\" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"option1\">Option 1</SelectItem>\n  </SelectContent>\n</Select>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Select\",\n  \"slots\": {\n    \"trigger\": [{\"type\": \"component\", \"component\": \"SelectTrigger\"}],\n    \"value\": [{\"type\": \"component\", \"component\": \"SelectValue\", \"props\": {\"placeholder\": \"Choose...\"}}],\n    \"content\": [{\"type\": \"component\", \"component\": \"SelectContent\", \"children\": [{\"type\": \"component\", \"component\": \"SelectItem\", \"props\": {\"value\": \"option1\"}}]}]\n  }\n}"
+      }
+    },
+    "Switch": {
+      "import": "@fragment_ui/ui/switch",
+      "props": {
+        "checked": "boolean",
+        "disabled": "boolean"
+      },
+      "variants": [
+        {
+          "name": "checked",
+          "props": {
+            "checked": true
+          }
+        },
+        {
+          "name": "unchecked",
+          "props": {
+            "checked": false
+          }
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "switch",
+        "notes": "Must have associated label. Use aria-checked for state."
+      },
+      "examples": {
+        "tsx": "<Switch checked={true} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Switch\",\n  \"props\": {\"checked\": true}\n}"
+      }
+    },
+    "Textarea": {
+      "import": "@fragment_ui/ui/textarea",
+      "props": {
+        "placeholder": "string",
+        "invalid": "boolean",
+        "disabled": "boolean",
+        "rows": "number"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "invalid",
+          "props": {
+            "invalid": true
+          }
+        },
+        {
+          "name": "disabled",
+          "props": {
+            "disabled": true
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "textbox",
+        "notes": "Must have associated label. Use aria-invalid for error states."
+      },
+      "examples": {
+        "tsx": "<Textarea placeholder=\"Enter message\" rows={4} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Textarea\",\n  \"props\": {\"placeholder\": \"Enter message\", \"rows\": 4}\n}"
+      }
+    },
+    "Button": {
+      "import": "@fragment_ui/ui/button",
+      "props": {
+        "variant": [
+          "solid",
+          "outline",
+          "ghost"
+        ],
+        "type": [
+          "button",
+          "submit",
+          "reset"
+        ],
+        "disabled": "boolean",
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ]
+      },
+      "variants": [
+        {
+          "name": "solid",
+          "props": {
+            "variant": "solid"
+          },
+          "description": "Primary action button with solid background"
+        },
+        {
+          "name": "outline",
+          "props": {
+            "variant": "outline"
+          },
+          "description": "Secondary action button with outline border"
+        },
+        {
+          "name": "ghost",
+          "props": {
+            "variant": "ghost"
+          },
+          "description": "Tertiary action button with transparent background"
+        }
+      ],
+      "slots": [],
+      "description": "A versatile button component with multiple variants and sizes. Supports keyboard navigation and accessibility features.",
+      "features": [
+        "Multiple variants (solid, outline, ghost)",
+        "Three size options (sm, md, lg)",
+        "Full keyboard navigation support",
+        "Accessible by default",
+        "Disabled state support"
+      ],
+      "a11y": {
+        "role": "button",
+        "notes": "Keyboard navigable (Enter/Space). Must have accessible text or aria-label. Use aria-disabled for disabled state.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "examples": {
+        "tsx": "<Button variant=\"solid\" size=\"md\">Click me</Button>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Button\",\n  \"variant\": \"solid\",\n  \"copy\": \"Click me\",\n  \"props\": {\"size\": \"md\"}\n}"
+      },
+      "related": [
+        "link",
+        "icon-button",
+        "split-button"
+      ]
+    },
+    "Card": {
+      "import": "@fragment_ui/ui/card",
+      "description": "A flexible card component for displaying content with header, body, and footer sections. Perfect for organizing related information.",
+      "props": {
+        "className": "string"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "elevated",
+          "props": {
+            "className": "shadow-lg"
+          },
+          "description": "Card with elevated shadow"
+        }
+      ],
+      "slots": [
+        "header",
+        "title",
+        "content",
+        "footer"
+      ],
+      "features": [
+        "Composable structure (CardHeader, CardTitle, CardContent, CardFooter)",
+        "Flexible content areas",
+        "Accessible by default",
+        "Customizable styling"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Requires CardHeader, CardTitle, CardContent, CardFooter. Use aria-labelledby for title association.",
+        "wcag": [
+          "4.1.2"
+        ]
+      },
+      "note": "Requires CardHeader, CardTitle, CardContent, CardFooter",
+      "examples": {
+        "tsx": "<Card>\n  <CardHeader>\n    <CardTitle>Title</CardTitle>\n  </CardHeader>\n  <CardContent>Content</CardContent>\n</Card>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Card\",\n  \"slots\": {\n    \"header\": [{\"type\": \"component\", \"component\": \"CardHeader\", \"children\": [{\"type\": \"component\", \"component\": \"CardTitle\", \"copy\": \"Title\"}]}],\n    \"content\": [{\"type\": \"component\", \"component\": \"CardContent\", \"copy\": \"Content\"}]\n  }\n}"
+      },
+      "related": [
+        "metric-card",
+        "widget-container"
+      ]
+    },
+    "Tabs": {
+      "import": "@fragment_ui/ui/tabs",
+      "description": "A tabbed interface component for organizing content into multiple panels. Supports keyboard navigation and accessibility features.",
+      "props": {
+        "defaultValue": "string",
+        "value": "string",
+        "onValueChange": "function"
+      },
+      "variants": [],
+      "slots": [
+        "list",
+        "trigger",
+        "content"
+      ],
+      "features": [
+        "Composable structure (TabsList, TabsTrigger, TabsContent)",
+        "Controlled and uncontrolled modes",
+        "Full keyboard navigation (Arrow keys, Home, End)",
+        "Accessible by default with ARIA attributes"
+      ],
+      "a11y": {
+        "role": "tablist",
+        "notes": "Requires TabsList, TabsTrigger, TabsContent. Use aria-controls to associate triggers with content.",
+        "wcag": [
+          "2.1.1",
+          "2.1.2",
+          "4.1.2"
+        ]
+      },
+      "note": "Requires TabsList, TabsTrigger, TabsContent",
+      "examples": {
+        "tsx": "<Tabs defaultValue=\"tab1\">\n  <TabsList>\n    <TabsTrigger value=\"tab1\">Tab 1</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"tab1\">Content</TabsContent>\n</Tabs>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Tabs\",\n  \"props\": {\"defaultValue\": \"tab1\"},\n  \"slots\": {\n    \"list\": [{\"type\": \"component\", \"component\": \"TabsList\", \"children\": [{\"type\": \"component\", \"component\": \"TabsTrigger\", \"props\": {\"value\": \"tab1\"}, \"copy\": \"Tab 1\"}]}],\n    \"content\": [{\"type\": \"component\", \"component\": \"TabsContent\", \"props\": {\"value\": \"tab1\"}, \"copy\": \"Content\"}]\n  }\n}"
+      },
+      "related": [
+        "accordion",
+        "collapsible"
+      ]
+    },
+    "TabsList": {
+      "import": "@fragment_ui/ui/tabs",
+      "props": {},
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "tablist",
+        "notes": "Container for tab triggers"
+      }
+    },
+    "TabTrigger": {
+      "import": "@fragment_ui/ui/tabs",
+      "props": {
+        "value": "string"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "tab",
+        "notes": "Must have aria-controls pointing to associated TabsContent"
+      }
+    },
+    "TabContent": {
+      "import": "@fragment_ui/ui/tabs",
+      "props": {
+        "value": "string"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "tabpanel",
+        "notes": "Must have aria-labelledby pointing to associated TabsTrigger"
+      }
+    },
+    "Table": {
+      "import": "@fragment_ui/ui/table",
+      "props": {},
+      "variants": [],
+      "slots": [
+        "header",
+        "body",
+        "row",
+        "head",
+        "cell"
+      ],
+      "a11y": {
+        "role": "table",
+        "notes": "Requires TableHeader, TableBody, TableRow, TableHead, TableCell. Use scope=\"col\" for header cells."
+      },
+      "note": "Requires TableHeader, TableBody, TableRow, TableHead, TableCell",
+      "examples": {
+        "tsx": "<Table>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Name</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    <TableRow>\n      <TableCell>John</TableCell>\n    </TableRow>\n  </TableBody>\n</Table>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Table\",\n  \"slots\": {\n    \"header\": [{\"type\": \"component\", \"component\": \"TableHeader\", \"children\": [{\"type\": \"component\", \"component\": \"TableRow\", \"children\": [{\"type\": \"component\", \"component\": \"TableHead\", \"copy\": \"Name\"}]}]}],\n    \"body\": [{\"type\": \"component\", \"component\": \"TableBody\", \"children\": [{\"type\": \"component\", \"component\": \"TableRow\", \"children\": [{\"type\": \"component\", \"component\": \"TableCell\", \"copy\": \"John\"}]}]}]\n  }\n}"
+      }
+    },
+    "Badge": {
+      "import": "@fragment_ui/ui/badge",
+      "props": {
+        "variant": [
+          "default",
+          "secondary",
+          "destructive",
+          "outline"
+        ]
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {
+            "variant": "default"
+          }
+        },
+        {
+          "name": "secondary",
+          "props": {
+            "variant": "secondary"
+          }
+        },
+        {
+          "name": "destructive",
+          "props": {
+            "variant": "destructive"
+          }
+        },
+        {
+          "name": "outline",
+          "props": {
+            "variant": "outline"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "status",
+        "notes": "Use aria-label for screen reader text if badge text is not descriptive"
+      },
+      "examples": {
+        "tsx": "<Badge variant=\"default\">New</Badge>",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Badge\",\n  \"variant\": \"default\",\n  \"copy\": \"New\"\n}"
+      }
+    },
+    "metric-card": {
+      "import": "@fragment_ui/ui/metric-card",
+      "props": {
+        "title": "string",
+        "value": "string | number",
+        "icon": "string | ReactNode",
+        "trend": [
+          "up",
+          "down",
+          "neutral"
+        ],
+        "trendValue": "string",
+        "description": "string",
+        "footer": "ReactNode",
+        "onClick": "function"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "withTrend",
+          "props": {
+            "trend": "up",
+            "trendValue": "+20.1%"
+          }
+        },
+        {
+          "name": "clickable",
+          "props": {
+            "onClick": "function"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "MetricCard displays key performance indicators. When clickable, ensure keyboard navigation and proper focus management."
+      },
+      "examples": {
+        "tsx": "<MetricCard title=\"Total Revenue\" value=\"$45,231\" trend=\"up\" trendValue=\"+20.1%\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"MetricCard\",\n  \"props\": {\n    \"title\": \"Total Revenue\",\n    \"value\": \"$45,231\",\n    \"trend\": \"up\",\n    \"trendValue\": \"+20.1%\"\n  }\n}"
+      }
+    },
+    "activity-feed": {
+      "import": "@fragment_ui/ui/activity-feed",
+      "props": {
+        "items": "ActivityItem[]",
+        "maxItems": "number",
+        "showTimestamps": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "withoutTimestamps",
+          "props": {
+            "showTimestamps": false
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "feed",
+        "notes": "ActivityFeed displays a chronological list of activities. Ensure proper ARIA live regions for dynamic updates."
+      },
+      "examples": {
+        "tsx": "<ActivityFeed items={activities} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"ActivityFeed\",\n  \"props\": {\n    \"items\": [\n      {\"id\": \"1\", \"type\": \"action\", \"title\": \"User created project\", \"timestamp\": \"2024-01-01\"}\n    ]\n  }\n}"
+      }
+    },
+    "quick-actions": {
+      "import": "@fragment_ui/ui/quick-actions",
+      "props": {
+        "actions": "QuickAction[]",
+        "columns": [
+          2,
+          3,
+          4
+        ],
+        "layout": [
+          "grid",
+          "list"
+        ]
+      },
+      "variants": [
+        {
+          "name": "grid",
+          "props": {
+            "layout": "grid",
+            "columns": 3
+          }
+        },
+        {
+          "name": "list",
+          "props": {
+            "layout": "list"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "toolbar",
+        "notes": "QuickActions provides quick access to common actions. Ensure keyboard navigation and proper ARIA labels."
+      },
+      "examples": {
+        "tsx": "<QuickActions actions={[{id: \"1\", label: \"New\", icon: \"➕\", onClick: () => {}}]} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"QuickActions\",\n  \"props\": {\n    \"actions\": [{\"id\": \"1\", \"label\": \"New\", \"icon\": \"➕\"}]\n  }\n}"
+      }
+    },
+    "filter-bar": {
+      "import": "@fragment_ui/ui/filter-bar",
+      "props": {
+        "filters": "Filter[]",
+        "onClear": "function",
+        "showClearButton": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "searchOnly",
+          "props": {
+            "filters": [
+              {
+                "id": "search",
+                "type": "search"
+              }
+            ]
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "search",
+        "notes": "FilterBar provides filter controls. Ensure proper form labels and keyboard navigation."
+      },
+      "examples": {
+        "tsx": "<FilterBar filters={[{id: \"search\", type: \"search\", placeholder: \"Search...\"}]} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"FilterBar\",\n  \"props\": {\n    \"filters\": [{\"id\": \"search\", \"type\": \"search\", \"placeholder\": \"Search...\"}]\n  }\n}"
+      }
+    },
+    "chart": {
+      "import": "@fragment_ui/ui/chart",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "data": "ChartDataPoint[]",
+        "type": [
+          "line",
+          "bar",
+          "area",
+          "pie",
+          "donut"
+        ],
+        "height": "number",
+        "showLegend": "boolean",
+        "showGrid": "boolean",
+        "renderChart": "function"
+      },
+      "variants": [
+        {
+          "name": "line",
+          "props": {
+            "type": "line"
+          }
+        },
+        {
+          "name": "bar",
+          "props": {
+            "type": "bar"
+          }
+        },
+        {
+          "name": "area",
+          "props": {
+            "type": "area"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "img",
+        "notes": "Chart displays data visualizations. Ensure proper alt text or aria-label describing the chart data."
+      },
+      "examples": {
+        "tsx": "<Chart data={[{label: \"Jan\", value: 1000}]} type=\"line\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Chart\",\n  \"props\": {\n    \"data\": [{\"label\": \"Jan\", \"value\": 1000}],\n    \"type\": \"line\"\n  }\n}"
+      }
+    },
+    "hero-section": {
+      "import": "@fragment_ui/blocks/hero-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "background": [
+          "gradient",
+          "image",
+          "solid"
+        ],
+        "image": "object"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "banner",
+        "notes": "Hero section should have clear heading hierarchy and accessible CTAs"
+      },
+      "examples": {
+        "tsx": "<HeroSection title=\"Welcome\" description=\"Build amazing experiences\" primaryCTA={{label: \"Get Started\", href: \"/signup\"}} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/hero-section\",\n  \"inputs\": {\n    \"title\": \"Welcome\",\n    \"description\": \"Build amazing experiences\",\n    \"primaryCTA\": {\"label\": \"Get Started\", \"href\": \"/signup\"}\n  }\n}"
+      }
+    },
+    "feature-grid-section": {
+      "import": "@fragment_ui/blocks/feature-grid-section",
+      "props": {
+        "title": "string",
+        "features": "array",
+        "columns": [
+          2,
+          3,
+          4
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Feature grid should have clear headings and accessible feature descriptions"
+      },
+      "examples": {
+        "tsx": "<FeatureGridSection title=\"Features\" features={[{title: \"Fast\", description: \"Lightning fast\"}]} columns={3} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/feature-grid-section\",\n  \"inputs\": {\n    \"title\": \"Features\",\n    \"features\": [{\"title\": \"Fast\", \"description\": \"Lightning fast\"}],\n    \"columns\": 3\n  }\n}"
+      }
+    },
+    "stats-section": {
+      "import": "@fragment_ui/blocks/stats-section",
+      "props": {
+        "items": "array",
+        "layout": [
+          "grid",
+          "row"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Stats should be clearly labeled and accessible"
+      },
+      "examples": {
+        "tsx": "<StatsSection items={[{label: \"Users\", value: \"1000\", trend: \"up\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/stats-section\",\n  \"inputs\": {\n    \"items\": [{\"label\": \"Users\", \"value\": \"1000\", \"trend\": \"up\"}]\n  }\n}"
+      }
+    },
+    "testimonials-section": {
+      "import": "@fragment_ui/blocks/testimonials-section",
+      "props": {
+        "title": "string",
+        "items": "array",
+        "layout": [
+          "grid",
+          "carousel"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Testimonials should have proper attribution and be accessible"
+      },
+      "examples": {
+        "tsx": "<TestimonialsSection title=\"Testimonials\" items={[{quote: \"Great product\", author: \"John Doe\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/testimonials-section\",\n  \"inputs\": {\n    \"title\": \"Testimonials\",\n    \"items\": [{\"quote\": \"Great product\", \"author\": \"John Doe\"}]\n  }\n}"
+      }
+    },
+    "faq-section": {
+      "import": "@fragment_ui/blocks/faq-section",
+      "props": {
+        "title": "string",
+        "items": "array"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FAQ should use proper heading hierarchy and accessible accordion controls"
+      },
+      "examples": {
+        "tsx": "<FAQSection title=\"FAQ\" items={[{question: \"What is this?\", answer: \"A design system\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/faq-section\",\n  \"inputs\": {\n    \"title\": \"FAQ\",\n    \"items\": [{\"question\": \"What is this?\", \"answer\": \"A design system\"}]\n  }\n}"
+      }
+    },
+    "cta-section": {
+      "import": "@fragment_ui/blocks/cta-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "variant": [
+          "centered",
+          "split"
+        ],
+        "background": [
+          "solid",
+          "gradient",
+          "muted"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CTA section should have clear call-to-action buttons with accessible labels"
+      },
+      "examples": {
+        "tsx": "<CTASection title=\"Get Started\" description=\"Start building today\" primaryCTA={{label: \"Sign Up\", href: \"/signup\"}} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/cta-section\",\n  \"inputs\": {\n    \"title\": \"Get Started\",\n    \"description\": \"Start building today\",\n    \"primaryCTA\": {\"label\": \"Sign Up\", \"href\": \"/signup\"}\n  }\n}"
+      }
+    },
+    "widget-container": {
+      "import": "@fragment_ui/blocks/widget-container",
+      "props": {
+        "title": "string",
+        "children": "ReactNode",
+        "actions": "ReactNode",
+        "footer": "ReactNode",
+        "collapsible": "boolean",
+        "defaultCollapsed": "boolean",
+        "onRefresh": "function"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Widget container should have accessible title and controls"
+      },
+      "examples": {
+        "tsx": "<WidgetContainer title=\"Widget\" collapsible><div>Content</div></WidgetContainer>",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/widget-container\",\n  \"inputs\": {\n    \"title\": \"Widget\",\n    \"collapsible\": true\n  },\n  \"children\": [{\"type\": \"component\", \"component\": \"div\", \"copy\": \"Content\"}]\n}"
+      }
+    },
+    "dashboard-widgets": {
+      "import": "@fragment_ui/blocks/dashboard-widgets",
+      "props": {
+        "widgets": "array",
+        "columns": "number"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Dashboard widgets should be organized and accessible"
+      },
+      "examples": {
+        "tsx": "<DashboardWidgets widgets={[{id: \"1\", type: \"metric\", content: <MetricCard title=\"Users\" value=\"100\" />}]} columns={12} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/dashboard-widgets\",\n  \"inputs\": {\n    \"widgets\": [{\"id\": \"1\", \"type\": \"metric\"}],\n    \"columns\": 12\n  }\n}"
+      }
+    },
+    "Accordion": {
+      "import": "@fragment_ui/ui/accordion",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Accordion component"
+      },
+      "note": "Component Accordion from @fragment_ui/ui"
+    },
+    "Alert": {
+      "import": "@fragment_ui/ui/alert",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Alert component"
+      },
+      "note": "Component Alert from @fragment_ui/ui"
+    },
+    "AspectRatio": {
+      "import": "@fragment_ui/ui/aspect-ratio",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "AspectRatio component"
+      },
+      "note": "Component AspectRatio from @fragment_ui/ui"
+    },
+    "Avatar": {
+      "import": "@fragment_ui/ui/avatar",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Avatar component"
+      },
+      "note": "Component Avatar from @fragment_ui/ui"
+    },
+    "Breadcrumbs": {
+      "import": "@fragment_ui/ui/breadcrumbs",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Breadcrumbs component"
+      },
+      "note": "Component Breadcrumbs from @fragment_ui/ui"
+    },
+    "Calendar": {
+      "import": "@fragment_ui/ui/calendar",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Calendar component"
+      },
+      "note": "Component Calendar from @fragment_ui/ui"
+    },
+    "Carousel": {
+      "import": "@fragment_ui/ui/carousel",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Carousel component"
+      },
+      "note": "Component Carousel from @fragment_ui/ui"
+    },
+    "Collapsible": {
+      "import": "@fragment_ui/ui/collapsible",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Collapsible component"
+      },
+      "note": "Component Collapsible from @fragment_ui/ui"
+    },
+    "ColorPicker": {
+      "import": "@fragment_ui/ui/color-picker",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ColorPicker component"
+      },
+      "note": "Component ColorPicker from @fragment_ui/ui"
+    },
+    "Combobox": {
+      "import": "@fragment_ui/ui/combobox",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Combobox component"
+      },
+      "note": "Component Combobox from @fragment_ui/ui"
+    },
+    "CommandPalette": {
+      "import": "@fragment_ui/ui/command-palette",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CommandPalette component"
+      },
+      "note": "Component CommandPalette from @fragment_ui/ui"
+    },
+    "ContextMenu": {
+      "import": "@fragment_ui/ui/context-menu",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ContextMenu component"
+      },
+      "note": "Component ContextMenu from @fragment_ui/ui"
+    },
+    "DataTable": {
+      "import": "@fragment_ui/ui/data-table",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "DataTable component"
+      },
+      "note": "Component DataTable from @fragment_ui/ui"
+    },
+    "DatePicker": {
+      "import": "@fragment_ui/ui/date-picker",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "DatePicker component"
+      },
+      "note": "Component DatePicker from @fragment_ui/ui"
+    },
+    "Dialog": {
+      "import": "@fragment_ui/ui/dialog",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Dialog component"
+      },
+      "note": "Component Dialog from @fragment_ui/ui"
+    },
+    "DropdownMenu": {
+      "import": "@fragment_ui/ui/dropdown-menu",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "DropdownMenu component"
+      },
+      "note": "Component DropdownMenu from @fragment_ui/ui"
+    },
+    "FileUpload": {
+      "import": "@fragment_ui/ui/file-upload",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FileUpload component"
+      },
+      "note": "Component FileUpload from @fragment_ui/ui"
+    },
+    "FormContainer": {
+      "import": "@fragment_ui/blocks/form-container",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FormContainer component"
+      },
+      "note": "Component FormContainer from @fragment_ui/blocks"
+    },
+    "HoverCard": {
+      "import": "@fragment_ui/ui/hover-card",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "HoverCard component"
+      },
+      "note": "Component HoverCard from @fragment_ui/ui"
+    },
+    "Kbd": {
+      "import": "@fragment_ui/ui/kbd",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Kbd component"
+      },
+      "note": "Component Kbd from @fragment_ui/ui"
+    },
+    "Menubar": {
+      "import": "@fragment_ui/ui/menubar",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Menubar component"
+      },
+      "note": "Component Menubar from @fragment_ui/ui"
+    },
+    "MultiSelect": {
+      "import": "@fragment_ui/ui/multi-select",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "MultiSelect component"
+      },
+      "note": "Component MultiSelect from @fragment_ui/ui"
+    },
+    "NavigationMenu": {
+      "import": "@fragment_ui/ui/navigation-menu",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "NavigationMenu component"
+      },
+      "note": "Component NavigationMenu from @fragment_ui/ui"
+    },
+    "Pagination": {
+      "import": "@fragment_ui/ui/pagination",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Pagination component"
+      },
+      "note": "Component Pagination from @fragment_ui/ui"
+    },
+    "Popover": {
+      "import": "@fragment_ui/ui/popover",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Popover component"
+      },
+      "note": "Component Popover from @fragment_ui/ui"
+    },
+    "Progress": {
+      "import": "@fragment_ui/ui/progress",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Progress component"
+      },
+      "note": "Component Progress from @fragment_ui/ui"
+    },
+    "Radio": {
+      "import": "@fragment_ui/ui/radio",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Radio component"
+      },
+      "note": "Component Radio from @fragment_ui/ui"
+    },
+    "Rating": {
+      "import": "@fragment_ui/ui/rating",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Rating component"
+      },
+      "note": "Component Rating from @fragment_ui/ui"
+    },
+    "Resizable": {
+      "import": "@fragment_ui/ui/resizable",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Resizable component"
+      },
+      "note": "Component Resizable from @fragment_ui/ui"
+    },
+    "ScrollArea": {
+      "import": "@fragment_ui/ui/scroll-area",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ScrollArea component"
+      },
+      "note": "Component ScrollArea from @fragment_ui/ui"
+    },
+    "SegmentedControl": {
+      "import": "@fragment_ui/ui/segmented-control",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "SegmentedControl component"
+      },
+      "note": "Component SegmentedControl from @fragment_ui/ui"
+    },
+    "Separator": {
+      "import": "@fragment_ui/ui/separator",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Separator component"
+      },
+      "note": "Component Separator from @fragment_ui/ui"
+    },
+    "Sheet": {
+      "import": "@fragment_ui/ui/sheet",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Sheet component"
+      },
+      "note": "Component Sheet from @fragment_ui/ui"
+    },
+    "Skeleton": {
+      "import": "@fragment_ui/ui/skeleton",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Skeleton component"
+      },
+      "note": "Component Skeleton from @fragment_ui/ui"
+    },
+    "Slider": {
+      "import": "@fragment_ui/ui/slider",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Slider component"
+      },
+      "note": "Component Slider from @fragment_ui/ui"
+    },
+    "Spinner": {
+      "import": "@fragment_ui/ui/spinner",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Spinner component"
+      },
+      "note": "Component Spinner from @fragment_ui/ui"
+    },
+    "SplitButton": {
+      "import": "@fragment_ui/ui/split-button",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "SplitButton component"
+      },
+      "note": "Component SplitButton from @fragment_ui/ui"
+    },
+    "Stepper": {
+      "import": "@fragment_ui/ui/stepper",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Stepper component"
+      },
+      "note": "Component Stepper from @fragment_ui/ui"
+    },
+    "TagInput": {
+      "import": "@fragment_ui/ui/tag-input",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "TagInput component"
+      },
+      "note": "Component TagInput from @fragment_ui/ui"
+    },
+    "Timeline": {
+      "import": "@fragment_ui/ui/timeline",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Timeline component"
+      },
+      "note": "Component Timeline from @fragment_ui/ui"
+    },
+    "Toast": {
+      "import": "@fragment_ui/ui/toast",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Toast component"
+      },
+      "note": "Component Toast from @fragment_ui/ui"
+    },
+    "Toggle": {
+      "import": "@fragment_ui/ui/toggle",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Toggle component"
+      },
+      "note": "Component Toggle from @fragment_ui/ui"
+    },
+    "ToggleGroup": {
+      "import": "@fragment_ui/ui/toggle-group",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ToggleGroup component"
+      },
+      "note": "Component ToggleGroup from @fragment_ui/ui"
+    },
+    "Tooltip": {
+      "import": "@fragment_ui/ui/tooltip",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Tooltip component"
+      },
+      "note": "Component Tooltip from @fragment_ui/ui"
+    },
+    "TreeView": {
+      "import": "@fragment_ui/ui/tree-view",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "TreeView component"
+      },
+      "note": "Component TreeView from @fragment_ui/ui"
+    },
+    "AuthenticationBlock": {
+      "import": "@fragment_ui/blocks/authentication-block",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "AuthenticationBlock component"
+      },
+      "note": "Component AuthenticationBlock from @fragment_ui/blocks"
+    },
+    "CardGrid": {
+      "import": "@fragment_ui/blocks/card-grid",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CardGrid component"
+      },
+      "note": "Component CardGrid from @fragment_ui/blocks"
+    },
+    "DashboardLayout": {
+      "import": "@fragment_ui/blocks/dashboard-layout",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "DashboardLayout component"
+      },
+      "note": "Component DashboardLayout from @fragment_ui/blocks"
+    },
+    "NavigationHeader": {
+      "import": "@fragment_ui/blocks/navigation-header",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "NavigationHeader component"
+      },
+      "note": "Component NavigationHeader from @fragment_ui/blocks"
+    },
+    "PricingTable": {
+      "import": "@fragment_ui/blocks/pricing-table",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "PricingTable component"
+      },
+      "note": "Component PricingTable from @fragment_ui/blocks"
+    },
+    "SettingsScreen": {
+      "import": "@fragment_ui/blocks/settings-screen",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "SettingsScreen component"
+      },
+      "note": "Component SettingsScreen from @fragment_ui/blocks"
+    },
+    "BenefitsSection": {
+      "import": "@fragment_ui/blocks/benefits-section",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "BenefitsSection component"
+      },
+      "note": "Component BenefitsSection from @fragment_ui/blocks"
+    },
+    "ComparisonSection": {
+      "import": "@fragment_ui/blocks/comparison-section",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "ComparisonSection component"
+      },
+      "note": "Component ComparisonSection from @fragment_ui/blocks"
+    },
+    "FooterSection": {
+      "import": "@fragment_ui/blocks/footer-section",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FooterSection component"
+      },
+      "note": "Component FooterSection from @fragment_ui/blocks"
+    },
+    "KpiDashboard": {
+      "import": "@fragment_ui/blocks/kpi-dashboard",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "KpiDashboard component"
+      },
+      "note": "Component KpiDashboard from @fragment_ui/blocks"
+    },
+    "AnalyticsDashboard": {
+      "import": "@fragment_ui/blocks/analytics-dashboard",
+      "props": {},
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "AnalyticsDashboard component"
+      },
+      "note": "Component AnalyticsDashboard from @fragment_ui/blocks"
+    }
+  },
+  "aliases": {
+    "Tab": "TabTrigger",
+    "TabsHeader": "TabsList"
+  },
+  "patterns": {
+    "compare-3": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "Compare3",
+      "description": "Compare 3 options with cards and comparison matrix",
+      "dsl": {
+        "type": "decision",
+        "pattern": "compare-3",
+        "options": []
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"compare-3\",\n  \"id\": \"decision-1\",\n  \"title\": \"Choose Your Plan\",\n  \"options\": [\n    {\n      \"id\": \"option-1\",\n      \"name\": \"Starter\",\n      \"price\": \"$9\",\n      \"pricePeriod\": \"month\",\n      \"features\": [\n        {\"key\": \"storage\", \"label\": \"Storage\", \"value\": \"10GB\"}\n      ],\n      \"ctaText\": \"Get Started\"\n    }\n  ]\n}"
+      }
+    },
+    "recommendation": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "Recommendation",
+      "description": "Ranked list of options with justification",
+      "dsl": {
+        "type": "decision",
+        "pattern": "recommendation",
+        "options": []
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"recommendation\",\n  \"id\": \"decision-1\",\n  \"title\": \"Recommended for You\",\n  \"options\": [\n    {\n      \"id\": \"option-1\",\n      \"name\": \"Pro Plan\",\n      \"rank\": 1,\n      \"reasoning\": \"Best balance of features and price\",\n      \"score\": 95,\n      \"ctaText\": \"Get Started\"\n    }\n  ]\n}"
+      }
+    },
+    "tradeoffs": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "Tradeoffs",
+      "description": "Compare options across multiple dimensions (cost, risk, time)",
+      "dsl": {
+        "type": "decision",
+        "pattern": "tradeoffs",
+        "options": []
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"tradeoffs\",\n  \"id\": \"decision-1\",\n  \"title\": \"Compare Tradeoffs\",\n  \"options\": [\n    {\n      \"id\": \"option-1\",\n      \"name\": \"Quick Solution\",\n      \"dimensions\": [\n        {\"name\": \"Cost\", \"value\": 80, \"label\": \"High\"},\n        {\"name\": \"Risk\", \"value\": 30, \"label\": \"Low\"},\n        {\"name\": \"Time\", \"value\": 20, \"label\": \"Fast\"}\n      ],\n      \"ctaText\": \"Choose This\"\n    }\n  ]\n}"
+      }
+    },
+    "review-confirm": {
+      "type": "scaffold/pattern",
+      "import": "@fragment_ui/blocks/decision",
+      "component": "ReviewConfirm",
+      "description": "Review summary with hard action requiring confirmation",
+      "dsl": {
+        "type": "decision",
+        "pattern": "review-confirm",
+        "items": [],
+        "actionContractId": ""
+      },
+      "examples": {
+        "dsl": "{\n  \"type\": \"decision\",\n  \"pattern\": \"review-confirm\",\n  \"id\": \"decision-1\",\n  \"title\": \"Review Your Order\",\n  \"items\": [\n    {\"key\": \"plan\", \"label\": \"Plan\", \"value\": \"Pro Plan\"},\n    {\"key\": \"price\", \"label\": \"Price\", \"value\": \"$29/month\"}\n  ],\n  \"confirmText\": \"Confirm Order\",\n  \"actionContractId\": \"action-confirm-order\"\n}"
+      }
+    },
+    "metric-card": {
+      "import": "@fragment_ui/ui/metric-card",
+      "props": {
+        "title": "string",
+        "value": "string | number",
+        "icon": "string | ReactNode",
+        "trend": [
+          "up",
+          "down",
+          "neutral"
+        ],
+        "trendValue": "string",
+        "description": "string",
+        "footer": "ReactNode",
+        "onClick": "function"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "withTrend",
+          "props": {
+            "trend": "up",
+            "trendValue": "+20.1%"
+          }
+        },
+        {
+          "name": "clickable",
+          "props": {
+            "onClick": "function"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "MetricCard displays key performance indicators. When clickable, ensure keyboard navigation and proper focus management."
+      },
+      "examples": {
+        "tsx": "<MetricCard title=\"Total Revenue\" value=\"$45,231\" trend=\"up\" trendValue=\"+20.1%\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"MetricCard\",\n  \"props\": {\n    \"title\": \"Total Revenue\",\n    \"value\": \"$45,231\",\n    \"trend\": \"up\",\n    \"trendValue\": \"+20.1%\"\n  }\n}"
+      }
+    },
+    "activity-feed": {
+      "import": "@fragment_ui/ui/activity-feed",
+      "props": {
+        "items": "ActivityItem[]",
+        "maxItems": "number",
+        "showTimestamps": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "withoutTimestamps",
+          "props": {
+            "showTimestamps": false
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "feed",
+        "notes": "ActivityFeed displays a chronological list of activities. Ensure proper ARIA live regions for dynamic updates."
+      },
+      "examples": {
+        "tsx": "<ActivityFeed items={activities} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"ActivityFeed\",\n  \"props\": {\n    \"items\": [\n      {\"id\": \"1\", \"type\": \"action\", \"title\": \"User created project\", \"timestamp\": \"2024-01-01\"}\n    ]\n  }\n}"
+      }
+    },
+    "quick-actions": {
+      "import": "@fragment_ui/ui/quick-actions",
+      "props": {
+        "actions": "QuickAction[]",
+        "columns": [
+          2,
+          3,
+          4
+        ],
+        "layout": [
+          "grid",
+          "list"
+        ]
+      },
+      "variants": [
+        {
+          "name": "grid",
+          "props": {
+            "layout": "grid",
+            "columns": 3
+          }
+        },
+        {
+          "name": "list",
+          "props": {
+            "layout": "list"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "toolbar",
+        "notes": "QuickActions provides quick access to common actions. Ensure keyboard navigation and proper ARIA labels."
+      },
+      "examples": {
+        "tsx": "<QuickActions actions={[{id: \"1\", label: \"New\", icon: \"➕\", onClick: () => {}}]} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"QuickActions\",\n  \"props\": {\n    \"actions\": [{\"id\": \"1\", \"label\": \"New\", \"icon\": \"➕\"}]\n  }\n}"
+      }
+    },
+    "filter-bar": {
+      "import": "@fragment_ui/ui/filter-bar",
+      "props": {
+        "filters": "Filter[]",
+        "onClear": "function",
+        "showClearButton": "boolean"
+      },
+      "variants": [
+        {
+          "name": "default",
+          "props": {}
+        },
+        {
+          "name": "searchOnly",
+          "props": {
+            "filters": [
+              {
+                "id": "search",
+                "type": "search"
+              }
+            ]
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "search",
+        "notes": "FilterBar provides filter controls. Ensure proper form labels and keyboard navigation."
+      },
+      "examples": {
+        "tsx": "<FilterBar filters={[{id: \"search\", type: \"search\", placeholder: \"Search...\"}]} />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"FilterBar\",\n  \"props\": {\n    \"filters\": [{\"id\": \"search\", \"type\": \"search\", \"placeholder\": \"Search...\"}]\n  }\n}"
+      }
+    },
+    "chart": {
+      "import": "@fragment_ui/ui/chart",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "data": "ChartDataPoint[]",
+        "type": [
+          "line",
+          "bar",
+          "area",
+          "pie",
+          "donut"
+        ],
+        "height": "number",
+        "showLegend": "boolean",
+        "showGrid": "boolean",
+        "renderChart": "function"
+      },
+      "variants": [
+        {
+          "name": "line",
+          "props": {
+            "type": "line"
+          }
+        },
+        {
+          "name": "bar",
+          "props": {
+            "type": "bar"
+          }
+        },
+        {
+          "name": "area",
+          "props": {
+            "type": "area"
+          }
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "role": "img",
+        "notes": "Chart displays data visualizations. Ensure proper alt text or aria-label describing the chart data."
+      },
+      "examples": {
+        "tsx": "<Chart data={[{label: \"Jan\", value: 1000}]} type=\"line\" />",
+        "dsl": "{\n  \"type\": \"component\",\n  \"component\": \"Chart\",\n  \"props\": {\n    \"data\": [{\"label\": \"Jan\", \"value\": 1000}],\n    \"type\": \"line\"\n  }\n}"
+      }
+    },
+    "hero-section": {
+      "import": "@fragment_ui/blocks/hero-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "background": [
+          "gradient",
+          "image",
+          "solid"
+        ],
+        "image": "object"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "banner",
+        "notes": "Hero section should have clear heading hierarchy and accessible CTAs"
+      },
+      "examples": {
+        "tsx": "<HeroSection title=\"Welcome\" description=\"Build amazing experiences\" primaryCTA={{label: \"Get Started\", href: \"/signup\"}} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/hero-section\",\n  \"inputs\": {\n    \"title\": \"Welcome\",\n    \"description\": \"Build amazing experiences\",\n    \"primaryCTA\": {\"label\": \"Get Started\", \"href\": \"/signup\"}\n  }\n}"
+      }
+    },
+    "feature-grid-section": {
+      "import": "@fragment_ui/blocks/feature-grid-section",
+      "props": {
+        "title": "string",
+        "features": "array",
+        "columns": [
+          2,
+          3,
+          4
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Feature grid should have clear headings and accessible feature descriptions"
+      },
+      "examples": {
+        "tsx": "<FeatureGridSection title=\"Features\" features={[{title: \"Fast\", description: \"Lightning fast\"}]} columns={3} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/feature-grid-section\",\n  \"inputs\": {\n    \"title\": \"Features\",\n    \"features\": [{\"title\": \"Fast\", \"description\": \"Lightning fast\"}],\n    \"columns\": 3\n  }\n}"
+      }
+    },
+    "stats-section": {
+      "import": "@fragment_ui/blocks/stats-section",
+      "props": {
+        "items": "array",
+        "layout": [
+          "grid",
+          "row"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Stats should be clearly labeled and accessible"
+      },
+      "examples": {
+        "tsx": "<StatsSection items={[{label: \"Users\", value: \"1000\", trend: \"up\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/stats-section\",\n  \"inputs\": {\n    \"items\": [{\"label\": \"Users\", \"value\": \"1000\", \"trend\": \"up\"}]\n  }\n}"
+      }
+    },
+    "testimonials-section": {
+      "import": "@fragment_ui/blocks/testimonials-section",
+      "props": {
+        "title": "string",
+        "items": "array",
+        "layout": [
+          "grid",
+          "carousel"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Testimonials should have proper attribution and be accessible"
+      },
+      "examples": {
+        "tsx": "<TestimonialsSection title=\"Testimonials\" items={[{quote: \"Great product\", author: \"John Doe\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/testimonials-section\",\n  \"inputs\": {\n    \"title\": \"Testimonials\",\n    \"items\": [{\"quote\": \"Great product\", \"author\": \"John Doe\"}]\n  }\n}"
+      }
+    },
+    "faq-section": {
+      "import": "@fragment_ui/blocks/faq-section",
+      "props": {
+        "title": "string",
+        "items": "array"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "FAQ should use proper heading hierarchy and accessible accordion controls"
+      },
+      "examples": {
+        "tsx": "<FAQSection title=\"FAQ\" items={[{question: \"What is this?\", answer: \"A design system\"}]} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/faq-section\",\n  \"inputs\": {\n    \"title\": \"FAQ\",\n    \"items\": [{\"question\": \"What is this?\", \"answer\": \"A design system\"}]\n  }\n}"
+      }
+    },
+    "cta-section": {
+      "import": "@fragment_ui/blocks/cta-section",
+      "props": {
+        "title": "string",
+        "description": "string",
+        "primaryCTA": "object",
+        "secondaryCTA": "object",
+        "variant": [
+          "centered",
+          "split"
+        ],
+        "background": [
+          "solid",
+          "gradient",
+          "muted"
+        ]
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "CTA section should have clear call-to-action buttons with accessible labels"
+      },
+      "examples": {
+        "tsx": "<CTASection title=\"Get Started\" description=\"Start building today\" primaryCTA={{label: \"Sign Up\", href: \"/signup\"}} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/cta-section\",\n  \"inputs\": {\n    \"title\": \"Get Started\",\n    \"description\": \"Start building today\",\n    \"primaryCTA\": {\"label\": \"Sign Up\", \"href\": \"/signup\"}\n  }\n}"
+      }
+    },
+    "widget-container": {
+      "import": "@fragment_ui/blocks/widget-container",
+      "props": {
+        "title": "string",
+        "children": "ReactNode",
+        "actions": "ReactNode",
+        "footer": "ReactNode",
+        "collapsible": "boolean",
+        "defaultCollapsed": "boolean",
+        "onRefresh": "function"
+      },
+      "variants": [],
+      "slots": [
+        "children"
+      ],
+      "a11y": {
+        "role": "region",
+        "notes": "Widget container should have accessible title and controls"
+      },
+      "examples": {
+        "tsx": "<WidgetContainer title=\"Widget\" collapsible><div>Content</div></WidgetContainer>",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/widget-container\",\n  \"inputs\": {\n    \"title\": \"Widget\",\n    \"collapsible\": true\n  },\n  \"children\": [{\"type\": \"component\", \"component\": \"div\", \"copy\": \"Content\"}]\n}"
+      }
+    },
+    "dashboard-widgets": {
+      "import": "@fragment_ui/blocks/dashboard-widgets",
+      "props": {
+        "widgets": "array",
+        "columns": "number"
+      },
+      "variants": [],
+      "slots": [],
+      "a11y": {
+        "role": "region",
+        "notes": "Dashboard widgets should be organized and accessible"
+      },
+      "examples": {
+        "tsx": "<DashboardWidgets widgets={[{id: \"1\", type: \"metric\", content: <MetricCard title=\"Users\" value=\"100\" />}]} columns={12} />",
+        "dsl": "{\n  \"type\": \"block\",\n  \"ref\": \"@fragment_ui/blocks/dashboard-widgets\",\n  \"inputs\": {\n    \"widgets\": [{\"id\": \"1\", \"type\": \"metric\"}],\n    \"columns\": 12\n  }\n}"
+      }
+    }
+  },
+  "rules": {
+    "forbiddenHtml": [
+      "input",
+      "button",
+      "select",
+      "textarea",
+      "div",
+      "span"
+    ],
+    "prefer": {
+      "input": "Input",
+      "button": "Button",
+      "select": "Select",
+      "textarea": "Textarea",
+      "div": "Card or appropriate container component",
+      "span": "Badge or appropriate text component"
+    }
+  }
+}

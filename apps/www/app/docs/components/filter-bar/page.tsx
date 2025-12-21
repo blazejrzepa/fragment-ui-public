@@ -60,18 +60,18 @@ export default function FilterBarPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="filter-bar">Filter Bar</h1>
       </div>
-      <p className="mb-6 intro-text">Filter lists or tables by multiple criteria.</p>
+      <p className="mb-[var(--space-6)] intro-text">Filter lists or tables by multiple criteria.</p>
 
       <ExampleSection
         id="filter-bar-example"
         title="Filter Bar Example"
         code={filterBarCode}
-        marginTop="mt-4"
+        marginTop="mt-[var(--space-4)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-4xl">
             <FilterBar
               filters={[
@@ -118,92 +118,92 @@ export default function FilterBarPage() {
       </CodeBlock>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>filters</code></td>
-              <td className="py-2 px-4"><code>FilterConfig[]</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Array of filter configuration objects</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>filters</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>FilterConfig[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Array of filter configuration objects</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>onClear</code></td>
-              <td className="py-2 px-4"><code>() {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback function called when clear button is clicked</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onClear</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>() {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback function called when clear button is clicked</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Filter Property</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Required</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Filter Property</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Required</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>id</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4"><code>✓</code></td>
-              <td className="py-2 px-4 text-sm">Unique identifier for the filter</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>id</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>✓</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Unique identifier for the filter</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>type</code></td>
-              <td className="py-2 px-4"><code>"search" | "select" | "date"</code></td>
-              <td className="py-2 px-4"><code>✓</code></td>
-              <td className="py-2 px-4 text-sm">Type of filter input</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>type</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"search" | "select" | "date"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>✓</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Type of filter input</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>value</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4"><code>✓</code></td>
-              <td className="py-2 px-4 text-sm">Current filter value</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>✓</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Current filter value</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>onChange</code></td>
-              <td className="py-2 px-4"><code>(value: string) {'=>'} void</code></td>
-              <td className="py-2 px-4"><code>✓</code></td>
-              <td className="py-2 px-4 text-sm">Callback when filter value changes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onChange</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(value: string) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>✓</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when filter value changes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>placeholder</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Placeholder text (for search type)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>placeholder</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Placeholder text (for search type)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>label</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Filter label (for select and date types)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>label</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Filter label (for select and date types)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>options</code></td>
-              <td className="py-2 px-4"><code>{"{ value: string; label: string }[]"}</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Array of options (required for select type)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>options</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>{"{ value: string; label: string }[]"}</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Array of options (required for select type)</td>
             </tr>
           </tbody>
         </table>

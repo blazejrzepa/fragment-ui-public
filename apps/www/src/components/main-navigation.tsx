@@ -115,11 +115,6 @@ export function MainNavigation() {
                     <div className="w-[300px] p-4 space-y-2">
                       <ul className="space-y-1">
                         <li>
-                          <Link href="/docs/tools/theme-builder" className="text-sm hover:text-[color:var(--color-brand-primary)] block py-1">
-                            Theme Builder
-                          </Link>
-                        </li>
-                        <li>
                           <Link href="/docs/tools/bundle-tracking" className="text-sm hover:text-[color:var(--color-brand-primary)] block py-1">
                             Bundle Tracking
                           </Link>

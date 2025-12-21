@@ -24,21 +24,21 @@ export function PopoverDemo() {
 export default function PopoverPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="popover">Popover</h1>
       </div>
-      <p className="mb-6 intro-text">Show contextual content above the interface.</p>
+      <p className="mb-[var(--space-6)] intro-text">Show contextual content above the interface.</p>
       
       <ExampleSection
         id="popover-example"
         title="Example"
         code={popoverCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <PopoverWrapper trigger={<Button>Open Popover</Button>}>
             <div className="space-y-[var(--space-2)]">
               <h4 className="font-medium">Popover Title</h4>
-              <p className="text-sm text-[color:var(--color-fg-muted)]">
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                 This is the popover content.
               </p>
             </div>
@@ -47,46 +47,46 @@ export default function PopoverPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Popover</code></td>
-              <td className="py-2 px-4"><code>open?, onOpenChange?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Root popover component</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Popover</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>open?, onOpenChange?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Root popover component</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>PopoverTrigger</code></td>
-              <td className="py-2 px-4"><code>asChild?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Trigger element that opens the popover</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>PopoverTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>asChild?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Trigger element that opens the popover</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>PopoverContent</code></td>
-              <td className="py-2 px-4"><code>align?, side?, sideOffset?, alignOffset?, collisionPadding?, portal?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Content container for the popover</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>PopoverContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>align?, side?, sideOffset?, alignOffset?, collisionPadding?, portal?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Content container for the popover</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>PopoverClose</code></td>
-              <td className="py-2 px-4"><code>asChild?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Button that closes the popover</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>PopoverClose</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>asChild?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Button that closes the popover</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>PopoverWrapper</code></td>
-              <td className="py-2 px-4"><code>trigger, children, open?, onOpenChange?, align?, side?, sideOffset?, alignOffset?, collisionPadding?, portal?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Convenience wrapper combining Popover, PopoverTrigger, and PopoverContent</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>PopoverWrapper</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>trigger, children, open?, onOpenChange?, align?, side?, sideOffset?, alignOffset?, collisionPadding?, portal?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Convenience wrapper combining Popover, PopoverTrigger, and PopoverContent</td>
             </tr>
           </tbody>
         </table>
@@ -103,7 +103,7 @@ export default function PopoverPage() {
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Popover</code> is a component for showing contextual content anchored to an element. Use it when you need to display additional information, actions, or content that appears when a user interacts with a trigger element. Popovers are similar to tooltips but can contain more complex content and interactive elements.

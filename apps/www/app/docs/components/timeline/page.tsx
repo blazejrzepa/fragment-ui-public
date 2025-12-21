@@ -95,13 +95,13 @@ export default function TimelinePage() {
         </div>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Timeline</code> is a component for showing chronological events. Use it when you need to display a sequence of events in chronological order, such as project milestones, activity history, or process steps. The component provides a visual timeline with connecting lines and event markers.

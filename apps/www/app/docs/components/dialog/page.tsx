@@ -95,10 +95,10 @@ export function DialogSimpleDemo() {
 export default function DialogPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="dialog">Dialog</h1>
       </div>
-      <p className="mb-6 intro-text">Show modal content that requires user focus.</p>
+      <p className="mb-[var(--space-6)] intro-text">Show modal content that requires user focus.</p>
       
       <ExampleSection
         id="dialog-example"
@@ -146,7 +146,7 @@ export default function DialogPage() {
         id="dialog-simple"
         title="Simple Dialog"
         code={dialogSimpleCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
         <div className="flex justify-center items-center w-full">
           <Dialog>
@@ -177,86 +177,86 @@ export default function DialogPage() {
       </CodeBlock>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Dialog</code></td>
-              <td className="py-2 px-4"><code>open?, onOpenChange?, modal?</code></td>
-              <td className="py-2 px-4"><code>boolean, function, boolean</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Root component. Must contain <code>DialogTrigger</code> and <code>DialogContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Dialog</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>open?, onOpenChange?, modal?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean, function, boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Root component. Must contain <code>DialogTrigger</code> and <code>DialogContent</code></td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>DialogTrigger</code></td>
-              <td className="py-2 px-4"><code>asChild?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Trigger element that opens the dialog</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>asChild?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Trigger element that opens the dialog</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>DialogContent</code></td>
-              <td className="py-2 px-4"><code>variant?, className?</code></td>
-              <td className="py-2 px-4"><code>"default" | "fullscreen", string</code></td>
-              <td className="py-2 px-4"><code>"default"</code></td>
-              <td className="py-2 px-4 text-sm">Container for dialog content</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>variant?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"default" | "fullscreen", string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"default"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for dialog content</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>DialogHeader</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for title and description</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogHeader</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for title and description</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>DialogTitle</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Dialog title (required for accessibility)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogTitle</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Dialog title (required for accessibility)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>DialogDescription</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Dialog description text</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogDescription</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Dialog description text</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>DialogFooter</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for action buttons</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogFooter</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for action buttons</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>DialogClose</code></td>
-              <td className="py-2 px-4"><code>asChild?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Button that closes the dialog</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>DialogClose</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>asChild?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Button that closes the dialog</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>Dialog</code> is a component for displaying a modal window for focused tasks. Use it when you need to show important information, collect user input, or require user confirmation before proceeding with an action. Dialogs interrupt the user's workflow to focus attention on a specific task or decision.

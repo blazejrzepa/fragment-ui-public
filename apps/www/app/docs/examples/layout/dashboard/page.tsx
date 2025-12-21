@@ -7,22 +7,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@frag
 export default function DashboardLayoutExample() {
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Dashboard Example</h1>
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Dashboard Example</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Complete dashboard example demonstrating Fragment UI blocks and components. This example shows how to build a production-ready dashboard with KPI cards, navigation, and widgets.
       </p>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">Live Example</h2>
-      <div className="my-6 border rounded-lg overflow-hidden bg-background">
+      <h2 className="text-2xl font-semibold mt-8 mb-[var(--space-1)]">Live Example</h2>
+      <div className="my-[var(--space-6)] border rounded-[var(--radius-md)] overflow-hidden bg-background">
         <DashboardLayout
           header={
             <NavigationHeader
@@ -91,8 +85,8 @@ export default function DashboardLayoutExample() {
         </DashboardLayout>
       </div>
 
-      <h2 className="text-2xl font-semibold mt-8 mb-4">Code Example</h2>
-      <pre className="bg-[color:var(--color-surface-2)] p-4 rounded-lg overflow-x-auto text-sm">
+      <h2 className="text-2xl font-semibold mt-8 mb-[var(--space-1)]">Code Example</h2>
+      <pre className="bg-[color:var(--color-surface-2)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto text-sm">
         <code>{`import { DashboardLayout, KPIDashboard, NavigationHeader } from "@fragment_ui/blocks";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@fragment_ui/ui";
 
@@ -137,7 +131,7 @@ export default function Dashboard() {
 }`}</code>
       </pre>
 
-      <div className="mt-6 p-4 rounded-lg bg-[color:var(--color-surface-2)]">
+      <div className="mt-6 p-[var(--space-4)] rounded-[var(--radius-md)] bg-[color:var(--color-surface-2)]">
         <h3 className="text-lg font-semibold mb-2">Key Components Used</h3>
         <ul className="list-disc list-inside space-y-1 text-sm text-[color:var(--color-fg-muted)]">
           <li><code className="bg-[color:var(--color-surface-1)] px-1 rounded">DashboardLayout</code> - Main dashboard container with sidebar and header</li>
@@ -147,7 +141,7 @@ export default function Dashboard() {
         </ul>
       </div>
 
-      <div className="mt-6 p-4 rounded-lg bg-[color:var(--color-surface-2)]">
+      <div className="mt-6 p-[var(--space-4)] rounded-[var(--radius-md)] bg-[color:var(--color-surface-2)]">
         <h3 className="text-lg font-semibold mb-2">Full Example Project</h3>
         <p className="text-sm text-[color:var(--color-fg-muted)] mb-2">
           Check out the complete Next.js dashboard example in the repository:

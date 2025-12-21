@@ -28,7 +28,7 @@ export function RadioDemo() {
           <Label htmlFor="option3" className="opacity-50">Option 3 (disabled)</Label>
         </div>
       </RadioGroup>
-      <p className="text-sm text-[color:var(--color-fg-muted)]">
+      <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
         Selected: {value}
       </p>
     </div>
@@ -40,17 +40,17 @@ export default function RadioPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="radio">Radio</h1>
       </div>
-      <p className="mb-6 intro-text">Select exactly one option from a group.</p>
+      <p className="mb-[var(--space-6)] intro-text">Select exactly one option from a group.</p>
       
       <ExampleSection
         id="radio-example"
         title="Example"
         code={radioCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md">
             <RadioGroup value={value} onValueChange={setValue}>
               <div className="flex items-center gap-[var(--space-2)]">
@@ -66,7 +66,7 @@ export default function RadioPage() {
                 <Label htmlFor="option3" className="opacity-50">Option 3 (disabled)</Label>
               </div>
             </RadioGroup>
-            <p className="mt-[var(--space-2)] text-sm text-[color:var(--color-fg-muted)]">
+            <p className="mt-[var(--space-2)] text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
               Selected: {value}
             </p>
           </div>
@@ -106,13 +106,13 @@ export default function RadioPage() {
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Radio</code> is a component for selecting one option from a set. Use it when you need to provide users with mutually exclusive choices, such as form options, settings, or preferences. Radio buttons are grouped together, and only one option can be selected at a time.

@@ -16,22 +16,13 @@ export default function TableActionsExample() {
 
   return (
     <DocLayout>
-      <h1 id="table-actions" className="text-3xl font-medium mb-4">Table Actions</h1>
-      <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
-      >
+      <h1 id="table-actions" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Table Actions</h1>
+      <p className="mb-[var(--space-6)] intro-text">
         Table Actions example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6">
+      <div className="my-[var(--space-6)]">
         <DataTable
           data={users}
           columns={[

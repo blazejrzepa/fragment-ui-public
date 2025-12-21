@@ -35,12 +35,32 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
         )}
         <div>
           {React.isValidElement(children) ? (
-            React.cloneElement(children as React.ReactElement, {
-              id,
-              error: hasError,
-              "aria-invalid": hasError ? "true" : undefined,
-              "aria-describedby": (hasError || helperText) ? `${id}-description` : undefined,
-            })
+            // Special handling for Select component - id should go to SelectTrigger, not Select.Root
+            // Check if children is Select by checking if it has SelectTrigger as a child
+            React.Children.toArray(children.props.children).some(
+              (child: any) => React.isValidElement(child) && child.type === SelectTrigger
+            ) ? (
+              React.cloneElement(children as React.ReactElement, {
+                children: React.Children.map(children.props.children, (child: any) => {
+                  if (React.isValidElement(child) && child.type === SelectTrigger) {
+                    return React.cloneElement(child, {
+                      id,
+                      error: hasError,
+                      "aria-invalid": hasError ? "true" : undefined,
+                      "aria-describedby": (hasError || helperText) ? `${id}-description` : undefined,
+                    });
+                  }
+                  return child;
+                }),
+              })
+            ) : (
+              React.cloneElement(children as React.ReactElement, {
+                id,
+                error: hasError,
+                "aria-invalid": hasError ? "true" : undefined,
+                "aria-describedby": (hasError || helperText) ? `${id}-description` : undefined,
+              })
+            )
           ) : (
             children
           )}

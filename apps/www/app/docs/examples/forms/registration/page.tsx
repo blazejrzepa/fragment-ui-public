@@ -13,27 +13,18 @@ import { useState } from "react";
 export default function RegistrationFormExample() {
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Registration</h1>
-      <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
-      >
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Registration</h1>
+      <p className="mb-[var(--space-6)] intro-text">
         Registration example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6 max-w-md">
+      <div className="my-[var(--space-6)] max-w-md">
         <RegistrationForm />
       </div>
 
       <h2>Code</h2>
-      <pre className="bg-[color:var(--color-surface-1)] p-4 rounded-lg overflow-x-auto"><code>{`import {
+      <pre className="bg-[color:var(--color-surface-1)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto"><code>{`import {
   FormEnhanced,
   FormFieldEnhanced,
   validators,

@@ -91,7 +91,7 @@ export function ComponentDocumentation({
         <p
           className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
           style={{
-            fontFamily: "Geist, sans-serif",
+            fontFamily: "var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif)",
             fontSize: "16px",
             fontStyle: "normal",
             lineHeight: "160%",

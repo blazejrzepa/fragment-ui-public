@@ -18,22 +18,16 @@ export default function NestedDialogsExample() {
 
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Nested</h1>
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Nested</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Nested example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6">
+      <div className="my-[var(--space-6)]">
         <Dialog open={outerOpen} onOpenChange={setOuterOpen}>
           <DialogTrigger asChild>
             <Button>Open Outer Dialog</Button>

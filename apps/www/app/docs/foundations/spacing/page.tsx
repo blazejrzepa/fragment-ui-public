@@ -21,39 +21,39 @@ export default function SpacingPage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="spacing" className="text-3xl font-medium mb-4">Spacing</h1>
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="spacing" className="text-[length:var(--typography-display-md-size)] font-medium">Spacing</h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Spacing tokens for consistent layout and rhythm across the design system.
       </p>
 
       <h2 id="scale">Spacing Scale</h2>
       <p>The spacing scale provides values from 0 to 32px in increments that follow a logical progression:</p>
 
-      <div className="my-8 space-y-4">
+      <div className="my-[var(--space-8)] space-y-[var(--space-4)]">
         {Object.entries(SPACING_SCALE).map(([key, value]) => (
           <div
             key={key}
-            className={`border rounded-lg p-4 transition-all ${
+            className={`border rounded-[var(--radius-md)] p-[var(--space-4)] transition-all ${
               selectedSpace === key
                 ? "border-[color:var(--color-brand-primary)] bg-[color:var(--color-surface-2)]"
                 : "border-[color:var(--color-border-base)]"
             }`}
             onClick={() => setSelectedSpace(key as keyof typeof SPACING_SCALE)}
           >
-            <div className="flex items-center gap-4 mb-3">
-              <div className="flex items-center gap-2">
-                <code className="text-sm font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
+            <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-3)]">
+              <div className="flex items-center gap-[var(--space-2)]">
+                <code className="text-[length:var(--typography-size-sm)] font-mono bg-[color:var(--color-surface-1)] px-[var(--space-2)] py-[var(--space-1)] rounded">
                   --space-{key}
                 </code>
-                <span className="text-sm text-[color:var(--color-fg-muted)]">
+                <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                   {value}px
                 </span>
               </div>
               <button
-                className="text-xs text-[color:var(--color-brand-primary)] hover:underline"
+                className="text-[length:var(--typography-size-xs)] text-[color:var(--color-brand-primary)] hover:underline"
                 onClick={(e) => {
                   e.stopPropagation();
                   navigator.clipboard.writeText(`var(--space-${key})`);
@@ -62,13 +62,13 @@ export default function SpacingPage() {
                 Copy CSS variable
               </button>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-[var(--space-2)]">
               <div
                 className="bg-[color:var(--color-brand-primary)] h-8 rounded"
                 style={{ width: `${value}px` }}
                 title={`${value}px`}
               />
-              <div className="text-xs text-[color:var(--color-fg-muted)]">
+              <div className="text-[length:var(--typography-size-xs)] text-[color:var(--color-fg-muted)]">
                 Visual representation
               </div>
             </div>
@@ -80,29 +80,29 @@ export default function SpacingPage() {
       <p>Here are practical examples of how to use spacing tokens in your components:</p>
 
       <h3>Padding Examples</h3>
-      <div className="space-y-4 my-6">
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-4">
-          <p className="text-sm font-semibold mb-2">Small padding (space-2 = 8px)</p>
+      <div className="space-y-[var(--space-4)] my-[var(--space-6)]">
+        <div className="border border-[color:var(--color-border-base)] rounded-lg p-[var(--space-4)]">
+          <p className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-2)]">Small padding (space-2 = 8px)</p>
           <div className="bg-[color:var(--color-surface-2)] rounded" style={{ padding: "var(--space-2)" }}>
-            <div className="bg-[color:var(--color-brand-primary)] text-white text-xs px-2 py-1 rounded inline-block">
+            <div className="bg-[color:var(--color-brand-primary)] text-white text-[length:var(--typography-size-xs)] px-[var(--space-2)] py-[var(--space-1)] rounded inline-block">
               Content
             </div>
           </div>
         </div>
 
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-4">
-          <p className="text-sm font-semibold mb-2">Medium padding (space-4 = 16px)</p>
+        <div className="border border-[color:var(--color-border-base)] rounded-lg p-[var(--space-4)]">
+          <p className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-2)]">Medium padding (space-4 = 16px)</p>
           <div className="bg-[color:var(--color-surface-2)] rounded" style={{ padding: "var(--space-4)" }}>
-            <div className="bg-[color:var(--color-brand-primary)] text-white text-xs px-2 py-1 rounded inline-block">
+            <div className="bg-[color:var(--color-brand-primary)] text-white text-[length:var(--typography-size-xs)] px-[var(--space-2)] py-[var(--space-1)] rounded inline-block">
               Content
             </div>
           </div>
         </div>
 
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-4">
-          <p className="text-sm font-semibold mb-2">Large padding (space-8 = 32px)</p>
+        <div className="border border-[color:var(--color-border-base)] rounded-lg p-[var(--space-4)]">
+          <p className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-2)]">Large padding (space-8 = 32px)</p>
           <div className="bg-[color:var(--color-surface-2)] rounded" style={{ padding: "var(--space-8)" }}>
-            <div className="bg-[color:var(--color-brand-primary)] text-white text-xs px-2 py-1 rounded inline-block">
+            <div className="bg-[color:var(--color-brand-primary)] text-white text-[length:var(--typography-size-xs)] px-[var(--space-2)] py-[var(--space-1)] rounded inline-block">
               Content
             </div>
           </div>

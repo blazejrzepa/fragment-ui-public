@@ -101,8 +101,8 @@ export function DocumentationHeader({
   actions,
   mobileMenu,
   blur = true,
-  height = "60px",
-  maxWidth = "1536px",
+  height = "var(--header-height, 60px)",
+  maxWidth = "var(--max-width-container, 1536px)",
   mobileBreakpoint = 1024,
   className,
 }: DocumentationHeaderProps) {
@@ -121,20 +121,36 @@ export function DocumentationHeader({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 ${className || ""}`}
+      className={`fixed top-0 left-0 right-0 z-50 relative ${blur ? "has-blur" : ""} ${className || ""} h-[var(--header-height,60px)]`}
       style={{
-        height,
-        backgroundColor: blur
-          ? "color-mix(in oklab, var(--background-primary) 60%, transparent)"
-          : "var(--background-primary)",
-        backdropFilter: blur ? "blur(12px)" : "none",
-        WebkitBackdropFilter: blur ? "blur(12px)" : "none",
+        background: blur
+          ? `linear-gradient(to bottom, 
+              color-mix(in oklab, var(--background-primary) 60%, transparent) 0%,
+              color-mix(in oklab, var(--background-primary) 55%, transparent) 20%,
+              color-mix(in oklab, var(--background-primary) 45%, transparent) 40%,
+              color-mix(in oklab, var(--background-primary) 35%, transparent) 60%,
+              color-mix(in oklab, var(--background-primary) 25%, transparent) 75%,
+              color-mix(in oklab, var(--background-primary) 15%, transparent) 85%,
+              color-mix(in oklab, var(--background-primary) 8%, transparent) 92%,
+              transparent 100%
+            )`
+          : `linear-gradient(to bottom, 
+              var(--background-primary) 0%,
+              color-mix(in oklab, var(--background-primary) 90%, transparent) 30%,
+              color-mix(in oklab, var(--background-primary) 75%, transparent) 50%,
+              color-mix(in oklab, var(--background-primary) 55%, transparent) 65%,
+              color-mix(in oklab, var(--background-primary) 35%, transparent) 78%,
+              color-mix(in oklab, var(--background-primary) 18%, transparent) 88%,
+              color-mix(in oklab, var(--background-primary) 8%, transparent) 94%,
+              transparent 100%
+            )`,
+        backdropFilter: "none",
+        WebkitBackdropFilter: "none",
       }}
     >
-      <div className="mx-auto" style={{ maxWidth }}>
+      <div className="mx-auto relative z-10 max-w-[var(--max-width-container,1536px)]">
         <div
-          className="flex w-full items-center justify-between px-3 lg:px-6"
-          style={{ height }}
+          className="flex w-full items-center justify-between px-3 lg:px-6 relative z-10 h-[var(--header-height,60px)]"
         >
           {/* Left: Logo + Navigation Links */}
           <div className="flex items-center gap-1 sm:gap-2 ml-1">
@@ -156,10 +172,7 @@ export function DocumentationHeader({
                         <React.Fragment key={`${link.href}-${index}`}>
                           {showSeparator && (
                             <div
-                              className="h-4 mx-2 border-l"
-                              style={{
-                                borderColor: "color-mix(in oklab, var(--foreground-primary) 10%, transparent)",
-                              }}
+                              className="h-4 mx-2 border-l border-[color:color-mix(in_oklab,var(--foreground-primary)_10%,transparent)]"
                             />
                           )}
                           <NavigationMenuItem>
@@ -208,12 +221,9 @@ export function DocumentationHeader({
             {!isMobile && actions && (
               <>
                 <div
-                  className="h-4 border-l"
-                  style={{
-                    borderColor: "color-mix(in oklab, var(--foreground-primary) 10%, transparent)",
-                  }}
+                  className="h-4 border-l border-[color:color-mix(in_oklab,var(--foreground-primary)_10%,transparent)]"
                 />
-                <div style={{ marginLeft: "6px" }}>{actions}</div>
+                <div className="ml-[6px]">{actions}</div>
               </>
             )}
 
@@ -221,7 +231,7 @@ export function DocumentationHeader({
             {isMobile && (
               <>
                 {actions && (
-                  <div style={{ marginLeft: "6px" }} className="flex-shrink-0">
+                  <div className="ml-[6px] flex-shrink-0">
                     {actions}
                   </div>
                 )}

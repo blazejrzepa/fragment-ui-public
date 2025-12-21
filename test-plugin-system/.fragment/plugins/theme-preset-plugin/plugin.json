@@ -1,0 +1,12 @@
+{
+  "id": "theme-preset-plugin",
+  "name": "Theme Preset Plugin",
+  "version": "0.1.0",
+  "description": "Provides theme presets for Fragment UI",
+  "author": "Fragment UI",
+  "entry": "./index.js",
+  "capabilities": {
+    "themePlugin": true
+  }
+}
+

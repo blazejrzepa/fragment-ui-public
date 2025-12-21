@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "recipes": {
+    "dashboard.analytics.v1": {
+      "name": "Analytics Dashboard",
+      "description": "Analytics dashboard with KPIs, charts, and data table",
+      "layout": {
+        "type": "dashboard",
+        "areas": ["header", "sidebar", "content"],
+        "grid": {
+          "cols": 12,
+          "gap": 4
+        }
+      },
+      "slots": {
+        "header": [
+          "Breadcrumbs",
+          "Search",
+          "UserMenu"
+        ],
+        "sidebar": [
+          "NavMenu{items=Analytics,Reports,Settings}"
+        ],
+        "content": [
+          "KpiRow{items=MRR,ARPU,Churn}",
+          "Chart{type=line}",
+          "DataTable{filters=DateRange,Segment}"
+        ]
+      },
+      "keywords": ["dashboard", "analytics", "kpi", "metrics", "charts", "data table"]
+    },
+    "marketing.saas.v1": {
+      "name": "SaaS Marketing Landing",
+      "description": "SaaS marketing landing page with hero, features, testimonials, pricing, FAQ, and CTA",
+      "layout": {
+        "type": "marketing",
+        "hero": true,
+        "sections": ["features", "proof", "pricing", "faq", "cta"]
+      },
+      "slots": {},
+      "keywords": ["landing", "marketing", "saas", "hero", "features", "testimonials", "pricing", "faq", "cta"]
+    },
+    "dashboard.sales.v1": {
+      "name": "Sales Dashboard",
+      "description": "Sales dashboard with revenue metrics, pipeline, and deals table",
+      "layout": {
+        "type": "dashboard",
+        "areas": ["header", "sidebar", "content"],
+        "grid": {
+          "cols": 12,
+          "gap": 4
+        }
+      },
+      "slots": {
+        "header": [
+          "Breadcrumbs",
+          "Search",
+          "UserMenu"
+        ],
+        "sidebar": [
+          "NavMenu{items=Dashboard,Deals,Contacts,Reports}"
+        ],
+        "content": [
+          "KpiRow{items=Revenue,Pipeline,Deals}",
+          "Chart{type=bar}",
+          "DataTable{filters=Status,DateRange}"
+        ]
+      },
+      "keywords": ["dashboard", "sales", "revenue", "pipeline", "deals"]
+    }
+  }
+}
+

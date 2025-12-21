@@ -49,5 +49,5 @@ This example demonstrates:
 - [DocumentationHeader Documentation](../../apps/www/docs/components/documentation-header)
 - [DocumentationSidebar Documentation](../../apps/www/docs/components/documentation-sidebar)
 - [DocumentationLayout Documentation](../../apps/www/docs/components/documentation-layout)
-- [Fragment UI Documentation](https://fragmentui.com)
+- [Fragment UI Documentation](https://fragment-ui.dev)
 

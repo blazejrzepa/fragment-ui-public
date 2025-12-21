@@ -1,0 +1,622 @@
+{
+  "components": [
+    {
+      "name": "Accordion",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Alert",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "AspectRatio",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Avatar",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Badge",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Breadcrumbs",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Button",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Calendar",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Card",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Carousel",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Checkbox",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Collapsible",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "ColorPicker",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Combobox",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "CommandPalette",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "ContextMenu",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "DataTable",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "DatePicker",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Dialog",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "DropdownMenu",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "FileUpload",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Form",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "FormField",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "FormFieldEnhanced",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "HoverCard",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Input",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Kbd",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Menubar",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "MultiSelect",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "NavigationMenu",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Pagination",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "PasswordInput",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Popover",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Progress",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Radio",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Rating",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Resizable",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "ScrollArea",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "SegmentedControl",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Select",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Separator",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Sheet",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Skeleton",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Slider",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Spinner",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "SplitButton",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Stepper",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Switch",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "TabContent",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "TabTrigger",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Table",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Tabs",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "TabsList",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "TagInput",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Textarea",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Timeline",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Toast",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Toggle",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "ToggleGroup",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "Tooltip",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "TreeView",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "activity-feed",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "chart",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "filter-bar",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "metric-card",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "notification-list",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "quick-actions",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    }
+  ],
+  "blocks": [
+    {
+      "name": "AnalyticsDashboard",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "AuthenticationBlock",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "BenefitsSection",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "CardGrid",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "ComparisonSection",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "DashboardLayout",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "FooterSection",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "FormContainer",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "KpiDashboard",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "NavigationHeader",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "PricingTable",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "SettingsScreen",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "VoiceChatPanel",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "cta-section",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "dashboard-widgets",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "faq-section",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "feature-grid-section",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "hero-section",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "stats-section",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "testimonials-section",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    },
+    {
+      "name": "widget-container",
+      "tested": false,
+      "previewWorks": null,
+      "libraryWorks": null,
+      "errors": []
+    }
+  ]
+}

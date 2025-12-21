@@ -76,7 +76,7 @@ import {
 import { Search, Check, Users, TrendingUp } from "lucide-react";
 
 const Slide = ({ color, children }: { color: string; children: React.ReactNode }) => (
-  <div className="h-64 flex items-center justify-center text-white text-2xl font-normal rounded-lg" style={{ backgroundColor: color }}>
+  <div className="h-64 flex items-center justify-center text-white text-[length:var(--typography-size-2xl)] font-normal rounded-[var(--radius-md)]" style={{ backgroundColor: color }}>
     {children}
   </div>
 );

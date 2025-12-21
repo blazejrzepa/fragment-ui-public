@@ -1,0 +1,105 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - region "Notifications alt+T"
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - link [ref=e6] [cursor=pointer]:
+            - /url: http://localhost:3000/docs/get-started/introduction
+            - img [ref=e7]
+          - generic [ref=e10]: /
+          - heading "Fragment UI Studio" [level=1] [ref=e11]
+          - generic [ref=e12]:
+            - link "Studio" [ref=e13] [cursor=pointer]:
+              - /url: /studio
+            - link "Library" [ref=e14] [cursor=pointer]:
+              - /url: /studio?tab=library
+            - link "Drafts" [ref=e15] [cursor=pointer]:
+              - /url: /studio?tab=drafts
+            - link "Releases" [ref=e16] [cursor=pointer]:
+              - /url: /studio?tab=releases
+            - link "Experiments" [ref=e17] [cursor=pointer]:
+              - /url: /studio?tab=experiments
+            - link "Governance" [ref=e18] [cursor=pointer]:
+              - /url: /studio?tab=governance
+        - generic [ref=e19]:
+          - button [ref=e20] [cursor=pointer]:
+            - img [ref=e21]
+          - button [ref=e23] [cursor=pointer]:
+            - img [ref=e24]
+          - button [ref=e26] [cursor=pointer]:
+            - img [ref=e27]
+          - button [ref=e30] [cursor=pointer]:
+            - img [ref=e31]
+          - link [ref=e34] [cursor=pointer]:
+            - /url: http://localhost:3000/docs/api
+            - img [ref=e35]
+          - button [ref=e38] [cursor=pointer]:
+            - img [ref=e39]
+    - generic [ref=e43]:
+      - generic [ref=e46]:
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - button "Playground" [ref=e50] [cursor=pointer]
+            - button "Library" [ref=e51] [cursor=pointer]
+          - generic [ref=e52]:
+            - button "New Folder" [ref=e53] [cursor=pointer]:
+              - img [ref=e54]
+            - button "New Component" [ref=e56] [cursor=pointer]:
+              - img [ref=e57]
+        - generic [ref=e58]:
+          - tree "Tree view" [ref=e62]:
+            - treeitem "Projects" [ref=e63]:
+              - generic [ref=e64] [cursor=pointer]:
+                - img [ref=e66]
+                - generic [ref=e70]: Projects
+          - generic [ref=e72]: No favorites yet. Right-click a component and select "Add to Favourites".
+      - generic [ref=e77]:
+        - img [ref=e82]
+        - generic [ref=e88]:
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - button "Terminal" [ref=e92] [cursor=pointer]
+              - button "Accessibility" [ref=e93] [cursor=pointer]
+            - generic [ref=e94]:
+              - textbox "Search logs..." [ref=e96]
+              - button [ref=e97] [cursor=pointer]:
+                - img [ref=e98]
+              - button [ref=e101] [cursor=pointer]:
+                - img [ref=e102]
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]: "[6:51:58 PM]"
+              - generic [ref=e109]: "[generate]"
+              - text: "pendingStarting AI generation for: \"Create a button with text 'Test Button'\""
+            - generic [ref=e110]:
+              - generic [ref=e111]: "[6:51:58 PM]"
+              - generic [ref=e112]: "[generate]"
+              - text: pendingUsing AI to generate component...
+      - generic [ref=e116]:
+        - generic [ref=e118]:
+          - button "Copilot" [ref=e120] [cursor=pointer]
+          - generic [ref=e121]:
+            - button "Chat history" [ref=e122] [cursor=pointer]:
+              - img [ref=e123]
+            - button "More options" [ref=e126] [cursor=pointer]:
+              - img [ref=e127]
+        - generic [ref=e132]:
+          - generic [ref=e136]:
+            - paragraph [ref=e137]: AI Copilot
+            - paragraph [ref=e138]: Tell me what to build. I turn it into UI-DSL and output React using the Fragment UI design system.
+          - generic [ref=e139]:
+            - generic [ref=e140]:
+              - textbox "Describe what you want to build or modify..." [disabled] [ref=e141]
+              - button "Upload document" [disabled] [ref=e142]:
+                - img [ref=e143]
+              - button "Stop generation" [ref=e146] [cursor=pointer]:
+                - img [ref=e147]
+            - paragraph [ref=e149]: Press Enter to send, Shift+Enter for new line
+  - button "Open Next.js Dev Tools" [ref=e155] [cursor=pointer]:
+    - img [ref=e156]
+  - alert [ref=e159]
+```

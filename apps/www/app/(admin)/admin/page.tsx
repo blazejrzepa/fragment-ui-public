@@ -71,17 +71,17 @@ const SalesTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload || !payload.length) return null;
 
   return (
-    <div className="rounded-lg border border-[color:var(--color-border-base)] bg-[color:var(--background-primary)] p-3 shadow-lg min-w-[180px]">
-      <p className="text-xs font-medium text-[color:var(--color-fg-base)] mb-2">{label}</p>
-      <div className="space-y-1">
+    <div className="rounded-[var(--radius-lg)] border border-[color:var(--color-border-base)] bg-[color:var(--background-primary)] p-[var(--space-3)] shadow-lg min-w-[180px]">
+      <p className="text-[length:var(--typography-size-xs)] font-medium text-[color:var(--color-fg-base)] mb-[var(--space-2)]">{label}</p>
+      <div className="space-y-[var(--space-1)]">
         {payload.map((entry: any) => (
-          <div key={entry.dataKey} className="flex items-center gap-2">
+          <div key={entry.dataKey} className="flex items-center gap-[var(--space-2)]">
             <span
-              className="inline-block h-2 w-2 rounded-full"
+              className="inline-block h-[var(--space-2)] w-[var(--space-2)] rounded-full"
               style={{ backgroundColor: entry.color }}
             />
-            <span className="text-xs text-[color:var(--color-fg-muted)]">{entry.name}</span>
-            <span className="ml-auto text-xs font-semibold text-[color:var(--color-fg-base)]">
+            <span className="text-[length:var(--typography-size-xs)] text-[color:var(--color-fg-muted)]">{entry.name}</span>
+            <span className="ml-auto text-[length:var(--typography-size-xs)] font-semibold text-[color:var(--color-fg-base)]">
               {entry.value}
             </span>
           </div>
@@ -96,19 +96,19 @@ const CustomSubscriptionsTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div 
-        className="rounded-lg border border-[color:var(--color-border-base)] bg-[color:var(--background-primary)] p-3 shadow-lg"
+        className="rounded-[var(--radius-lg)] border border-[color:var(--color-border-base)] bg-[color:var(--background-primary)] p-[var(--space-3)] shadow-lg"
       >
-        <p className="text-sm font-medium text-[color:var(--color-fg-base)] mb-2">{label}</p>
+        <p className="text-[length:var(--typography-size-sm)] font-medium text-[color:var(--color-fg-base)] mb-[var(--space-2)]">{label}</p>
         {payload.map((entry: any, index: number) => (
-          <div key={index} className="flex items-center gap-2">
+          <div key={index} className="flex items-center gap-[var(--space-2)]">
             <div 
-              className="h-3 w-3 rounded-full" 
+              className="h-[var(--space-3)] w-[var(--space-3)] rounded-full" 
               style={{ backgroundColor: entry.color }}
             />
-            <span className="text-sm text-[color:var(--color-fg-muted)]">
+            <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
               {entry.name}: 
             </span>
-            <span className="text-sm font-semibold text-[color:var(--color-fg-base)]">
+            <span className="text-[length:var(--typography-size-sm)] font-semibold text-[color:var(--color-fg-base)]">
               {entry.value}
             </span>
           </div>
@@ -160,18 +160,18 @@ export default function AdminDashboardPage() {
   ];
 
   return (
-    <div className="space-y-6" data-admin-root>
+    <div className="space-y-[var(--space-6)]" data-admin-root>
       {/* Page Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-medium">Dashboard</h1>
-          <p className="text-sm text-[color:var(--color-fg-muted)] mt-1">Overview & analytics</p>
+          <h1 className="text-[length:var(--typography-display-sm-size)] font-medium">Dashboard</h1>
+          <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] mt-[var(--space-1)]">Overview & analytics</p>
         </div>
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" leadingIcon={<Download className="h-4 w-4" />}>
+        <div className="flex items-center gap-[var(--space-2)]">
+          <Button variant="outline" size="sm" leadingIcon={<Download className="h-[var(--space-4)] w-[var(--space-4)]" />}>
             Download
           </Button>
-          <Button variant="outline" size="sm" leadingIcon={<Calendar className="h-4 w-4" />}>
+          <Button variant="outline" size="sm" leadingIcon={<Calendar className="h-[var(--space-4)] w-[var(--space-4)]" />}>
             Pick a date
           </Button>
         </div>
@@ -186,16 +186,16 @@ export default function AdminDashboardPage() {
           <TabsTrigger value="notifications" disabled>Notifications</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-6 mt-6">
+        <TabsContent value="overview" className="space-y-[var(--space-6)] mt-[var(--space-6)]">
           {/* KPI Cards Grid */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-[var(--space-4)] md:grid-cols-2 lg:grid-cols-4">
             <MetricCard
               title="New Subscriptions"
               value="4,682"
               description="Since Last week"
               trend="up"
               trendValue="+15.54%"
-              icon={<Users className="h-4 w-4" />}
+              icon={<Users className="h-[var(--space-4)] w-[var(--space-4)]" />}
               footerPlacement="content"
             />
             <MetricCard
@@ -204,7 +204,7 @@ export default function AdminDashboardPage() {
               description="Since Last week"
               trend="up"
               trendValue="+40.2%"
-              icon={<ShoppingCart className="h-4 w-4" />}
+              icon={<ShoppingCart className="h-[var(--space-4)] w-[var(--space-4)]" />}
               footerPlacement="content"
             />
             <MetricCard
@@ -213,7 +213,7 @@ export default function AdminDashboardPage() {
               description="Since Last week"
               trend="up"
               trendValue="+10.8%"
-              icon={<TrendingUp className="h-4 w-4" />}
+              icon={<TrendingUp className="h-[var(--space-4)] w-[var(--space-4)]" />}
               footerPlacement="content"
             />
             <MetricCard
@@ -222,7 +222,7 @@ export default function AdminDashboardPage() {
               description="+20.1% from last month"
               trend="up"
               trendValue="+20.1%"
-              icon={<DollarSign className="h-4 w-4" />}
+              icon={<DollarSign className="h-[var(--space-4)] w-[var(--space-4)]" />}
               footerPlacement="content"
             />
           </div>
@@ -230,11 +230,11 @@ export default function AdminDashboardPage() {
           {/* Chart: Sale Activity - full width */}
           <Card className="w-full min-w-0 bg-[color:var(--color-surface-1)]">
             <CardHeader>
-              <div className="flex items-start justify-between gap-4 w-full">
+              <div className="flex items-start justify-between gap-[var(--space-4)] w-full">
                 <div className="flex-1">
-                  <CardTitle className="text-lg">Sale Activity</CardTitle>
+                  <CardTitle className="text-[length:var(--typography-size-lg)]">Sale Activity</CardTitle>
                   <CardDescription
-                    className="text-[color:var(--color-fg-muted)] mt-2"
+                    className="text-[color:var(--color-fg-muted)] mt-[var(--space-2)]"
                     style={{ color: "var(--color-fg-muted)" }}
                   >
                     {timePeriod === "last-year" && "Showing total sales for the last year"}
@@ -266,7 +266,7 @@ export default function AdminDashboardPage() {
                 </ToggleGroup>
               </div>
             </CardHeader>
-            <CardContent className="pt-6 p-0 overflow-hidden min-w-0 w-full">
+            <CardContent className="pt-[var(--space-6)] p-0 overflow-hidden min-w-0 w-full">
               <div ref={chartContainerRef} className="w-full min-w-0">
                 <div className="h-[350px] w-full min-w-[320px]">
                   <ResponsiveContainer
@@ -339,14 +339,14 @@ export default function AdminDashboardPage() {
           </Card>
 
           {/* Payments and Team Members Grid */}
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-[var(--space-6)] lg:grid-cols-2">
             {/* Payments */}
             <Card className="w-full bg-transparent">
               <CardHeader>
-                <CardTitle className="text-lg">Payments</CardTitle>
+                <CardTitle className="text-[length:var(--typography-size-lg)]">Payments</CardTitle>
                 <CardDescription className="text-[color:var(--color-fg-muted)]">Manage your payments.</CardDescription>
               </CardHeader>
-              <CardContent className="w-full mt-2.5 sm:mt-2.5 mb-0">
+              <CardContent className="w-full mt-[10px] sm:mt-[10px] mb-0">
                 <div className="w-full">
                   <DataTable data={samplePayments} columns={paymentColumns} />
                 </div>
@@ -356,21 +356,21 @@ export default function AdminDashboardPage() {
             {/* Team Members */}
             <Card className="bg-transparent">
               <CardHeader>
-                <CardTitle className="text-lg">Team Members</CardTitle>
+                <CardTitle className="text-[length:var(--typography-size-lg)]">Team Members</CardTitle>
                 <CardDescription className="text-[color:var(--color-fg-muted)]">Invite your team members to collaborate.</CardDescription>
               </CardHeader>
-              <CardContent className="pt-3 pb-0 px-0 w-full">
-                <div className="space-y-1 w-full">
+              <CardContent className="pt-[var(--space-3)] pb-0 px-0 w-full">
+                <div className="space-y-[var(--space-1)] w-full">
                   {sampleTeamMembers.map((member) => (
                     <div
                       key={member.id}
-                      className="flex items-center justify-between p-3 rounded-md hover:bg-[color:var(--color-surface-2)]"
+                      className="flex items-center justify-between p-[var(--space-3)] rounded-[var(--radius-md)] hover:bg-[color:var(--color-surface-2)]"
                     >
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-[var(--space-3)]">
                         <Avatar fallback={member.initials} />
                         <div>
                           <div className="font-medium">{member.name}</div>
-                          <div className="text-sm text-[color:var(--color-fg-muted)]">
+                          <div className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                             {member.email}
                           </div>
                         </div>
@@ -386,7 +386,7 @@ export default function AdminDashboardPage() {
           </div>
         </TabsContent>
 
-        <TabsContent value="analytics" className="space-y-6 mt-6">
+        <TabsContent value="analytics" className="space-y-[var(--space-6)] mt-[var(--space-6)]">
           <Card>
             <CardHeader>
               <CardTitle>Analytics</CardTitle>
@@ -398,7 +398,7 @@ export default function AdminDashboardPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="reports" className="space-y-6 mt-6">
+        <TabsContent value="reports" className="space-y-[var(--space-6)] mt-[var(--space-6)]">
           <Card>
             <CardHeader>
               <CardTitle>Reports</CardTitle>
@@ -410,7 +410,7 @@ export default function AdminDashboardPage() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="notifications" className="space-y-6 mt-6">
+        <TabsContent value="notifications" className="space-y-[var(--space-6)] mt-[var(--space-6)]">
           <Card>
             <CardHeader>
               <CardTitle>Notifications</CardTitle>

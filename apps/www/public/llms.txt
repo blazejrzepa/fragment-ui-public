@@ -93,7 +93,6 @@ Components are exported from `@fragment_ui/ui`:
 - [Collapsible](https://fragmentui.com/docs/components/collapsible): Collapsible panel
 - [Avatar](https://fragmentui.com/docs/components/avatar): Avatar component
 - [Badge](https://fragmentui.com/docs/components/badge): Badge component
-- [Calendar](https://fragmentui.com/docs/components/calendar): Calendar picker
 - [DatePicker](https://fragmentui.com/docs/components/date-picker): Date picker
 - [ColorPicker](https://fragmentui.com/docs/components/color-picker): Color picker
 - [CommandPalette](https://fragmentui.com/docs/components/command-palette): Command palette

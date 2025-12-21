@@ -45,7 +45,7 @@ export default function TokensPageV090() {
 --color-accent-red: #EF4444;`}</code></pre>
 
       <p className="mt-4 text-sm text-[color:var(--color-fg-muted)]">
-        <strong>Note:</strong> Version 0.9.0 did not include high contrast mode or extended tokens.
+        <strong>Note:</strong> Version 0.9.0 did not include extended tokens.
         These features were added in version 1.0.0.
       </p>
 
@@ -71,7 +71,7 @@ export default function TokensPageV090() {
       <div className="mt-6 p-4 rounded-lg bg-[color:var(--color-surface-1)] border border-[color:var(--color-fg-muted)]/30">
         <p className="text-sm text-[color:var(--color-fg-muted)]">
           💡 <strong>Upgrade tip:</strong> Version 1.0.0 introduced density tokens, motion animations,
-          high contrast mode, and RTL support. Consider upgrading for these features.
+          and RTL support. Consider upgrading for these features.
         </p>
       </div>
     </DocLayout>

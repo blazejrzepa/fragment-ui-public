@@ -11,8 +11,10 @@ dist
 next-env.d.ts
 
 .vercel
+apps/demo/data/
+
+# Environment variables
 .env
 .env.local
 .env*.local
-*.pem
-*.key
+*.env

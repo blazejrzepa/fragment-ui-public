@@ -1,0 +1,90 @@
+/* App-specific utilities and animations */
+
+/* Homepage block fade-in animations */
+@keyframes homepageBlockFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    will-change: auto;
+  }
+}
+
+.homepage-block-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: homepageBlockFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  will-change: transform, opacity;
+}
+
+.homepage-block-fade-in-delay {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: homepageBlockFadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  will-change: transform, opacity;
+}
+
+/* Prevent dashboard flickering during animation */
+.homepage-block-fade-in-delay > div {
+  contain: layout style paint;
+}
+
+/* Page fade-in animations */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes breadcrumbFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* Utility classes */
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+  will-change: auto;
+}
+
+/* Intro text utility (outside document-content) */
+.intro-text {
+  color: color-mix(in oklab, var(--color-fg-base) 50%, transparent);
+  font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+  font-size: var(--typography-size-intro, 15px);
+  font-weight: var(--typography-weight-regular, 400);
+  line-height: var(--typography-line-height-body, 1.6);
+  margin-top: var(--space-4, 16px);
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+

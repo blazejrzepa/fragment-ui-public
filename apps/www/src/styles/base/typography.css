@@ -1,0 +1,90 @@
+/* ============================================
+ Typography Base Styles
+ ============================================
+ Chrome-specific font rendering optimizations.
+ Global font-family inheritance.
+*/
+
+/* Global font-family - ensure all elements inherit from CSS variable */
+html,
+body,
+header,
+nav,
+aside,
+main,
+section,
+article,
+p,
+h1, h2, h3, h4, h5, h6,
+a,
+li,
+td, th,
+label,
+button,
+input,
+textarea,
+select {
+  font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+}
+
+/* Keep monospace fonts separate - ensure all elements inside code/pre use monospace */
+code,
+pre,
+code *,
+pre *,
+pre code,
+pre code *,
+code span,
+pre span,
+pre code span {
+  font-family: var(--typography-font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace) !important;
+}
+
+/* Chrome-specific optimizations */
+@supports (-webkit-appearance: none) {
+  /* Chrome/WebKit browsers - text elements only */
+  p,
+  h1, h2, h3, h4, h5, h6,
+  span,
+  a,
+  li,
+  td, th,
+  label,
+  button,
+  code {
+    /* Force crisp rendering in Chrome */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: auto;
+    -webkit-text-stroke: 0.35px transparent;
+    /* Prevent blur from subpixel rendering - only on text */
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Exclude layout elements */
+  header, nav, aside, main, section, article, div, body {
+    /* Only font smoothing, no transform */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: auto;
+    -webkit-text-stroke: 0.35px transparent;
+  }
+  
+  /* Chrome: Disable will-change after animations to prevent blur */
+  * {
+    will-change: auto;
+  }
+}
+
+/* Input text color - override inherited color from body */
+/* NOTE: @layer utilities is applied in globals.css after @tailwind utilities */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input:not([type]) {
+  color: var(--color-fg-base) !important;
+}
+

@@ -8,11 +8,6 @@ import { ArrowRight } from "lucide-react";
 export default function ToolsPage() {
   const tools = [
     {
-      title: "Theme Builder",
-      description: "Build and customize themes for your application with visual controls",
-      href: "/docs/tools/theme-builder",
-    },
-    {
       title: "Bundle Tracking",
       description: "Track and analyze bundle size to optimize your application performance",
       href: "/docs/tools/bundle-tracking",
@@ -36,22 +31,12 @@ export default function ToolsPage() {
 
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Tools</h1>
-      <p 
-        className="mb-6 text-[color:var(--foreground-secondary)]"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          fontWeight: 400,
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
-      >
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Tools</h1>
+      <p className="mb-[var(--space-6)] intro-text">
         Powerful tools and utilities to help you build, maintain, and optimize your applications with Fragment UI.
       </p>
 
-      <div className="grid gap-6 mt-8 md:grid-cols-2">
+      <div className="grid gap-[var(--space-6)] mt-[var(--space-8)] md:grid-cols-2">
         {tools.map((tool) => (
           <Link key={tool.title} href={tool.href} className="block">
             <Card className="relative cursor-pointer hover:opacity-90 transition-opacity h-full">
@@ -69,9 +54,9 @@ export default function ToolsPage() {
         ))}
       </div>
 
-      <div className="mt-8 p-4 rounded-lg bg-[color:var(--color-surface-2)]">
-        <h2 className="text-lg font-semibold mb-2">About Tools</h2>
-        <p className="text-sm text-[color:var(--color-fg-muted)]">
+      <div className="mt-[var(--space-8)] p-[var(--space-4)] rounded-[var(--radius-md)] bg-[color:var(--color-surface-2)] border border-[color:var(--color-border-base)]">
+        <h2 className="text-[length:var(--typography-size-lg)] font-semibold mb-[var(--space-2)]">About Tools</h2>
+        <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
           These tools are designed to enhance your development workflow and help you get the most out of Fragment UI.
           Each tool provides specific functionality to support different aspects of building and maintaining your application.
         </p>

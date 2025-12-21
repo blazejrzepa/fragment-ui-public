@@ -42,19 +42,19 @@ export default function SliderPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="slider">Slider</h1>
       </div>
-      <p className="mb-6 intro-text">Adjust a numeric value along a track.</p>
+      <p className="mb-[var(--space-6)] intro-text">Adjust a numeric value along a track.</p>
 
       <ExampleSection
         id="slider-example"
         title="Example"
         code={sliderCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md space-y-[var(--space-2)]">
-            <p className="text-sm text-[color:var(--color-fg-muted)]">Value: {value[0]}</p>
+            <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Value: {value[0]}</p>
             <Slider value={value} onValueChange={setValue} max={100} />
           </div>
         </div>
@@ -69,12 +69,12 @@ export default function SliderPage() {
         id="slider-range"
         title="Range"
         code={sliderRangeCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md space-y-[var(--space-2)]">
             <Slider value={rangeValue} onValueChange={setRangeValue} max={100} step={5} />
-            <p className="text-sm text-[color:var(--color-fg-muted)]">
+            <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
               Range: {rangeValue[0]} - {rangeValue[1]}
             </p>
           </div>
@@ -82,34 +82,34 @@ export default function SliderPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>Slider</code></td>
-              <td className="py-2 px-4"><code>value?, defaultValue?, onValueChange?, min?, max?, step?, disabled?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Range slider component for selecting numeric values</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Slider</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value?, defaultValue?, onValueChange?, min?, max?, step?, disabled?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Range slider component for selecting numeric values</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Slider</code> is a component for picking a value from a continuous range. Use it when you need to allow users to select a numeric value by dragging a handle along a track. The component supports both single value and range selection, with customizable min, max, and step values.

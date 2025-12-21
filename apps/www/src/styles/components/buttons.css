@@ -1,0 +1,83 @@
+/* ============================================
+   Button Component Overrides
+   ============================================
+   Custom button styles and overrides.
+   
+   NOTE: @layer components is applied in globals.css after @tailwind components
+*/
+
+/* Override button solid variant text color on button documentation page */
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"],
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"] *,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"] span,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"] svg,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"] svg path {
+  color: var(--color-brand-primary-600) !important;
+}
+
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:hover,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:hover *,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:hover span,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:hover svg,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:hover svg path {
+  color: var(--color-brand-primary-600) !important;
+}
+
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:disabled,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:disabled *,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:disabled span,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:disabled svg,
+.document-content button[data-button-variant="solid"][style*="--color-brand-primary"]:disabled svg path {
+  color: var(--color-brand-primary-600) !important;
+}
+
+/* Override button solid variant text color for custom background buttons */
+button.button-custom-text[data-button-variant="solid"],
+button.button-custom-text[data-button-variant="solid"] *,
+button.button-custom-text[data-button-variant="solid"] span,
+button.button-custom-text[data-button-variant="solid"] svg,
+button.button-custom-text[data-button-variant="solid"] svg path {
+  color: var(--color-fg-base);
+}
+
+/* Add border to secondary buttons */
+button.button-custom-text[data-button-variant="solid"] {
+  border: 1px solid var(--color-border-base);
+}
+
+button.button-custom-text[data-button-variant="solid"]:hover,
+button.button-custom-text[data-button-variant="solid"]:hover *,
+button.button-custom-text[data-button-variant="solid"]:hover span,
+button.button-custom-text[data-button-variant="solid"]:hover svg,
+button.button-custom-text[data-button-variant="solid"]:hover svg path {
+  color: var(--color-fg-base);
+}
+
+/* Override hover background for custom buttons */
+button.button-custom-text[data-button-variant="solid"]:hover {
+  background-color: var(--color-surface-1);
+  opacity: 1; /* Override default solid hover opacity */
+  border-color: var(--color-border-base);
+}
+
+button.button-custom-text[data-button-variant="solid"]:active {
+  background-color: var(--color-surface-1);
+  border-color: var(--color-border-base);
+}
+
+button.button-custom-text[data-button-variant="solid"]:disabled,
+button.button-custom-text[data-button-variant="solid"]:disabled *,
+button.button-custom-text[data-button-variant="solid"]:disabled span,
+button.button-custom-text[data-button-variant="solid"]:disabled svg,
+button.button-custom-text[data-button-variant="solid"]:disabled svg path {
+  color: var(--color-fg-base);
+}
+
+button.button-custom-text[data-button-variant="solid"]:disabled {
+  border-color: var(--color-border-base);
+}
+
+/* Remove border from secondary buttons */
+button[data-button-variant="secondary"] {
+  border: none;
+}

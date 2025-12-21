@@ -15,22 +15,16 @@ export default function CardGridExample() {
 
   return (
     <DocLayout>
-      <h1 id="card-grid" className="text-3xl font-medium mb-4">Card Grid</h1>
+      <h1 id="card-grid" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Card Grid</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Card Grid example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6">
+      <div className="my-[var(--space-6)]">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {cards.map((card) => (
             <Card key={card.id}>

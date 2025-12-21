@@ -1,0 +1,25 @@
+/* ============================================
+   Panel Background Styles
+   ============================================
+   Controls panel/modal/dialog background transparency
+   based on --panel-background-type CSS variable.
+*/
+
+/* Apply translucent styles when --panel-background-type is translucent */
+:root[style*="--panel-background-type: translucent"] [data-radix-dialog-content],
+:root[style*="--panel-background-type:translucent"] [data-radix-dialog-content],
+:root[style*="--panel-background-type: translucent"] [data-radix-dropdown-menu-content],
+:root[style*="--panel-background-type:translucent"] [data-radix-dropdown-menu-content],
+:root[style*="--panel-background-type: translucent"] [data-radix-popover-content],
+:root[style*="--panel-background-type:translucent"] [data-radix-popover-content],
+:root[style*="--panel-background-type: translucent"] [data-radix-select-content],
+:root[style*="--panel-background-type:translucent"] [data-radix-select-content],
+:root[style*="--panel-background-type: translucent"] [data-radix-select-viewport],
+:root[style*="--panel-background-type:translucent"] [data-radix-select-viewport],
+:root[style*="--panel-background-type: translucent"] [role="alertdialog"],
+:root[style*="--panel-background-type:translucent"] [role="alertdialog"] {
+  background-color: color-mix(in srgb, var(--color-surface-1) 80%, transparent) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+

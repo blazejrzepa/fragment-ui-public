@@ -1,0 +1,81 @@
+/* ============================================
+   Base Reset Styles
+   ============================================
+   Foundation styles for html, body, and root containers.
+   Ensures consistent baseline across all pages.
+   
+   NOTE: @layer base is applied in globals.css after @tailwind base
+*/
+
+/* HTML - scroll container for sticky positioning */
+/* CRITICAL: html must be the scroll container for sticky to work */
+html {
+  height: 100% !important;
+  background: var(--background-primary, var(--color-bg-base));
+  color: var(--color-fg-base);
+  font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  overflow-y: auto !important; /* Required for sticky to work */
+  position: relative;
+  /* Ensure html is the scroll container */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Body - content container */
+/* CRITICAL: body must NOT be the scroll container */
+body {
+  min-height: 100% !important;
+  height: auto !important;
+  background: var(--background-primary, var(--color-bg-base));
+  color: var(--color-fg-base);
+  font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden !important;
+  overflow-y: visible !important; /* Body doesn't scroll - html does */
+  position: static !important;
+  /* Ensure body doesn't create scroll context */
+  /* CRITICAL: Exclude Popper.js wrappers - they need transform for positioning */
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  will-change: auto !important;
+  contain: none !important;
+}
+
+/* CRITICAL: Allow Popper.js wrappers to use transform via inline styles */
+/* Do NOT set transform: none on Popper.js wrappers - they need transform for positioning */
+body [data-radix-popper-content-wrapper] {
+  /* Do NOT set transform here - let Popper.js manage it via inline styles */
+  /* Inline styles have higher specificity than CSS !important for the same property */
+}
+
+/* Next.js root container */
+#__next {
+  margin: 0;
+  padding: 0;
+  overflow: visible; /* Don't create scroll container */
+}
+
+/* Admin pages - no margins/padding */
+body[class*="admin"] {
+  margin: 0;
+  padding: 0;
+}
+
+/* Global typography base styles */
+li {
+  font-weight: 300; /* Light */
+  color: var(--color-fg-muted, #D4D4D8);
+}
+
+li p {
+  color: var(--color-fg-muted, #D4D4D8);
+}
+
+strong {
+  font-weight: 500; /* Medium */
+}
+

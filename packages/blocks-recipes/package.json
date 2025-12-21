@@ -1,0 +1,11 @@
+{
+  "name": "@fragment_ui/blocks-recipes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./recipes.json",
+  "exports": {
+    ".": "./recipes.json"
+  }
+}
+

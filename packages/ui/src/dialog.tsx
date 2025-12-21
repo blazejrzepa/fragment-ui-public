@@ -14,7 +14,7 @@ const DialogOverlay = React.forwardRef<
     <DialogPrimitive.Overlay
       ref={ref}
       className={clsx(
-        "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm",
+        "fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm",
         className
       )}
       {...props}
@@ -38,10 +38,19 @@ const DialogContent = React.forwardRef<
         ref={ref}
         className={clsx(
           variant === "fullscreen"
-            ? "fixed inset-0 z-50 h-full w-full rounded-none border-0 bg-[color:var(--color-surface-1)] p-6 shadow-lg"
-            : "fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-6 shadow-lg",
+            ? "fixed inset-0 z-[100] h-full w-full rounded-none border-0 bg-[color:var(--color-surface-1)] p-6 shadow-lg"
+            : "fixed z-[100] w-full max-w-lg rounded-lg border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] p-6 shadow-lg",
           className
         )}
+        style={
+          variant === "fullscreen"
+            ? undefined
+            : {
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+              }
+        }
         {...props}
       >
         {children}

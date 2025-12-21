@@ -128,6 +128,15 @@ export default function BundleTrackingPage() {
         Track and monitor bundle sizes for Fragment UI components. This helps identify
         size regressions and optimize component imports.
       </p>
+      
+      <div className="p-4 rounded-lg bg-[color:var(--color-surface-2)] border border-[color:var(--color-border-base)] mb-6">
+        <p className="text-sm font-medium mb-2">⚠️ Important Note</p>
+        <p className="text-sm text-[color:var(--color-fg-muted)]">
+          This tool analyzes <strong>source file sizes</strong> as a proxy for bundle sizes. 
+          The actual bundle sizes after compilation, tree-shaking, and minification may differ. 
+          For accurate production bundle sizes, use tools like <code>webpack-bundle-analyzer</code> or <code>rollup-plugin-visualizer</code>.
+        </p>
+      </div>
 
       <div className="my-8 space-y-6">
         {/* Summary Cards */}
@@ -203,9 +212,14 @@ export default function BundleTrackingPage() {
 
       <h2 id="interpretation">Interpreting Results</h2>
       <p>
-        Bundle sizes are measured for each component individually. The gzipped size is
-        the most relevant metric for production use, as this is what browsers download.
-        Use the historical data to track size changes over time and identify regressions.
+        Bundle sizes are measured for each component individually based on source file sizes. 
+        The gzipped size is an estimate based on source file compression. 
+        <strong>Note:</strong> These are approximations - actual production bundle sizes may vary 
+        due to tree-shaking, dead code elimination, and bundler optimizations.
+      </p>
+      <p>
+        Use the historical data to track size changes over time and identify potential regressions. 
+        For production bundle analysis, consider using dedicated bundle analysis tools.
       </p>
     </DocLayout>
   );

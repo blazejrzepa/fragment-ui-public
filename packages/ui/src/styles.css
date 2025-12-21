@@ -8,18 +8,39 @@
 }
 
 /* Global font rendering optimization - Chrome specific */
-* {
+/* Apply transform only to text elements, NOT layout elements */
+/* This prevents breaking fixed/absolute positioning */
+p, span, a, h1, h2, h3, h4, h5, h6, li, td, th, label, button, input, textarea, select, code, pre {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* Chrome: use auto instead of optimizeLegibility to prevent blur */
   text-rendering: auto;
   /* Chrome: prevent subpixel rendering blur */
   -webkit-text-stroke: 0.35px transparent;
-  /* Chrome: force hardware acceleration */
+  /* Chrome: force hardware acceleration for text only */
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+/* Exclude layout elements from transform to prevent positioning issues */
+/* CRITICAL: But exclude Popper.js wrappers - they need transform for positioning */
+header, nav, aside, main, section, article, div:not([data-radix-popper-content-wrapper]), body, html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  -webkit-text-stroke: 0.35px transparent;
+  /* Explicitly NO transform to allow fixed/absolute positioning */
+  /* But Popper.js wrappers need transform, so exclude them */
+  transform: none;
+  -webkit-transform: none;
+}
+
+/* Ensure Popper.js wrapper can use transform for positioning */
+[data-radix-popper-content-wrapper] {
+  /* Do NOT set transform here - let Popper.js manage it via inline styles */
+  /* Inline styles have higher specificity than CSS !important for the same property */
 }
 
 @layer base {
@@ -668,7 +689,7 @@
     line-height: var(--typography-display-md-line-height, var(--typography-line-height-display, 1.1));
     letter-spacing: var(--typography-display-md-letter-spacing, -0.72px);
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-1, 4px);
     color: color-mix(in oklab, var(--color-fg-base) 90%, transparent);
   }
   
@@ -689,23 +710,30 @@
   }
   
   /* Typography styles for documentation content only - exclude components */
-  /* Only apply to h3 that are direct children or in text content, not in component previews */
-  .document-content > h3,
-  .document-content h2 + h3,
-  .document-content p + h3 {
+  /* Apply to all h3 in document content */
+  .document-content h3 {
     font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
-    font-size: var(--typography-size-lg, 18px);
-    font-weight: var(--typography-weight-medium, 500);
+    font-size: var(--typography-size-md, 16px);
+    font-weight: var(--typography-weight-semibold, 600);
     line-height: var(--typography-line-height-display, 1.1);
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: var(--color-fg-base);
+    color: color-mix(in oklab, var(--color-fg-base) 90%, transparent);
   }
   
   /* Exclude accordion headers from document-content h3 styles - they have their own spacing */
   .document-content [data-orientation="vertical"] h3[class*="flex"] {
     margin-top: 1rem !important; /* mt-4 = 16px */
     margin-bottom: 1rem !important; /* mb-4 = 16px */
+  }
+  
+  /* Exclude h3 inside preview containers - they use component styles */
+  .document-content .preview h3 {
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+    margin-top: inherit;
+    margin-bottom: inherit;
   }
   
   /* Components in .preview use their own DS tokens - no overrides needed */
@@ -756,7 +784,7 @@
 
   /* Dark mode: keep paragraphs a bit softer */
   [data-theme="dark"] .document-content p {
-    color: color-mix(in oklab, var(--color-fg-base) 60%, transparent);
+    color: color-mix(in oklab, var(--color-fg-base) 50%, transparent);
   }
 
   /* Emphasis in DocumentContent */
@@ -820,11 +848,11 @@
   
   /* Intro paragraph - smaller and darker - must come after .document-content p */
   .document-content p.intro-text {
-    color: var(--color-fg-muted) !important;
-    font-size: var(--typography-size-md) !important; /* 16px - zgodne z tokenami DS */
+    color: color-mix(in oklab, var(--color-fg-base) 50%, transparent) !important;
+    font-size: var(--typography-size-lg) !important; /* 18px - zgodne z tokenami DS */
     font-weight: 500 !important;
     line-height: 160% !important;
-    font-family: Geist, sans-serif !important;
+    font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif) !important;
     margin-bottom: 0.5rem !important; /* Reduced spacing below to make room for badges */
   }
   
@@ -836,7 +864,7 @@
   
   /* Dark mode: intro text uses the same semantic token */
   [data-theme="dark"] .document-content p.intro-text {
-    color: var(--color-fg-muted) !important;
+    color: color-mix(in oklab, var(--color-fg-base) 50%, transparent) !important;
   }
   
   /* Lists in DocumentContent */
@@ -860,34 +888,34 @@
     font-size: var(--typography-size-md, 16px);
     font-weight: var(--typography-weight-regular, 400);
     /* Light mode: match paragraph readability */
-    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent);
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
     display: list-item; /* Zapewnia wyświetlanie markerów listy */
   }
 
   /* Force list item text + markers to match paragraph alpha tint */
   .document-content ul > li,
   .document-content ol > li {
-    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent) !important;
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent) !important;
   }
 
   .document-content ul > li::marker,
   .document-content ol > li::marker {
-    color: color-mix(in oklab, var(--color-fg-base) 80%, transparent) !important;
+    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent) !important;
   }
 
   /* Dark mode: keep lists a bit softer */
   [data-theme="dark"] .document-content li {
-    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent);
+    color: color-mix(in oklab, var(--color-fg-base) 50%, transparent);
   }
 
   [data-theme="dark"] .document-content ul > li,
   [data-theme="dark"] .document-content ol > li {
-    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent) !important;
+    color: color-mix(in oklab, var(--color-fg-base) 50%, transparent) !important;
   }
 
   [data-theme="dark"] .document-content ul > li::marker,
   [data-theme="dark"] .document-content ol > li::marker {
-    color: color-mix(in oklab, var(--color-fg-base) 70%, transparent) !important;
+    color: color-mix(in oklab, var(--color-fg-base) 50%, transparent) !important;
   }
   
   .document-content li p {
@@ -928,6 +956,16 @@
   /* Remove underline from badge links */
   .document-content .document-content-badges a,
   .document-content .document-content-badges-container a {
+    text-decoration: none !important;
+  }
+  
+  /* LinkCard - no underline */
+  .document-content a[class*="group relative block"][class*="rounded-"] {
+    text-decoration: none !important;
+  }
+  
+  .document-content a[class*="group relative block"][class*="rounded-"] h3,
+  .document-content a[class*="group relative block"][class*="rounded-"] p {
     text-decoration: none !important;
   }
   

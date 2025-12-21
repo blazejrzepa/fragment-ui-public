@@ -5,10 +5,11 @@ import { DocumentationHeader, type NavigationLink } from "@fragment_ui/blocks";
 import { ThemeToggle } from "./theme-provider";
 import { NavSearch } from "./nav-search";
 import { MobileDocumentationSidebar } from "./mobile-documentation-sidebar";
-import { Component, AlignHorizontalSpaceAround } from "lucide-react";
+import { Component, AlignHorizontalSpaceAround, Palette } from "lucide-react";
 import Link from "next/link";
 import { Button, NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport } from "@fragment_ui/ui";
 import { useLayoutMode } from "./layout-mode-context";
+import { ThemePanel } from "./theme-panel";
 
 /**
  * Wrapper component that uses DocumentationHeader from @fragment_ui/blocks
@@ -16,11 +17,11 @@ import { useLayoutMode } from "./layout-mode-context";
  */
 export function DocumentationHeaderWrapper() {
   const { toggle, isNarrow } = useLayoutMode();
+  const [themePanelOpen, setThemePanelOpen] = React.useState(false);
   const links: NavigationLink[] = [
     { label: "Docs", href: "/docs/introduction" },
     { label: "Components", href: "/components" },
     { label: "Blocks", href: "/blocks" },
-    { label: "Examples", href: "/docs/examples" },
   ];
 
   const externalLinks: NavigationLink[] = [
@@ -41,6 +42,16 @@ export function DocumentationHeaderWrapper() {
   const actions = (
     <div className="flex items-center gap-2">
       <ThemeToggle />
+      <Button
+        variant="ghost"
+        size="sm"
+        className="h-8 w-8 p-0"
+        onClick={() => setThemePanelOpen(true)}
+        aria-label="Theme Editor"
+        title="Theme Editor"
+      >
+        <Palette className="h-4 w-4" />
+      </Button>
       <div className="hidden xl:flex">
         <Button
           variant="ghost"
@@ -57,7 +68,7 @@ export function DocumentationHeaderWrapper() {
         variant="ghost"
         size="sm"
         className="h-8 w-8 p-0"
-        onClick={() => window.open("https://github.com/blazejrzepa/fragment-ui", "_blank", "noopener,noreferrer")}
+        onClick={() => window.open("https://github.com/blazejrzepa/fragment-ui-public", "_blank", "noopener,noreferrer")}
         aria-label="GitHub"
         title="GitHub"
       >
@@ -106,14 +117,21 @@ export function DocumentationHeaderWrapper() {
                   <ul className={TOOL_TILE_LIST_CLASSNAME}>
                     <li>
                       <NavigationMenuLink asChild variant="unstyled" className={TOOL_TILE_LINK_CLASSNAME}>
-                        <Link href="/docs/tools/theme-builder">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setThemePanelOpen(true);
+                          }}
+                          className="w-full text-left"
+                        >
                           <div className="text-sm font-medium leading-none text-left text-[color:var(--color-fg-base)]">
                             Theme Builder
                           </div>
                           <p className="line-clamp-2 text-[length:var(--typography-size-xs)] leading-snug !text-[color:var(--color-fg-muted)] text-left mt-0.5">
                             Customize and export design tokens for your theme.
                           </p>
-                        </Link>
+                        </button>
                       </NavigationMenuLink>
                     </li>
                     <li>
@@ -189,10 +207,7 @@ export function DocumentationHeaderWrapper() {
         {/* External links with separator */}
         <React.Fragment>
           <div
-            className="h-4 mx-1 border-l"
-            style={{
-              borderColor: "color-mix(in oklab, var(--foreground-primary) 10%, transparent)",
-            }}
+            className="h-4 mx-1 border-l border-[color:color-mix(in_oklab,var(--foreground-primary)_10%,transparent)]"
             aria-hidden="true"
           />
           {externalLinks.map((link, index) => (
@@ -214,6 +229,7 @@ export function DocumentationHeaderWrapper() {
   );
 
   return (
+    <>
     <DocumentationHeader
       logo={logo}
       links={links}
@@ -221,10 +237,12 @@ export function DocumentationHeaderWrapper() {
       actions={actions}
       mobileMenu={mobileMenu}
       blur={true}
-      height="60px"
+      height="var(--header-height, 60px)"
       maxWidth={maxWidth}
       customNavigation={customNavigation}
     />
+    <ThemePanel open={themePanelOpen} onOpenChange={setThemePanelOpen} />
+    </>
   );
 }
 

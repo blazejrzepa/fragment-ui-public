@@ -160,7 +160,7 @@ const NavigationMenuContent = React.forwardRef<
     "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto";
 
   const inlineContentClasses =
-    "absolute left-0 top-full z-[9999] w-full p-1.5 md:p-1.5 mt-1.5 overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] shadow-lg duration-200 data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:w-auto";
+    "absolute left-0 top-full z-[100] w-full p-1.5 md:p-1.5 mt-1.5 overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] shadow-lg duration-200 data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:w-auto";
 
   return (
     <NavigationMenuPrimitive.Content
@@ -292,18 +292,20 @@ const NavigationMenuViewport = React.forwardRef<
   return (
     <div 
       ref={wrapperRef}
-      className={clsx("absolute left-0 top-full flex justify-start")} 
+      className={clsx("absolute left-0 top-full flex justify-start z-[100]")} 
       style={{ 
         transform: "translateX(0)", 
         left: 0,
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+        zIndex: 100
       }}
     >
       <NavigationMenuPrimitive.Viewport
         className={clsx(
-          "origin-top-left relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)] max-w-full overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
+          "origin-top-left relative mt-0.5 h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)] max-w-full overflow-hidden rounded-[var(--radius-md)] border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 z-[100]",
           className
         )}
+        style={{ zIndex: 100 }}
         ref={ref}
         {...props}
       />

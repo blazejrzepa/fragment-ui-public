@@ -20,6 +20,10 @@
       "cache": false,
       "persistent": true
     },
+    "lint:ds": {
+    "dependsOn": ["^build"],
+    "outputs": []
+  },
     "lint": {
       "cache": true,
       "outputs": []
@@ -27,6 +31,10 @@
     "type-check": {
       "dependsOn": ["^build"],
       "cache": true,
+      "outputs": []
+    },
+    "@fragment_ui/ui-native#build": {
+      "cache": false,
       "outputs": []
     }
   }

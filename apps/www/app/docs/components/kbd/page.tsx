@@ -9,7 +9,7 @@ export function KbdDemo() {
   return (
     <div className="flex flex-col gap-[var(--space-8)] items-center">
       <div className="flex flex-col gap-[var(--space-4)] items-center">
-        <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Default</p>
+        <p className="text-[length:var(--typography-size-sm)]" style={{ color: "var(--color-fg-muted)" }}>Default</p>
         <div className="flex items-center gap-[var(--space-4)]">
           <Kbd>⌘</Kbd>
           <Kbd>K</Kbd>
@@ -19,7 +19,7 @@ export function KbdDemo() {
       </div>
 
       <div className="flex flex-col gap-[var(--space-4)] items-center">
-        <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>With Group</p>
+        <p className="text-[length:var(--typography-size-sm)]" style={{ color: "var(--color-fg-muted)" }}>With Group</p>
         <div className="flex flex-col gap-[var(--space-4)]">
           <KbdGroup>
             <Kbd>⌘</Kbd>
@@ -40,20 +40,20 @@ export function KbdDemo() {
 export default function KbdPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
-        <h1 id="kbd">Kbd</h1>
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
+        <h1 id="kbd" className="text-[length:var(--typography-display-md-size)] font-medium">Kbd</h1>
       </div>
-      <p className="mb-6 intro-text">Display keyboard shortcuts in UI.</p>
+      <p className="mb-[var(--space-6)] intro-text">Display keyboard shortcuts in UI.</p>
       
       <ExampleSection
         id="kbd-example"
         title="Example"
         code={kbdCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="flex flex-col gap-[var(--space-8)] items-center">
             <div className="flex flex-col gap-[var(--space-4)] items-center">
-              <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>Default</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Default</p>
               <div className="flex items-center gap-[var(--space-4)]">
                 <Kbd>⌘</Kbd>
                 <Kbd>K</Kbd>
@@ -63,7 +63,7 @@ export default function KbdPage() {
             </div>
 
             <div className="flex flex-col gap-[var(--space-4)] items-center">
-              <p className="text-sm" style={{ color: "var(--color-fg-muted)" }}>With Group</p>
+              <p className="text-[length:var(--typography-size-sm)]" style={{ color: "var(--color-fg-muted)" }}>With Group</p>
               <div className="flex flex-col gap-[var(--space-4)]">
                 <KbdGroup>
                   <Kbd>⌘</Kbd>
@@ -82,28 +82,28 @@ export default function KbdPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Kbd</code></td>
-              <td className="py-2 px-4"><code>children, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Keyboard key label component</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Kbd</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Keyboard key label component</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>KbdGroup</code></td>
-              <td className="py-2 px-4"><code>children, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for grouping multiple keyboard keys</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>KbdGroup</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for grouping multiple keyboard keys</td>
             </tr>
           </tbody>
         </table>
@@ -114,13 +114,13 @@ export default function KbdPage() {
         {`npx fragmentui@latest add kbd`}
       </CodeBlock>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Kbd</code> is a component for displaying keyboard shortcuts in UI. Use it when you need to show keyboard key labels or shortcuts to users, such as in tooltips, help text, documentation, or command palettes. The component provides visual distinction for keyboard keys using semantic HTML.

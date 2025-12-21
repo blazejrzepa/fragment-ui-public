@@ -22,7 +22,6 @@ export default async function ComponentDocPage({ params }: ComponentDocPageProps
     "badge",
     "breadcrumbs",
     "button",
-    "calendar",
     "card",
     "carousel",
     "checkbox",

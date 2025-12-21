@@ -61,17 +61,17 @@ export function MenubarDemo() {
 export default function MenubarPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="menubar">Menubar</h1>
       </div>
-      <p className="mb-6 intro-text">Top-level navigation with nested menus.</p>
+      <p className="mb-[var(--space-6)] intro-text">Top-level navigation with nested menus.</p>
       
       <ExampleSection
         id="menubar-example"
         title="Example"
         code={menubarCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Menubar>
             <MenubarMenu>
               <MenubarTrigger>File</MenubarTrigger>
@@ -111,94 +111,94 @@ export default function MenubarPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Menubar</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Root container for the menu bar</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Menubar</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Root container for the menu bar</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarMenu</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Individual menu group container</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarMenu</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Individual menu group container</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarTrigger</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Menu button that opens the dropdown</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Menu button that opens the dropdown</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarContent</code></td>
-              <td className="py-2 px-4"><code>align?, alignOffset?, sideOffset?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Dropdown menu content container</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>align?, alignOffset?, sideOffset?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Dropdown menu content container</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarItem</code></td>
-              <td className="py-2 px-4"><code>inset?, shortcut?, className?, children</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Standard menu item with optional keyboard shortcut</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarItem</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>inset?, shortcut?, className?, children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Standard menu item with optional keyboard shortcut</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarCheckboxItem</code></td>
-              <td className="py-2 px-4"><code>checked, onCheckedChange?, className?, children</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Menu item with checkbox state</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarCheckboxItem</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>checked, onCheckedChange?, className?, children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Menu item with checkbox state</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarRadioGroup</code></td>
-              <td className="py-2 px-4"><code>value, onValueChange?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for radio menu items</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarRadioGroup</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value, onValueChange?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for radio menu items</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarRadioItem</code></td>
-              <td className="py-2 px-4"><code>value, className?, children</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Radio menu item (use within MenubarRadioGroup)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarRadioItem</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value, className?, children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Radio menu item (use within MenubarRadioGroup)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarLabel</code></td>
-              <td className="py-2 px-4"><code>inset?, className?, children</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Section label for grouping menu items</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarLabel</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>inset?, className?, children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Section label for grouping menu items</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarSeparator</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Visual separator between menu sections</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarSeparator</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Visual separator between menu sections</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarSub</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for submenu (use with MenubarSubTrigger and MenubarSubContent)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarSub</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for submenu (use with MenubarSubTrigger and MenubarSubContent)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>MenubarSubTrigger</code></td>
-              <td className="py-2 px-4"><code>inset?, className?, children</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Trigger for submenu</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarSubTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>inset?, className?, children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Trigger for submenu</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>MenubarSubContent</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Content container for submenu</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>MenubarSubContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Content container for submenu</td>
             </tr>
           </tbody>
         </table>
@@ -209,13 +209,13 @@ export default function MenubarPage() {
         {`npx fragmentui@latest add menubar`}
       </CodeBlock>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Menubar</code> is a component for accessing grouped commands from a top menu bar. Use it when you need to provide a traditional menu bar interface (similar to desktop applications) with multiple menus, submenus, keyboard shortcuts, checkboxes, and radio groups. The component is ideal for applications that require a comprehensive command structure.

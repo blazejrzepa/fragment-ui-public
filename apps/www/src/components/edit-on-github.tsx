@@ -14,8 +14,8 @@ export function EditOnGitHub({ filePath, branch = "main" }: EditOnGitHubProps) {
   // Disabled: docs site no longer shows "Edit this page on GitHub" footer.
   return null;
 
-  const editUrl = `https://github.com/blazejrzepa/fragment-ui/edit/${branch}/${filePath}`;
-  const viewUrl = `https://github.com/blazejrzepa/fragment-ui/blob/${branch}/${filePath}`;
+  const editUrl = `https://github.com/blazejrzepa/fragment-ui-public/edit/${branch}/${filePath}`;
+  const viewUrl = `https://github.com/blazejrzepa/fragment-ui-public/blob/${branch}/${filePath}`;
 
   return (
     <div 

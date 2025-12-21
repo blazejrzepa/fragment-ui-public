@@ -1,145 +1,117 @@
 # Contributing to Fragment UI
 
-Thank you for your interest in contributing to Fragment UI! This document provides guidelines and instructions for contributing.
+Thanks for your interest in contributing! This repo contains both a **public Design System** and **internal/experimental tooling**. Please read the guidelines below to keep the project stable for external users.
 
-## 🎯 Getting Started
+---
 
-1. **Fork the repository** on GitHub
-2. **Clone your fork** locally:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/fragment-ui-public.git
-   cd fragment-ui-public
-   ```
-3. **Install dependencies**:
-   ```bash
-   pnpm install
-   ```
-4. **Create a branch** for your changes:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
+## 1) What we accept
 
-## 🛠️ Development Setup
+### ✅ Public Design System contributions (supported)
 
-### Prerequisites
+- New components or improvements in `@fragment_ui/ui`
+- Token updates in `@fragment_ui/tokens`
+- Blocks/templates in `@fragment_ui/blocks`
+- Documentation improvements in `apps/www`
+- Bug fixes, performance improvements, a11y fixes
 
-- Node.js 20+
-- pnpm 9+
+### 🧪 Internal / experimental contributions
 
-### Development Commands
+- Studio/Playground/Copilot features are welcome, but may evolve quickly
+- These changes are not part of the "official public product" unless explicitly promoted later
+
+---
+
+## 2) Ground rules (Public DS Contract)
+
+If your PR touches any public DS package (`@fragment_ui/ui`, `@fragment_ui/tokens`, `@fragment_ui/blocks`), it must include:
+
+- **Accessibility baseline** (keyboard navigation, focus, roles/labels)
+- **Tests** (unit/integration for core behavior)
+- **Docs** (usage example + states/edge cases)
+- **Token usage** (avoid hardcoded styles without justification)
+- **SemVer awareness** + changeset when needed
+
+If any of the above is missing, reviewers will request changes.
+
+**See:** [Public DS Development Guidelines](docs/OSS_PUBLIC_DS_GUIDELINES.md) for detailed requirements.
+
+---
+
+## 3) How to propose a new component
+
+Before implementing, open an issue describing:
+
+- the problem and use cases
+- which teams/users benefit
+- expected states (default, hover, focus, disabled, loading, error, empty)
+- any accessibility requirements
+- existing references (Material/Polaris/Lightning/Carbon/Atlassian) if helpful
+
+---
+
+## 4) Local setup
+
+### Install
 
 ```bash
-# Run documentation site
-pnpm dev:www
+pnpm install
+```
 
-# Build all packages
-pnpm build
+### Run docs (public portal)
 
-# Type check
-pnpm type-check
+```bash
+pnpm --filter www dev
+```
 
-# Run tests
+### Run component tests
+
+```bash
 pnpm test
+```
 
-# Lint
+### Run lint
+
+```bash
 pnpm lint
 ```
 
-## 📝 Making Changes
+**Note:** Studio/Playground may require optional env vars (AI keys). Public DS does not.
 
-### Code Style
+---
 
-- Use TypeScript for all new code
-- Follow existing code style and patterns
-- Use meaningful variable and function names
-- Add JSDoc comments for public APIs
+## 5) Changesets (releases)
 
-### Component Development
+We use changesets for versioning public packages.
 
-1. **Create components** in `packages/ui/src/`
-2. **Add to registry** in `packages/registry/registry.json`
-3. **Update documentation** in `apps/www/app/docs/components/`
-4. **Add tests** in `packages/ui/src/**/*.test.tsx`
+If your change affects public behavior or API:
 
-### Design Tokens
+1. Add a changeset:
+   ```bash
+   pnpm changeset
+   ```
+2. Pick package(s) and write a short summary
 
-- Add new tokens in `packages/tokens/src/`
-- Follow the existing token structure
-- Update documentation for new tokens
+---
 
-### Blocks
+## 6) Pull Request checklist
 
-- Create blocks in `packages/blocks/src/`
-- Use Fragment UI components
-- Follow existing block patterns
+Please fill the PR template. For DS changes, include:
 
-## 🧪 Testing
+- screenshots or Storybook link if relevant
+- notes about A11y
+- migration notes if this is breaking
 
-- Write tests for new features
-- Ensure all tests pass: `pnpm test`
-- Add accessibility tests where applicable
+---
 
-## 📚 Documentation
+## 7) Code of Conduct
 
-- Update README files when adding features
-- Add examples to component documentation
-- Update CHANGELOG.md for user-facing changes
+By participating, you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-## 🔍 Pull Request Process
+---
 
-1. **Update CHANGELOG.md** with your changes
-2. **Ensure all tests pass**
-3. **Update documentation** if needed
-4. **Create a pull request** with a clear description
+## 8) More information
 
-### PR Checklist
-
-- [ ] Code follows the project's style guidelines
-- [ ] Tests added/updated and passing
-- [ ] Documentation updated
-- [ ] CHANGELOG.md updated
-- [ ] Type checking passes (`pnpm type-check`)
-- [ ] Build succeeds (`pnpm build`)
-
-## 🎨 Design System Guidelines
-
-### Component Standards
-
-- **Accessibility**: All components must be WCAG 2.1 compliant
-- **TypeScript**: Full type safety required
-- **Styling**: Use Tailwind CSS and design tokens
-- **Testing**: Unit tests and accessibility tests required
-
-### Design Tokens
-
-- Use semantic tokens (e.g., `--color-fg-base` not `--color-gray-500`)
-- Follow the token naming conventions
-- Support light and dark modes
-
-## 🐛 Reporting Issues
-
-When reporting issues, please include:
-
-- **Description**: Clear description of the issue
-- **Steps to Reproduce**: Detailed steps to reproduce
-- **Expected Behavior**: What should happen
-- **Actual Behavior**: What actually happens
-- **Environment**: Node version, OS, browser (if applicable)
-
-## 💡 Feature Requests
-
-Feature requests are welcome! Please:
-
-- Check if the feature already exists
-- Open an issue with a clear description
-- Explain the use case and benefits
-- Consider contributing the feature yourself!
-
-## 📄 License
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
-
-## 🙏 Thank You!
-
-Thank you for contributing to Fragment UI! Your help makes this project better for everyone.
+- [Public DS Development Guidelines](docs/OSS_PUBLIC_DS_GUIDELINES.md) - Detailed quality gates
+- [Public Release Scope](docs/PUBLIC_SCOPE.md) - What's officially supported
+- [OSS FAQ](docs/OSS_FAQ.md) - Common questions about open-source usage
 

@@ -68,7 +68,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
     const popoverWidth = widthMatch ? (widthMatch[1] ? `w-[${widthMatch[1]}px]` : `w-${widthMatch[2]}`) : "w-full";
 
     return (
-      <Popover open={open} onOpenChange={setOpen}>
+      <Popover open={open} onOpenChange={setOpen} modal={false}>
         <PopoverTrigger asChild>
           <Button
             ref={ref}
@@ -85,7 +85,13 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             </span>
           </Button>
         </PopoverTrigger>
-        <PopoverContent className={clsx(popoverWidth, "p-0")} align="start">
+        <PopoverContent 
+          className={clsx(popoverWidth, "p-0 py-[var(--space-2)]")} 
+          align="start" 
+          side="bottom" 
+          sideOffset={4}
+          style={!widthMatch ? { width: "var(--radix-popover-trigger-width)", minWidth: "var(--radix-popover-trigger-width)" } : undefined}
+        >
           <Command shouldFilter={false}>
             <div className="flex h-9 items-center gap-[var(--space-2)] border-b border-[color:var(--color-border-base)] px-[var(--space-3)]">
               <Search className="h-4 w-4 shrink-0 opacity-50" />
@@ -98,7 +104,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             </div>
             <CommandList>
               <CommandEmpty>{emptyText}</CommandEmpty>
-              <CommandGroup>
+              <CommandGroup className="p-[var(--space-2)]">
                 {filteredOptions.map((option) => (
                   <CommandItem
                     key={option.value}
@@ -109,6 +115,7 @@ export const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                       setOpen(false);
                       setSearch("");
                     }}
+                    className="py-[var(--space-2)]"
                   >
                     {option.label}
                     <Check

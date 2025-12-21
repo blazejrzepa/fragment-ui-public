@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { AppShell } from "@fragment_ui/blocks";
 import { Avatar, Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Collapsible, CollapsibleTrigger, CollapsibleContent } from "@fragment_ui/ui";
 import { ThemeToggle } from "../theme-provider";
+import { ThemePanel } from "../theme-panel";
 import { InteractiveLogo } from "../interactive-logo";
 import { 
   LayoutDashboard, 
@@ -28,7 +29,8 @@ import {
   Sparkles,
   Component,
   Plug2,
-  Receipt
+  Receipt,
+  Palette
 } from "lucide-react";
 
 interface AdminLayoutProps {
@@ -57,6 +59,7 @@ export function AdminLayout({
   );
   const [isDesktop, setIsDesktop] = React.useState(false);
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
+  const [themePanelOpen, setThemePanelOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsMac(/Mac|iPhone|iPod|iPad/i.test(navigator.userAgent));
@@ -313,6 +316,16 @@ export function AdminLayout({
       </div>
       <div className="flex items-center gap-1">
         <ThemeToggle />
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-8 w-8 p-0"
+          onClick={() => setThemePanelOpen(true)}
+          aria-label="Theme Editor"
+          title="Theme Editor"
+        >
+          <Palette className="h-4 w-4" />
+        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Admin dashboard menu">
@@ -450,6 +463,7 @@ export function AdminLayout({
           </div>
         </div>
       )}
+      <ThemePanel open={themePanelOpen} onOpenChange={setThemePanelOpen} />
     </div>
   );
 }

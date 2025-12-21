@@ -1,3 +1,6 @@
+"use client";
+
+import * as React from "react";
 import Link from "next/link";
 import { Button, Badge } from "@fragment_ui/ui";
 import { AdminDashboardPreview } from "../src/components/admin-dashboard-preview";
@@ -5,44 +8,39 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { DocumentationHeaderWrapper } from "../src/components/documentation-header-wrapper";
 import { LayoutModeProvider } from "../src/components/layout-mode-context";
 
-export const dynamic = "force-static";
-
 export default function HomePage() {
   return (
-    <div className="space-y-10">
-      <div className="w-full">
-        <LayoutModeProvider>
-          <DocumentationHeaderWrapper />
-        </LayoutModeProvider>
-      </div>
-
+    <>
+      <LayoutModeProvider>
+        <DocumentationHeaderWrapper />
+      </LayoutModeProvider>
+      <div className="space-y-[calc(var(--space-8)+var(--space-2))]">
       {/* Hero */}
-      <section className="w-full flex flex-col items-center text-center gap-4 px-4 py-10 fade-in">
+      <section className="w-full flex flex-col items-center text-center gap-[var(--space-4)] px-[var(--space-4)] pt-[calc(var(--space-8)*3)] pb-[var(--space-8)] homepage-block-fade-in">
         <Link
           href="/docs/changelog"
-          className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] px-3 py-1 text-xs text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-2)] transition-colors no-underline"
+          className="inline-flex items-center gap-[var(--space-2)] rounded-full border border-[color:var(--color-border-base)] bg-[color:var(--color-surface-1)] px-[var(--space-3)] py-[var(--space-1)] text-[length:var(--typography-size-xs)] text-[color:var(--color-fg-base)] hover:bg-[color:var(--color-surface-2)] transition-colors no-underline"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--color-fg-base)]" aria-hidden="true" />
+          <span className="h-[calc(var(--space-1)+2px)] w-[calc(var(--space-1)+2px)] rounded-full bg-[color:var(--color-fg-base)]" aria-hidden="true" />
           <span>New: Fragment UI 0.1 alpha released</span>
-          <ArrowRight className="h-3 w-3 text-[color:var(--color-fg-base)]" aria-hidden="true" />
+          <ArrowRight className="h-[var(--space-3)] w-[var(--space-3)] text-[color:var(--color-fg-base)]" aria-hidden="true" />
         </Link>
-        <h1 className="text-4xl md:text-5xl font-semibold leading-tight">
+        <h1 className="text-[length:var(--typography-display-md-size)] md:text-[length:var(--typography-display-lg-size)] font-semibold leading-tight">
           One design system. AI-ready.
         </h1>
-        <p className="text-lg text-[color:var(--color-fg-muted)] max-w-xl mb-3">
-          Code-first React, TypeScript, shadcn/ui and Tailwind design system that powers
-          AI-generated dashboards, screens, and interface variants.
+        <p className="text-[length:var(--typography-size-lg)] text-[color:var(--color-fg-muted)] max-w-xl mb-[var(--space-3)]">
+          Code-first React, TypeScript and Tailwind design system that powers AI-generated dashboards, screens, and interface variants.
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-[var(--space-3)]">
           <Link href="/docs/introduction">
-            <Button size="md" trailingIcon={<ArrowRight className="h-4 w-4" />}>
+            <Button size="md" trailingIcon={<ArrowRight className="h-[var(--space-4)] w-[var(--space-4)]" />}>
               Get Started
             </Button>
           </Link>
-          <Link href="https://github.com/blazejrzepa/fragment-ui" target="_blank">
+          <Link href="https://github.com/blazejrzepa/fragment-ui-public" target="_blank">
             <Button variant="outline" size="md" leadingIcon={
               <svg
-                className="h-4 w-4"
+                className="h-[var(--space-4)] w-[var(--space-4)]"
                 viewBox="0 0 16 16"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -57,13 +55,14 @@ export default function HomePage() {
       </section>
 
       {/* Embedded dashboard */}
-      <section className="space-y-4 fade-in">
+      <section className="space-y-[var(--space-4)] homepage-block-fade-in-delay">
         {/* Embed full /admin experience, including its native sidebar */}
-        <div className="w-full max-w-[1300px] mx-auto rounded-2xl border border-[color:var(--color-border-base)] bg-[color:var(--background-primary)] overflow-hidden">
+        <div className="w-full max-w-[1300px] mx-auto rounded-[var(--radius-xl)] border border-[color:var(--color-border-base)] bg-[color:var(--background-primary)] overflow-hidden">
           <AdminDashboardPreview />
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }
 

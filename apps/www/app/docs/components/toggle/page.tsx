@@ -34,17 +34,17 @@ export function ToggleIconsDemo() {
 export default function TogglePage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="toggle">Toggle</h1>
       </div>
-      <p className="mb-6 intro-text">Small on/off or pressed/unpressed control.</p>
+      <p className="mb-[var(--space-6)] intro-text">Small on/off or pressed/unpressed control.</p>
       
       <ExampleSection
         id="toggle-example"
         title="Example"
         code={toggleCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Toggle aria-label="Toggle bold">Bold</Toggle>
         </div>
       </ExampleSection>
@@ -58,9 +58,9 @@ export default function TogglePage() {
         id="toggle-icons"
         title="With Icons"
         code={toggleIconsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="flex gap-[var(--space-2)]">
             <Toggle aria-label="Toggle bold">
               <Bold className="h-4 w-4" />
@@ -76,64 +76,64 @@ export default function TogglePage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>pressed?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Controlled pressed state (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>pressed?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Controlled pressed state (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>defaultPressed?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">false</td>
-              <td className="py-2 px-4 text-sm">Default pressed state (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>defaultPressed?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">false</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Default pressed state (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>onPressedChange?</code></td>
-              <td className="py-2 px-4"><code>(pressed: boolean) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when pressed state changes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onPressedChange?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(pressed: boolean) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when pressed state changes (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>disabled?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">false</td>
-              <td className="py-2 px-4 text-sm">Disable the toggle (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>disabled?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">false</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Disable the toggle (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>aria-label?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Accessibility label (required for icon-only toggles)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>aria-label?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Accessibility label (required for icon-only toggles)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes (optional)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Toggle</code> is a component for turning a single feature on or off. Use it when you need to provide a toggle button that can be pressed to activate or deactivate a feature. The component supports both text and icon content and provides visual feedback for the pressed state.

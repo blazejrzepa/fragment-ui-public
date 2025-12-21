@@ -62,17 +62,17 @@ export function SheetLeftDemo() {
 export default function SheetPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="sheet">Sheet</h1>
       </div>
-      <p className="mb-6 intro-text">Slide-over panel for focused tasks.</p>
+      <p className="mb-[var(--space-6)] intro-text">Slide-over panel for focused tasks.</p>
       
       <ExampleSection
         id="sheet-right"
         title="Right Side"
         code={sheetRightCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Sheet>
             <SheetTrigger asChild>
               <Button>Open Right Sheet</Button>
@@ -100,9 +100,9 @@ export default function SheetPage() {
         id="sheet-left"
         title="Left Side"
         code={sheetLeftCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Sheet>
             <SheetTrigger asChild>
               <Button>Open Left Sheet</Button>
@@ -122,70 +122,70 @@ export default function SheetPage() {
       </ExampleSection>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Props</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Props</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>Sheet</code></td>
-              <td className="py-2 px-4"><code>open?, onOpenChange?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Root container for sheet component</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Sheet</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>open?, onOpenChange?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Root container for sheet component</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SheetTrigger</code></td>
-              <td className="py-2 px-4"><code>asChild?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Button that opens the sheet</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SheetTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>asChild?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Button that opens the sheet</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SheetContent</code></td>
-              <td className="py-2 px-4"><code>side?, scrollDetection?, wheelHandling?, scrollableSelector?, className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Sheet panel content</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SheetContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>side?, scrollDetection?, wheelHandling?, scrollableSelector?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Sheet panel content</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SheetHeader</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Header container</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SheetHeader</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Header container</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SheetTitle</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Sheet title (required for accessibility)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SheetTitle</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Sheet title (required for accessibility)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>SheetDescription</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Sheet description</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SheetDescription</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Sheet description</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>SheetFooter</code></td>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Footer container</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SheetFooter</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Footer container</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Sheet</code> is a component for displaying a slide-in panel for secondary workflows. Use it when you need to show additional content, forms, or actions in a side panel that slides in from the edge of the screen. Sheets are similar to dialogs but slide in from a side (top, right, bottom, or left) rather than appearing in the center.

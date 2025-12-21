@@ -60,7 +60,7 @@ export function CarouselAutoPlayDemo() {
 export default function CarouselPage() {
   const Slide = ({ children, color }: { children: React.ReactNode; color: string }) => (
     <div
-      className="h-64 flex items-center justify-center text-[color:var(--color-fg-base)] text-2xl font-normal rounded-lg"
+      className="h-64 flex items-center justify-center text-[color:var(--color-fg-base)] text-[length:var(--typography-size-2xl)] font-normal rounded-[var(--radius-md)]"
       style={{ backgroundColor: color }}
     >
       {children}
@@ -69,10 +69,10 @@ export default function CarouselPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
-        <h1 id="carousel">Carousel</h1>
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
+        <h1 id="carousel" className="text-[length:var(--typography-display-md-size)] font-medium">Carousel</h1>
       </div>
-      <p className="mb-6 intro-text">Cycle through multiple items in a single area.</p>
+      <p className="mb-[var(--space-6)] intro-text">Cycle through multiple items in a single area.</p>
       
       {/* Basic Carousel */}
       <ExampleSection
@@ -81,7 +81,7 @@ export default function CarouselPage() {
         code={basicCode}
         maxWidth="max-w-2xl"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Carousel>
             <Slide color="var(--color-surface-2)">Slide 1</Slide>
             <Slide color="var(--color-surface-2)">Slide 2</Slide>
@@ -95,10 +95,10 @@ export default function CarouselPage() {
         id="carousel-with-dots"
         title="With Dots"
         code={withDotsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
         maxWidth="max-w-2xl"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Carousel showDots={true}>
             <Slide color="var(--color-surface-2)">Slide 1</Slide>
             <Slide color="var(--color-surface-2)">Slide 2</Slide>
@@ -112,10 +112,10 @@ export default function CarouselPage() {
         id="carousel-auto-play"
         title="Auto Play"
         code={autoPlayCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
         maxWidth="max-w-2xl"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Carousel autoPlay={true} autoPlayInterval={3000} showDots={true}>
             <Slide color="var(--color-surface-2)">Slide 1</Slide>
             <Slide color="var(--color-surface-2)">Slide 2</Slide>
@@ -130,71 +130,71 @@ export default function CarouselPage() {
       </CodeBlock>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>children</code></td>
-              <td className="py-2 px-4"><code>React.ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Slides to display (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>React.ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Slides to display (required)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>autoPlay</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Enable automatic slide progression</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>autoPlay</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Enable automatic slide progression</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>autoPlayInterval</code></td>
-              <td className="py-2 px-4"><code>number</code></td>
-              <td className="py-2 px-4"><code>3000</code></td>
-              <td className="py-2 px-4 text-sm">Auto-play interval in milliseconds</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>autoPlayInterval</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>number</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>3000</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Auto-play interval in milliseconds</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>showArrows</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>true</code></td>
-              <td className="py-2 px-4 text-sm">Show navigation arrows</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>showArrows</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>true</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Show navigation arrows</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>showDots</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Show dots pagination indicators</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>showDots</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Show dots pagination indicators</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>onSlideChange</code></td>
-              <td className="py-2 px-4"><code>(index: number) =&gt; void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when slide changes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onSlideChange</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(index: number) =&gt; void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when slide changes</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>Carousel</code> is a component for displaying multiple items in a sliding container. Use it when you need to showcase a series of images, cards, or content items that users can navigate through one at a time, such as product galleries, testimonials, feature highlights, or image sliders.
@@ -226,7 +226,7 @@ export default function CarouselPage() {
           </ul>
           <p>The carousel supports keyboard navigation (Arrow keys), touch/swipe gestures, and automatically pauses auto-play on hover.</p>
 
-          <h3 className="mt-6 mb-4">Basic Example</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Basic Example</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Carousel",
@@ -250,7 +250,7 @@ export default function CarouselPage() {
   ]
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">With Dots</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">With Dots</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Carousel",
@@ -271,7 +271,7 @@ export default function CarouselPage() {
   ]
 }`}</CodeBlock>
 
-          <h3 className="mt-6 mb-4">Auto Play</h3>
+          <h3 className="mt-[var(--space-6)] mb-[var(--space-4)]">Auto Play</h3>
           <CodeBlock language="json" highlightApiUrl="/api/highlight-code">{`{
   "type": "component",
   "component": "Carousel",

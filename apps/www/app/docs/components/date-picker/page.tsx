@@ -42,17 +42,17 @@ export default function DatePickerPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="date-picker">DatePicker</h1>
       </div>
-      <p className="mb-6 intro-text">Select a single date from a calendar.</p>
+      <p className="mb-[var(--space-6)] intro-text">Select a single date from a calendar.</p>
       
       <ExampleSection
         id="date-picker-single"
         title="Single Date"
         code={datePickerSingleCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md">
             <DatePicker
               mode="single"
@@ -61,7 +61,7 @@ export default function DatePickerPage() {
               placeholder="Pick a date"
             />
             {date && (
-              <p className="mt-[var(--space-2)] text-sm text-[color:var(--color-fg-muted)]">
+              <p className="mt-[var(--space-2)] text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                 Selected: {date.toLocaleDateString()}
               </p>
             )}
@@ -73,9 +73,9 @@ export default function DatePickerPage() {
         id="date-picker-range"
         title="Date Range"
         code={datePickerRangeCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="w-full max-w-md">
             <DatePicker
               mode="range"
@@ -92,72 +92,72 @@ export default function DatePickerPage() {
         {`npx fragmentui@latest add date-picker`}
       </CodeBlock>
 
-      <h2 id="accessibility" className="mt-8">Accessibility</h2>
+      <h2 id="accessibility" className="mt-[var(--space-8)]">Accessibility</h2>
       <p>
         DatePicker uses Radix UI Popover and react-day-picker, both of which are
         fully accessible with keyboard navigation, ARIA attributes, and screen reader support.
       </p>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>mode</code></td>
-              <td className="py-2 px-4"><code>"single" | "range"</code></td>
-              <td className="py-2 px-4"><code>"single"</code></td>
-              <td className="py-2 px-4 text-sm">Selection mode: single date or date range</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>mode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"single" | "range"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"single"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Selection mode: single date or date range</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>value</code></td>
-              <td className="py-2 px-4"><code>Date | {"{ from?: Date; to?: Date }"} | undefined</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Selected date or range</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Date | {"{ from?: Date; to?: Date }"} | undefined</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Selected date or range</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>onChange</code></td>
-              <td className="py-2 px-4"><code>(date: Date | undefined) =&gt; void | (range: {"{ from?: Date; to?: Date }"} | undefined) =&gt; void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when date or range changes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onChange</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(date: Date | undefined) =&gt; void | (range: {"{ from?: Date; to?: Date }"} | undefined) =&gt; void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when date or range changes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>placeholder</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4"><code>"Pick a date"</code></td>
-              <td className="py-2 px-4 text-sm">Placeholder text for the input</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>placeholder</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"Pick a date"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Placeholder text for the input</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>disabled</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Disable date selection</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>disabled</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Disable date selection</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>minDate</code></td>
-              <td className="py-2 px-4"><code>Date</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Minimum selectable date</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>minDate</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Date</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Minimum selectable date</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>maxDate</code></td>
-              <td className="py-2 px-4"><code>Date</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Maximum selectable date</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>maxDate</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>Date</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Maximum selectable date</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
           </tbody>
         </table>

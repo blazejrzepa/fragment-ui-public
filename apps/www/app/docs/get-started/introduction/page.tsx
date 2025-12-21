@@ -14,18 +14,18 @@ export default async function IntroductionPage() {
 
     return (
       <DocLayout>
-        <div className="flex items-center justify-between mb-1">
-          <h1 id="introduction" className="text-3xl font-medium mb-4">
+        <div className="flex items-center justify-between mb-[var(--space-1)]">
+          <h1 id="introduction" className="text-[length:var(--typography-display-md-size)] font-medium">
             {frontmatter.title || "Introduction"}
           </h1>
           <DocPager placement="top" align="end" variant="icon" dense />
         </div>
-        <p className="mb-6 intro-text">
+        <p className="mb-[var(--space-6)] intro-text">
           Build dashboards fast with a code-first design system.
         </p>
 
         <div
-          className="max-w-none mt-6"
+          className="max-w-none mt-[var(--space-6)]"
           dangerouslySetInnerHTML={{ __html: content }}
         />
       </DocLayout>
@@ -34,8 +34,8 @@ export default async function IntroductionPage() {
     console.error("Error rendering introduction page:", error);
     return (
       <DocLayout>
-        <div className="flex items-center justify-between mb-1">
-          <h1 id="introduction" className="text-3xl font-medium mb-4">
+        <div className="flex items-center justify-between mb-[var(--space-1)]">
+          <h1 id="introduction" className="text-[length:var(--typography-display-md-size)] font-medium">
             Introduction
           </h1>
           <DocPager placement="top" align="end" variant="icon" dense />

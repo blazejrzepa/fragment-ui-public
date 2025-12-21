@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm tokens:build && pnpm telemetry:build && pnpm registry:generate && pnpm --filter @fragment_ui/ui build && pnpm --filter @fragment_ui/blocks build && pnpm --filter fragment-www run build",
+  "outputDirectory": "apps/www/.next"
+}
+

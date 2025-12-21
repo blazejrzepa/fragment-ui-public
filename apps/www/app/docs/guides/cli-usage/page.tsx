@@ -17,20 +17,20 @@ export default async function CLIUsagePage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="cli-usage" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="cli-usage" className="text-[length:var(--typography-display-md-size)] font-medium">
           {frontmatter.title || "CLI Usage Guide"}
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
       {subtitle && (
-        <p className="mb-6 intro-text">
+        <p className="mb-[var(--space-6)] intro-text">
           {subtitle}
         </p>
       )}
 
       <div
-        className="max-w-none mt-6"
+        className="max-w-none mt-[var(--space-6)]"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </DocLayout>

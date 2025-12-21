@@ -82,10 +82,10 @@ export default function ActivityFeedPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="activity-feed">Activity Feed</h1>
       </div>
-      <p className="mb-6 intro-text">Display recent user or system activity.</p>
+      <p className="mb-[var(--space-6)] intro-text">Display recent user or system activity.</p>
       
       <ExampleSection
         id="activity-feed-example"
@@ -100,13 +100,13 @@ export default function ActivityFeedPage() {
         {`npx fragmentui@latest add activity-feed`}
       </CodeBlock>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>ActivityFeed</code> is a ready-made component for displaying chronological activity streams.<br />

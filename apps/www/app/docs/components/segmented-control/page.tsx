@@ -36,6 +36,22 @@ export function SegmentedControlIconsDemo() {
   );
 }`;
 
+const segmentedControlOutlineCode = `import { SegmentedControl } from "@fragment_ui/ui";
+
+export function SegmentedControlOutlineDemo() {
+  return (
+    <SegmentedControl
+      variant="outline"
+      options={[
+        { value: "list", label: "List" },
+        { value: "grid", label: "Grid" },
+        { value: "calendar", label: "Calendar" },
+      ]}
+      defaultValue="list"
+    />
+  );
+}`;
+
 export default function SegmentedControlPage() {
   return (
     <DocumentContent as="article">
@@ -70,7 +86,7 @@ export default function SegmentedControlPage() {
         id="segmented-control-icons"
         title="With Icons"
         code={segmentedControlIconsCode}
-        marginTop="mt-8"
+        marginTop="mt-[var(--space-8)]"
       >
         <div className="flex gap-2 items-center justify-center w-full">
           <SegmentedControl
@@ -85,66 +101,14 @@ export default function SegmentedControlPage() {
       </ExampleSection>
 
       <ExampleSection
-        id="segmented-control-sizes"
-        title="Sizes"
-        code={`import { SegmentedControl } from "@fragment_ui/ui";
-
-export function SegmentedControlSizesDemo() {
-  return (
-    <div className="flex flex-col gap-[var(--space-4)] items-center">
-      <SegmentedControl
-        size="sm"
-        options={[
-          { value: "list", label: "List" },
-          { value: "grid", label: "Grid" },
-          { value: "calendar", label: "Calendar" },
-        ]}
-        defaultValue="list"
-      />
-      <SegmentedControl
-        size="md"
-        options={[
-          { value: "list", label: "List" },
-          { value: "grid", label: "Grid" },
-          { value: "calendar", label: "Calendar" },
-        ]}
-        defaultValue="list"
-      />
-      <SegmentedControl
-        size="lg"
-        options={[
-          { value: "list", label: "List" },
-          { value: "grid", label: "Grid" },
-          { value: "calendar", label: "Calendar" },
-        ]}
-        defaultValue="list"
-      />
-    </div>
-  );
-}`}
-        marginTop="mt-8"
+        id="segmented-control-outline"
+        title="Outline Variant"
+        code={segmentedControlOutlineCode}
+        marginTop="mt-[var(--space-8)]"
       >
-        <div className="flex flex-col gap-[var(--space-4)] items-center justify-center w-full">
+        <div className="flex gap-2 items-center justify-center w-full">
           <SegmentedControl
-            size="sm"
-            options={[
-              { value: "list", label: "List" },
-              { value: "grid", label: "Grid" },
-              { value: "calendar", label: "Calendar" },
-            ]}
-            defaultValue="list"
-          />
-          <SegmentedControl
-            size="md"
-            options={[
-              { value: "list", label: "List" },
-              { value: "grid", label: "Grid" },
-              { value: "calendar", label: "Calendar" },
-            ]}
-            defaultValue="list"
-          />
-          <SegmentedControl
-            size="lg"
+            variant="outline"
             options={[
               { value: "list", label: "List" },
               { value: "grid", label: "Grid" },
@@ -155,71 +119,125 @@ export function SegmentedControlSizesDemo() {
         </div>
       </ExampleSection>
 
+      <ExampleSection
+        id="segmented-control-sizes"
+        title="Sizes"
+        code={`import { SegmentedControl } from "@fragment_ui/ui";
+import { List, Grid, Calendar } from "lucide-react";
+
+export function SegmentedControlSizesDemo() {
+  return (
+    <>
+      <SegmentedControl
+        size="sm"
+        options={[
+          { value: "list", label: "List", icon: <List className="h-4 w-4" /> },
+          { value: "grid", label: "Grid", icon: <Grid className="h-4 w-4" /> },
+          { value: "calendar", label: "Calendar", icon: <Calendar className="h-4 w-4" /> },
+        ]}
+        defaultValue="list"
+      />
+      <SegmentedControl
+        size="md"
+        options={[
+          { value: "list", label: "List", icon: <List className="h-4 w-4" /> },
+          { value: "grid", label: "Grid", icon: <Grid className="h-4 w-4" /> },
+          { value: "calendar", label: "Calendar", icon: <Calendar className="h-4 w-4" /> },
+        ]}
+        defaultValue="list"
+      />
+    </>
+  );
+}`}
+        marginTop="mt-[var(--space-8)]"
+      >
+        <div className="flex flex-col gap-4 items-center justify-center w-full">
+          <SegmentedControl
+            size="sm"
+            options={[
+              { value: "list", label: "List", icon: <List className="h-4 w-4" /> },
+              { value: "grid", label: "Grid", icon: <Grid className="h-4 w-4" /> },
+              { value: "calendar", label: "Calendar", icon: <Calendar className="h-4 w-4" /> },
+            ]}
+            defaultValue="list"
+          />
+          <SegmentedControl
+            size="md"
+            options={[
+              { value: "list", label: "List", icon: <List className="h-4 w-4" /> },
+              { value: "grid", label: "Grid", icon: <Grid className="h-4 w-4" /> },
+              { value: "calendar", label: "Calendar", icon: <Calendar className="h-4 w-4" /> },
+            ]}
+            defaultValue="list"
+          />
+        </div>
+      </ExampleSection>
+
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)] font-semibold">Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>options?</code></td>
-              <td className="py-2 px-4"><code>SegmentedControlOption[]</code></td>
-              <td className="py-2 px-4">[]</td>
-              <td className="py-2 px-4 text-sm">Array of option objects (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>options?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>SegmentedControlOption[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">[]</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Array of option objects (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>value?</code></td>
-              <td className="py-2 px-4"><code>string | string[]</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Selected value(s) for controlled component (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string | string[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Selected value(s) for controlled component (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>defaultValue?</code></td>
-              <td className="py-2 px-4"><code>string | string[]</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Initial value(s) for uncontrolled component (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>defaultValue?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string | string[]</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Initial value(s) for uncontrolled component (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>onChange?</code></td>
-              <td className="py-2 px-4"><code>(value: string | string[]) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when value changes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onChange?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(value: string | string[]) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when value changes (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>multiple?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">false</td>
-              <td className="py-2 px-4 text-sm">Allow multiple selection (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>multiple?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">false</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Allow multiple selection (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>variant?</code></td>
-              <td className="py-2 px-4"><code>"default" | "outline" | "filled"</code></td>
-              <td className="py-2 px-4">"default"</td>
-              <td className="py-2 px-4 text-sm">Visual variant (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>variant?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"default" | "outline" | "filled"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">"default"</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Visual variant (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>size?</code></td>
-              <td className="py-2 px-4"><code>"sm" | "md" | "lg"</code></td>
-              <td className="py-2 px-4">"md"</td>
-              <td className="py-2 px-4 text-sm">Size variant (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>size?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"sm" | "md" | "lg"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">"md"</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Size variant (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>disabled?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4">false</td>
-              <td className="py-2 px-4 text-sm">Disable the control (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>disabled?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">false</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Disable the control (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes (optional)</td>
             </tr>
           </tbody>
         </table>
@@ -234,13 +252,13 @@ export function SegmentedControlSizesDemo() {
         </div>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>SegmentedControl</code> is a component for switching between a few related views. Use it when you need to provide users with a way to toggle between different views, modes, or options. The component displays multiple options as segments, with one active segment at a time (or multiple in multiple mode).

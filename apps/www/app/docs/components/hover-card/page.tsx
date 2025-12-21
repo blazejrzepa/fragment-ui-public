@@ -12,7 +12,7 @@ export function HoverCardDemo() {
   return (
     <div className="flex flex-col gap-[var(--space-8)] items-center">
       <div className="flex flex-col gap-[var(--space-4)] items-center">
-        <p className="text-sm text-[color:var(--color-fg-muted)]">Default</p>
+        <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Default</p>
         <HoverCard>
           <HoverCardTrigger asChild>
             <button 
@@ -25,21 +25,21 @@ export function HoverCardDemo() {
           <HoverCardContent>
             <div className="flex gap-[var(--space-4)]">
               <div className="space-y-1">
-                <h4 className="text-sm font-semibold !mt-0">Fragment UI</h4>
-                <p className="text-sm text-[color:var(--color-fg-muted)]">
+                <h4 className="text-[length:var(--typography-size-sm)] font-semibold mt-0">Fragment UI</h4>
+                <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                   @fragmentui
                 </p>
-                <p className="text-sm">
+                <p className="text-[length:var(--typography-size-sm)]">
                   Components, icons, colors, and templates for building high-quality, accessible UI. Free and open-source.
                 </p>
                 <div className="flex gap-[var(--space-4)] mt-[var(--space-2)]">
                   <div className="flex gap-[var(--space-1)]">
-                    <span className="text-sm font-semibold">0</span>
-                    <span className="text-sm text-[color:var(--color-fg-muted)]">Following</span>
+                    <span className="text-[length:var(--typography-size-sm)] font-semibold">0</span>
+                    <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Following</span>
                   </div>
                   <div className="flex gap-[var(--space-1)]">
-                    <span className="text-sm font-semibold">2,900</span>
-                    <span className="text-sm text-[color:var(--color-fg-muted)]">Followers</span>
+                    <span className="text-[length:var(--typography-size-sm)] font-semibold">2,900</span>
+                    <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Followers</span>
                   </div>
                 </div>
               </div>
@@ -49,7 +49,7 @@ export function HoverCardDemo() {
       </div>
 
       <div className="flex flex-col gap-[var(--space-4)] items-center">
-        <p className="text-sm text-[color:var(--color-fg-muted)]">With Avatar</p>
+        <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">With Avatar</p>
         <HoverCard>
           <HoverCardTrigger asChild>
             <button 
@@ -63,11 +63,11 @@ export function HoverCardDemo() {
             <div className="flex gap-[var(--space-4)]">
               <Avatar className="h-12 w-12" src="https://github.com/blazejrzepa.png" alt="Blake Rzepa" fallback="BR" />
               <div className="space-y-1">
-                <h4 className="text-sm font-semibold !mt-0">Blake Rzepa</h4>
-                <p className="text-sm text-[color:var(--color-fg-muted)]">
+                <h4 className="text-[length:var(--typography-size-sm)]" style={{ fontWeight: "var(--typography-weight-semibold, 600)", marginTop: 0 }}>Blake Rzepa</h4>
+                <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                   @blakerzepa
                 </p>
-                <p className="text-sm">
+                <p className="text-[length:var(--typography-size-sm)]">
                   Product designer and builder, passionate about systematizing UI.
                 </p>
               </div>
@@ -82,20 +82,20 @@ export function HoverCardDemo() {
 export default function HoverCardPage() {
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
-        <h1 id="hover-card">Hover Card</h1>
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
+        <h1 id="hover-card" className="text-[length:var(--typography-display-md-size)] font-medium">Hover Card</h1>
       </div>
-      <p className="mb-6 intro-text">Show extra info when hovering an element.</p>
+      <p className="mb-[var(--space-6)] intro-text">Show extra info when hovering an element.</p>
       
       <ExampleSection
         id="hover-card-example"
         title="Hover Card Example"
         code={hoverCardCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="flex flex-col gap-[var(--space-8)] items-center w-full">
             <div className="flex flex-col gap-[var(--space-4)] items-center">
-              <p className="text-sm text-[color:var(--color-fg-muted)]">Default</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Default</p>
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <button 
@@ -108,20 +108,20 @@ export default function HoverCardPage() {
                 <HoverCardContent>
                   <div className="flex gap-[var(--space-4)]">
                     <div className="space-y-1">
-                      <h4 className="text-sm font-semibold !mt-0">Fragment UI</h4>
-                      <p className="text-sm text-[color:var(--color-fg-muted)]">
+                      <h4 className="text-[length:var(--typography-size-sm)] font-semibold mt-0">Fragment UI</h4>
+                      <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                         @fragmentui
                       </p>
-                      <p className="text-sm">
+                      <p className="text-[length:var(--typography-size-sm)]">
                         Components, icons, colors, and templates for building high-quality, accessible UI. Free and open-source.
                       </p>
                       <div className="flex gap-[var(--space-4)] mt-[var(--space-2)]">
                         <div className="flex gap-[var(--space-1)]">
-                          <span className="text-sm font-semibold">0</span>
+                          <span className="text-[length:var(--typography-size-sm)] font-semibold">0</span>
                           <span className="text-sm text-[color:var(--color-fg-muted)]">Following</span>
                         </div>
                         <div className="flex gap-[var(--space-1)]">
-                          <span className="text-sm font-semibold">2,900</span>
+                          <span className="text-[length:var(--typography-size-sm)] font-semibold">2,900</span>
                           <span className="text-sm text-[color:var(--color-fg-muted)]">Followers</span>
                         </div>
                       </div>
@@ -132,7 +132,7 @@ export default function HoverCardPage() {
             </div>
 
             <div className="flex flex-col gap-[var(--space-4)] items-center">
-              <p className="text-sm text-[color:var(--color-fg-muted)]">With Avatar</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">With Avatar</p>
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <button 
@@ -146,11 +146,11 @@ export default function HoverCardPage() {
                   <div className="flex gap-[var(--space-4)]">
                     <Avatar className="h-12 w-12" src="https://github.com/blazejrzepa.png" alt="Blake Rzepa" fallback="BR" />
                     <div className="space-y-1">
-                      <h4 className="text-sm font-semibold !mt-0">Blake Rzepa</h4>
-                      <p className="text-sm text-[color:var(--color-fg-muted)]">
+                      <h4 className="text-[length:var(--typography-size-sm)]" style={{ fontWeight: "var(--typography-weight-semibold, 600)", marginTop: 0 }}>Blake Rzepa</h4>
+                      <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                         @blakerzepa
                       </p>
-                      <p className="text-sm">
+                      <p className="text-[length:var(--typography-size-sm)]">
                         Product designer and builder, passionate about systematizing UI.
                       </p>
                     </div>
@@ -168,51 +168,51 @@ export default function HoverCardPage() {
       </CodeBlock>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Component</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Component</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>HoverCard</code></td>
-              <td className="py-2 px-4"><code>open?, onOpenChange?, openDelay?, closeDelay?</code></td>
-              <td className="py-2 px-4"><code>boolean, function, number, number</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Root component. Must contain <code>HoverCardTrigger</code> and <code>HoverCardContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>HoverCard</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>open?, onOpenChange?, openDelay?, closeDelay?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean, function, number, number</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Root component. Must contain <code>HoverCardTrigger</code> and <code>HoverCardContent</code></td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>HoverCardTrigger</code></td>
-              <td className="py-2 px-4"><code>asChild?</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Trigger element that opens the hover card on hover</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>HoverCardTrigger</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>asChild?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Trigger element that opens the hover card on hover</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>HoverCardContent</code></td>
-              <td className="py-2 px-4"><code>side?, align?, sideOffset?, className?</code></td>
-              <td className="py-2 px-4"><code>string, string, number, string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Container for hover card content</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>HoverCardContent</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>side?, align?, sideOffset?, className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string, string, number, string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Container for hover card content</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>HoverCard</code> is a component for sighted users to preview content available behind a link. Use it when you want to provide additional context or information about a link or element without requiring the user to navigate away. Hover cards are ideal for user profiles, tooltips with rich content, or preview cards that appear on hover.

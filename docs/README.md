@@ -1,45 +1,144 @@
-# 📚 Fragment UI Documentation
+# Fragment UI Documentation
 
-Welcome to the Fragment UI documentation. This directory contains guides, setup instructions, and reference materials.
+**Purpose:** Complete technical and architecture documentation  
+**Audience:** Engineers, architects, maintainers  
+**Last Updated:** 2025-01-XX
 
-## 📖 Getting Started
+---
 
-- **[Quick Start Guide](../docs/getting-started.md)** - Get up and running quickly
-- **[Contributing Guide](../CONTRIBUTING.md)** - How to contribute to Fragment UI
-- **[Changelog](../CHANGELOG.md)** - Version history and release notes
+## 📋 Quick Navigation
 
-## 🛠️ Setup & Configuration
+### 🚀 Getting Started
+- **[Installation](./getting-started/installation.md)** - Set up development environment
+- **[Quick Start](./getting-started/quick-start.md)** - Build your first component
+- **[Architecture Overview](./getting-started/architecture-overview.md)** - High-level system understanding
 
-### Deployment
-- **[Deployment Guide](setup/deployment.md)** - Deploy Fragment UI to production
-- **[Setup Steps](setup/setup-steps.md)** - Step-by-step setup instructions
-- **[Migrate Vercel Project](setup/migrate-vercel.md)** - Migrate domain between Vercel projects
-- **[Workflow Guide](setup/workflow.md)** - Working with two repositories
+### 🏗️ Architecture
+- **[System Overview](./architecture/system-overview.md)** - C4 diagrams, high-level architecture
+- **[Monorepo Structure](./architecture/monorepo-structure.md)** - Package organization
+- **[Domain Model](./architecture/domain-model.md)** - Core entities (Asset, Revision, Patch)
+- **[Module Boundaries](./architecture/module-boundaries.md)** - Studio module responsibilities
+- **[Data Flow](./architecture/data-flow.md)** - How data flows through system
+- **[Architecture Decisions](./architecture/decisions/README.md)** - ADRs for key decisions
 
-### Publishing
-- **[Publishing Guide](guides/publishing.md)** - How to publish packages to npm
+### 💻 Development
+- **[Development Guide](./development/README.md)** - Development workflows
+- **[Component Implementation](./development/component-implementation.md)** - Build production components
+- **[How to Edit DS Components](./HOW_TO_EDIT_DS_COMPONENTS.md)** - Guide for editing Design System components
+- **[Testing](./development/testing.md)** - Testing strategy and standards
 
-## 📦 Packages
+### 🎨 Studio
+- **[Studio Overview](./studio/README.md)** - AI-powered UI generation
+- **[DSL Documentation](./studio/dsl/)** - UI-DSL v2 specification
+- **[Patch System](./studio/patching/)** - Conversational editing
+- **[Submissions](./studio/submissions/)** - Review workflow
+- **[Experiments](./studio/experiments/)** - A/B testing with PostHog
+- **[Copilot](./studio/copilot/)** - Full Copilot specification
+- **[Blocks & Templates Plan](./copilot/BLOCKS_AND_TEMPLATES_IMPLEMENTATION_PLAN.md)** - Public DS adoption pack
 
-### Public Packages
-- **[@fragment_ui/ui](../packages/ui/README.md)** - React component library
-- **[@fragment_ui/tokens](../packages/tokens/README.md)** - Design tokens
-- **[@fragment_ui/blocks](../packages/blocks/README.md)** - Pre-built blocks
-- **[@fragment_ui/mcp-server](../packages/mcp-server/README.md)** - MCP server for AI integration
+### 🌐 Public Design System
+- **[Public DS Guidelines](./OSS_PUBLIC_DS_GUIDELINES.md)** - Guidelines for public release
+- **[Public Scope](../PUBLIC_SCOPE.md)** - What's included in public release (main document)
+- **[OSS FAQ](./OSS_FAQ.md)** - Frequently asked questions
 
-### Internal Packages
-- **[@fragment_ui/cli](../packages/cli/README.md)** - CLI tool
-- **[@fragment_ui/registry](../packages/registry/README.md)** - Component registry
-- **[@fragment_ui/utils](../packages/utils/README.md)** - Utility functions
+### 🔗 Ecosystem
+- **[Projects Overview](../PROJECTS_OVERVIEW.md)** - Complete overview of all projects (fragment-ui, fragment-ui-public, fragment-ui-generative-copilot)
+- **[Combined Changelog](../CHANGELOG_COMBINED.md)** - Unified changelog for all projects
+- **[Roadmap](../ROADMAP.md)** - Development roadmap for the entire ecosystem
+- **[Sync Plan](../SYNC_PLAN.md)** - Synchronization plan between fragment-ui and fragment-ui-public
 
-## 🔗 External Resources
+### 🚢 Operations
+- **[Deployment](./operations/deployment.md)** - Production deployment
+- **[Release Process](./operations/release-process.md)** - Release workflow
+- **[Monitoring](./operations/monitoring.md)** - Logging and metrics
+- **[Troubleshooting](./operations/troubleshooting.md)** - Common issues
+- **[Runbooks](./operations/runbooks/)** - Operational procedures
 
-- **Website**: [fragmentui.com](https://fragmentui.com)
-- **Documentation**: [fragmentui.com/docs](https://fragmentui.com/docs)
-- **Components**: [fragmentui.com/components](https://fragmentui.com/components)
-- **npm Packages**: [npmjs.com/org/fragment_ui](https://www.npmjs.com/org/fragment_ui)
+### 📚 Reference
+- **[Component APIs](./api/)** - Complete API documentation
+- **[Design Tokens](./reference/design-tokens.md)** - Token system
+- **[Registry Format](./reference/registry-format.md)** - Registry JSON schema
+- **[UI-DSL Schema](./reference/ui-dsl-schema.md)** - UI-DSL v2 JSON Schema
 
-## 📝 License
+### 🗺️ Roadmap & Planning
+- **[Ecosystem Roadmap](../ROADMAP.md)** - Development roadmap for all projects
+- **[Current Plan](./roadmap/FRAGMENT_UI_STUDIO_PLAN.md)** - Main development plan (includes Phase DS-Public)
+- **[Next Steps](./NEXT_STEPS.md)** - Consolidated next steps and priorities
+- **[Planning Documents](./planning/README.md)** - Strategic planning documents
+- **[Implementation Iterations](./roadmap/IMPLEMENTATION_ITERATIONS.md)** - Iteration breakdown
+- **[A/B Testing Plan](./roadmap/AB_TESTING_STRATEGIC_PLAN.md)** - PostHog integration
+- **[Blocks & Templates Implementation](./copilot/BLOCKS_AND_TEMPLATES_IMPLEMENTATION_PLAN.md)** - Public DS adoption pack plan
+- **[Documentation Consolidation Plan](./DOCUMENTATION_CONSOLIDATION_PLAN.md)** - Documentation cleanup plan and analysis
 
-Fragment UI is licensed under the [MIT License](../LICENSE).
+### 📖 Guides
+- **[Figma Integration](./guides/figma/)** - Figma setup and workflows
+- **[CLI Usage](./guides/cli-usage.md)** - CLI commands
+- **[MCP Server](./guides/mcp-server-setup.md)** - MCP server setup
+- **[VS Code Extension](./guides/vscode-extension-usage.md)** - VS Code integration
 
+---
+
+## 🎯 Documentation Structure
+
+```
+docs/
+├── getting-started/      # Quick onboarding
+├── architecture/         # System design and ADRs
+├── development/          # Development workflows
+├── studio/               # Studio-specific features
+├── operations/           # Production operations
+├── reference/            # Technical specifications
+├── roadmap/              # Planning and priorities
+├── guides/               # How-to guides
+├── api/                  # Component APIs
+└── archive/              # Historical documents
+```
+
+---
+
+## 📝 Documentation Standards
+
+### Each Document Includes
+
+- **Purpose:** What the document is for
+- **Audience:** Who should read it
+- **When to read:** When to read it
+- **Gotchas:** Common pitfalls
+
+### Quality Rules
+
+- ✅ Actionable content at top
+- ✅ Code examples included
+- ✅ Links to related docs
+- ✅ Checklists for procedures
+- ✅ Diagrams when helpful (Mermaid)
+
+---
+
+## 🔄 Maintenance
+
+See [Documentation Maintenance Policy](./DOCUMENTATION_MAINTENANCE_POLICY.md) for:
+- When to update docs
+- How to add ADRs
+- How to keep diagrams in sync
+- Translation policy (English only)
+
+See [Documentation Audit Report](./DOCUMENTATION_AUDIT_REPORT.md) for:
+- Documentation quality analysis
+- Duplicates and contradictions found
+- Recommendations for improvement
+- Consolidation plan
+
+---
+
+## 🆘 Getting Help
+
+- **Questions:** Ask in team channel
+- **Broken Links:** Create issue or fix immediately
+- **Suggestions:** Create issue or PR
+
+---
+
+**See Also:**
+- [Main Project README](../README.md)
+- [Quick Start Guide](./getting-started/quick-start.md)

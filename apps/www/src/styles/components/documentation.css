@@ -1,0 +1,151 @@
+/* ============================================
+   Documentation Component Styles
+   ============================================
+   Styles specific to documentation pages.
+   
+   NOTE: @layer utilities/components is applied in globals.css after @tailwind
+*/
+
+/* Override mb-4 for h1 in documentation pages */
+h1.text-3xl.mb-4,
+h1.text-3xl.mb-6 {
+  margin-bottom: 0.5rem; /* mb-2 equivalent */
+}
+
+/* Doc heading row – make room for inline pager/actions */
+.document-content > .flex.items-center.gap-4.mb-1 {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 0.75rem;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.document-content > .flex.items-center.gap-4.mb-1 h1 {
+  margin-bottom: 0;
+}
+
+/* Components page - remove custom right padding */
+main.components-page {
+  padding-right: 0;
+}
+
+/* Override list font size in docs */
+.document-content li {
+  font-size: 16px;
+}
+
+/* Search input - override focus ring */
+div[class*="relative"] input[type="search"]:focus,
+div[class*="relative"] input[type="search"]:focus-visible {
+  --tw-ring-color: var(--color-border-base);
+  box-shadow: 0 0 0 2px var(--color-border-base);
+}
+
+/* Hide legacy "Edit this page on GitHub" footer */
+.document-content div.mt-16.border-t[style*="padding-top"][style*="3rem"] {
+  display: none;
+}
+
+/* Styled intro paragraph for pages without prose */
+main.components-page > h1 + p,
+main > h1 + p:not(.prose p) {
+  color: var(--color-fg-muted, #71717A);
+  font-family: var(--typography-font-sans, Geist, ui-sans-serif, system-ui, sans-serif);
+  font-size: 15px; /* Align with intro-text */
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%;
+  margin-top: 0;
+  margin-bottom: 2rem; /* Match intro-text spacing */
+}
+
+/* Ensure h1 with mb-6 has proper spacing */
+main.components-page > h1.mb-6,
+main > h1.mb-6:not(.prose h1) {
+  margin-bottom: 1.5rem; /* 24px - same as mb-6 */
+}
+
+/* Inline code styling inside documentation content */
+.document-content :not(pre) > code {
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0.125rem 0.375rem;
+  margin: 0;
+  border-radius: 0.75rem;
+  background: var(--color-surface-2);
+  color: var(--color-fg-base);
+  font-size: 0.8125em;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-weight: 400;
+  line-height: 1;
+  border: none;
+}
+
+/* Code elements in API Reference tables */
+.document-content table code,
+.document-content table td code,
+.document-content table th code {
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0.125rem 0.375rem;
+  margin: 0;
+  border-radius: 0.75rem;
+  background: var(--color-surface-2);
+  color: var(--color-fg-base);
+  font-size: 0.8125em;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-weight: 400;
+  line-height: 1;
+  border: none;
+}
+
+/* Let code blocks stay unboxed */
+.document-content pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Rehype pretty-code: render single-line plaintext blocks like inline code */
+.document-content [data-rehype-pretty-code-figure][data-language="plaintext"] pre {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+  
+.document-content [data-rehype-pretty-code-figure][data-language="plaintext"] code,
+.document-content [data-rehype-pretty-code-figure][data-language="plaintext"] code * {
+  display: inline-block;
+  vertical-align: baseline;
+  padding: 0.125rem 0.375rem;
+  margin: 0;
+  border-radius: 0.75rem;
+  background: var(--color-surface-2);
+  color: var(--color-fg-base);
+  font-size: 0.8125em;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-weight: 400;
+  line-height: 1;
+  box-shadow: none;
+  border: none;
+}
+
+/* Fallback: any rehype plaintext code with data-theme */
+code[data-language="plaintext"][data-theme] {
+  background: var(--color-surface-2);
+  padding: 0.125rem 0.375rem;
+  margin: 0;
+  border: none;
+  border-radius: 0.75rem;
+  color: var(--color-fg-base);
+  line-height: 1;
+  font-size: 0.8125em;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-weight: 400;
+  box-shadow: none;
+  display: inline-block;
+  vertical-align: baseline;
+}

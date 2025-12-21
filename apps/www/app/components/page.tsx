@@ -16,13 +16,13 @@ function formatTitle(name: string): string {
 // This is the source of truth for all components with documentation pages
 const ALL_COMPONENTS = [
   "accordion",
+  "activity-feed",
   "alert",
   "aspect-ratio",
   "avatar",
   "badge",
   "breadcrumbs",
   "button",
-  "calendar",
   "card",
   "carousel",
   "checkbox",
@@ -36,17 +36,20 @@ const ALL_COMPONENTS = [
   "dialog",
   "dropdown-menu",
   "file-upload",
-  "form-container",
+  "filter-bar",
   "form-field",
   "hover-card",
   "input",
   "kbd",
+  "label",
   "menubar",
+  "metric-card",
   "multi-select",
   "navigation-menu",
   "pagination",
   "popover",
   "progress",
+  "quick-actions",
   "radio",
   "rating",
   "resizable",
@@ -55,6 +58,7 @@ const ALL_COMPONENTS = [
   "select",
   "separator",
   "sheet",
+  "sidebar",
   "skeleton",
   "slider",
   "spinner",
@@ -71,11 +75,21 @@ const ALL_COMPONENTS = [
   "toggle-group",
   "tooltip",
   "tree-view",
-  "activity-feed",
-  "quick-actions",
+];
+
+// Components/blocks hidden during development
+const HIDDEN_COMPONENTS = [
+  "analytics-dashboard",
+  "card-grid",
+  "dashboard-layout",
+  "dashboard-widgets",
+  "data-table-toolbar",
   "filter-bar",
-  "metric-card",
-  "chart",
+  "form-container",
+  "comparison-section",
+  "stats-section",
+  "testimonials-section",
+  "widget-container",
 ];
 
 export default function Components() {
@@ -87,7 +101,9 @@ export default function Components() {
   const items = ALL_COMPONENTS.filter((k) => {
     const normalized = k.toLowerCase();
     // Include if it doesn't have a hyphen, or if it's in exceptions
-    return !normalized.includes("-") || componentExceptions.includes(normalized);
+    // Exclude hidden components
+    return (!normalized.includes("-") || componentExceptions.includes(normalized))
+      && !HIDDEN_COMPONENTS.includes(normalized);
   }).sort();
 
   return (
@@ -97,7 +113,7 @@ export default function Components() {
         <p className="intro-text">
           Build dashboards fast with a code-first design system.
         </p>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 gap-3 mt-[var(--space-6)]">
           {items.map((k) => (
             <Link
               key={k}

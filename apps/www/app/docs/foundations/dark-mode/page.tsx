@@ -11,9 +11,9 @@ export default function DarkModePage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="dark-mode" className="text-3xl font-medium mb-4">Dark Mode</h1>
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="dark-mode" className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Dark Mode</h1>
+        <div className="flex items-center gap-[var(--space-2)]">
           <Link href={"/docs/foundations/theming"}>
             <Button variant="outline" size="sm" className="h-8 w-8 p-0">
               <ArrowLeft className="h-4 w-4" />
@@ -26,7 +26,7 @@ export default function DarkModePage() {
           </Link>
         </div>
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Automatic dark mode with system preference detection and theme persistence.
       </p>
 
@@ -49,9 +49,6 @@ export default function DarkModePage() {
         <li>
           <strong>System</strong> - Automatically follows system preference
         </li>
-        <li>
-          <strong>High Contrast</strong> - High contrast theme for accessibility
-        </li>
       </ol>
 
       <h2 id="usage">Usage</h2>
@@ -73,11 +70,11 @@ function App() {
 
       <h3>Manual Theme Switching</h3>
       <p>Use the <code>useTheme</code> hook to programmatically switch themes:</p>
-      <div className="my-6 p-4 border border-[color:var(--color-border-base)] rounded-lg">
-        <p className="mb-4">
+      <div className="my-[var(--space-6)] p-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-md)]">
+        <p className="mb-[var(--space-4)]">
           Current theme: <strong>{theme}</strong> (Effective: <strong>{effectiveTheme}</strong>)
         </p>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-[var(--space-2)] flex-wrap">
           <Button onClick={() => setTheme("light")} size="sm">
             Light
           </Button>
@@ -86,9 +83,6 @@ function App() {
           </Button>
           <Button onClick={() => setTheme("system")} size="sm">
             System
-          </Button>
-          <Button onClick={() => setTheme("high-contrast")} size="sm">
-            High Contrast
           </Button>
         </div>
       </div>
@@ -175,26 +169,13 @@ function App() {
         </li>
       </ul>
 
-      <h2 id="high-contrast">High Contrast Mode</h2>
-      <p>
-        High contrast mode provides maximum contrast for better accessibility. It uses bold colors
-        and high contrast ratios:
-      </p>
-      <ul>
-        <li>Black background (#000000)</li>
-        <li>White text (#FFFFFF)</li>
-        <li>Bright accent colors</li>
-        <li>Maximum contrast ratios (WCAG AAA)</li>
-      </ul>
-
       <h2 id="best-practices">Best Practices</h2>
       <ul>
         <li>
           <strong>Always use CSS variables:</strong> Never hardcode colors - use design tokens
         </li>
         <li>
-          <strong>Test all themes:</strong> Ensure components work in light, dark, and
-          high-contrast modes
+          <strong>Test all themes:</strong> Ensure components work in both light and dark modes
         </li>
         <li>
           <strong>Respect user preference:</strong> Default to "system" to respect user's OS

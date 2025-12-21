@@ -59,7 +59,7 @@ export function ComponentDocsBadges() {
 
   if (!pathname) return null;
 
-  const githubUrl = `https://github.com/blazejrzepa/fragment-ui/blob/main/${getGitHubFilePath(pathname)}`;
+  const githubUrl = `https://github.com/blazejrzepa/fragment-ui-public/blob/main/${getGitHubFilePath(pathname)}`;
 
   // Only show on component pages
   if (!pathname.match(/\/docs\/components\//)) return null;

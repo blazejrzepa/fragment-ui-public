@@ -79,6 +79,8 @@ Use Command Palette (Cmd+Shift+P / Ctrl+Shift+P) to access quick actions:
 - **Fragment UI: Open Documentation** - Open component docs in browser
 - **Fragment UI: Open Storybook** - Open component in Storybook
 - **Fragment UI: Search Components** - Search for components
+- **Fragment UI: Open in Playground** - Open component in playground
+- **Fragment UI: Copy Component Code** - Copy component code to clipboard
 
 ## Configuration
 

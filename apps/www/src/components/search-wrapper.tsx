@@ -9,7 +9,7 @@ import Link from "next/link";
 // List of all available components
 const ALL_COMPONENTS = [
   "accordion", "alert", "aspect-ratio", "avatar", "badge", "breadcrumbs", "button",
-  "calendar", "card", "carousel", "checkbox", "collapsible", "combobox",
+  "card", "carousel", "checkbox", "collapsible", "combobox",
   "command-palette", "context-menu", "data-table", "date-picker", "dialog", "dropdown-menu",
   "file-upload", "form-container", "form-field", "hover-card", "input", "kbd", "menubar",
   "multi-select", "navigation-menu", "pagination", "popover", "progress", "radio", "rating",
@@ -32,6 +32,21 @@ const KNOWN_BLOCKS = [
   "kpi-dashboard", "analytics-dashboard",
   "app-shell", "kpi-strip", "empty-state",
   "data-table-toolbar", "pagination-footer",
+];
+
+// Components/blocks hidden during development
+const HIDDEN_COMPONENTS = [
+  "analytics-dashboard",
+  "card-grid",
+  "dashboard-layout",
+  "dashboard-widgets",
+  "data-table-toolbar",
+  "filter-bar",
+  "form-container",
+  "comparison-section",
+  "stats-section",
+  "testimonials-section",
+  "widget-container",
 ];
 
 // Components with hyphens that are UI components (not blocks)
@@ -61,11 +76,15 @@ export function SearchWrapper() {
     </Link>
   );
 
+  // Filter out hidden components
+  const visibleComponents = ALL_COMPONENTS.filter((name) => !HIDDEN_COMPONENTS.includes(name.toLowerCase()));
+  const visibleBlocks = KNOWN_BLOCKS.filter((name) => !HIDDEN_COMPONENTS.includes(name.toLowerCase()));
+
   return (
     <DSSearch
       registry={registry}
-      components={ALL_COMPONENTS}
-      blocks={KNOWN_BLOCKS}
+      components={visibleComponents}
+      blocks={visibleBlocks}
       componentExceptions={componentExceptions}
       onResultSelect={(result) => {
         router.push(result.path);

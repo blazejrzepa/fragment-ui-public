@@ -14,13 +14,13 @@ export default async function TokensPage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="design-tokens" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="design-tokens" className="text-[length:var(--typography-display-md-size)] font-medium">
           {frontmatter.title || "Design Tokens"}
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Comprehensive design token system for colors, spacing, typography, density, motion, and more.
       </p>
 

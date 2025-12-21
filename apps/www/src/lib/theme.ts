@@ -7,7 +7,7 @@ import React from "react";
  * Handles theme switching, system preference detection, and persistence
  */
 
-export type Theme = "light" | "dark" | "high-contrast" | "system";
+export type Theme = "light" | "dark" | "system";
 
 const THEME_STORAGE_KEY = "fragment-ui-theme";
 
@@ -21,7 +21,7 @@ export function getInitialTheme(): Theme {
   }
 
   const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
-  if (stored && ["light", "dark", "high-contrast", "system"].includes(stored)) {
+  if (stored && ["light", "dark", "system"].includes(stored)) {
     return stored;
   }
 
@@ -32,7 +32,7 @@ export function getInitialTheme(): Theme {
 /**
  * Get the effective theme (resolves "system" to actual theme)
  */
-export function getEffectiveTheme(theme: Theme): "light" | "dark" | "high-contrast" {
+export function getEffectiveTheme(theme: Theme): "light" | "dark" {
   if (theme === "system") {
     if (typeof window === "undefined") {
       return "dark"; // Default for SSR

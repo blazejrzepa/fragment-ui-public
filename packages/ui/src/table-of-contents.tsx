@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import clsx from "clsx";
+import { AlignLeft } from "lucide-react";
 
 export interface Heading {
   id: string;
@@ -131,8 +132,9 @@ export function TableOfContents({
       className={clsx("flex flex-col gap-2 p-4 pt-4 text-sm", className)}
       aria-label="Table of contents"
     >
-      <p className="text-[color:var(--foreground-secondary)] bg-background sticky top-0 h-6 text-xs font-medium">
-        On This Page
+      <p className="text-[color:var(--foreground-secondary)] bg-background sticky top-0 h-6 text-xs font-medium flex items-center gap-2">
+        <AlignLeft className="h-3.5 w-3.5 shrink-0" />
+        <span className="text-end">On This Page</span>
       </p>
       <div className="flex flex-col gap-0.5">
         {headings.map((heading) => {

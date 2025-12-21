@@ -11,6 +11,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./link-card": {
+      "import": "./dist/link-card.js",
+      "require": "./dist/link-card.js",
+      "types": "./dist/link-card.d.ts"
     }
   },
   "files": [

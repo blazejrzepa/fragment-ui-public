@@ -1,0 +1,149 @@
+name: Deploy Registry to GitHub Pages
+
+# NOTE: GitHub Pages is disabled by default (requires paid plan)
+# To enable: Set ENABLE_GITHUB_PAGES environment variable or uncomment the workflow_dispatch trigger
+# Or change the condition below from 'false' to 'true'
+
+on:
+  workflow_dispatch: # Allow manual trigger when needed
+  # Uncomment below to enable automatic deployment:
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'packages/registry/**'
+  #     - 'apps/www/public/r/**'
+  #     - 'scripts/generate-registry-json.mjs'
+  #     - '.github/workflows/deploy-registry.yml'
+
+# Set permissions for GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "registry-pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Skip if GitHub Pages is not enabled
+    # Set ENABLE_GITHUB_PAGES=true in repository secrets to enable
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.ENABLE_GITHUB_PAGES == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      
+      - name: Cache Turbo build artifacts
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+      
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+            .pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Build tokens
+        run: pnpm tokens:build
+      
+      - name: Generate registry JSON files
+        run: pnpm registry:generate
+      
+      - name: Prepare registry for deployment
+        run: |
+          mkdir -p registry-deploy/r
+          cp -r apps/www/public/r/* registry-deploy/r/
+          
+          # Create index.html for GitHub Pages (optional - just for browsing)
+          cat > registry-deploy/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Fragment UI Registry</title>
+            <style>
+              body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+              h1 { color: #333; }
+              ul { list-style: none; padding: 0; }
+              li { padding: 8px 0; border-bottom: 1px solid #eee; }
+              a { color: #0066cc; text-decoration: none; }
+              a:hover { text-decoration: underline; }
+              code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
+            </style>
+          </head>
+          <body>
+            <h1>Fragment UI Registry</h1>
+            <p>Registry files for shadcn/ui CLI. Use with:</p>
+            <pre><code>npx shadcn@latest add https://blazejrzepa.github.io/fragment-ui-registry/r/[component].json</code></pre>
+            <h2>Available Components</h2>
+            <ul id="components"></ul>
+            <script>
+              fetch('./r/')
+                .then(r => r.text())
+                .then(html => {
+                  const parser = new DOMParser();
+                  const doc = parser.parseFromString(html, 'text/html');
+                  const links = doc.querySelectorAll('a[href$=".json"]');
+                  const ul = document.getElementById('components');
+                  links.forEach(link => {
+                    const li = document.createElement('li');
+                    const name = link.href.split('/').pop().replace('.json', '');
+                    li.innerHTML = `<a href="${link.href}">${name}</a> - <code>npx shadcn@latest add ${link.href}</code>`;
+                    ul.appendChild(li);
+                  });
+                })
+                .catch(() => {
+                  document.getElementById('components').innerHTML = '<li>Loading...</li>';
+                });
+            </script>
+          </body>
+          </html>
+          EOF
+          
+          # List all registry files
+          echo "Registry files prepared:"
+          ls -la registry-deploy/r/ | head -10
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: registry-deploy
+  
+  deploy:
+    # Skip if GitHub Pages is not enabled
+    if: ${{ github.event_name == 'workflow_dispatch' || vars.ENABLE_GITHUB_PAGES == 'true' }}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

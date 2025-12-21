@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# Run TypeScript type checking and Design System linting before commit
+echo "🔍 Running pre-commit checks..."
+
+# Get the root directory of the monorepo
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT_DIR"
+
+# Type check critical packages
+echo "🔍 Type checking packages..."
+pnpm type-check:ui || {
+  echo "❌ Type checking failed in @fragment_ui/ui"
+  echo "Please fix the TypeScript errors above before committing."
+  exit 1
+}
+
+pnpm type-check:blocks || {
+  echo "❌ Type checking failed in @fragment_ui/blocks"
+  echo "Please fix the TypeScript errors above before committing."
+  exit 1
+}
+
+pnpm type-check:www || {
+  echo "❌ Type checking failed in fragment-www"
+  echo "Please fix the TypeScript errors above before committing."
+  exit 1
+}
+
+echo "✅ Type checking passed!"
+
+# Lint apps/demo (only package with lint:ds script)
+echo "🔍 Running Design System lint checks..."
+echo "Linting apps/demo..."
+pnpm --filter fragment-demo lint:ds || {
+  echo "❌ Design System linting failed in apps/demo"
+  echo "Please fix the errors above before committing."
+  exit 1
+}
+
+echo "✅ All pre-commit checks passed!"
+

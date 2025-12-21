@@ -17,7 +17,7 @@ function formatTitle(name: string): string {
 // List of all available components
 const ALL_COMPONENTS = [
   "accordion", "alert", "aspect-ratio", "avatar", "badge", "breadcrumbs", "button",
-  "calendar", "card", "carousel", "checkbox", "collapsible", "combobox",
+  "card", "carousel", "checkbox", "collapsible", "combobox",
   "command-palette", "context-menu", "data-table", "date-picker", "dialog", "dropdown-menu",
   "file-upload", "form-container", "form-field", "hover-card", "input", "kbd", "label", "menubar",
   "metric-card", "multi-select", "navigation-menu", "pagination", "popover", "progress", "radio", "rating",
@@ -38,6 +38,22 @@ const KNOWN_BLOCKS = [
   "app-shell", "kpi-strip", "empty-state",
   "data-table-toolbar", "pagination-footer",
   "documentation-header", "documentation-sidebar", "documentation-layout",
+  "link-card",
+];
+
+// Components/blocks hidden during development
+const HIDDEN_COMPONENTS = [
+  "analytics-dashboard",
+  "card-grid",
+  "dashboard-layout",
+  "dashboard-widgets",
+  "data-table-toolbar",
+  "filter-bar",
+  "form-container",
+  "comparison-section",
+  "stats-section",
+  "testimonials-section",
+  "widget-container",
 ];
 
 /**
@@ -57,7 +73,8 @@ export function MobileDocumentationSidebar() {
   ];
   const components = ALL_COMPONENTS.filter((k) => {
     const normalized = k.toLowerCase();
-    return !normalized.includes("-") || componentExceptions.includes(normalized);
+    return (!normalized.includes("-") || componentExceptions.includes(normalized)) 
+      && !HIDDEN_COMPONENTS.includes(normalized);
   })
     .sort()
     .map((name) => ({
@@ -72,6 +89,7 @@ export function MobileDocumentationSidebar() {
   );
 
   const blocks = [...new Set([...KNOWN_BLOCKS, ...registryBlocks])]
+    .filter((name) => !HIDDEN_COMPONENTS.includes(name.toLowerCase()))
     .sort()
     .map((name) => ({
       title: formatTitle(name),

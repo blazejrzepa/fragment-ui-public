@@ -51,7 +51,7 @@ export default {
         "text-xs": ["12px", { lineHeight: "160%" }],
       },
       fontFamily: {
-        sans: ["Geist", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--typography-font-sans)", "Geist", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       boxShadow: {
         xs: "0 1px 1px rgba(0,0,0,.05)",

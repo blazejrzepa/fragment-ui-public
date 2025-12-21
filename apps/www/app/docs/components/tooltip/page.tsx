@@ -27,7 +27,7 @@ export default function TooltipPage() {
         title="Example"
         code={tooltipCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <Tooltip content="This is a tooltip">
             <Button>Hover me</Button>
           </Tooltip>
@@ -40,64 +40,64 @@ export default function TooltipPage() {
       </CodeBlock>
 
       <h2 id="api-reference">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td className="py-2 px-4"><code>content</code></td>
-              <td className="py-2 px-4"><code>ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Tooltip content text or React node (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>content</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Tooltip content text or React node (required)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>children</code></td>
-              <td className="py-2 px-4"><code>ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Trigger element that shows the tooltip on hover/focus (required)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>children</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Trigger element that shows the tooltip on hover/focus (required)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>delayDuration?</code></td>
-              <td className="py-2 px-4"><code>number</code></td>
-              <td className="py-2 px-4">500</td>
-              <td className="py-2 px-4 text-sm">Delay in milliseconds before showing tooltip (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>delayDuration?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>number</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">500</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Delay in milliseconds before showing tooltip (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>side?</code></td>
-              <td className="py-2 px-4"><code>"top" | "right" | "bottom" | "left"</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Tooltip position (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>side?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"top" | "right" | "bottom" | "left"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Tooltip position (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>sideOffset?</code></td>
-              <td className="py-2 px-4"><code>number</code></td>
-              <td className="py-2 px-4">5</td>
-              <td className="py-2 px-4 text-sm">Offset distance from trigger element in pixels (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>sideOffset?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>number</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">5</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Offset distance from trigger element in pixels (optional)</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className?</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes (optional)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className?</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes (optional)</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <h3>Intent</h3>
           <p>
             <code>Tooltip</code> is a component for displaying contextual information on hover or focus. Use it when you need to provide additional context, hints, or descriptions for UI elements without cluttering the interface. Tooltips appear on hover or keyboard focus and automatically hide when the user moves away or focuses elsewhere.

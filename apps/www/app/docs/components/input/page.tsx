@@ -52,20 +52,20 @@ export default function InputPage() {
 
   return (
     <DocumentContent as="article">
-      <div className="flex items-center gap-4 mb-1">
+      <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-1)]">
         <h1 id="input">Input</h1>
       </div>
-      <p className="mb-6 intro-text">Capture short, single-line text.</p>
+      <p className="mb-[var(--space-6)] intro-text">Capture short, single-line text.</p>
       
       <ExampleSection
         id="input-example"
         title="Input Example"
         code={inputCode}
       >
-        <div className="flex gap-2 items-center justify-center w-full">
+        <div className="flex gap-[var(--space-2)] items-center justify-center w-full">
           <div className="flex flex-col gap-[var(--space-8)] w-full max-w-md">
             <div className="flex flex-col gap-[var(--space-4)]">
-              <p className="text-sm text-[color:var(--color-fg-muted)]">Default</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Default</p>
               <div className="space-y-[var(--space-2)]">
                 <Input placeholder="Enter your name" value={value} onChange={(e) => setValue(e.target.value)} />
                 <Input placeholder="Disabled input" disabled />
@@ -73,7 +73,7 @@ export default function InputPage() {
             </div>
 
             <div className="flex flex-col gap-[var(--space-4)]">
-              <p className="text-sm text-[color:var(--color-fg-muted)]">Sizes</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">Sizes</p>
               <div className="space-y-[var(--space-2)]">
                 <Input size="sm" placeholder="Small" />
                 <Input size="md" placeholder="Medium" />
@@ -82,7 +82,7 @@ export default function InputPage() {
             </div>
 
             <div className="flex flex-col gap-[var(--space-4)]">
-              <p className="text-sm text-[color:var(--color-fg-muted)]">With Icons</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">With Icons</p>
               <div className="space-y-[var(--space-2)]">
                 <Input size="sm" leadingIcon={<Search className="h-4 w-4" />} placeholder="Search..." />
                 <Input size="sm" trailingIcon={<Check className="h-4 w-4" />} placeholder="With trailing icon" />
@@ -90,7 +90,7 @@ export default function InputPage() {
             </div>
 
             <div className="flex flex-col gap-[var(--space-4)]">
-              <p className="text-sm text-[color:var(--color-fg-muted)]">States</p>
+              <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">States</p>
               <div className="space-y-[var(--space-2)]">
                 <Input placeholder="Read only" value="Read only value" readOnly />
                 <Input placeholder="With error state" error />
@@ -106,101 +106,101 @@ export default function InputPage() {
       </CodeBlock>
 
       {/* API Reference */}
-      <h2 id="api" className="mt-8">API Reference</h2>
-      <div className="mt-4 border border-[color:var(--color-border-base)] rounded-lg overflow-hidden">
+      <h2 id="api" className="mt-[var(--space-8)]">API Reference</h2>
+      <div className="mt-[var(--space-4)] border border-[color:var(--color-border-base)] rounded-[var(--radius-lg)] overflow-hidden">
         <table className="w-full border-collapse">
           <thead>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <th className="text-left py-2 px-4 font-semibold text-sm">Prop</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Type</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Default</th>
-              <th className="text-left py-2 px-4 font-semibold text-sm">Description</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Prop</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Type</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Default</th>
+              <th className="text-left py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]" font-semibold>Description</th>
             </tr>
           </thead>
           <tbody>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>type</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4"><code>"text"</code></td>
-              <td className="py-2 px-4 text-sm">Input type: <code>"text"</code>, <code>"email"</code>, <code>"password"</code>, <code>"number"</code>, etc.</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>type</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"text"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Input type: <code>"text"</code>, <code>"email"</code>, <code>"password"</code>, <code>"number"</code>, etc.</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>placeholder</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Placeholder text displayed when input is empty</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>placeholder</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Placeholder text displayed when input is empty</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>value</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Controlled input value</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>value</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Controlled input value</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>defaultValue</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Default input value (uncontrolled)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>defaultValue</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Default input value (uncontrolled)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>onChange</code></td>
-              <td className="py-2 px-4"><code>(e: ChangeEvent) {'=>'} void</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Callback when input value changes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>onChange</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>(e: ChangeEvent) {'=>'} void</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Callback when input value changes</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>size</code></td>
-              <td className="py-2 px-4"><code>"sm" | "md" | "lg"</code></td>
-              <td className="py-2 px-4"><code>"md"</code></td>
-              <td className="py-2 px-4 text-sm">Size variant of the input</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>size</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"sm" | "md" | "lg"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>"md"</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Size variant of the input</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>leadingIcon</code></td>
-              <td className="py-2 px-4"><code>ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Icon displayed before the input text</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>leadingIcon</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Icon displayed before the input text</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>trailingIcon</code></td>
-              <td className="py-2 px-4"><code>ReactNode</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Icon displayed after the input text</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>trailingIcon</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>ReactNode</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Icon displayed after the input text</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>disabled</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Disable input interaction</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>disabled</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Disable input interaction</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>readOnly</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Make input read-only (value cannot be changed)</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>readOnly</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Make input read-only (value cannot be changed)</td>
             </tr>
             <tr className="border-b border-[color:var(--color-border-base)]">
-              <td className="py-2 px-4"><code>error</code></td>
-              <td className="py-2 px-4"><code>boolean</code></td>
-              <td className="py-2 px-4"><code>false</code></td>
-              <td className="py-2 px-4 text-sm">Show error state styling</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>error</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>boolean</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>false</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Show error state styling</td>
             </tr>
             <tr>
-              <td className="py-2 px-4"><code>className</code></td>
-              <td className="py-2 px-4"><code>string</code></td>
-              <td className="py-2 px-4">—</td>
-              <td className="py-2 px-4 text-sm">Additional CSS classes</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>className</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]"><code>string</code></td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)]">—</td>
+              <td className="py-[var(--space-2)] px-[var(--space-4)] text-[length:var(--typography-size-sm)]">Additional CSS classes</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <Collapsible className="mt-8">
+      <Collapsible className="mt-[var(--space-8)]">
         <CollapsibleTrigger className="w-full text-left">
           <h2 id="for-ai-automation" className="m-0">
             Agents & Copilots
           </h2>
         </CollapsibleTrigger>
-        <CollapsibleContent className="mt-4">
+        <CollapsibleContent className="mt-[var(--space-4)]">
           <p><strong>Intent</strong></p>
           <p>
             <code>Input</code> is a component for entering a single-line text value. Use it when you need to collect text input from users, such as names, emails, passwords, search queries, or any single-line text data. The component provides size variants, icon support, loading states, and error handling.

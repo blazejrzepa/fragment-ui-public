@@ -1,0 +1,36 @@
+{
+  "name": "@fragment_ui/ui-dsl",
+  "version": "0.1.0",
+  "private": true,
+  "description": "UI-DSL (UI Domain-Specific Language) for Fragment UI - intermediate format for AI-powered component generation",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@fragment_ui/registry": "workspace:*",
+    "@fragment_ui/tokens": "workspace:*",
+    "zod": "^3.22.0",
+    "zod-to-json-schema": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.5.0"
+  },
+  "keywords": [
+    "ui-dsl",
+    "design-system",
+    "ai",
+    "code-generation"
+  ],
+  "license": "MIT"
+}

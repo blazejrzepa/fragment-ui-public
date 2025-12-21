@@ -13,13 +13,13 @@ export default async function SetupPage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="setup" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="setup" className="text-[length:var(--typography-display-md-size)] font-medium">
           {frontmatter.title || "Setup"}
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Install and configure Fragment UI in your project.
       </p>
 

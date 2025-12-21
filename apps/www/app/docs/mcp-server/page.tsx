@@ -13,13 +13,13 @@ export default async function MCPServerPage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="mcp-server" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="mcp-server" className="text-[length:var(--typography-display-md-size)] font-medium">
           {frontmatter.title || "MCP Server"}
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Integrate Fragment UI with MCP Server for AI-native workflows.
       </p>
 

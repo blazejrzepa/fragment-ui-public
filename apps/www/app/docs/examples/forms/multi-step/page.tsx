@@ -16,23 +16,17 @@ export default function MultiStepFormExample() {
 
   return (
     <DocLayout>
-      <h1 className="text-3xl font-medium mb-4">Multi Step</h1>
+      <h1 className="text-[length:var(--typography-display-md-size)] font-medium mb-[var(--space-1)]">Multi Step</h1>
       <p 
-        className="mb-6 text-[color:var(--foreground-secondary)] font-normal"
-        style={{
-          fontFamily: "Geist, sans-serif",
-          fontSize: "var(--typography-size-md)",
-          fontStyle: "normal",
-          lineHeight: "160%",
-          color: "var(--foreground-secondary)",
-        }}
+        className="mb-[var(--space-6)] text-[color:var(--foreground-secondary)] font-normal"
+        className="mb-[var(--space-6)] intro-text"
       >
         Multi Step example demonstrating Fragment UI components and patterns.
       </p>
 
       <h2>Example</h2>
-      <div className="my-6 max-w-md">
-        <div className="mb-4">
+      <div className="my-[var(--space-6)] max-w-md">
+        <div className="mb-[var(--space-1)]">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-[color:var(--color-fg-muted)]">Step {step} of {totalSteps}</span>
             <span className="text-sm text-[color:var(--color-fg-muted)]">{Math.round((step / totalSteps) * 100)}%</span>

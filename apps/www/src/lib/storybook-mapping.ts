@@ -28,7 +28,6 @@ export function getStorybookPath(componentName: string): string {
     "badge": "/docs/core-badge--docs",
     "breadcrumbs": "/docs/core-breadcrumbs--docs",
     "button": "/docs/core-button--docs",
-    "calendar": "/docs/core-calendar--docs",
     "card": "/docs/display-card--docs",
     "carousel": "/docs/core-carousel--docs",
     "checkbox": "/docs/core-checkbox--docs",

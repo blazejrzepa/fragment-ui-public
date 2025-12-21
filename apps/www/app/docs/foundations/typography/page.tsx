@@ -50,13 +50,13 @@ export default function TypographyPage() {
 
   return (
     <DocLayout>
-      <div className="flex items-center justify-between mb-1">
-        <h1 id="typography" className="text-3xl font-medium mb-4">
+      <div className="flex items-center justify-between mb-[var(--space-1)]">
+        <h1 id="typography" className="text-[length:var(--typography-display-md-size)] font-medium">
           Typography
         </h1>
         <DocPager placement="top" align="end" variant="icon" dense />
       </div>
-      <p className="mb-6 intro-text">
+      <p className="mb-[var(--space-6)] intro-text">
         Typography tokens for consistent text across the design system.
       </p>
 
@@ -65,25 +65,25 @@ export default function TypographyPage() {
         Fragment UI uses Geist as the primary font family with system fallbacks. The typography system supports both sans-serif and monospace fonts.
       </p>
 
-      <div className="my-8 space-y-4">
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <div className="mb-4">
-            <code className="text-sm font-mono bg-[color:var(--color-surface-2)] px-2 py-1 rounded">
+      <div className="my-[var(--space-8)] space-y-[var(--space-4)]">
+        <div className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-6)] bg-[color:var(--color-surface-1)]">
+          <div className="mb-[var(--space-4)]">
+            <code className="text-[length:var(--typography-size-sm)] font-mono bg-[color:var(--color-surface-2)] px-[var(--space-2)] py-[var(--space-1)] rounded">
               --typography-font-sans
             </code>
-            <span className="text-sm text-[color:var(--color-fg-muted)] ml-2">
+            <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] ml-[var(--space-2)]">
               {TYPOGRAPHY_TOKENS.font.sans}
             </span>
           </div>
           <div 
             style={{ fontFamily: TYPOGRAPHY_TOKENS.font.sans }}
-            className="text-lg"
+            className="text-[length:var(--typography-size-lg)]"
           >
             The quick brown fox jumps over the lazy dog
           </div>
           <div 
             style={{ fontFamily: TYPOGRAPHY_TOKENS.font.sans }}
-            className="text-sm text-[color:var(--color-fg-muted)] mt-2"
+            className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] mt-[var(--space-2)]"
           >
             ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
             abcdefghijklmnopqrstuvwxyz<br />
@@ -91,24 +91,24 @@ export default function TypographyPage() {
           </div>
         </div>
 
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <div className="mb-4">
-            <code className="text-sm font-mono bg-[color:var(--color-surface-2)] px-2 py-1 rounded">
+        <div className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-6)] bg-[color:var(--color-surface-1)]">
+          <div className="mb-[var(--space-4)]">
+            <code className="text-[length:var(--typography-size-sm)] font-mono bg-[color:var(--color-surface-2)] px-[var(--space-2)] py-[var(--space-1)] rounded">
               --typography-font-mono
             </code>
-            <span className="text-sm text-[color:var(--color-fg-muted)] ml-2">
+            <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] ml-[var(--space-2)]">
               {TYPOGRAPHY_TOKENS.font.mono}
             </span>
           </div>
           <div 
             style={{ fontFamily: TYPOGRAPHY_TOKENS.font.mono }}
-            className="text-lg font-mono"
+            className="text-[length:var(--typography-size-lg)] font-mono"
           >
             const fragment = "design system";
           </div>
           <div 
             style={{ fontFamily: TYPOGRAPHY_TOKENS.font.mono }}
-            className="text-sm font-mono text-[color:var(--color-fg-muted)] mt-2"
+            className="text-[length:var(--typography-size-sm)] font-mono text-[color:var(--color-fg-muted)] mt-[var(--space-2)]"
           >
             ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />
             abcdefghijklmnopqrstuvwxyz<br />
@@ -122,7 +122,7 @@ export default function TypographyPage() {
         The typography system provides a font-size scale driven by tokens:
       </p>
 
-      <div className="my-8 space-y-4">
+      <div className="my-[var(--space-8)] space-y-[var(--space-4)]">
         {Object.entries(TYPOGRAPHY_TOKENS.size ?? {}).map(([key, rawValue]) => {
           const px =
             typeof rawValue === "number"
@@ -137,13 +137,13 @@ export default function TypographyPage() {
           return (
             <div
               key={key}
-              className="border border-[color:var(--color-border-base)] rounded-lg p-4"
+              className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-4)]"
             >
-              <div className="flex items-center gap-4 mb-3">
-                <code className="text-sm font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
+              <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-3)]">
+                <code className="text-[length:var(--typography-size-sm)] font-mono bg-[color:var(--color-surface-1)] px-[var(--space-2)] py-[var(--space-1)] rounded">
                   --typography-size-{key}
                 </code>
-                <span className="text-sm text-[color:var(--color-fg-muted)]">
+                <span className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
                   {label}
                 </span>
               </div>
@@ -163,24 +163,24 @@ export default function TypographyPage() {
         Fragment UI supports five font weights for different text hierarchies and emphasis:
       </p>
 
-      <div className="my-8 space-y-4">
+      <div className="my-[var(--space-8)] space-y-[var(--space-4)]">
         {FONT_WEIGHTS.map((weight) => (
           <div
             key={weight.key}
-            className={`border rounded-lg p-4 transition-all ${
+            className={`border rounded-[var(--radius-md)] p-[var(--space-4)] transition-all ${
               selectedWeight === weight.value
                 ? "border-[color:var(--color-brand-primary)] bg-[color:var(--color-surface-2)]"
                 : "border-[color:var(--color-border-base)]"
             }`}
             onClick={() => typeof weight.value === "number" && setSelectedWeight(weight.value)}
           >
-            <div className="flex items-center gap-4 mb-3">
-              <code className="text-sm font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
+            <div className="flex items-center gap-[var(--space-4)] mb-[var(--space-3)]">
+              <code className="text-[length:var(--typography-size-sm)] font-mono bg-[color:var(--color-surface-1)] px-[var(--space-2)] py-[var(--space-1)] rounded">
                 --typography-weight-{weight.key}
               </code>
-              <span className="text-sm font-semibold">{weight.name}</span>
+              <span className="text-[length:var(--typography-size-sm)] font-semibold">{weight.name}</span>
             </div>
-            <div style={{ fontWeight: weight.value }} className="text-lg">
+            <div style={{ fontWeight: weight.value }} className="text-[length:var(--typography-size-lg)]">
               The quick brown fox jumps over the lazy dog
             </div>
           </div>
@@ -192,20 +192,20 @@ export default function TypographyPage() {
         Large display text styles for headings and hero sections. These styles use tighter line heights and negative letter spacing for impact.
       </p>
 
-      <div className="my-8 space-y-6">
+      <div className="my-[var(--space-8)] space-y-[var(--space-6)]">
         {DISPLAY_STYLES.map((style) => (
           <div
             key={style.key}
             className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]"
           >
-            <div className="mb-4">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-semibold">{style.name}</span>
-                <code className="text-xs font-mono bg-[color:var(--color-surface-2)] px-2 py-1 rounded">
+            <div className="mb-[var(--space-4)]">
+              <div className="flex items-center gap-[var(--space-2)] mb-[var(--space-2)]">
+                <span className="text-[length:var(--typography-size-sm)] font-semibold">{style.name}</span>
+                <code className="text-[length:var(--typography-size-xs)] font-mono bg-[color:var(--color-surface-2)] px-[var(--space-2)] py-[var(--space-1)] rounded">
                   {style.className}
                 </code>
               </div>
-              <div className="text-xs text-[color:var(--color-fg-muted)] space-y-1">
+              <div className="text-[length:var(--typography-size-xs)] text-[color:var(--color-fg-muted)] space-y-[var(--space-1)]">
                 {typeof style.size === "number" && <div>Size: {formatPx(style.size)}</div>}
                 {typeof style.lineHeight === "number" && <div>Line height: {formatPercent(style.lineHeight)}</div>}
                 {typeof style.letterSpacing === "number" && <div>Letter spacing: {formatPx(style.letterSpacing)}</div>}
@@ -223,20 +223,20 @@ export default function TypographyPage() {
         Body text styles for paragraphs and content. These styles use comfortable line heights for readability.
       </p>
 
-      <div className="my-8 space-y-4">
+      <div className="my-[var(--space-8)] space-y-[var(--space-4)]">
         {TEXT_STYLES.map((style) => (
           <div
             key={style.key}
-            className="border border-[color:var(--color-border-base)] rounded-lg p-4"
+            className="border border-[color:var(--color-border-base)] rounded-lg p-[var(--space-4)]"
           >
-            <div className="mb-3">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-semibold">{style.name}</span>
-                <code className="text-xs font-mono bg-[color:var(--color-surface-1)] px-2 py-1 rounded">
+            <div className="mb-[var(--space-3)]">
+              <div className="flex items-center gap-[var(--space-2)] mb-[var(--space-2)]">
+                <span className="text-[length:var(--typography-size-sm)] font-semibold">{style.name}</span>
+                <code className="text-[length:var(--typography-size-xs)] font-mono bg-[color:var(--color-surface-1)] px-[var(--space-2)] py-[var(--space-1)] rounded">
                   {style.className}
                 </code>
               </div>
-              <div className="text-xs text-[color:var(--color-fg-muted)]">
+              <div className="text-[length:var(--typography-size-xs)] text-[color:var(--color-fg-muted)]">
                 {typeof style.size === "number" ? `Size: ${formatPx(style.size)}` : "Size: —"}
                 {" • "}
                 {typeof style.lineHeight === "number" ? `Line height: ${formatPercent(style.lineHeight)}` : "Line height: —"}
@@ -259,10 +259,10 @@ export default function TypographyPage() {
         List styles for ordered and unordered lists:
       </p>
 
-      <div className="my-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h4 id="unordered-list" className="text-sm font-semibold mb-3">Unordered List</h4>
-          <ul className="list-disc pl-6 space-y-2" style={{ fontFamily: "Geist, sans-serif", fontSize: "var(--typography-size-md)", fontWeight: 300, lineHeight: "160%" }}>
+      <div className="my-[var(--space-8)] grid grid-cols-1 md:grid-cols-2 gap-[var(--space-4)]">
+        <div className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-6)] bg-[color:var(--color-surface-1)]">
+          <h4 id="unordered-list" className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-3)]">Unordered List</h4>
+          <ul className="list-disc pl-[var(--space-6)] space-y-[var(--space-2)] text-[length:var(--typography-size-md)]" style={{ fontFamily: "Geist, sans-serif", fontWeight: 300, lineHeight: "160%" }}>
             <li>First item in the list</li>
             <li>Second item with more content to demonstrate wrapping</li>
             <li>Third item</li>
@@ -270,9 +270,9 @@ export default function TypographyPage() {
           </ul>
         </div>
 
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h4 id="ordered-list" className="text-sm font-semibold mb-3">Ordered List</h4>
-          <ol className="list-decimal pl-6 space-y-2" style={{ fontFamily: "Geist, sans-serif", fontSize: "var(--typography-size-md)", fontWeight: 300, lineHeight: "160%" }}>
+        <div className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-6)] bg-[color:var(--color-surface-1)]">
+          <h4 id="ordered-list" className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-3)]">Ordered List</h4>
+          <ol className="list-decimal pl-[var(--space-6)] space-y-[var(--space-2)] text-[length:var(--typography-size-md)]" style={{ fontFamily: "Geist, sans-serif", fontWeight: 300, lineHeight: "160%" }}>
             <li>First numbered item</li>
             <li>Second numbered item</li>
             <li>Third numbered item</li>
@@ -286,18 +286,18 @@ export default function TypographyPage() {
         Monospace font styles for code blocks and inline code:
       </p>
 
-      <div className="my-8 space-y-4">
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h4 id="inline-code" className="text-sm font-semibold mb-3">Inline Code</h4>
-          <p style={{ fontFamily: "Geist, sans-serif", fontSize: "var(--typography-size-md)", fontWeight: 300, lineHeight: "160%" }}>
-            Use <code className="font-mono bg-[color:var(--color-surface-2)] px-1.5 py-0.5 rounded text-sm">inline code</code> for short code snippets within paragraphs.
+      <div className="my-[var(--space-8)] space-y-[var(--space-4)]">
+        <div className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-6)] bg-[color:var(--color-surface-1)]">
+          <h4 id="inline-code" className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-3)]">Inline Code</h4>
+          <p className="text-[length:var(--typography-size-md)]" style={{ fontFamily: "Geist, sans-serif", fontWeight: 300, lineHeight: "160%" }}>
+            Use <code className="font-mono bg-[color:var(--color-surface-2)] px-1.5 py-0.5 rounded text-[length:var(--typography-size-sm)]">inline code</code> for short code snippets within paragraphs.
           </p>
         </div>
 
-        <div className="border border-[color:var(--color-border-base)] rounded-lg p-6 bg-[color:var(--color-surface-1)]">
-          <h4 id="code-block" className="text-sm font-semibold mb-3">Code Block</h4>
-          <pre className="bg-[color:var(--color-surface-2)] p-4 rounded-lg overflow-x-auto">
-            <code className="font-mono text-sm" style={{ fontFamily: "ui-monospace, SFMono-Regular" }}>
+        <div className="border border-[color:var(--color-border-base)] rounded-[var(--radius-md)] p-[var(--space-6)] bg-[color:var(--color-surface-1)]">
+          <h4 id="code-block" className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-3)]">Code Block</h4>
+          <pre className="bg-[color:var(--color-surface-2)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto">
+            <code className="font-mono text-[length:var(--typography-size-sm)]" style={{ fontFamily: "ui-monospace, SFMono-Regular" }}>
 {`const fragment = "design system";
 const tokens = { typography: "system" };
 console.log(fragment, tokens);`}
@@ -312,7 +312,7 @@ console.log(fragment, tokens);`}
       </p>
 
       <h3 id="css-variables">CSS Variables</h3>
-      <pre className="bg-[color:var(--color-surface-1)] p-4 rounded-lg overflow-x-auto my-4">
+      <pre className="bg-[color:var(--color-surface-1)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto my-[var(--space-4)]">
         <code>{`/* Font families */
 font-family: var(--typography-font-sans);
 font-family: var(--typography-font-mono);
@@ -331,12 +331,12 @@ font-size: calc(var(--typography-size-md) * var(--density-typography-size-multip
       </pre>
 
       <h3 id="tailwind-classes">Tailwind Classes</h3>
-      <p className="text-sm text-[color:var(--color-fg-muted)]">
+      <p className="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)]">
         Note: Tailwind utilities like <code>text-xs</code> are fixed rem-based sizes. If you want typography to be driven by
         design tokens (and respond to Theme Builder / density), prefer <code>text-[length:var(--typography-size-*)]</code> (or inline
         styles with <code>var(--typography-size-*)</code>).
       </p>
-      <pre className="bg-[color:var(--color-surface-1)] p-4 rounded-lg overflow-x-auto my-4">
+      <pre className="bg-[color:var(--color-surface-1)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto my-[var(--space-4)]">
         <code>{`/* Display styles */
 <h1 className="text-display-2xl">Display Heading</h1>
 <h2 className="text-display-xl">Large Display</h2>
@@ -360,7 +360,7 @@ font-size: calc(var(--typography-size-md) * var(--density-typography-size-multip
       </pre>
 
       <h3 id="react-components">React Components</h3>
-      <pre className="bg-[color:var(--color-surface-1)] p-4 rounded-lg overflow-x-auto my-4">
+      <pre className="bg-[color:var(--color-surface-1)] p-[var(--space-4)] rounded-[var(--radius-md)] overflow-x-auto my-[var(--space-4)]">
         <code>{`import { cn } from "@/lib/utils";
 
 // Display heading
@@ -387,13 +387,13 @@ font-size: calc(var(--typography-size-md) * var(--density-typography-size-multip
 </p>
 
 // Code block
-<pre className="font-mono text-sm bg-[color:var(--color-surface-2)] p-4 rounded">
+<pre className="font-mono text-[length:var(--typography-size-sm)] bg-[color:var(--color-surface-2)] p-[var(--space-4)] rounded-[var(--radius-md)]">
   <code>const code = "example";</code>
 </pre>`}</code>
       </pre>
 
       <h2 id="best-practices">Best Practices</h2>
-      <ul className="list-disc pl-6 space-y-2 my-4">
+      <ul className="list-disc pl-[var(--space-6)] space-y-[var(--space-2)] my-[var(--space-4)]">
         <li>
           <strong>Use semantic HTML:</strong> Always use proper heading tags (h1-h6) instead of styled divs for accessibility
         </li>
@@ -426,9 +426,9 @@ font-size: calc(var(--typography-size-md) * var(--density-typography-size-multip
         for more details on how typography adapts to different density settings.
       </p>
 
-      <div className="my-6 p-4 rounded-lg bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)]">
-              <h4 id="density-typography-multipliers" className="text-sm font-semibold mb-2">Density Typography Multipliers</h4>
-        <ul className="list-disc pl-6 space-y-1 text-sm">
+      <div className="my-[var(--space-6)] p-[var(--space-4)] rounded-[var(--radius-md)] bg-[color:var(--color-surface-1)] border border-[color:var(--color-border-base)]">
+              <h4 id="density-typography-multipliers" className="text-[length:var(--typography-size-sm)] font-semibold mb-[var(--space-2)]">Density Typography Multipliers</h4>
+        <ul className="list-disc pl-[var(--space-6)] space-y-[var(--space-1)] text-[length:var(--typography-size-sm)]">
           <li><strong>Compact:</strong> 0.875x size multiplier, 1.3 line height</li>
           <li><strong>Normal:</strong> 1x size multiplier, 1.5 line height</li>
           <li><strong>Comfortable:</strong> 1.125x size multiplier, 1.7 line height</li>
