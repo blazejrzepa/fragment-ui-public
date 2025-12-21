@@ -43,7 +43,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
               React.cloneElement(children as React.ReactElement, {
                 children: React.Children.map(children.props.children, (child: any) => {
                   if (React.isValidElement(child) && child.type === SelectTrigger) {
-                    return React.cloneElement(child, {
+                    return React.cloneElement(child as React.ReactElement<any>, {
                       id,
                       error: hasError,
                       "aria-invalid": hasError ? "true" : undefined,
