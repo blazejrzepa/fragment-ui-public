@@ -15,16 +15,18 @@ Fragment UI is built around a few simple ideas:
 - **AI-Ready**: Predictable APIs so AI can generate and refactor safely.
 
 <div role="alert" class="relative rounded-[var(--radius-md)] px-6 py-6 text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-base)] border border-[color:var(--color-border-base)] mt-[var(--space-6)]">
-  <div class="font-medium tracking-tight mb-[var(--space-1)] flex items-center gap-x-[var(--space-3)]">
-    <svg class="h-4 w-4 text-current flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <div class="flex items-start gap-x-[var(--space-3)]">
+    <svg class="h-4 w-4 text-current flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="12" y1="16" x2="12" y2="12"></line>
       <line x1="12" y1="8" x2="12.01" y2="8"></line>
     </svg>
-    <span>Fragment UI is currently in public alpha.</span>
-  </div>
-  <div class="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] leading-relaxed">
-    The API and component list can still change. Use it for experiments, internal tools, and early adopters – not yet as a hard dependency in mission-critical production apps.
+    <div class="flex-1 min-w-0">
+      <div class="font-medium tracking-tight mb-[var(--space-1)]">Fragment UI is currently in public alpha.</div>
+      <div class="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] leading-relaxed">
+        The API and component list can still change. Use it for experiments, internal tools, and early adopters – not yet as a hard dependency in mission-critical production apps.
+      </div>
+    </div>
   </div>
 </div>
 
