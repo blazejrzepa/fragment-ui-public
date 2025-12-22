@@ -13,7 +13,7 @@ import { gzipSync } from "zlib";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const ROOT_DIR = path.join(__dirname, "..");
+const ROOT_DIR = path.join(__dirname, "../..");
 const UI_DIR = path.join(ROOT_DIR, "packages/ui");
 const OUTPUT_DIR = path.join(ROOT_DIR, "apps/www/public/bundle-sizes");
 
