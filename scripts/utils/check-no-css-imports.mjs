@@ -16,7 +16,8 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(__dirname, '..');
+// Script is in scripts/utils/, so go up two levels to get to project root
+const rootDir = path.resolve(__dirname, '../..');
 
 const buildDir = path.resolve(rootDir, 'packages/ui/dist');
 const srcDir = path.resolve(rootDir, 'packages/ui/src');

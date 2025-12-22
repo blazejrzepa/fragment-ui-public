@@ -18,7 +18,8 @@ import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const rootDir = join(__dirname, "..");
+// Script is in scripts/utils/, so go up two levels to get to project root
+const rootDir = join(__dirname, "../..");
 
 const PUBLIC_PACKAGES = [
   "packages/ui",
