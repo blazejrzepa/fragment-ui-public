@@ -6,7 +6,8 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const rootDir = path.join(__dirname, "..");
+// Script is in scripts/build/, so go up two levels to get to project root
+const rootDir = path.join(__dirname, "../..");
 const registryDir = path.join(rootDir, "packages/registry");
 const registryPath = path.join(registryDir, "registry.json");
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf-8"));
