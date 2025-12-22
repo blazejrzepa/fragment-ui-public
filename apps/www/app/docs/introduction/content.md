@@ -14,6 +14,17 @@ Fragment UI is built around a few simple ideas:
 - **Blocks & Components**: From atoms to full screens—build faster.
 - **AI-Ready**: Predictable APIs so AI can generate and refactor safely.
 
+<div role="alert" class="relative rounded-[var(--radius-md)] px-[var(--space-4)] py-[var(--space-3)] text-[length:var(--typography-size-sm)] grid grid-cols-[calc(var(--space-4))_1fr] gap-x-[var(--space-3)] gap-y-[var(--space-1)] items-start bg-[color:var(--color-surface-1)] text-[color:var(--color-fg-base)] border border-[color:var(--color-border-base)] mt-[var(--space-6)]">
+  <svg class="size-4 translate-y-0.5 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  <div class="col-start-2">
+    <div class="font-medium tracking-tight mb-[var(--space-1)]">Fragment UI is currently in public alpha.</div>
+    <div class="text-[length:var(--typography-size-sm)] text-[color:var(--color-fg-muted)] leading-relaxed">
+      The API and component list can still change. Use it for experiments, internal tools, and early adopters – not yet as a hard dependency in mission-critical production apps.
+    </div>
+  </div>
+</div>
 
 ## Code-first & Open
 
