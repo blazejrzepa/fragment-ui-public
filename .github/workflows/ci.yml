@@ -66,8 +66,8 @@ jobs:
         run: pnpm lint:ds
         continue-on-error: false
       
-      - name: Run tests (skip demo)
-        run: pnpm test -- --filter '!fragment-demo'
+      - name: Run tests
+        run: pnpm test
         timeout-minutes: 5
         env:
           CI: true
