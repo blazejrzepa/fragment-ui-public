@@ -42,10 +42,7 @@
 - **[OSS FAQ](./OSS_FAQ.md)** - Frequently asked questions
 
 ### 🔗 Ecosystem
-- **[Projects Overview](../PROJECTS_OVERVIEW.md)** - Complete overview of all projects (fragment-ui, fragment-ui-public, fragment-ui-generative-copilot)
 - **[Combined Changelog](../CHANGELOG_COMBINED.md)** - Unified changelog for all projects
-- **[Roadmap](../ROADMAP.md)** - Development roadmap for the entire ecosystem
-- **[Sync Plan](../SYNC_PLAN.md)** - Synchronization plan between fragment-ui and fragment-ui-public
 
 ### 🚢 Operations
 - **[Deployment](./operations/deployment.md)** - Production deployment

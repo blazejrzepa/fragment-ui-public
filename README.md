@@ -2,31 +2,27 @@
 
 > **Code-first, AI-ready design system** built on React, TypeScript, shadcn/ui, and Tailwind.
 
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/ui.svg)](https://www.npmjs.com/package/@fragment_ui/ui)
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/tokens.svg)](https://www.npmjs.com/package/@fragment_ui/tokens)
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/blocks.svg)](https://www.npmjs.com/package/@fragment_ui/blocks)
+[![npm version](https://img.shields.io/npm/v/@fragment_ui/mcp-server.svg)](https://www.npmjs.com/package/@fragment_ui/mcp-server)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Fragment UI is a comprehensive design system that combines the flexibility of shadcn/ui with enterprise-ready tooling, documentation, and AI-native workflows.
 
-## 🎯 What is Public vs Experimental?
+## 🎯 What's in This Repository?
 
-This repository contains:
+This **public repository** contains:
 
-- ✅ **Public Design System** (officially supported): `@fragment_ui/ui`, `@fragment_ui/tokens`, `@fragment_ui/blocks`, and documentation
-- 🧪 **Experimental Tooling** (not guaranteed stable): Studio, Playground, Copilot, and internal automation
+- ✅ **Design System Packages**:
+  - `@fragment_ui/ui` - React components library (Button, Input, Dialog, etc.)
+  - `@fragment_ui/tokens` - Design tokens (colors, spacing, typography)
+  - `@fragment_ui/blocks` - Pre-built screen compositions (dashboards, forms, etc.)
+- ✅ **MCP Server** (`@fragment_ui/mcp-server`) - AI integration for Cursor, Claude, and other AI tools
+- ✅ **Documentation Site** (`apps/www`) - Complete documentation and examples
+- ✅ **Examples** - Example projects showing how to use Fragment UI
 
-**For external users:** Use the public Design System packages. Studio/Playground are experimental and may require special setup.
-
-**See:** [Public Scope](PUBLIC_SCOPE.md) | [OSS FAQ](docs/OSS_FAQ.md)
-
-## 📚 Ecosystem Documentation
-
-Fragment UI consists of three related projects:
-
-- **`fragment-ui`** - This repository (private, full stack)
-- **`fragment-ui-public`** - Public design system (public repository)
-- **`fragment-ui-generative-copilot`** - Experimental AI tool (experimental)
-
-**See:** 
-- [Projects Overview](./PROJECTS_OVERVIEW.md) - Complete overview of all projects and their relationships
-- [Combined Changelog](./CHANGELOG_COMBINED.md) - Unified changelog for all projects
-- [Roadmap](./ROADMAP.md) - Development roadmap for the entire ecosystem
+**Note:** Studio/Playground (experimental AI UI builder) and governance dashboards are **not** included in this public repository. They are part of a separate private project.
 
 ## ✨ Features
 
@@ -37,32 +33,74 @@ Fragment UI consists of three related projects:
 - **🎯 Design Tokens** - Extended token system with semantic colors, spacing, typography, density, motion, and i18n/RTL support
 - **🌙 Theming & Modes** - Theme system with support for light, dark, and high-contrast modes
 - **📱 Mobile Support** - React Native adapters (Button, Input, Checkbox, Radio, Switch)
-- **🤖 AI-Native** - Optimized for AI-assisted development with MCP Server, VS Code Extension, and enforcement rules
+- **🤖 AI-Native** - MCP Server for AI-assisted development (Cursor, Claude, etc.)
 - **✅ Fully Tested** - Comprehensive test coverage (unit, E2E, A11y, visual regression, performance)
 
 ## 🚀 Quick Start
 
-### Install Components in Your Project
+### Step 1: Install Design Tokens (Required)
+
+Fragment UI relies on design tokens exposed as CSS variables. Install the tokens package first:
 
 ```bash
-# Install a component from the registry
+pnpm add @fragment_ui/tokens
+# or: npm i @fragment_ui/tokens
+# or: yarn add @fragment_ui/tokens
+```
+
+Then import tokens in your global CSS:
+
+```css
+/* app/globals.css (Next.js) or src/index.css (Vite/CRA) */
+@import "@fragment_ui/tokens";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+### Step 2: Install Components
+
+You have three options:
+
+#### Option A: Fragment UI CLI (Recommended)
+
+The CLI installs components from the registry into your repo (code-first distribution, similar to shadcn):
+
+```bash
+# Initialize (creates ./components/ui, ./components/blocks, and components.json)
+npx fragmentui@latest init
+
+# Install a component
+npx fragmentui@latest add button
+
+# List all available components
+npx fragmentui@latest list
+```
+
+#### Option B: shadcn CLI (Direct Registry Install)
+
+You can install files directly from the registry using `shadcn`:
+
+```bash
 npx shadcn@latest add https://fragmentui.com/r/button.json
 ```
 
-### Use in Your Project
+#### Option C: Packages (Use as a Library)
+
+If you prefer using Fragment UI as a regular component library:
 
 ```bash
-# Install Fragment UI packages
-pnpm add @fragment_ui/ui @fragment_ui/tokens @fragment_ui/blocks
+pnpm add @fragment_ui/ui @fragment_ui/blocks @fragment_ui/tokens
+```
 
-# Import tokens in your CSS
-@import "@fragment_ui/tokens";
+Then import components:
 
-# Use components
+```tsx
 import { Button } from "@fragment_ui/ui";
 ```
 
-See the [Getting Started Guide](https://fragmentui.com/docs/get-started/introduction) for more details.
+See the [Setup Guide](https://fragmentui.com/docs/setup) for detailed instructions and Tailwind configuration.
 
 ## 📚 Documentation
 
@@ -70,7 +108,38 @@ See the [Getting Started Guide](https://fragmentui.com/docs/get-started/introduc
 - **[Component Documentation](https://fragmentui.com/components)** - All components with examples
 - **[Design Tokens](https://fragmentui.com/docs/foundations/tokens)** - Token system documentation
 - **[Theming Guide](https://fragmentui.com/docs/foundations/theming)** - Theme configuration
-- **[Changelog](https://fragmentui.com/docs/changelog)** - Version history and updates
+- **[Changelog](CHANGELOG.md)** - Version history and updates
+
+## 🤖 AI & MCP Integration
+
+Fragment UI includes an **MCP Server** (`@fragment_ui/mcp-server`) that exposes components, tokens, and design system rules to AI tools like Cursor and Claude.
+
+### Setup MCP Server
+
+1. Install the package:
+```bash
+pnpm add @fragment_ui/mcp-server
+```
+
+2. Configure in your MCP client (e.g., Cursor settings):
+```json
+{
+  "mcpServers": {
+    "fragment-ui": {
+      "command": "node",
+      "args": ["node_modules/@fragment_ui/mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+3. The MCP server provides:
+   - Component information and suggestions
+   - Design token access
+   - Code validation against design system rules
+   - Component code generation
+
+**Note:** A full Studio UI for AI-powered component generation is not included in this public repository. The MCP server provides programmatic access to the design system for AI tools.
 
 ## 🎨 Components
 
@@ -90,15 +159,6 @@ Pre-built screen compositions including Dashboard Layout, Form Container, Card G
 
 See the [full component catalog](https://fragmentui.com/components) for details.
 
-## 🎯 Design Tokens
-
-Fragment UI includes an extended design token system:
-
-- **Colors**: Semantic color system (backgrounds, text, surfaces, status states)
-- **Spacing**: Consistent spacing scale based on a 4px unit
-- **Typography**: Font families, sizes, weights, line heights, and text styles for headings, body, and display text
-- **Density, Motion, and i18n/RTL**: Extended tokens exposed as CSS variables
-
 ## 🛠️ Development
 
 ### Installation
@@ -110,95 +170,68 @@ pnpm install
 ### Development
 
 ```bash
-# Run portal, demo, and Storybook in parallel
-pnpm dev
+# Run documentation site
+pnpm dev:www
 
-# Design System Portal: http://localhost:3000
-# Demo App: http://localhost:3002
-# Storybook: http://localhost:6006
-```
-
-### Building
-
-```bash
-# Build design tokens
-pnpm tokens:build
-
-# Generate registry JSON files
+# (Optional) Generate shadcn-style registry files (served from /r/*.json on the website)
 pnpm registry:generate
+
+# Run Storybook for UI components
+pnpm storybook
 
 # Build all packages
 pnpm build
+
+# Type check
+pnpm type-check
 
 # Run tests
 pnpm test
 ```
 
-## 🧪 Testing
+### Package Structure
 
-- **Unit Tests**: Vitest + React Testing Library
-- **A11y Tests**: Automated accessibility testing (WCAG 2.1 compliance)
-- **E2E Tests**: Playwright tests for core workflows
-- **Visual Regression**: Chromatic integration
-- **Performance Tests**: Lighthouse CI with performance budgets
+```
+fragment-ui-public/
+├── packages/
+│   ├── ui/          # React components library
+│   ├── tokens/      # Design tokens
+│   ├── blocks/      # Pre-built screen compositions
+│   └── mcp-server/  # MCP server for AI integration
+├── apps/
+│   └── www/         # Documentation site
+└── examples/         # Example projects
+```
 
-## 📖 Versioning
+## 📦 Publishing
 
-Fragment UI follows [Semantic Versioning](https://semver.org/):
-- **Major versions**: Breaking changes
-- **Minor versions**: New features (backward compatible)
-- **Patch versions**: Bug fixes
+Packages are published to npm:
 
-See the [changelog](https://fragmentui.com/docs/changelog) for version history and migration guides.
+- `@fragment_ui/ui` - [npm](https://www.npmjs.com/package/@fragment_ui/ui)
+- `@fragment_ui/tokens` - [npm](https://www.npmjs.com/package/@fragment_ui/tokens)
+- `@fragment_ui/blocks` - [npm](https://www.npmjs.com/package/@fragment_ui/blocks)
+- `@fragment_ui/mcp-server` - [npm](https://www.npmjs.com/package/@fragment_ui/mcp-server)
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
-We welcome contributions! Please read our [Contributing Guide](CONTRIBUTING.md) first.
+Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
 **Key points:**
 - Public DS contributions must meet quality gates (tests, docs, a11y)
 - See [Public DS Development Guidelines](docs/OSS_PUBLIC_DS_GUIDELINES.md) for detailed requirements
 - Experimental tooling contributions are welcome but may evolve quickly
 
-**Quick links:**
-- [Contributing Guide](CONTRIBUTING.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Security Policy](SECURITY.md)
-- [OSS FAQ](docs/OSS_FAQ.md)
+## 🔗 Links
 
-## 📄 License
-
-[Add your license here]
-
-## 🙏 Credits
-
-Built on top of:
-- [shadcn/ui](https://ui.shadcn.com/) - Component primitives
-- [Radix UI](https://www.radix-ui.com/) - Unstyled, accessible components
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
-- [Next.js](https://nextjs.org/) - React framework
-- [Storybook](https://storybook.js.org/) - Component development environment
+- **Website**: [fragmentui.com](https://fragmentui.com)
+- **Documentation**: [fragmentui.com/docs](https://fragmentui.com/docs)
+- **Components**: [fragmentui.com/components](https://fragmentui.com/components)
+- **GitHub**: [github.com/blazejrzepa/fragment-ui-public](https://github.com/blazejrzepa/fragment-ui-public)
 
 ---
 
-**Version**: 0.1.0  
-**Last Updated**: December 2025
-
-## 🎉 What's New in v0.1.0
-
-### First Public Release
-
-This is the first public release of Fragment UI as a **code-first, AI-ready design system** built on React, TypeScript, shadcn/ui, and Tailwind.
-
-#### Core Features
-
-- **Design Tokens** - Color system with semantic tokens, spacing scale, typography tokens, and extended tokens (density, motion, i18n/RTL)
-- **Theming & Modes** - Theme system with support for light, dark, and high-contrast modes, density modes, and system preference support
-- **Component Library** - React components built on shadcn/ui and Radix primitives with consistent APIs and props
-- **Setup & Tooling** - CLI for installing components and tokens, Tailwind configuration, and theme management utilities
-- **Documentation** - Comprehensive documentation with foundations, getting started guides, and component overview pages
-
-#### Updated Component Documentation
-
-24 components have been updated with improved documentation and examples:
-- Accordion, Activity Feed, Alert, Avatar, Badge, Breadcrumbs, Button, Card, Carousel, Checkbox, Collapsible, Combobox, Command Palette, Context Menu, Dialog, Dropdown Menu, File Upload, Hover Card, Input, Kbd, Label, Menubar, Metric Card, Navigation Menu
+**Note:** This repository contains the public design system. Studio/Playground (experimental AI UI builder) and internal tooling are maintained in a separate private repository.
