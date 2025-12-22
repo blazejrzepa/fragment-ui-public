@@ -29,14 +29,14 @@ describe("Badge", () => {
   it("renders with small size", () => {
     const { container } = render(<Badge size="sm">Badge</Badge>);
     const badge = container.firstChild as HTMLElement;
-    expect(badge.className).toContain("px-2");
+    expect(badge.className).toContain("px-[var(--space-2)]");
   });
 
   it("renders with medium size by default", () => {
     const { container } = render(<Badge>Badge</Badge>);
     const badge = container.firstChild as HTMLElement;
-    // Check for size classes - medium should have px-2.5
-    expect(badge.className).toMatch(/px-2\.5|px-2/);
+    // Check for size classes - medium should have px-[var(--space-3)]
+    expect(badge.className).toContain("px-[var(--space-3)]");
   });
 
   it("accepts custom className", () => {
